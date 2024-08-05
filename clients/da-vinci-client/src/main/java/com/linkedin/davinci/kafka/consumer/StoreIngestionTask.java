@@ -4056,7 +4056,7 @@ public abstract class StoreIngestionTask implements Runnable, Closeable {
 
   public boolean hasAllPartitionReportedCompleted() {
     for (Map.Entry<Integer, PartitionConsumptionState> entry: partitionConsumptionStateMap.entrySet()) {
-      if (entry.getValue().isCompletionReported()) {
+      if (!entry.getValue().isCompletionReported()) {
         return false;
       }
     }
