@@ -79,7 +79,6 @@ import com.linkedin.venice.utils.DiskUsage;
 import com.linkedin.venice.utils.KafkaSSLUtils;
 import com.linkedin.venice.utils.LatencyUtils;
 import com.linkedin.venice.utils.Pair;
-import com.linkedin.venice.utils.PartitionUtils;
 import com.linkedin.venice.utils.SystemTime;
 import com.linkedin.venice.utils.Time;
 import com.linkedin.venice.utils.Utils;
@@ -151,7 +150,7 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
   private final AggKafkaConsumerService aggKafkaConsumerService;
 
   /**
-   * A repository mapping each Kafka Topic to it corresponding Ingestion task responsible
+   * A repository mapping each Version Topic to it corresponding Ingestion task responsible
    * for consuming messages and making changes to the local store accordingly.
    */
   private final NavigableMap<String, StoreIngestionTask> topicNameToIngestionTaskMap;
@@ -188,6 +187,7 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
 
   private final PubSubTopicRepository pubSubTopicRepository = new PubSubTopicRepository();
   private KafkaValueSerializer kafkaValueSerializer;
+  private final IngestionThrottler ingestionThrottler;
 
   public KafkaStoreIngestionService(
       StorageEngineRepository storageEngineRepository,
@@ -235,19 +235,10 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
     VeniceWriterFactory veniceWriterFactoryForMetaStoreWriter =
         new VeniceWriterFactory(veniceWriterProperties, producerAdapterFactory, null);
 
-    EventThrottler bandwidthThrottler = new EventThrottler(
-        serverConfig.getKafkaFetchQuotaBytesPerSecond(),
-        serverConfig.getKafkaFetchQuotaTimeWindow(),
-        "kafka_consumption_bandwidth",
-        false,
-        EventThrottler.BLOCK_STRATEGY);
-
-    EventThrottler recordsThrottler = new EventThrottler(
-        serverConfig.getKafkaFetchQuotaRecordPerSecond(),
-        serverConfig.getKafkaFetchQuotaTimeWindow(),
-        "kafka_consumption_records_count",
-        false,
-        EventThrottler.BLOCK_STRATEGY);
+    this.ingestionThrottler = new IngestionThrottler(
+        isDaVinciClient,
+        serverConfig,
+        () -> Collections.unmodifiableMap(topicNameToIngestionTaskMap));
 
     final Map<String, EventThrottler> kafkaUrlToRecordsThrottler;
     if (liveClusterConfigRepository != null) {
@@ -399,8 +390,7 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
         pubSubClientsFactory.getConsumerAdapterFactory(),
         this::getPubSubSSLPropertiesFromServerConfig,
         serverConfig,
-        bandwidthThrottler,
-        recordsThrottler,
+        ingestionThrottler,
         kafkaClusterBasedRecordThrottler,
         metricsRepository,
         new MetadataRepoBasedTopicExistingCheckerImpl(this.getMetadataRepo()),
@@ -563,6 +553,7 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
    */
   @Override
   public void stopInner() {
+    Utils.closeQuietlyWithErrorLogged(ingestionThrottler);
     Utils.closeQuietlyWithErrorLogged(participantStoreConsumptionTask);
     shutdownExecutorService(participantStoreConsumerExecutorService, "participantStoreConsumerExecutorService", true);
 
@@ -594,13 +585,9 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
    * Subscribes to partition if required.
    * @param veniceStore Venice Store for the partition.
    * @param partitionId Venice partition's id.
-   * @param leaderState
    */
   @Override
-  public void startConsumption(
-      VeniceStoreVersionConfig veniceStore,
-      int partitionId,
-      Optional<LeaderFollowerStateType> leaderState) {
+  public void startConsumption(VeniceStoreVersionConfig veniceStore, int partitionId) {
 
     final String topic = veniceStore.getStoreVersionName();
 
@@ -650,9 +637,8 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
       int maxVersionNumber = Math.max(maxVersionNumberFromMetadataRepo, maxVersionNumberFromTopicName);
       updateStatsEmission(topicNameToIngestionTaskMap, storeName, maxVersionNumber);
 
-      storeIngestionTask.subscribePartition(
-          new PubSubTopicPartitionImpl(pubSubTopicRepository.getTopic(topic), partitionId),
-          leaderState);
+      storeIngestionTask
+          .subscribePartition(new PubSubTopicPartitionImpl(pubSubTopicRepository.getTopic(topic), partitionId));
     }
     LOGGER.info("Started Consuming - Kafka Partition: {}-{}.", topic, partitionId);
   }
@@ -680,7 +666,7 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
       int partitionId,
       LeaderFollowerPartitionStateModel.LeaderSessionIdChecker checker) {
     final String topic = veniceStoreVersionConfig.getStoreVersionName();
-
+    LOGGER.info("Promoting partition: {} of topic: {} to leader.", partitionId, topic);
     try (AutoCloseableLock ignore = topicLockManager.getLockForResource(topic)) {
       StoreIngestionTask consumerTask = topicNameToIngestionTaskMap.get(topic);
       if (consumerTask != null && consumerTask.isRunning()) {
@@ -698,7 +684,7 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
       int partitionId,
       LeaderFollowerPartitionStateModel.LeaderSessionIdChecker checker) {
     final String topic = veniceStoreVersionConfig.getStoreVersionName();
-
+    LOGGER.info("Demoting partition: {} of topic: {} to standby.", partitionId, topic);
     try (AutoCloseableLock ignore = topicLockManager.getLockForResource(topic)) {
       StoreIngestionTask consumerTask = topicNameToIngestionTaskMap.get(topic);
       if (consumerTask != null && consumerTask.isRunning()) {
@@ -1164,12 +1150,12 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
   public TopicPartitionIngestionContextResponse getTopicPartitionIngestionContext(
       String versionTopic,
       String topicName,
-      Integer partitionNum) {
+      int partitionId) {
     TopicPartitionIngestionContextResponse topicPartitionIngestionContextResponse =
         new TopicPartitionIngestionContextResponse();
     PubSubTopic pubSubVersionTopic = pubSubTopicRepository.getTopic(versionTopic);
     PubSubTopic requestTopic = pubSubTopicRepository.getTopic(topicName);
-    PubSubTopicPartition pubSubTopicPartition = new PubSubTopicPartitionImpl(requestTopic, partitionNum);
+    PubSubTopicPartition pubSubTopicPartition = new PubSubTopicPartitionImpl(requestTopic, partitionId);
     try {
       byte[] topicPartitionInfo = aggKafkaConsumerService.getIngestionInfoFor(pubSubVersionTopic, pubSubTopicPartition);
       topicPartitionIngestionContextResponse.setTopicPartitionIngestionContext(topicPartitionInfo);
@@ -1177,15 +1163,10 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
       topicPartitionIngestionContextResponse.setError(true);
       topicPartitionIngestionContextResponse.setMessage(e.getMessage());
       LOGGER.error(
-          "Error on get topic partition ingestion context for version topic: " + versionTopic + ", topic name: "
-              + topicName + ", partition number: " + partitionNum,
+          "Error on get topic partition ingestion context for resource: " + Utils.getReplicaId(topicName, partitionId),
           e);
     }
     return topicPartitionIngestionContextResponse;
-  }
-
-  public LeaderFollowerStateType getLeaderStateFromPartitionConsumptionState(String topicName, int partitionId) {
-    return getStoreIngestionTask(topicName).getLeaderState(partitionId);
   }
 
   /**
@@ -1193,26 +1174,23 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
    * in main process, so main process's in-memory storage metadata service could be aware of the latest updates and will
    * not re-start the ingestion from scratch.
    */
-  public void updatePartitionOffsetRecords(String topicName, int partition, List<ByteBuffer> offsetRecordArray) {
-    int amplificationFactor = PartitionUtils.getAmplificationFactor(metadataRepo, topicName);
-    int offset = amplificationFactor * partition;
-    for (int subPartition: PartitionUtils.getSubPartitions(partition, amplificationFactor)) {
-      byte[] offsetRecordByteArray = offsetRecordArray.get(subPartition - offset).array();
-      OffsetRecord offsetRecord = null;
-      try {
-        offsetRecord = new OffsetRecord(offsetRecordByteArray, partitionStateSerializer);
-      } catch (Exception e) {
-        LOGGER.error(
-            "Caught exception when deserializing offset record byte array: {} for topic: {}, subPartition: {}.",
-            Arrays.toString(offsetRecordByteArray),
-            topicName,
-            subPartition);
-        throw e;
-      }
-      storageMetadataService.put(topicName, subPartition, offsetRecord);
-      LOGGER
-          .info("Updated OffsetRecord: {} for topic: {}, partition: {}", offsetRecord.toString(), topicName, partition);
+  public void updatePartitionOffsetRecords(String topicName, int partition, ByteBuffer offsetRecordByteBuffer) {
+    byte[] offsetRecordByteArray = offsetRecordByteBuffer.array();
+    OffsetRecord offsetRecord;
+    try {
+      offsetRecord = new OffsetRecord(offsetRecordByteArray, partitionStateSerializer);
+    } catch (Exception e) {
+      LOGGER.error(
+          "Caught exception when deserializing offset record byte array: {} for replica: {}",
+          Arrays.toString(offsetRecordByteArray),
+          Utils.getReplicaId(topicName, partition));
+      throw e;
     }
+    storageMetadataService.put(topicName, partition, offsetRecord);
+    LOGGER.info(
+        "Updated OffsetRecord: {} for resource: {} ",
+        offsetRecord.toString(),
+        Utils.getReplicaId(topicName, partition));
   }
 
   /**
@@ -1221,16 +1199,10 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
    * In theory, PCS should be available in this situation as we haven't unsubscribed from topic. If it is not available,
    * we will throw exception as this is not as expected.
    */
-  public List<ByteBuffer> getPartitionOffsetRecords(String topicName, int partition) {
-    List<ByteBuffer> offsetRecordArray = new ArrayList<>();
+  public ByteBuffer getPartitionOffsetRecords(String topicName, int partition) {
     StoreIngestionTask storeIngestionTask = getStoreIngestionTask(topicName);
-    int amplificationFactor = storeIngestionTask.getAmplificationFactor();
-    for (int i = 0; i < amplificationFactor; i++) {
-      int subPartitionId = amplificationFactor * partition + i;
-      PartitionConsumptionState pcs = storeIngestionTask.getPartitionConsumptionState(subPartitionId);
-      offsetRecordArray.add(ByteBuffer.wrap(pcs.getOffsetRecord().toBytes()));
-    }
-    return offsetRecordArray;
+    PartitionConsumptionState pcs = storeIngestionTask.getPartitionConsumptionState(partition);
+    return ByteBuffer.wrap(pcs.getOffsetRecord().toBytes());
   }
 
   /**
@@ -1240,11 +1212,7 @@ public class KafkaStoreIngestionService extends AbstractVeniceService implements
    */
   public void syncTopicPartitionOffset(String topicName, int partition) {
     StoreIngestionTask storeIngestionTask = getStoreIngestionTask(topicName);
-    int amplificationFactor = storeIngestionTask.getAmplificationFactor();
-    for (int i = 0; i < amplificationFactor; i++) {
-      int subPartitionId = amplificationFactor * partition + i;
-      storeIngestionTask.updateOffsetMetadataAndSync(topicName, subPartitionId);
-    }
+    storeIngestionTask.updateOffsetMetadataAndSync(topicName, partition);
   }
 
   public final ReadOnlyStoreRepository getMetadataRepo() {

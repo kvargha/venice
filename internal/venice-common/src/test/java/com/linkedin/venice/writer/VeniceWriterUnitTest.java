@@ -2,6 +2,8 @@ package com.linkedin.venice.writer;
 
 import static com.linkedin.venice.message.KafkaKey.HEART_BEAT;
 import static com.linkedin.venice.pubsub.api.PubSubMessageHeaders.VENICE_LEADER_COMPLETION_STATE_HEADER;
+import static com.linkedin.venice.utils.ByteUtils.BYTES_PER_KB;
+import static com.linkedin.venice.utils.ByteUtils.BYTES_PER_MB;
 import static com.linkedin.venice.writer.LeaderCompleteState.LEADER_COMPLETED;
 import static com.linkedin.venice.writer.LeaderCompleteState.LEADER_NOT_COMPLETED;
 import static com.linkedin.venice.writer.VeniceWriter.APP_DEFAULT_LOGICAL_TS;
@@ -9,9 +11,9 @@ import static com.linkedin.venice.writer.VeniceWriter.DEFAULT_LEADER_METADATA_WR
 import static com.linkedin.venice.writer.VeniceWriter.DEFAULT_MAX_SIZE_FOR_USER_PAYLOAD_PER_MESSAGE_IN_BYTES;
 import static com.linkedin.venice.writer.VeniceWriter.VENICE_DEFAULT_LOGICAL_TS;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.longThat;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.doThrow;
@@ -26,6 +28,7 @@ import static org.testng.Assert.fail;
 import com.linkedin.davinci.kafka.consumer.LeaderFollowerStoreIngestionTask;
 import com.linkedin.davinci.kafka.consumer.LeaderProducerCallback;
 import com.linkedin.davinci.kafka.consumer.PartitionConsumptionState;
+import com.linkedin.venice.exceptions.RecordTooLargeException;
 import com.linkedin.venice.guid.HeartbeatGuidV3Generator;
 import com.linkedin.venice.kafka.protocol.ControlMessage;
 import com.linkedin.venice.kafka.protocol.Delete;
@@ -53,6 +56,7 @@ import com.linkedin.venice.storage.protocol.ChunkedKeySuffix;
 import com.linkedin.venice.storage.protocol.ChunkedValueManifest;
 import com.linkedin.venice.utils.DataProviderUtils;
 import com.linkedin.venice.utils.SystemTime;
+import com.linkedin.venice.utils.TestWriteUtils;
 import com.linkedin.venice.utils.Time;
 import com.linkedin.venice.utils.VeniceProperties;
 import java.nio.ByteBuffer;
@@ -61,6 +65,8 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import org.apache.kafka.common.errors.TimeoutException;
 import org.mockito.ArgumentCaptor;
 import org.testng.Assert;
@@ -69,6 +75,8 @@ import org.testng.annotations.Test;
 
 
 public class VeniceWriterUnitTest {
+  private static final long TIMEOUT = 10 * Time.MS_PER_SECOND;
+
   @Test(dataProvider = "Chunking-And-Partition-Counts", dataProviderClass = DataProviderUtils.class)
   public void testTargetPartitionIsSameForAllOperationsWithTheSameKey(boolean isChunkingEnabled, int partitionCount) {
     PubSubProducerAdapter mockedProducer = mock(PubSubProducerAdapter.class);
@@ -162,7 +170,7 @@ public class VeniceWriterUnitTest {
         WriterChunkingHelper.EMPTY_BYTE_BUFFER);
   }
 
-  @Test(timeOut = 10000)
+  @Test(timeOut = TIMEOUT)
   public void testReplicationMetadataChunking() {
     PubSubProducerAdapter mockedProducer = mock(PubSubProducerAdapter.class);
     CompletableFuture mockedFuture = mock(CompletableFuture.class);
@@ -542,25 +550,36 @@ public class VeniceWriterUnitTest {
   }
 
   // Write a unit test for the retry mechanism in VeniceWriter.close(true) method.
-  @Test(dataProvider = "True-and-False", dataProviderClass = DataProviderUtils.class, timeOut = 10 * Time.MS_PER_SECOND)
+  @Test(dataProvider = "True-and-False", dataProviderClass = DataProviderUtils.class, timeOut = TIMEOUT)
   public void testVeniceWriterCloseRetry(boolean gracefulClose) throws ExecutionException, InterruptedException {
-    PubSubProducerAdapter mockedProducer = mock(PubSubProducerAdapter.class);
-    doThrow(new TimeoutException()).when(mockedProducer).close(anyString(), anyInt(), eq(true));
+    Supplier<PubSubProducerAdapter> producerSupplier = () -> {
+      PubSubProducerAdapter mockedProducer = mock(PubSubProducerAdapter.class);
+      // Only graceful closes (those with a non-zero timeout) will throw a TimeoutException
+      doThrow(new TimeoutException()).when(mockedProducer).close(longThat(argument -> argument > 0));
+      return mockedProducer;
+    };
+    Function<PubSubProducerAdapter, VeniceWriter> veniceWriterSupplier = mockedProducer -> {
+      String testTopic = "test";
+      VeniceWriterOptions veniceWriterOptions = new VeniceWriterOptions.Builder(testTopic).setPartitionCount(1).build();
+      return new VeniceWriter(veniceWriterOptions, VeniceProperties.empty(), mockedProducer);
+    };
 
-    String testTopic = "test";
-    VeniceWriterOptions veniceWriterOptions = new VeniceWriterOptions.Builder(testTopic).setPartitionCount(1).build();
-    VeniceWriter<Object, Object, Object> writer =
-        new VeniceWriter(veniceWriterOptions, VeniceProperties.empty(), mockedProducer);
+    // If attempting a graceful close, then the producer should receive an invocation of close with non-zero timeout,
+    // followed by another one with zero timeout. If, on the other hand, we attempt an ungraceful close, then there
+    // should only be a single close invocation, and it should be with zero timeout.
 
-    // Verify that if the producer throws a TimeoutException, the VeniceWriter will retry the close() method
-    // with doFlash = false for both close() and closeAsync() methods.
+    PubSubProducerAdapter mockedProducer = producerSupplier.get();
+    VeniceWriter<Object, Object, Object> writer = veniceWriterSupplier.apply(mockedProducer);
     writer.close(gracefulClose);
+    verify(mockedProducer, times(gracefulClose ? 1 : 0)).close(longThat(argument -> argument > 0));
+    verify(mockedProducer, times(1)).close(longThat(argument -> argument == 0));
 
-    writer = new VeniceWriter(veniceWriterOptions, VeniceProperties.empty(), mockedProducer);
+    // Same test for asyncClose, after reinitializing everything
+    mockedProducer = producerSupplier.get();
+    writer = veniceWriterSupplier.apply(mockedProducer);
     writer.closeAsync(gracefulClose).get();
-
-    // Verify that the close(false) method will be called twice.
-    verify(mockedProducer, times(2)).close(anyString(), anyInt(), eq(false));
+    verify(mockedProducer, times(gracefulClose ? 1 : 0)).close(longThat(argument -> argument > 0));
+    verify(mockedProducer, times(1)).close(longThat(argument -> argument == 0));
   }
 
   /**
@@ -571,7 +590,7 @@ public class VeniceWriterUnitTest {
    * 1. The VeniceWriter's cached segment is neither started nor ended.
    * 2. The elapsed time for the segment is greater than MAX_ELAPSED_TIME_FOR_SEGMENT_IN_MS.
    */
-  @Test(timeOut = 10 * Time.MS_PER_SECOND)
+  @Test(timeOut = TIMEOUT)
   public void testVeniceWriterShouldNotCauseStackOverflowError() {
     PubSubProducerAdapter mockedProducer = mock(PubSubProducerAdapter.class);
     CompletableFuture mockedFuture = mock(CompletableFuture.class);
@@ -579,6 +598,7 @@ public class VeniceWriterUnitTest {
 
     Properties writerProperties = new Properties();
     writerProperties.put(VeniceWriter.MAX_ELAPSED_TIME_FOR_SEGMENT_IN_MS, 1);
+    writerProperties.put(VeniceWriter.CLOSE_TIMEOUT_MS, TIMEOUT / 2);
     VeniceWriterOptions veniceWriterOptions = new VeniceWriterOptions.Builder("test").setPartitionCount(1).build();
 
     try (VeniceWriter<Object, Object, Object> writer =
@@ -598,6 +618,52 @@ public class VeniceWriterUnitTest {
       writer.sendStartOfSegment(0, null);
     } catch (Throwable t) {
       fail("VeniceWriter.close() should not cause StackOverflowError", t);
+    }
+  }
+
+  /**
+   * Testing that VeniceWriter throws RecordTooLargeException when the record is too large in the following scenarios:
+   * 1. If chunking is not enabled. Chunking must be enabled to even get past the ~1MB Kafka event limitation.
+   * 2. If large records are not allowed and the size is > MAX_RECORD_SIZE_BYTES.
+   * Basically, the record size must fit in one of these categories:
+   * Chunking Not Needed < ~1MB < Chunking Needed < MAX_RECORD_SIZE_BYTES
+   */
+  @Test(dataProvider = "True-and-False", dataProviderClass = DataProviderUtils.class, timeOut = TIMEOUT)
+  public void testPutTooLargeRecord(boolean isChunkingEnabled) {
+    final int maxRecordSizeBytes = BYTES_PER_MB; // 1MB
+    CompletableFuture mockedFuture = mock(CompletableFuture.class);
+    PubSubProducerAdapter mockedProducer = mock(PubSubProducerAdapter.class);
+    when(mockedProducer.sendMessage(any(), any(), any(), any(), any(), any())).thenReturn(mockedFuture);
+    final VeniceKafkaSerializer<Object> serializer = new VeniceAvroKafkaSerializer(TestWriteUtils.STRING_SCHEMA);
+    final VeniceWriterOptions options = new VeniceWriterOptions.Builder("testTopic").setPartitionCount(1)
+        .setKeySerializer(serializer)
+        .setValueSerializer(serializer)
+        .setChunkingEnabled(isChunkingEnabled)
+        .setMaxRecordSizeBytes(maxRecordSizeBytes)
+        .build();
+    VeniceProperties props = VeniceProperties.empty();
+    final VeniceWriter<Object, Object, Object> writer = new VeniceWriter<>(options, props, mockedProducer);
+
+    // "small" < maxSizeForUserPayloadPerMessageInBytes < "large" < maxRecordSizeBytes < "too large"
+    final int SMALL_VALUE_SIZE = maxRecordSizeBytes / 2;
+    final int LARGE_VALUE_SIZE = maxRecordSizeBytes - BYTES_PER_KB; // offset to account for the size of the key
+    final int TOO_LARGE_VALUE_SIZE = maxRecordSizeBytes * 2;
+
+    for (int size: Arrays.asList(SMALL_VALUE_SIZE, LARGE_VALUE_SIZE, TOO_LARGE_VALUE_SIZE)) {
+      char[] valueChars = new char[size];
+      Arrays.fill(valueChars, '*');
+      try {
+        writer.put("test-key", new String(valueChars), 1, null);
+        if (size == SMALL_VALUE_SIZE) {
+          continue; // Ok behavior. Small records should never throw RecordTooLargeException
+        }
+        if (!isChunkingEnabled || size == TOO_LARGE_VALUE_SIZE) {
+          Assert.fail("Should've thrown RecordTooLargeException if chunking not enabled or record is too large");
+        }
+      } catch (Exception e) {
+        Assert.assertTrue(e instanceof RecordTooLargeException);
+        Assert.assertNotEquals(size, SMALL_VALUE_SIZE, "Small records shouldn't throw RecordTooLargeException");
+      }
     }
   }
 }

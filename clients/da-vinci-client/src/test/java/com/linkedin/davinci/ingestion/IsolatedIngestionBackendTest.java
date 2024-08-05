@@ -32,12 +32,10 @@ import com.linkedin.venice.utils.Pair;
 import com.linkedin.venice.utils.TestUtils;
 import com.linkedin.venice.utils.concurrent.VeniceConcurrentHashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Supplier;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -69,13 +67,11 @@ public class IsolatedIngestionBackendTest {
       Runnable localCommandRunnable = () -> executionFlag.set(-1);
 
       Map<String, MainTopicIngestionStatus> topicIngestionStatusMap = new VeniceConcurrentHashMap<>();
-      ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
       doCallRealMethod().when(monitorService).cleanupTopicPartitionState(topic, partition);
       doCallRealMethod().when(monitorService).setVersionPartitionToLocalIngestion(topic, partition);
       doCallRealMethod().when(monitorService).setVersionPartitionToIsolatedIngestion(topic, partition);
       when(monitorService.getTopicPartitionIngestionStatus(topic, partition)).thenCallRealMethod();
       when(monitorService.getTopicIngestionStatusMap()).thenReturn(topicIngestionStatusMap);
-      when(monitorService.getForkProcessActionLock()).thenReturn(readWriteLock);
       when(backend.isTopicPartitionHosted(topic, partition)).thenCallRealMethod();
       when(backend.isTopicPartitionHostedInMainProcess(topic, partition)).thenCallRealMethod();
 
@@ -132,11 +128,9 @@ public class IsolatedIngestionBackendTest {
       Runnable localCommandRunnable = () -> executionFlag.set(-1);
 
       Map<String, MainTopicIngestionStatus> topicIngestionStatusMap = new VeniceConcurrentHashMap<>();
-      ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
       doCallRealMethod().when(monitorService).cleanupTopicPartitionState(topic, partition);
       when(monitorService.getTopicPartitionIngestionStatus(topic, partition)).thenCallRealMethod();
       when(monitorService.getTopicIngestionStatusMap()).thenReturn(topicIngestionStatusMap);
-      when(monitorService.getForkProcessActionLock()).thenReturn(readWriteLock);
 
       /**
        * Test Case (1): Resource metadata in-sync: Expect resource in forked process but found in main process.
@@ -206,17 +200,17 @@ public class IsolatedIngestionBackendTest {
     when(backend.isTopicPartitionHosted(topic, 0)).thenReturn(false);
     when(backend.isTopicPartitionHosted(topic, 1)).thenReturn(true);
     when(backend.isTopicPartitionHosted(topic, 2)).thenReturn(true);
-    backend.getIsolatedIngestionNotifier(ingestionNotifier).completed(topic, 0, 123L, "", Optional.empty());
+    backend.getIsolatedIngestionNotifier(ingestionNotifier).completed(topic, 0, 123L, "");
     verify(backend, times(0)).getCompletionHandlingExecutor();
 
-    backend.getIsolatedIngestionNotifier(ingestionNotifier).completed(topic, 1, 123L, "", Optional.empty());
+    backend.getIsolatedIngestionNotifier(ingestionNotifier).completed(topic, 1, 123L, "");
     TestUtils.waitForNonDeterministicAssertion(5, TimeUnit.SECONDS, true, () -> {
       verify(backend, times(1)).getCompletionHandlingExecutor();
       verify(mainIngestionMonitorService, times(1)).setVersionPartitionToLocalIngestion(topic, 1);
     });
     // Throw exception with calling startConsumptionLocally for next partition
-    doThrow(new VeniceException("Store not in repo")).when(backend).startConsumptionLocally(any(), anyInt(), any());
-    backend.getIsolatedIngestionNotifier(ingestionNotifier).completed(topic, 2, 123L, "", Optional.empty());
+    doThrow(new VeniceException("Store not in repo")).when(backend).startConsumptionLocally(any(), anyInt());
+    backend.getIsolatedIngestionNotifier(ingestionNotifier).completed(topic, 2, 123L, "");
     TestUtils.waitForNonDeterministicAssertion(5, TimeUnit.SECONDS, true, () -> {
       verify(backend, times(2)).getCompletionHandlingExecutor();
       // It should also set the state to locally no matter what.
@@ -247,8 +241,6 @@ public class IsolatedIngestionBackendTest {
       doCallRealMethod().when(backend).dropStoragePartitionGracefully(any(), anyInt(), anyInt(), anyBoolean());
       doCallRealMethod().when(backend).executeCommandWithRetry(anyString(), anyInt(), any(), any(), any());
       when(monitorService.getTopicPartitionCount(topic)).thenReturn(2L);
-      ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-      when(monitorService.getForkProcessActionLock()).thenReturn(readWriteLock);
 
       // Case 1: Local remove topic partition executed successfully.
       backend.dropStoragePartitionGracefully(storeVersionConfig, partition, 180, false);
@@ -275,43 +267,6 @@ public class IsolatedIngestionBackendTest {
       verify(ingestionRequestClient, times(2)).resetTopicPartition(topic, partition);
       verify(monitorService, times(2)).cleanupTopicPartitionState(topic, partition);
       Assert.assertEquals(topicIngestionStatusMap.get(topic).getPartitionIngestionStatus(partition), NOT_EXIST);
-    }
-  }
-
-  @Test
-  public void testBackendShutdownSuccessfullyWithDivergedResourceMetadata() {
-    try (MainIngestionMonitorService monitorService = mock(MainIngestionMonitorService.class);
-        IsolatedIngestionBackend backend = mock(IsolatedIngestionBackend.class)) {
-      String topic = "testTopic_v1";
-      int partition = 0;
-      VeniceStoreVersionConfig storeVersionConfig = mock(VeniceStoreVersionConfig.class);
-      when(storeVersionConfig.getStoreVersionName()).thenReturn(topic);
-      MainIngestionRequestClient ingestionRequestClient = mock(MainIngestionRequestClient.class);
-      when(backend.getMainIngestionRequestClient()).thenReturn(ingestionRequestClient);
-      when(backend.getMainIngestionMonitorService()).thenReturn(monitorService);
-      Map<String, MainTopicIngestionStatus> topicIngestionStatusMap = new VeniceConcurrentHashMap<>();
-      MainTopicIngestionStatus topicIngestionStatus = new MainTopicIngestionStatus(topic);
-      topicIngestionStatus.setPartitionIngestionStatusToIsolatedIngestion(partition);
-      topicIngestionStatusMap.put(topic, topicIngestionStatus);
-      when(monitorService.getTopicPartitionIngestionStatus(topic, partition)).thenCallRealMethod();
-      when(monitorService.getTopicIngestionStatusMap()).thenReturn(topicIngestionStatusMap);
-      when(backend.isTopicPartitionHostedInMainProcess(anyString(), anyInt())).thenCallRealMethod();
-      when(backend.isTopicPartitionHosted(anyString(), anyInt())).thenCallRealMethod();
-      doCallRealMethod().when(backend).stopConsumption(any(), anyInt());
-      doCallRealMethod().when(backend).executeCommandWithRetry(anyString(), anyInt(), any(), any(), any());
-      ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-      when(monitorService.getForkProcessActionLock()).thenReturn(readWriteLock);
-      KafkaStoreIngestionService storeIngestionService = mock(KafkaStoreIngestionService.class);
-      when(storeIngestionService.isPartitionConsuming(anyString(), anyInt())).thenReturn(false);
-      when(backend.getStoreIngestionService()).thenReturn(storeIngestionService);
-      when(ingestionRequestClient.stopConsumption(anyString(), anyInt())).thenReturn(false);
-      when(backend.isShuttingDown()).thenReturn(true);
-
-      // Make the actual call and verify that it is actually calling remote process and execute only once and quit.
-      backend.stopConsumption(storeVersionConfig, partition);
-      verify(storeIngestionService, times(1)).isPartitionConsuming(anyString(), anyInt());
-      verify(ingestionRequestClient, times(1)).stopConsumption(anyString(), anyInt());
-
     }
   }
 }

@@ -9,6 +9,7 @@ import com.linkedin.venice.hadoop.mapreduce.datawriter.map.AbstractVeniceMapper;
 import com.linkedin.venice.meta.StoreInfo;
 import com.linkedin.venice.utils.Time;
 import org.apache.hadoop.fs.PathFilter;
+import org.apache.hadoop.fs.permission.FsPermission;
 
 
 public final class VenicePushJobConstants {
@@ -104,12 +105,6 @@ public final class VenicePushJobConstants {
   public static final String VALIDATE_SCHEMA_AND_BUILD_DICT_MAPPER_OUTPUT_DIRECTORY =
       "validate.schema.and.build.dict.mapper.output.directory";
 
-  // used to get parent directory input from Users
-  public static final String MAPPER_OUTPUT_DIRECTORY = "mapper.output.directory";
-
-  // static names used to construct the directory and file name
-  public static final String VALIDATE_SCHEMA_AND_BUILD_DICTIONARY_MAPPER_OUTPUT_PARENT_DIR_DEFAULT =
-      "/tmp/veniceMapperOutput";
   public static final String VALIDATE_SCHEMA_AND_BUILD_DICTIONARY_MAPPER_OUTPUT_FILE_PREFIX = "mapper-output-";
   public static final String VALIDATE_SCHEMA_AND_BUILD_DICTIONARY_MAPPER_OUTPUT_FILE_EXTENSION = ".avro";
 
@@ -206,11 +201,6 @@ public final class VenicePushJobConstants {
       "rewind.epoch.time.buffer.in.seconds.override";
 
   /**
-   * This config specifies if Venice is deployed in a multi-region mode
-   */
-  public static final String MULTI_REGION = "multi.region";
-
-  /**
    * In single-region mode, this must be a comma-separated list of child controller URLs or {@literal d2://<d2ServiceNameForChildController>}
    * In multi-region mode, it must be a comma-separated list of parent controller URLs or {@literal d2://<d2ServiceNameForParentController>}
    */
@@ -232,6 +222,14 @@ public final class VenicePushJobConstants {
    * ignore hdfs files with prefix "_" and "."
    */
   public static final PathFilter PATH_FILTER = p -> !p.getName().startsWith("_") && !p.getName().startsWith(".");
+
+  // Configs to control temp paths and their permissions
+  public static final String HADOOP_TMP_DIR = "hadoop.tmp.dir";
+  public static final String TEMP_DIR_PREFIX = "tmp.dir.prefix";
+  // World-readable and world-writable
+  public static final FsPermission PERMISSION_777 = FsPermission.createImmutable((short) 0777);
+  // Only readable and writable by the user running VPJ - restricted access
+  public static final FsPermission PERMISSION_700 = FsPermission.createImmutable((short) 0700);
 
   public static final String VALUE_SCHEMA_ID_PROP = "value.schema.id";
   public static final String DERIVED_SCHEMA_ID_PROP = "derived.schema.id";
@@ -301,7 +299,6 @@ public final class VenicePushJobConstants {
   public static final String REPUSH_TTL_START_TIMESTAMP = "repush.ttl.start.timestamp";
   public static final String RMD_SCHEMA_DIR = "rmd.schema.dir";
   public static final String VALUE_SCHEMA_DIR = "value.schema.dir";
-  public static final String TEMP_DIR_PREFIX = "/tmp/veniceSchemas/";
   public static final int NOT_SET = -1;
 
   /**

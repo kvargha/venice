@@ -1,6 +1,7 @@
 package com.linkedin.venice.router;
 
 import static com.linkedin.venice.CommonConfigKeys.SSL_FACTORY_CLASS_NAME;
+import static com.linkedin.venice.ConfigConstants.DEFAULT_PUSH_STATUS_STORE_HEARTBEAT_EXPIRATION_TIME_IN_SECONDS;
 import static com.linkedin.venice.VeniceConstants.DEFAULT_SSL_FACTORY_CLASS_NAME;
 import static com.linkedin.venice.utils.concurrent.BlockingQueueType.LINKED_BLOCKING_QUEUE;
 
@@ -13,11 +14,13 @@ import com.linkedin.alpini.netty4.ssl.SslInitializer;
 import com.linkedin.alpini.router.api.LongTailRetrySupplier;
 import com.linkedin.alpini.router.api.ScatterGatherHelper;
 import com.linkedin.alpini.router.impl.Router;
+import com.linkedin.d2.balancer.D2Client;
 import com.linkedin.venice.ConfigKeys;
 import com.linkedin.venice.acl.DynamicAccessController;
 import com.linkedin.venice.acl.handler.StoreAclHandler;
 import com.linkedin.venice.authorization.IdentityParser;
 import com.linkedin.venice.compression.CompressorFactory;
+import com.linkedin.venice.d2.D2ClientFactory;
 import com.linkedin.venice.exceptions.VeniceException;
 import com.linkedin.venice.helix.HelixAdapterSerializer;
 import com.linkedin.venice.helix.HelixBaseRoutingRepository;
@@ -36,6 +39,7 @@ import com.linkedin.venice.helix.SafeHelixManager;
 import com.linkedin.venice.helix.ZkRoutersClusterManager;
 import com.linkedin.venice.meta.ReadOnlySchemaRepository;
 import com.linkedin.venice.meta.ReadOnlyStoreRepository;
+import com.linkedin.venice.pushstatushelper.PushStatusStoreReader;
 import com.linkedin.venice.read.RequestType;
 import com.linkedin.venice.router.api.DictionaryRetrievalService;
 import com.linkedin.venice.router.api.MetaStoreShadowReader;
@@ -80,6 +84,7 @@ import com.linkedin.venice.stats.ThreadPoolStats;
 import com.linkedin.venice.stats.VeniceJVMStats;
 import com.linkedin.venice.stats.ZkClientStatusStats;
 import com.linkedin.venice.throttle.EventThrottler;
+import com.linkedin.venice.utils.DaemonThreadFactory;
 import com.linkedin.venice.utils.HelixUtils;
 import com.linkedin.venice.utils.ReflectUtils;
 import com.linkedin.venice.utils.SslUtils;
@@ -107,6 +112,8 @@ import java.util.Optional;
 import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -121,6 +128,8 @@ import org.apache.logging.log4j.Logger;
 
 public class RouterServer extends AbstractVeniceService {
   private static final Logger LOGGER = LogManager.getLogger(RouterServer.class);
+
+  private static final String ROUTER_RETRY_MANAGER_THREAD_PREFIX = "Router-retry-manager-thread";
 
   // Immutable state
   private final List<ServiceDiscoveryAnnouncer> serviceDiscoveryAnnouncers;
@@ -145,6 +154,8 @@ public class RouterServer extends AbstractVeniceService {
   private ReadOnlyStoreRepository metadataRepository;
   private RouterStats<AggRouterHttpRequestStats> routerStats;
   private HelixReadOnlyStoreConfigRepository storeConfigRepository;
+
+  private PushStatusStoreReader pushStatusStoreReader;
   private HelixLiveInstanceMonitor liveInstanceMonitor;
   private HelixInstanceConfigRepository instanceConfigRepository;
   private HelixGroupSelector helixGroupSelector;
@@ -187,6 +198,8 @@ public class RouterServer extends AbstractVeniceService {
   private VeniceJVMStats jvmStats;
 
   private final AggHostHealthStats aggHostHealthStats;
+
+  private ScheduledExecutorService retryManagerExecutorService;
 
   public static void main(String args[]) throws Exception {
     if (args.length != 1) {
@@ -318,6 +331,13 @@ public class RouterServer extends AbstractVeniceService {
         config.getRefreshAttemptsForZkReconnect(),
         config.getRefreshIntervalForZkReconnectInMs());
     this.liveInstanceMonitor = new HelixLiveInstanceMonitor(this.zkClient, config.getClusterName());
+
+    D2Client d2Client = D2ClientFactory.getD2Client(config.getZkConnection(), Optional.empty());
+    String d2ServiceName = config.getClusterToD2Map().get(config.getClusterName());
+    this.pushStatusStoreReader = new PushStatusStoreReader(
+        d2Client,
+        d2ServiceName,
+        DEFAULT_PUSH_STATUS_STORE_HEARTBEAT_EXPIRATION_TIME_IN_SECONDS);
   }
 
   /**
@@ -505,13 +525,20 @@ public class RouterServer extends AbstractVeniceService {
         config.getClusterName(),
         compressorFactory,
         metricsRepository);
+
+    retryManagerExecutorService = Executors.newScheduledThreadPool(
+        config.getRetryManagerCorePoolSize(),
+        new DaemonThreadFactory(ROUTER_RETRY_MANAGER_THREAD_PREFIX));
+
     VenicePathParser pathParser = new VenicePathParser(
         versionFinder,
         partitionFinder,
         routerStats,
         metadataRepository,
         config,
-        compressorFactory);
+        compressorFactory,
+        metricsRepository,
+        retryManagerExecutorService);
 
     MetaDataHandler metaDataHandler = new MetaDataHandler(
         routingDataRepository,
@@ -525,7 +552,8 @@ public class RouterServer extends AbstractVeniceService {
         config.getZkConnection(),
         config.getKafkaBootstrapServers(),
         config.isSslToKafka(),
-        versionFinder);
+        versionFinder,
+        pushStatusStoreReader);
 
     // Setup stat tracking for exceptional case
     RouterExceptionAndTrackingUtils.setRouterStats(routerStats);
@@ -848,6 +876,9 @@ public class RouterServer extends AbstractVeniceService {
     }
     if (heartbeat != null) {
       heartbeat.stopInner();
+    }
+    if (retryManagerExecutorService != null) {
+      retryManagerExecutorService.shutdownNow();
     }
   }
 

@@ -460,16 +460,8 @@ public class Utils {
     return Arrays.asList(allowed).contains(newStatus.getRootStatus());
   }
 
-  public static List<String> parseCommaSeparatedStringToList(String rawString) {
-    String[] strArray = rawString.split(",\\s*");
-    if (strArray.length < 1) {
-      throw new VeniceException("Invalid input: " + rawString);
-    }
-    return Arrays.asList(strArray);
-  }
-
   public static Set<String> parseCommaSeparatedStringToSet(String rawString) {
-    if (rawString == null || rawString.length() == 0) {
+    if (StringUtils.isEmpty(rawString)) {
       return Collections.emptySet();
     }
     return Utils.setOf(rawString.split(",\\s*"));
@@ -736,10 +728,6 @@ public class Utils {
     return new HashSet<>(Arrays.asList(objs));
   }
 
-  public static long calculateDurationMs(Time time, long startTimeMs) {
-    return time.getMilliseconds() - startTimeMs;
-  }
-
   public static void closeQuietlyWithErrorLogged(Closeable... closeables) {
     if (closeables == null) {
       return;
@@ -918,5 +906,14 @@ public class Utils {
 
   public static String getReplicaId(PubSubTopic topic, int partition) {
     return topic + "-" + partition;
+  }
+
+  /**
+   * Method to escape file path component to make it a valid file path string/substring.
+   * @param component file path component string
+   * @return Escaped file path component string
+   */
+  public static String escapeFilePathComponent(final String component) {
+    return component.replaceAll("[^a-zA-Z0-9-_/\\.]", "_");
   }
 }

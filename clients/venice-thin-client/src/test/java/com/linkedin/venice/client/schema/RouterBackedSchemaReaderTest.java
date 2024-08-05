@@ -161,14 +161,14 @@ public class RouterBackedSchemaReaderTest {
       Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(2)).getRaw(Mockito.anyString());
       Schema cachedSchema = schemaReader.getValueSchema(3);
       Assert.assertNull(cachedSchema);
-      Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(2)).getRaw(Mockito.anyString());
+      Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(3)).getRaw(Mockito.anyString());
 
       Schema newSchema = schemaReader.getValueSchema(1);
       Assert.assertEquals(newSchema.toString(), VALUE_SCHEMA_1.toString());
-      Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(2)).getRaw(Mockito.anyString());
+      Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(3)).getRaw(Mockito.anyString());
 
       Assert.assertEquals(schemaReader.getLatestValueSchema().toString(), VALUE_SCHEMA_2.toString());
-      Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(4)).getRaw(Mockito.anyString());
+      Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(5)).getRaw(Mockito.anyString());
     }
   }
 
@@ -209,6 +209,27 @@ public class RouterBackedSchemaReaderTest {
       Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(3)).getRaw(Mockito.anyString());
       schemaReader.getLatestValueSchema();
       Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(3)).getRaw(Mockito.anyString());
+    }
+  }
+
+  @Test
+  public void testGetValueSchemaId()
+      throws IOException, ExecutionException, InterruptedException, VeniceClientException {
+    AbstractAvroStoreClient mockClient = getMockStoreClient(false);
+
+    final Schema sameCanonicalSchemaAsValueSchema2 =
+        AvroCompatibilityHelper.parse(loadFileAsStringQuietlyWithErrorLogged("SameCanonicalAsRecordValueSchema2.avsc"));
+
+    final Schema invalidValueSchema =
+        AvroCompatibilityHelper.parse(loadFileAsStringQuietlyWithErrorLogged("testSchemaWithNamespace.avsc"));
+
+    try (SchemaReader schemaReader = new RouterBackedSchemaReader(() -> mockClient)) {
+      Assert.assertEquals(schemaReader.getValueSchemaId(VALUE_SCHEMA_1), 1);
+      Assert.assertEquals(schemaReader.getValueSchemaId(VALUE_SCHEMA_2), 2);
+      Assert.assertEquals(schemaReader.getValueSchemaId(sameCanonicalSchemaAsValueSchema2), 2);
+      VeniceClientException e =
+          Assert.expectThrows(VeniceClientException.class, () -> schemaReader.getValueSchemaId(invalidValueSchema));
+      Assert.assertTrue(e.getMessage().contains("Could not find schema"));
     }
   }
 
@@ -290,7 +311,7 @@ public class RouterBackedSchemaReaderTest {
        * 1. Fetch value schemas on start up, which takes 2 + 1 = 3 individual call.
        * 2. Fetch update schemas in one of the futures
        */
-      Mockito.verify(storeClient, Mockito.timeout(TIMEOUT).times(4)).getRaw(Mockito.anyString());
+      Mockito.verify(storeClient, Mockito.timeout(TIMEOUT).times(5)).getRaw(Mockito.anyString());
     }
   }
 
@@ -348,7 +369,7 @@ public class RouterBackedSchemaReaderTest {
       Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(3)).getRaw(Mockito.anyString());
       Assert.assertNotNull(schemaReader.getLatestValueSchema());
       // Should not be checked again
-      Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(3)).getRaw(Mockito.anyString());
+      Mockito.verify(mockClient, Mockito.timeout(TIMEOUT).times(4)).getRaw(Mockito.anyString());
     }
   }
 
@@ -510,7 +531,6 @@ public class RouterBackedSchemaReaderTest {
     versionCreationResponse.setPartitionerParams(partitionerConfig.getPartitionerParams());
     versionCreationResponse.setKafkaBootstrapServers("localhost:9092");
     versionCreationResponse.setKafkaTopic(Version.composeRealTimeTopic(storeName));
-    versionCreationResponse.setAmplificationFactor(1);
     versionCreationResponse.setEnableSSL(false);
 
     CompletableFuture<byte[]> requestTopicFuture = mock(CompletableFuture.class);
