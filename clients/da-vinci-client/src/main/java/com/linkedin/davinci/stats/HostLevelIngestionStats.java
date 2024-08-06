@@ -36,102 +36,102 @@ public class HostLevelIngestionStats extends AbstractVeniceStats {
   public static final String ASSEMBLED_RECORD_VALUE_SIZE_IN_BYTES = "assembled_record_value_size_in_bytes";
 
   // The aggregated bytes ingested rate for the entire host
-  private final Lazy<LongAdderRateGauge> totalBytesConsumedRate;
+  private final LongAdderRateGauge totalBytesConsumedRate;
   // The aggregated records ingested rate for the entire host
-  private final Lazy<LongAdderRateGauge> totalRecordsConsumedRate;
+  private final LongAdderRateGauge totalRecordsConsumedRate;
 
   /*
    * Bytes read from Kafka by store ingestion task as a total. This metric includes bytes read for all store versions
    * allocated in a storage node reported with its uncompressed data size.
    */
-  private final Lazy<LongAdderRateGauge> totalBytesReadFromKafkaAsUncompressedSizeRate;
+  private final LongAdderRateGauge totalBytesReadFromKafkaAsUncompressedSizeRate;
 
   /** To measure 'put' latency of consumer records blocking queue */
-  private final Lazy<Sensor> consumerRecordsQueuePutLatencySensor;
+  private final Sensor consumerRecordsQueuePutLatencySensor;
   private final Lazy<Sensor> keySizeSensor;
   private final Lazy<Sensor> valueSizeSensor;
   private final Lazy<Sensor> assembledValueSizeSensor;
-  private final Lazy<Sensor> unexpectedMessageSensor;
-  private final Lazy<Sensor> inconsistentStoreMetadataSensor;
-  private final Lazy<Sensor> ingestionFailureSensor;
+  private final Sensor unexpectedMessageSensor;
+  private final Sensor inconsistentStoreMetadataSensor;
+  private final Sensor ingestionFailureSensor;
 
-  private final Lazy<Sensor> viewProducerLatencySensor;
+  private final Sensor viewProducerLatencySensor;
   /**
    * Sensors for emitting if/when we detect DCR violations (such as a backwards timestamp or receding offset vector)
    */
-  private final Lazy<LongAdderRateGauge> totalTimestampRegressionDCRErrorRate;
-  private final Lazy<LongAdderRateGauge> totalOffsetRegressionDCRErrorRate;
+  private final LongAdderRateGauge totalTimestampRegressionDCRErrorRate;
+  private final LongAdderRateGauge totalOffsetRegressionDCRErrorRate;
   /**
    * A gauge reporting the total the percentage of hybrid quota used.
    */
   private double hybridQuotaUsageGauge;
   // Measure the avg/max time we need to spend on waiting for the leader producer
-  private final Lazy<Sensor> leaderProducerSynchronizeLatencySensor;
+  private final Sensor leaderProducerSynchronizeLatencySensor;
   // Measure the avg/max latency for data lookup and deserialization
-  private final Lazy<Sensor> leaderWriteComputeLookUpLatencySensor;
+  private final Sensor leaderWriteComputeLookUpLatencySensor;
   // Measure the avg/max latency for the actual write computation
-  private final Lazy<Sensor> leaderWriteComputeUpdateLatencySensor;
+  private final Sensor leaderWriteComputeUpdateLatencySensor;
   // Measure the latency in processing consumer actions
-  private final Lazy<Sensor> processConsumerActionLatencySensor;
+  private final Sensor processConsumerActionLatencySensor;
   // Measure the latency in checking long running task states, like leader promotion, TopicSwitch
-  private final Lazy<Sensor> checkLongRunningTasksLatencySensor;
+  private final Sensor checkLongRunningTasksLatencySensor;
   // Measure the latency in putting data into storage engine
-  private final Lazy<Sensor> storageEnginePutLatencySensor;
+  private final Sensor storageEnginePutLatencySensor;
   // Measure the latency in deleting data from storage engine
-  private final Lazy<Sensor> storageEngineDeleteLatencySensor;
+  private final Sensor storageEngineDeleteLatencySensor;
 
   /**
    * Measure the number of times a record was found in {@link PartitionConsumptionState#transientRecordMap} during UPDATE
    * message processing.
    */
-  private final Lazy<Sensor> writeComputeCacheHitCount;
+  private final Sensor writeComputeCacheHitCount;
 
-  private final Lazy<LongAdderRateGauge> totalLeaderBytesConsumedRate;
-  private final Lazy<LongAdderRateGauge> totalLeaderRecordsConsumedRate;
-  private final Lazy<LongAdderRateGauge> totalFollowerBytesConsumedRate;
-  private final Lazy<LongAdderRateGauge> totalFollowerRecordsConsumedRate;
-  private final Lazy<LongAdderRateGauge> totalLeaderBytesProducedRate;
-  private final Lazy<LongAdderRateGauge> totalLeaderRecordsProducedRate;
+  private final LongAdderRateGauge totalLeaderBytesConsumedRate;
+  private final LongAdderRateGauge totalLeaderRecordsConsumedRate;
+  private final LongAdderRateGauge totalFollowerBytesConsumedRate;
+  private final LongAdderRateGauge totalFollowerRecordsConsumedRate;
+  private final LongAdderRateGauge totalLeaderBytesProducedRate;
+  private final LongAdderRateGauge totalLeaderRecordsProducedRate;
   private final List<Sensor> totalHybridBytesConsumedByRegionId;
   private final List<Sensor> totalHybridRecordsConsumedByRegionId;
 
-  private final Lazy<Sensor> checksumVerificationFailureSensor;
+  private final Sensor checksumVerificationFailureSensor;
 
   /**
    * Measure the number of times replication metadata was found in {@link PartitionConsumptionState#transientRecordMap}
    */
-  private final Lazy<Sensor> leaderIngestionReplicationMetadataCacheHitCount;
+  private final Sensor leaderIngestionReplicationMetadataCacheHitCount;
 
   /**
    * Measure the avg/max latency for value bytes lookup
    */
-  private final Lazy<Sensor> leaderIngestionValueBytesLookUpLatencySensor;
+  private final Sensor leaderIngestionValueBytesLookUpLatencySensor;
 
   /**
    * Measure the number of times value bytes were found in {@link PartitionConsumptionState#transientRecordMap}
    */
-  private final Lazy<Sensor> leaderIngestionValueBytesCacheHitCount;
+  private final Sensor leaderIngestionValueBytesCacheHitCount;
 
   /**
    * Measure the avg/max latency for replication metadata data lookup
    */
-  private final Lazy<Sensor> leaderIngestionReplicationMetadataLookUpLatencySensor;
+  private final Sensor leaderIngestionReplicationMetadataLookUpLatencySensor;
 
-  private final Lazy<Sensor> leaderIngestionActiveActivePutLatencySensor;
+  private final Sensor leaderIngestionActiveActivePutLatencySensor;
 
-  private final Lazy<Sensor> leaderIngestionActiveActiveUpdateLatencySensor;
+  private final Sensor leaderIngestionActiveActiveUpdateLatencySensor;
 
-  private final Lazy<Sensor> leaderIngestionActiveActiveDeleteLatencySensor;
+  private final Sensor leaderIngestionActiveActiveDeleteLatencySensor;
 
   /**
    * Measure the count of ignored updates due to conflict resolution
    */
-  private final Lazy<LongAdderRateGauge> totalUpdateIgnoredDCRRate;
+  private final LongAdderRateGauge totalUpdateIgnoredDCRRate;
 
   /**
    * Measure the count of tombstones created
    */
-  private final Lazy<LongAdderRateGauge> totalTombstoneCreationDCRRate;
+  private final LongAdderRateGauge totalTombstoneCreationDCRRate;
 
   /**
    * @param totalStats the total stats singleton instance, or null if we are constructing the total stats
@@ -147,84 +147,68 @@ public class HostLevelIngestionStats extends AbstractVeniceStats {
 
     // Stats which are total only:
 
-    this.totalBytesConsumedRate = Lazy
-        .of(() -> registerOnlyTotalRate("bytes_consumed", totalStats, totalStats.totalBytesConsumedRate::get, time));
+    this.totalBytesConsumedRate =
+        registerOnlyTotalRate("bytes_consumed", totalStats, () -> totalStats.totalBytesConsumedRate, time);
 
-    this.totalRecordsConsumedRate = Lazy.of(
-        () -> registerOnlyTotalRate("records_consumed", totalStats, totalStats.totalRecordsConsumedRate::get, time));
+    this.totalRecordsConsumedRate =
+        registerOnlyTotalRate("records_consumed", totalStats, () -> totalStats.totalRecordsConsumedRate, time);
 
-    this.totalBytesReadFromKafkaAsUncompressedSizeRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "bytes_read_from_kafka_as_uncompressed_size",
-            totalStats,
-            totalStats.totalBytesReadFromKafkaAsUncompressedSizeRate::get,
-            time));
+    this.totalBytesReadFromKafkaAsUncompressedSizeRate = registerOnlyTotalRate(
+        "bytes_read_from_kafka_as_uncompressed_size",
+        totalStats,
+        () -> totalStats.totalBytesReadFromKafkaAsUncompressedSizeRate,
+        time);
 
-    this.totalLeaderBytesConsumedRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "leader_bytes_consumed",
-            totalStats,
-            totalStats.totalLeaderBytesConsumedRate::get,
-            time));
+    this.totalLeaderBytesConsumedRate =
+        registerOnlyTotalRate("leader_bytes_consumed", totalStats, () -> totalStats.totalLeaderBytesConsumedRate, time);
 
-    this.totalLeaderRecordsConsumedRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "leader_records_consumed",
-            totalStats,
-            totalStats.totalLeaderRecordsConsumedRate::get,
-            time));
+    this.totalLeaderRecordsConsumedRate = registerOnlyTotalRate(
+        "leader_records_consumed",
+        totalStats,
+        () -> totalStats.totalLeaderRecordsConsumedRate,
+        time);
 
-    this.totalFollowerBytesConsumedRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "follower_bytes_consumed",
-            totalStats,
-            totalStats.totalFollowerBytesConsumedRate::get,
-            time));
+    this.totalFollowerBytesConsumedRate = registerOnlyTotalRate(
+        "follower_bytes_consumed",
+        totalStats,
+        () -> totalStats.totalFollowerBytesConsumedRate,
+        time);
 
-    this.totalFollowerRecordsConsumedRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "follower_records_consumed",
-            totalStats,
-            totalStats.totalFollowerRecordsConsumedRate::get,
-            time));
+    this.totalFollowerRecordsConsumedRate = registerOnlyTotalRate(
+        "follower_records_consumed",
+        totalStats,
+        () -> totalStats.totalFollowerRecordsConsumedRate,
+        time);
 
-    this.totalLeaderBytesProducedRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "leader_bytes_produced",
-            totalStats,
-            totalStats.totalLeaderBytesProducedRate::get,
-            time));
+    this.totalLeaderBytesProducedRate =
+        registerOnlyTotalRate("leader_bytes_produced", totalStats, () -> totalStats.totalLeaderBytesProducedRate, time);
 
-    this.totalLeaderRecordsProducedRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "leader_records_produced",
-            totalStats,
-            totalStats.totalLeaderRecordsProducedRate::get,
-            time));
+    this.totalLeaderRecordsProducedRate = registerOnlyTotalRate(
+        "leader_records_produced",
+        totalStats,
+        () -> totalStats.totalLeaderRecordsProducedRate,
+        time);
 
-    this.totalUpdateIgnoredDCRRate = Lazy.of(
-        () -> registerOnlyTotalRate("update_ignored_dcr", totalStats, totalStats.totalUpdateIgnoredDCRRate::get, time));
+    this.totalUpdateIgnoredDCRRate =
+        registerOnlyTotalRate("update_ignored_dcr", totalStats, () -> totalStats.totalUpdateIgnoredDCRRate, time);
 
-    this.totalTombstoneCreationDCRRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "tombstone_creation_dcr",
-            totalStats,
-            totalStats.totalTombstoneCreationDCRRate::get,
-            time));
+    this.totalTombstoneCreationDCRRate = registerOnlyTotalRate(
+        "tombstone_creation_dcr",
+        totalStats,
+        () -> totalStats.totalTombstoneCreationDCRRate,
+        time);
 
-    this.totalTimestampRegressionDCRErrorRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "timestamp_regression_dcr_error",
-            totalStats,
-            totalStats.totalTimestampRegressionDCRErrorRate::get,
-            time));
+    this.totalTimestampRegressionDCRErrorRate = registerOnlyTotalRate(
+        "timestamp_regression_dcr_error",
+        totalStats,
+        () -> totalStats.totalTimestampRegressionDCRErrorRate,
+        time);
 
-    this.totalOffsetRegressionDCRErrorRate = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "offset_regression_dcr_error",
-            totalStats,
-            totalStats.totalOffsetRegressionDCRErrorRate::get,
-            time));
+    this.totalOffsetRegressionDCRErrorRate = registerOnlyTotalRate(
+        "offset_regression_dcr_error",
+        totalStats,
+        () -> totalStats.totalOffsetRegressionDCRErrorRate,
+        time);
 
     Int2ObjectMap<String> kafkaClusterIdToAliasMap = serverConfig.getKafkaClusterIdToAliasMap();
     int listSize = kafkaClusterIdToAliasMap.isEmpty() ? 0 : Collections.max(kafkaClusterIdToAliasMap.keySet()) + 1;
@@ -307,12 +291,11 @@ public class HostLevelIngestionStats extends AbstractVeniceStats {
                 .getPercentileStat(getName() + AbstractVeniceStats.DELIMITER + ASSEMBLED_RECORD_VALUE_SIZE_IN_BYTES)));
 
     String viewTimerSensorName = "total_view_writer_latency";
-    this.viewProducerLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            viewTimerSensorName,
-            totalStats,
-            totalStats.viewProducerLatencySensor::get,
-            avgAndMax()));
+    this.viewProducerLatencySensor = registerPerStoreAndTotalSensor(
+        viewTimerSensorName,
+        totalStats,
+        () -> totalStats.viewProducerLatencySensor,
+        avgAndMax());
 
     registerSensor(
         "storage_quota_used",
@@ -320,167 +303,146 @@ public class HostLevelIngestionStats extends AbstractVeniceStats {
 
     // Stats which are both per-store and total:
 
-    this.consumerRecordsQueuePutLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "consumer_records_queue_put_latency",
-            totalStats,
-            totalStats.consumerRecordsQueuePutLatencySensor::get,
-            avgAndMax()));
+    this.consumerRecordsQueuePutLatencySensor = registerPerStoreAndTotalSensor(
+        "consumer_records_queue_put_latency",
+        totalStats,
+        () -> totalStats.consumerRecordsQueuePutLatencySensor,
+        avgAndMax());
 
-    this.unexpectedMessageSensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "unexpected_message",
-            totalStats,
-            totalStats.unexpectedMessageSensor::get,
-            new Rate()));
+    this.unexpectedMessageSensor = registerPerStoreAndTotalSensor(
+        "unexpected_message",
+        totalStats,
+        () -> totalStats.unexpectedMessageSensor,
+        new Rate());
 
-    this.inconsistentStoreMetadataSensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "inconsistent_store_metadata",
-            totalStats,
-            totalStats.inconsistentStoreMetadataSensor::get,
-            new Count()));
+    this.inconsistentStoreMetadataSensor = registerPerStoreAndTotalSensor(
+        "inconsistent_store_metadata",
+        totalStats,
+        () -> totalStats.inconsistentStoreMetadataSensor,
+        new Count());
 
-    this.ingestionFailureSensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "ingestion_failure",
-            totalStats,
-            totalStats.ingestionFailureSensor::get,
-            new Count()));
+    this.ingestionFailureSensor = registerPerStoreAndTotalSensor(
+        "ingestion_failure",
+        totalStats,
+        () -> totalStats.ingestionFailureSensor,
+        new Count());
 
-    this.leaderProducerSynchronizeLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_producer_synchronize_latency",
-            totalStats,
-            totalStats.leaderProducerSynchronizeLatencySensor::get,
-            avgAndMax()));
+    this.leaderProducerSynchronizeLatencySensor = registerPerStoreAndTotalSensor(
+        "leader_producer_synchronize_latency",
+        totalStats,
+        () -> totalStats.leaderProducerSynchronizeLatencySensor,
+        avgAndMax());
 
-    this.leaderWriteComputeLookUpLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_write_compute_lookup_latency",
-            totalStats,
-            totalStats.leaderWriteComputeLookUpLatencySensor::get,
-            avgAndMax()));
+    this.leaderWriteComputeLookUpLatencySensor = registerPerStoreAndTotalSensor(
+        "leader_write_compute_lookup_latency",
+        totalStats,
+        () -> totalStats.leaderWriteComputeLookUpLatencySensor,
+        avgAndMax());
 
-    this.leaderWriteComputeUpdateLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_write_compute_update_latency",
-            totalStats,
-            totalStats.leaderWriteComputeUpdateLatencySensor::get,
-            avgAndMax()));
+    this.leaderWriteComputeUpdateLatencySensor = registerPerStoreAndTotalSensor(
+        "leader_write_compute_update_latency",
+        totalStats,
+        () -> totalStats.leaderWriteComputeUpdateLatencySensor,
+        avgAndMax());
 
-    this.processConsumerActionLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "process_consumer_actions_latency",
-            totalStats,
-            totalStats.processConsumerActionLatencySensor::get,
-            avgAndMax()));
+    this.processConsumerActionLatencySensor = registerPerStoreAndTotalSensor(
+        "process_consumer_actions_latency",
+        totalStats,
+        () -> totalStats.processConsumerActionLatencySensor,
+        avgAndMax());
 
-    this.checkLongRunningTasksLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "check_long_running_task_latency",
-            totalStats,
-            totalStats.checkLongRunningTasksLatencySensor::get,
-            avgAndMax()));
+    this.checkLongRunningTasksLatencySensor = registerPerStoreAndTotalSensor(
+        "check_long_running_task_latency",
+        totalStats,
+        () -> totalStats.checkLongRunningTasksLatencySensor,
+        avgAndMax());
 
     String storageEnginePutLatencySensorName = "storage_engine_put_latency",
         storageEngineDeleteLatencySensorName = "storage_engine_delete_latency";
-    this.storageEnginePutLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            storageEnginePutLatencySensorName,
-            totalStats,
-            totalStats.storageEnginePutLatencySensor::get,
-            new Avg(),
-            new Max(),
-            TehutiUtils
-                .getPercentileStat(getName() + AbstractVeniceStats.DELIMITER + storageEnginePutLatencySensorName)));
+    this.storageEnginePutLatencySensor = registerPerStoreAndTotalSensor(
+        storageEnginePutLatencySensorName,
+        totalStats,
+        () -> totalStats.storageEnginePutLatencySensor,
+        new Avg(),
+        new Max(),
+        TehutiUtils.getPercentileStat(getName() + AbstractVeniceStats.DELIMITER + storageEnginePutLatencySensorName));
 
-    this.storageEngineDeleteLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            storageEngineDeleteLatencySensorName,
-            totalStats,
-            totalStats.storageEngineDeleteLatencySensor::get,
-            new Avg(),
-            new Max(),
-            TehutiUtils
-                .getPercentileStat(getName() + AbstractVeniceStats.DELIMITER + storageEngineDeleteLatencySensorName)));
+    this.storageEngineDeleteLatencySensor = registerPerStoreAndTotalSensor(
+        storageEngineDeleteLatencySensorName,
+        totalStats,
+        () -> totalStats.storageEngineDeleteLatencySensor,
+        new Avg(),
+        new Max(),
+        TehutiUtils
+            .getPercentileStat(getName() + AbstractVeniceStats.DELIMITER + storageEngineDeleteLatencySensorName));
 
-    this.writeComputeCacheHitCount = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "write_compute_cache_hit_count",
-            totalStats,
-            totalStats.writeComputeCacheHitCount::get,
-            new OccurrenceRate()));
+    this.writeComputeCacheHitCount = registerPerStoreAndTotalSensor(
+        "write_compute_cache_hit_count",
+        totalStats,
+        () -> totalStats.writeComputeCacheHitCount,
+        new OccurrenceRate());
 
-    this.checksumVerificationFailureSensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "checksum_verification_failure",
-            totalStats,
-            totalStats.checksumVerificationFailureSensor::get,
-            new Count()));
+    this.checksumVerificationFailureSensor = registerPerStoreAndTotalSensor(
+        "checksum_verification_failure",
+        totalStats,
+        () -> totalStats.checksumVerificationFailureSensor,
+        new Count());
 
-    this.leaderIngestionValueBytesLookUpLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_ingestion_value_bytes_lookup_latency",
-            totalStats,
-            totalStats.leaderIngestionValueBytesLookUpLatencySensor::get,
-            avgAndMax()));
+    this.leaderIngestionValueBytesLookUpLatencySensor = registerPerStoreAndTotalSensor(
+        "leader_ingestion_value_bytes_lookup_latency",
+        totalStats,
+        () -> totalStats.leaderIngestionValueBytesLookUpLatencySensor,
+        avgAndMax());
 
-    this.leaderIngestionValueBytesCacheHitCount = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_ingestion_value_bytes_cache_hit_count",
-            totalStats,
-            totalStats.leaderIngestionValueBytesCacheHitCount::get,
-            new Rate()));
+    this.leaderIngestionValueBytesCacheHitCount = registerPerStoreAndTotalSensor(
+        "leader_ingestion_value_bytes_cache_hit_count",
+        totalStats,
+        () -> totalStats.leaderIngestionValueBytesCacheHitCount,
+        new Rate());
 
-    this.leaderIngestionReplicationMetadataCacheHitCount = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_ingestion_replication_metadata_cache_hit_count",
-            totalStats,
-            totalStats.leaderIngestionReplicationMetadataCacheHitCount::get,
-            new Rate()));
+    this.leaderIngestionReplicationMetadataCacheHitCount = registerPerStoreAndTotalSensor(
+        "leader_ingestion_replication_metadata_cache_hit_count",
+        totalStats,
+        () -> totalStats.leaderIngestionReplicationMetadataCacheHitCount,
+        new Rate());
 
-    this.leaderIngestionReplicationMetadataLookUpLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_ingestion_replication_metadata_lookup_latency",
-            totalStats,
-            totalStats.leaderIngestionReplicationMetadataLookUpLatencySensor::get,
-            avgAndMax()));
+    this.leaderIngestionReplicationMetadataLookUpLatencySensor = registerPerStoreAndTotalSensor(
+        "leader_ingestion_replication_metadata_lookup_latency",
+        totalStats,
+        () -> totalStats.leaderIngestionReplicationMetadataLookUpLatencySensor,
+        avgAndMax());
 
-    this.leaderIngestionActiveActivePutLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_ingestion_active_active_put_latency",
-            totalStats,
-            totalStats.leaderIngestionActiveActivePutLatencySensor::get,
-            avgAndMax()));
+    this.leaderIngestionActiveActivePutLatencySensor = registerPerStoreAndTotalSensor(
+        "leader_ingestion_active_active_put_latency",
+        totalStats,
+        () -> totalStats.leaderIngestionActiveActivePutLatencySensor,
+        avgAndMax());
 
-    this.leaderIngestionActiveActiveUpdateLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_ingestion_active_active_update_latency",
-            totalStats,
-            totalStats.leaderIngestionActiveActiveUpdateLatencySensor::get,
-            avgAndMax()));
+    this.leaderIngestionActiveActiveUpdateLatencySensor = registerPerStoreAndTotalSensor(
+        "leader_ingestion_active_active_update_latency",
+        totalStats,
+        () -> totalStats.leaderIngestionActiveActiveUpdateLatencySensor,
+        avgAndMax());
 
-    this.leaderIngestionActiveActiveDeleteLatencySensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "leader_ingestion_active_active_delete_latency",
-            totalStats,
-            totalStats.leaderIngestionActiveActiveDeleteLatencySensor::get,
-            avgAndMax()));
+    this.leaderIngestionActiveActiveDeleteLatencySensor = registerPerStoreAndTotalSensor(
+        "leader_ingestion_active_active_delete_latency",
+        totalStats,
+        () -> totalStats.leaderIngestionActiveActiveDeleteLatencySensor,
+        avgAndMax());
   }
 
   /** Record a host-level byte consumption rate across all store versions */
   public void recordTotalBytesConsumed(long bytes) {
-    totalBytesConsumedRate.get().record(bytes);
+    totalBytesConsumedRate.record(bytes);
   }
 
   /** Record a host-level record consumption rate across all store versions */
   public void recordTotalRecordsConsumed() {
-    totalRecordsConsumedRate.get().record();
+    totalRecordsConsumedRate.record();
   }
 
   public void recordTotalBytesReadFromKafkaAsUncompressedSize(long bytes) {
-    totalBytesReadFromKafkaAsUncompressedSizeRate.get().record(bytes);
+    totalBytesReadFromKafkaAsUncompressedSizeRate.record(bytes);
   }
 
   public void recordStorageQuotaUsed(double quotaUsed) {
@@ -488,19 +450,19 @@ public class HostLevelIngestionStats extends AbstractVeniceStats {
   }
 
   public void recordConsumerRecordsQueuePutLatency(double latency, long currentTimeMs) {
-    consumerRecordsQueuePutLatencySensor.get().record(latency, currentTimeMs);
+    consumerRecordsQueuePutLatencySensor.record(latency, currentTimeMs);
   }
 
   public void recordViewProducerLatency(double latency) {
-    viewProducerLatencySensor.get().record(latency);
+    viewProducerLatencySensor.record(latency);
   }
 
   public void recordUnexpectedMessage() {
-    unexpectedMessageSensor.get().record();
+    unexpectedMessageSensor.record();
   }
 
   public void recordInconsistentStoreMetadata() {
-    inconsistentStoreMetadataSensor.get().record();
+    inconsistentStoreMetadataSensor.record();
   }
 
   public void recordKeySize(long bytes, long currentTimeMs) {
@@ -516,91 +478,91 @@ public class HostLevelIngestionStats extends AbstractVeniceStats {
   }
 
   public void recordIngestionFailure() {
-    ingestionFailureSensor.get().record();
+    ingestionFailureSensor.record();
   }
 
   public void recordLeaderProducerSynchronizeLatency(double latency) {
-    leaderProducerSynchronizeLatencySensor.get().record(latency);
+    leaderProducerSynchronizeLatencySensor.record(latency);
   }
 
   public void recordWriteComputeLookUpLatency(double latency) {
-    leaderWriteComputeLookUpLatencySensor.get().record(latency);
+    leaderWriteComputeLookUpLatencySensor.record(latency);
   }
 
   public void recordIngestionValueBytesLookUpLatency(double latency, long currentTime) {
-    leaderIngestionValueBytesLookUpLatencySensor.get().record(latency, currentTime);
+    leaderIngestionValueBytesLookUpLatencySensor.record(latency, currentTime);
   }
 
   public void recordIngestionValueBytesCacheHitCount(long currentTime) {
-    leaderIngestionValueBytesCacheHitCount.get().record(1, currentTime);
+    leaderIngestionValueBytesCacheHitCount.record(1, currentTime);
   }
 
   public void recordIngestionReplicationMetadataLookUpLatency(double latency, long currentTimeMs) {
-    leaderIngestionReplicationMetadataLookUpLatencySensor.get().record(latency, currentTimeMs);
+    leaderIngestionReplicationMetadataLookUpLatencySensor.record(latency, currentTimeMs);
   }
 
   public void recordIngestionActiveActivePutLatency(double latency) {
-    leaderIngestionActiveActivePutLatencySensor.get().record(latency);
+    leaderIngestionActiveActivePutLatencySensor.record(latency);
   }
 
   public void recordIngestionActiveActiveUpdateLatency(double latency) {
-    leaderIngestionActiveActiveUpdateLatencySensor.get().record(latency);
+    leaderIngestionActiveActiveUpdateLatencySensor.record(latency);
   }
 
   public void recordIngestionActiveActiveDeleteLatency(double latency) {
-    leaderIngestionActiveActiveDeleteLatencySensor.get().record(latency);
+    leaderIngestionActiveActiveDeleteLatencySensor.record(latency);
   }
 
   public void recordWriteComputeUpdateLatency(double latency) {
-    leaderWriteComputeUpdateLatencySensor.get().record(latency);
+    leaderWriteComputeUpdateLatencySensor.record(latency);
   }
 
   public void recordProcessConsumerActionLatency(double latency) {
-    processConsumerActionLatencySensor.get().record(latency);
+    processConsumerActionLatencySensor.record(latency);
   }
 
   public void recordCheckLongRunningTasksLatency(double latency) {
-    checkLongRunningTasksLatencySensor.get().record(latency);
+    checkLongRunningTasksLatencySensor.record(latency);
   }
 
   public void recordStorageEnginePutLatency(double latency, long currentTimeMs) {
-    storageEnginePutLatencySensor.get().record(latency, currentTimeMs);
+    storageEnginePutLatencySensor.record(latency, currentTimeMs);
   }
 
   public void recordStorageEngineDeleteLatency(double latency, long currentTimeMs) {
-    storageEngineDeleteLatencySensor.get().record(latency, currentTimeMs);
+    storageEngineDeleteLatencySensor.record(latency, currentTimeMs);
   }
 
   public void recordWriteComputeCacheHitCount() {
-    writeComputeCacheHitCount.get().record();
+    writeComputeCacheHitCount.record();
   }
 
   public void recordIngestionReplicationMetadataCacheHitCount(long currentTimeMs) {
-    leaderIngestionReplicationMetadataCacheHitCount.get().record(1, currentTimeMs);
+    leaderIngestionReplicationMetadataCacheHitCount.record(1, currentTimeMs);
   }
 
   public void recordUpdateIgnoredDCR() {
-    totalUpdateIgnoredDCRRate.get().record();
+    totalUpdateIgnoredDCRRate.record();
   }
 
   public void recordTombstoneCreatedDCR() {
-    totalTombstoneCreationDCRRate.get().record();
+    totalTombstoneCreationDCRRate.record();
   }
 
   public void recordTotalLeaderBytesConsumed(long bytes) {
-    totalLeaderBytesConsumedRate.get().record(bytes);
+    totalLeaderBytesConsumedRate.record(bytes);
   }
 
   public void recordTotalLeaderRecordsConsumed() {
-    totalLeaderRecordsConsumedRate.get().record();
+    totalLeaderRecordsConsumedRate.record();
   }
 
   public void recordTotalFollowerBytesConsumed(long bytes) {
-    totalFollowerBytesConsumedRate.get().record(bytes);
+    totalFollowerBytesConsumedRate.record(bytes);
   }
 
   public void recordTotalFollowerRecordsConsumed() {
-    totalFollowerRecordsConsumedRate.get().record();
+    totalFollowerRecordsConsumedRate.record();
   }
 
   public void recordTotalRegionHybridBytesConsumed(int regionId, long bytes, long currentTimeMs) {
@@ -616,22 +578,22 @@ public class HostLevelIngestionStats extends AbstractVeniceStats {
   }
 
   public void recordTotalLeaderBytesProduced(long bytes) {
-    totalLeaderBytesProducedRate.get().record(bytes);
+    totalLeaderBytesProducedRate.record(bytes);
   }
 
   public void recordTotalLeaderRecordsProduced(int count) {
-    totalLeaderRecordsProducedRate.get().record(count);
+    totalLeaderRecordsProducedRate.record(count);
   }
 
   public void recordChecksumVerificationFailure() {
-    checksumVerificationFailureSensor.get().record();
+    checksumVerificationFailureSensor.record();
   }
 
   public void recordTimestampRegressionDCRError() {
-    totalTimestampRegressionDCRErrorRate.get().record();
+    totalTimestampRegressionDCRErrorRate.record();
   }
 
   public void recordOffsetRegressionDCRError() {
-    totalOffsetRegressionDCRErrorRate.get().record();
+    totalOffsetRegressionDCRErrorRate.record();
   }
 }

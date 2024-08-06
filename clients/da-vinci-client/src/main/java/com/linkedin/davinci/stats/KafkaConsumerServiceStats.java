@@ -24,10 +24,10 @@ import java.util.function.LongSupplier;
  */
 
 public class KafkaConsumerServiceStats extends AbstractVeniceStats {
-  private final Lazy<LongAdderRateGauge> pollRequestSensor;
+  private final LongAdderRateGauge pollRequestSensor;
   private final Lazy<Sensor> pollRequestLatencySensor;
-  private final Lazy<Sensor> pollResultNumSensor;
-  private final Lazy<LongAdderRateGauge> pollNonZeroResultNumSensor;
+  private final Sensor pollResultNumSensor;
+  private final LongAdderRateGauge pollNonZeroResultNumSensor;
 
   private final Lazy<Sensor> pollRequestError;
   private final Lazy<Sensor> consumerRecordsProducingToWriterBufferLatencySensor;
@@ -42,7 +42,7 @@ public class KafkaConsumerServiceStats extends AbstractVeniceStats {
   private final Lazy<Sensor> getOffsetLagIsPresentSensor;
   private final Lazy<Sensor> getLatestOffsetIsAbsentSensor;
   private final Lazy<Sensor> getLatestOffsetIsPresentSensor;
-  private final Lazy<Sensor> byteSizeSensor;
+  private final Sensor byteSizeSensor;
   private final Lazy<Sensor> idleTimeSensor;
 
   public KafkaConsumerServiceStats(
@@ -57,20 +57,15 @@ public class KafkaConsumerServiceStats extends AbstractVeniceStats {
      */
 
     // The bytes of polled pubsub messages for each poll request
-    byteSizeSensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "bytes_per_poll",
-            totalStats,
-            totalStats.byteSizeSensor::get,
-            minAndMax()));
+    byteSizeSensor =
+        registerPerStoreAndTotalSensor("bytes_per_poll", totalStats, () -> totalStats.byteSizeSensor, minAndMax());
     // the number of messages returned by Kafka consumer poll.
-    pollResultNumSensor = Lazy.of(
-        () -> registerPerStoreAndTotalSensor(
-            "consumer_poll_result_num",
-            totalStats,
-            totalStats.pollResultNumSensor::get,
-            new Avg(),
-            new Min()));
+    pollResultNumSensor = registerPerStoreAndTotalSensor(
+        "consumer_poll_result_num",
+        totalStats,
+        () -> totalStats.pollResultNumSensor,
+        new Avg(),
+        new Min());
 
     /**
      * Below are the sensors that are recording total stats per each region
@@ -79,16 +74,15 @@ public class KafkaConsumerServiceStats extends AbstractVeniceStats {
     // the consumer idle time
     idleTimeSensor = Lazy.of(() -> registerSensor("idle_time", new Max()));
     // the number of poll requests
-    pollRequestSensor = Lazy
-        .of(() -> registerOnlyTotalRate("consumer_poll_request", totalStats, totalStats.pollRequestSensor::get, time));
+    pollRequestSensor =
+        registerOnlyTotalRate("consumer_poll_request", totalStats, () -> totalStats.pollRequestSensor, time);
     // Notice that "pollRequestLatencySensor" only reports correct data when consumer task threads are not stuck
     pollRequestLatencySensor = Lazy.of(() -> registerSensor("consumer_poll_request_latency", new Avg(), new Max()));
-    pollNonZeroResultNumSensor = Lazy.of(
-        () -> registerOnlyTotalRate(
-            "consumer_poll_non_zero_result_num",
-            totalStats,
-            totalStats.pollNonZeroResultNumSensor::get,
-            time));
+    pollNonZeroResultNumSensor = registerOnlyTotalRate(
+        "consumer_poll_non_zero_result_num",
+        totalStats,
+        () -> totalStats.pollNonZeroResultNumSensor,
+        time);
     /**
      * "max_elapsed_time_since_last_successful_poll" is a Gauge metric which calls a function inside KafkaConsumerService,
      *  this metric will still be reported per minute with the latest result from the function even if consumer task
@@ -131,16 +125,16 @@ public class KafkaConsumerServiceStats extends AbstractVeniceStats {
   }
 
   public void recordPollRequestLatency(double latency) {
-    pollRequestSensor.get().record();
+    pollRequestSensor.record();
     pollRequestLatencySensor.get().record(latency);
   }
 
   public void recordPollResultNum(int count) {
-    pollResultNumSensor.get().record(count);
+    pollResultNumSensor.record(count);
   }
 
   public void recordNonZeroPollResultNum(int count) {
-    pollNonZeroResultNumSensor.get().record(count);
+    pollNonZeroResultNumSensor.record(count);
   }
 
   public void recordConsumerRecordsProducingToWriterBufferLatency(double latency) {
@@ -196,7 +190,7 @@ public class KafkaConsumerServiceStats extends AbstractVeniceStats {
   }
 
   public void recordByteSizePerPoll(double count) {
-    byteSizeSensor.get().record(count);
+    byteSizeSensor.record(count);
   }
 
   public void recordConsumerIdleTime(double time) {
