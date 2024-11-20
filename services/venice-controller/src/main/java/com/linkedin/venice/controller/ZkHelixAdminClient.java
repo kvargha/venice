@@ -333,4 +333,12 @@ public class ZkHelixAdminClient implements HelixAdminClient {
   public void close() {
     helixAdmin.close();
   }
+
+  /**
+   * @see HelixAdminClient#onDemandRebalance(String)
+   */
+  @Override
+  public void onDemandRebalance(String clusterName) {
+    helixAdmin.onDemandRebalance(clusterName);
+  }
 }

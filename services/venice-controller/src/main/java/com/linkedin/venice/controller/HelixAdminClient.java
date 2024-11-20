@@ -133,4 +133,10 @@ public interface HelixAdminClient {
    * Release resources.
    */
   void close();
+
+  /**
+   * Rebalance a cluster without respecting the delay
+   * @param clusterName
+   */
+  void onDemandRebalance(String clusterName);
 }

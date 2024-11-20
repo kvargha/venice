@@ -181,7 +181,7 @@ public class VeniceServerTest {
   }
 
   @Test
-  public void testStartServerAndShutdownWithPartitionAssignmentVerification() {
+  public void testStartServerAndShutdownWithPartitionAssignmentVerification() throws InterruptedException {
     try (VeniceClusterWrapper cluster = ServiceFactory.getVeniceCluster(1, 0, 0)) {
       Properties featureProperties = new Properties();
       featureProperties.setProperty(SERVER_ENABLE_SERVER_ALLOW_LIST, Boolean.toString(true));
@@ -206,14 +206,21 @@ public class VeniceServerTest {
       cluster.addVeniceServer(featureProperties, new Properties());
       cluster.addVeniceServer(featureProperties, new Properties());
 
-      cluster.restartVeniceServer(server.getPort());
-      StorageEngineRepository storageEngineRepository =
-          server.getVeniceServer().getStorageService().getStorageEngineRepository();
+      // Force rebalance
+      cluster.getLeaderVeniceController()
+          .getVeniceHelixAdmin()
+          .getHelixAdminClient()
+          .onDemandRebalance(cluster.getClusterName());
 
-      TestUtils.waitForNonDeterministicAssertion(
-          3,
-          TimeUnit.SECONDS,
-          () -> Assert.assertEquals(storageEngineRepository.getAllLocalStorageEngines().size(), 0));
+      // Give some time for Helix to calculate and perform assignment
+      Thread.sleep(3000);
+
+      TestUtils.waitForNonDeterministicAssertion(30, TimeUnit.SECONDS, () -> {
+        cluster.restartVeniceServer(server.getPort());
+        StorageEngineRepository storageEngineRepository =
+            server.getVeniceServer().getStorageService().getStorageEngineRepository();
+        Assert.assertEquals(storageEngineRepository.getAllLocalStorageEngines().size(), 0);
+      });
     }
   }
 
