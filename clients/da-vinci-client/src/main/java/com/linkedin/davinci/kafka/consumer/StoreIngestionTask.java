@@ -74,6 +74,7 @@ import com.linkedin.venice.kafka.protocol.StartOfIncrementalPush;
 import com.linkedin.venice.kafka.protocol.StartOfPush;
 import com.linkedin.venice.kafka.protocol.TopicSwitch;
 import com.linkedin.venice.kafka.protocol.Update;
+import com.linkedin.venice.kafka.protocol.VersionSwap;
 import com.linkedin.venice.kafka.protocol.enums.ControlMessageType;
 import com.linkedin.venice.kafka.protocol.enums.MessageType;
 import com.linkedin.venice.kafka.protocol.state.PartitionState;
@@ -3210,9 +3211,18 @@ public abstract class StoreIngestionTask implements Runnable, Closeable {
       case START_OF_SEGMENT:
       case END_OF_SEGMENT:
       case VERSION_SWAP:
+        // ToDo: Remove this comment
         /**
          * Nothing to do here as all the processing is being done in {@link StoreIngestionTask#delegateConsumerRecord(ConsumerRecord, int, String)}.
          */
+        if (recordTransformer != null) {
+          VersionSwap versionSwap = (VersionSwap) controlMessage.controlMessageUnion;
+          int currentVersion =
+              Version.parseVersionFromKafkaTopicName(versionSwap.getOldServingVersionTopic().toString());
+          int futureVersion =
+              Version.parseVersionFromKafkaTopicName(versionSwap.getNewServingVersionTopic().toString());
+          recordTransformer.onVersionSwap(currentVersion, futureVersion, partition);
+        }
         break;
       case START_OF_INCREMENTAL_PUSH:
         processStartOfIncrementalPush(controlMessage, partitionConsumptionState);
@@ -3747,6 +3757,7 @@ public abstract class StoreIngestionTask implements Runnable, Closeable {
     KafkaKey kafkaKey = consumerRecord.getKey();
     KafkaMessageEnvelope kafkaValue = consumerRecord.getValue();
     int producedPartition = partitionConsumptionState.getPartition();
+    int partitionId = consumerRecord.getPartition();
     byte[] keyBytes;
 
     MessageType messageType = (leaderProducedRecordContext == null
@@ -3821,7 +3832,7 @@ public abstract class StoreIngestionTask implements Runnable, Closeable {
 
           DaVinciRecordTransformerResult transformerResult;
           try {
-            transformerResult = recordTransformer.transformAndProcessPut(lazyKey, lazyValue);
+            transformerResult = recordTransformer.transformAndProcessPut(lazyKey, lazyValue, partitionId);
           } catch (Exception e) {
             daVinciRecordTransformerStats.recordPutError(storeName, versionNumber, currentTimeMs);
             String errorMessage =
@@ -3888,7 +3899,7 @@ public abstract class StoreIngestionTask implements Runnable, Closeable {
 
           long startTime = System.nanoTime();
           try {
-            recordTransformer.processDelete(lazyKey);
+            recordTransformer.processDelete(lazyKey, partitionId);
           } catch (Exception e) {
             daVinciRecordTransformerStats.recordDeleteError(storeName, versionNumber, currentTimeMs);
             String errorMessage = "DaVinciRecordTransformer experienced an error when deleting key: " + lazyKey.get();

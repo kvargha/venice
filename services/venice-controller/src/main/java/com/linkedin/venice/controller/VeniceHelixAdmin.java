@@ -220,6 +220,7 @@ import com.linkedin.venice.utils.RegionUtils;
 import com.linkedin.venice.utils.RetryUtils;
 import com.linkedin.venice.utils.SslUtils;
 import com.linkedin.venice.utils.StoreUtils;
+import com.linkedin.venice.utils.SystemTime;
 import com.linkedin.venice.utils.Time;
 import com.linkedin.venice.utils.Utils;
 import com.linkedin.venice.utils.VeniceProperties;
@@ -450,6 +451,7 @@ public class VeniceHelixAdmin implements Admin, StoreCleaner {
   private final Lazy<ByteBuffer> emptyPushZSTDDictionary;
 
   private Set<PushJobCheckpoints> pushJobUserErrorCheckpoints;
+  private final Time timer;
 
   public VeniceHelixAdmin(
       VeniceControllerMultiClusterConfig multiClusterConfigs,
@@ -749,6 +751,7 @@ public class VeniceHelixAdmin implements Admin, StoreCleaner {
         Lazy.of(() -> ByteBuffer.wrap(ZstdWithDictCompressor.buildDictionaryOnSyntheticAvroData()));
 
     pushJobUserErrorCheckpoints = commonConfig.getPushJobUserErrorCheckpoints();
+    timer = new SystemTime();
   }
 
   private VeniceProperties getPubSubSSLPropertiesFromControllerConfig(String pubSubBootstrapServers) {
@@ -4544,6 +4547,7 @@ public class VeniceHelixAdmin implements Admin, StoreCleaner {
       if (!isParent()) {
         // Parent controller should not transmit the version swap message
         realTimeTopicSwitcher.transmitVersionSwapMessage(store, previousVersion, versionNumber);
+        transmitVersionSwapMessageToVT(store, previousVersion, versionNumber);
       }
       return store;
     });
@@ -4581,6 +4585,7 @@ public class VeniceHelixAdmin implements Admin, StoreCleaner {
           futureVersion,
           storeName);
       realTimeTopicSwitcher.transmitVersionSwapMessage(store, previousVersion, futureVersion);
+      transmitVersionSwapMessageToVT(store, previousVersion, futureVersion);
       return store;
     });
   }
@@ -4618,6 +4623,7 @@ public class VeniceHelixAdmin implements Admin, StoreCleaner {
       LOGGER
           .info("Rolling back current version {} to version {} in store {}", previousVersion, backupVersion, storeName);
       realTimeTopicSwitcher.transmitVersionSwapMessage(store, previousVersion, backupVersion);
+      transmitVersionSwapMessageToVT(store, previousVersion, backupVersion);
       return store;
     });
   }
@@ -8982,5 +8988,39 @@ public class VeniceHelixAdmin implements Admin, StoreCleaner {
 
   InternalAvroSpecificSerializer<PushJobDetails> getPushJobDetailsSerializer() {
     return pushJobDetailsSerializer;
+  }
+
+  private void transmitVersionSwapMessageToVT(Store store, int previousVersion, int nextVersion) {
+    return;
+    // if (previousVersion == Store.NON_EXISTING_VERSION || nextVersion == Store.NON_EXISTING_VERSION) {
+    // // NoOp
+    // return;
+    // }
+    //
+    // Version previousStoreVersion = store.getVersionOrThrow(previousVersion);
+    // Version nextStoreVersion = store.getVersionOrThrow(nextVersion);
+    //
+    // try (VeniceWriter veniceWriter = getVeniceWriterFactory().createVeniceWriter(
+    // new VeniceWriterOptions.Builder(previousStoreVersion.kafkaTopicName()).setTime(getTimer())
+    // .setPartitionCount(previousStoreVersion.getPartitionCount())
+    // .build())) {
+    // veniceWriter.broadcastVersionSwap(
+    // previousStoreVersion.kafkaTopicName(),
+    // nextStoreVersion.kafkaTopicName(),
+    // Collections.emptyMap());
+    // }
+    // LOGGER.info(
+    // "Successfully sent VersionSwapMessage for store {} from version {} to version {}",
+    // store.getName(),
+    // previousVersion,
+    // nextVersion);
+  }
+
+  /**
+   * Intended to allow mocking by tests. Visibility package-private on purpose, but could be changed to
+   * protected if child classes need it.
+   */
+  Time getTimer() {
+    return timer;
   }
 }
