@@ -205,6 +205,10 @@ public class DaVinciClientRecordTransformerTest {
         String putErrorCount =
             metricPrefix + RECORD_TRANSFORMER_PUT_ERROR_COUNT + ".DaVinciRecordTransformerStatsGauge";
         assertEquals(metricsRepository.getMetric(putErrorCount).value(), 0.0);
+
+        // cluster.createVersion(storeName, numKeys);
+        // clientWithRecordTransformer.subscribeAll().get();
+        // int i = 0;
       }
     }
   }
@@ -762,7 +766,6 @@ public class DaVinciClientRecordTransformerTest {
         .setCompressionStrategy(compressionStrategy)
         .setHybridOffsetLagThreshold(10)
         .setHybridRewindSeconds(1);
-    ;
 
     paramsConsumer.accept(params);
 

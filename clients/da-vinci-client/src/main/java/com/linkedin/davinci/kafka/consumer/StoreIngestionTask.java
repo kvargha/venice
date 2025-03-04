@@ -3218,9 +3218,9 @@ public abstract class StoreIngestionTask implements Runnable, Closeable {
         if (recordTransformer != null) {
           VersionSwap versionSwap = (VersionSwap) controlMessage.controlMessageUnion;
           int currentVersion =
-              Version.parseVersionFromKafkaTopicName(versionSwap.getOldServingVersionTopic().toString());
+              Version.parseVersionFromVersionTopicName(versionSwap.getOldServingVersionTopic().toString());
           int futureVersion =
-              Version.parseVersionFromKafkaTopicName(versionSwap.getNewServingVersionTopic().toString());
+              Version.parseVersionFromVersionTopicName(versionSwap.getNewServingVersionTopic().toString());
           recordTransformer.onVersionSwap(currentVersion, futureVersion, partition);
         }
         break;

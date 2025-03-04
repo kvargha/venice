@@ -646,8 +646,6 @@ public class VeniceChangelogConsumerImpl<K, V> implements VeniceChangelogConsume
         } else {
           Optional<PubSubMessage<K, ChangeEvent<V>, VeniceChangeCoordinate>> pubSubMessage =
               convertPubSubMessageToPubSubChangeEventMessage(message, pubSubTopicPartition);
-
-          pubSubMessage.get().getTopic();
           pubSubMessage.ifPresent(pubSubMessages::add);
         }
       }
