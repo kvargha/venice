@@ -6,3 +6,32 @@
     font-weight: bold;
   }
 }
+.home-hero {
+  text-align: center;
+  margin: 2rem auto;
+}
+.home-hero .hero-logo {
+  max-width: 300px;
+  width: 40%;
+}
+.home-hero .hero-buttons .btn {
+  margin: 0.2rem;
+}
+.home-sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.home-sections .card {
+  border: 1px solid #444;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 18rem;
+  text-align: center;
+}
+.home-sections .card .btn {
+  margin-top: 0.5rem;
+}
+

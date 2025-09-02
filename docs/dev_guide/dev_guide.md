@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Developer Guides
+nav_order: 4
 has_children: true
 permalink: /docs/dev_guide
 ---

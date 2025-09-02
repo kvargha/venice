@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Operator Guides
+nav_order: 5
 has_children: true
 permalink: /docs/ops_guide
 ---
