@@ -200,18 +200,25 @@ V&gt;&nbsp;<a href="VeniceChangelogConsumer.html" title="interface in com.linked
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVersionSpecificChangelogConsumer(java.lang.String,int,boolean)" class="member-name-link">getVersionSpecificChangelogConsumer</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  int&nbsp;storeVersion,
  boolean&nbsp;includeControlMessages)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;K,<wbr>
+V&gt;&nbsp;<a href="VeniceChangelogConsumer.html" title="interface in com.linkedin.davinci.consumer">VeniceChangelogConsumer</a>&lt;K,<wbr>V&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVersionSpecificChangelogConsumer(java.lang.String,int,boolean,boolean)" class="member-name-link">getVersionSpecificChangelogConsumer</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;storeVersion,
+ boolean&nbsp;includeControlMessages,
+ boolean&nbsp;deserializeReplicationMetadata)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Subscribes to a specific version of a Venice store.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setConsumer(com.linkedin.venice.pubsub.api.PubSubConsumerAdapter)" class="member-name-link">setConsumer</a><wbr>(<a href="../../venice/pubsub/api/PubSubConsumerAdapter.html" title="interface in com.linkedin.venice.pubsub.api">PubSubConsumerAdapter</a>&nbsp;consumer)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setD2ControllerClient(com.linkedin.venice.controllerapi.D2ControllerClient)" class="member-name-link">setD2ControllerClient</a><wbr>(<a href="../../venice/controllerapi/D2ControllerClient.html" title="class in com.linkedin.venice.controllerapi">D2ControllerClient</a>&nbsp;d2ControllerClient)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setConsumer(com.linkedin.venice.pubsub.api.PubSubConsumerAdapter)" class="member-name-link">setConsumer</a><wbr>(<a href="../../venice/pubsub/api/PubSubConsumerAdapter.html" title="interface in com.linkedin.venice.pubsub.api">PubSubConsumerAdapter</a>&nbsp;consumer)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setViewClassGetter(com.linkedin.davinci.consumer.VeniceChangelogConsumerClientFactory.ViewClassGetter)" class="member-name-link">setViewClassGetter</a><wbr>(<a href="VeniceChangelogConsumerClientFactory.ViewClassGetter.html" title="interface in com.linkedin.davinci.consumer">VeniceChangelogConsumerClientFactory.ViewClassGetter</a>&nbsp;viewClassGetter)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setD2ControllerClient(com.linkedin.venice.controllerapi.D2ControllerClient)" class="member-name-link">setD2ControllerClient</a><wbr>(<a href="../../venice/controllerapi/D2ControllerClient.html" title="class in com.linkedin.venice.controllerapi">D2ControllerClient</a>&nbsp;d2ControllerClient)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setViewClassGetter(com.linkedin.davinci.consumer.VeniceChangelogConsumerClientFactory.ViewClassGetter)" class="member-name-link">setViewClassGetter</a><wbr>(<a href="VeniceChangelogConsumerClientFactory.ViewClassGetter.html" title="interface in com.linkedin.davinci.consumer">VeniceChangelogConsumerClientFactory.ViewClassGetter</a>&nbsp;viewClassGetter)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -345,6 +352,16 @@ V&gt;</span>&nbsp;<span class="return-type"><a href="StatefulVeniceChangelogCons
 V&gt;</span>&nbsp;<span class="return-type"><a href="VeniceChangelogConsumer.html" title="interface in com.linkedin.davinci.consumer">VeniceChangelogConsumer</a>&lt;K,<wbr>V&gt;</span>&nbsp;<span class="element-name">getVersionSpecificChangelogConsumer</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  int&nbsp;storeVersion,
  boolean&nbsp;includeControlMessages)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getVersionSpecificChangelogConsumer(java.lang.String,int,boolean,boolean)">
+<h3>getVersionSpecificChangelogConsumer</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;K,<wbr>
+V&gt;</span>&nbsp;<span class="return-type"><a href="VeniceChangelogConsumer.html" title="interface in com.linkedin.davinci.consumer">VeniceChangelogConsumer</a>&lt;K,<wbr>V&gt;</span>&nbsp;<span class="element-name">getVersionSpecificChangelogConsumer</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;storeVersion,
+ boolean&nbsp;includeControlMessages,
+ boolean&nbsp;deserializeReplicationMetadata)</span></div>
 <div class="block">Subscribes to a specific version of a Venice store. This is only intended for internal use.</div>
 </section>
 </li>

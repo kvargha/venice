@@ -84,7 +84,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AggVersionedBlobTransferStats</span>
 <span class="extends-implements">extends <a href="AbstractVeniceAggVersionedStats.html" title="class in com.linkedin.davinci.stats">AbstractVeniceAggVersionedStats</a>&lt;<a href="BlobTransferStats.html" title="class in com.linkedin.davinci.stats">BlobTransferStats</a>,<wbr><a href="BlobTransferStatsReporter.html" title="class in com.linkedin.davinci.stats">BlobTransferStatsReporter</a>&gt;</span></div>
-<div class="block">The store level stats for blob transfer</div>
+<div class="block">Aggregates blob transfer statistics at the store version level.
+ This class manages versioned statistics for blob transfer operations, tracking metrics such as
+ response counts, throughput, transfer times, and bytes sent/received for each store version.
+ It extends <a href="AbstractVeniceAggVersionedStats.html" title="class in com.linkedin.davinci.stats"><code>AbstractVeniceAggVersionedStats</code></a> to provide automatic aggregation across
+ all versions of a store.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -108,7 +112,16 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(io.tehuti.metrics.MetricsRepository,com.linkedin.venice.meta.ReadOnlyStoreRepository,com.linkedin.davinci.config.VeniceServerConfig)" class="member-name-link">AggVersionedBlobTransferStats</a><wbr>(io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository,
  <a href="../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;metadataRepository,
  <a href="../config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs an AggVersionedBlobTransferStats instance.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(io.tehuti.metrics.MetricsRepository,com.linkedin.venice.meta.ReadOnlyStoreRepository,com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.utils.Time)" class="member-name-link">AggVersionedBlobTransferStats</a><wbr>(io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository,
+ <a href="../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;metadataRepository,
+ <a href="../config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
+ <a href="../../venice/utils/Time.html" title="interface in com.linkedin.venice.utils">Time</a>&nbsp;time)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Constructor for testing that allows injecting a Time instance.</div>
+</div>
 </div>
 </section>
 </li>
@@ -123,6 +136,20 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordBlobTransferBytesReceived(java.lang.String,int,long)" class="member-name-link">recordBlobTransferBytesReceived</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;version,
+ long&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the number of bytes received during a blob transfer operation.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordBlobTransferBytesSent(java.lang.String,int,long)" class="member-name-link">recordBlobTransferBytesSent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;version,
+ long&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the number of bytes sent during a blob transfer operation.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordBlobTransferFileReceiveThroughput(java.lang.String,int,double)" class="member-name-link">recordBlobTransferFileReceiveThroughput</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  int&nbsp;version,
@@ -155,7 +182,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.linkedin.davinci.stats.AbstractVeniceAggVersionedStats">Methods inherited from class&nbsp;com.linkedin.davinci.stats.<a href="AbstractVeniceAggVersionedStats.html" title="class in com.linkedin.davinci.stats">AbstractVeniceAggVersionedStats</a></h3>
-<code><a href="AbstractVeniceAggVersionedStats.html#addStore(java.lang.String)">addStore</a>, <a href="AbstractVeniceAggVersionedStats.html#getCurrentVersion(java.lang.String)">getCurrentVersion</a>, <a href="AbstractVeniceAggVersionedStats.html#getFutureVersion(java.lang.String)">getFutureVersion</a>, <a href="AbstractVeniceAggVersionedStats.html#getStats(java.lang.String,int)">getStats</a>, <a href="AbstractVeniceAggVersionedStats.html#getTotalStats(java.lang.String)">getTotalStats</a>, <a href="AbstractVeniceAggVersionedStats.html#handleStoreChanged(com.linkedin.venice.meta.Store)">handleStoreChanged</a>, <a href="AbstractVeniceAggVersionedStats.html#handleStoreCreated(com.linkedin.venice.meta.Store)">handleStoreCreated</a>, <a href="AbstractVeniceAggVersionedStats.html#handleStoreDeleted(java.lang.String)">handleStoreDeleted</a>, <a href="AbstractVeniceAggVersionedStats.html#loadAllStats()">loadAllStats</a>, <a href="AbstractVeniceAggVersionedStats.html#recordVersionedAndTotalStat(java.lang.String,int,java.util.function.Consumer)">recordVersionedAndTotalStat</a>, <a href="AbstractVeniceAggVersionedStats.html#registerConditionalStats(java.lang.String)">registerConditionalStats</a>, <a href="AbstractVeniceAggVersionedStats.html#updateStatsVersionInfo(java.lang.String,java.util.List,int)">updateStatsVersionInfo</a>, <a href="AbstractVeniceAggVersionedStats.html#updateTotalStats(java.lang.String)">updateTotalStats</a></code></div>
+<code><a href="AbstractVeniceAggVersionedStats.html#addStore(java.lang.String)">addStore</a>, <a href="AbstractVeniceAggVersionedStats.html#getCurrentVersion(java.lang.String)">getCurrentVersion</a>, <a href="AbstractVeniceAggVersionedStats.html#getFutureVersion(java.lang.String)">getFutureVersion</a>, <a href="AbstractVeniceAggVersionedStats.html#getMetricsRepository()">getMetricsRepository</a>, <a href="AbstractVeniceAggVersionedStats.html#getStats(java.lang.String,int)">getStats</a>, <a href="AbstractVeniceAggVersionedStats.html#getTotalStats(java.lang.String)">getTotalStats</a>, <a href="AbstractVeniceAggVersionedStats.html#handleStoreChanged(com.linkedin.venice.meta.Store)">handleStoreChanged</a>, <a href="AbstractVeniceAggVersionedStats.html#handleStoreCreated(com.linkedin.venice.meta.Store)">handleStoreCreated</a>, <a href="AbstractVeniceAggVersionedStats.html#handleStoreDeleted(java.lang.String)">handleStoreDeleted</a>, <a href="AbstractVeniceAggVersionedStats.html#loadAllStats()">loadAllStats</a>, <a href="AbstractVeniceAggVersionedStats.html#onVersionInfoUpdated(java.lang.String,int,int)">onVersionInfoUpdated</a>, <a href="AbstractVeniceAggVersionedStats.html#recordVersionedAndTotalStat(java.lang.String,int,java.util.function.Consumer)">recordVersionedAndTotalStat</a>, <a href="AbstractVeniceAggVersionedStats.html#registerConditionalStats(java.lang.String)">registerConditionalStats</a>, <a href="AbstractVeniceAggVersionedStats.html#updateStatsVersionInfo(java.lang.String,java.util.List,int)">updateStatsVersionInfo</a>, <a href="AbstractVeniceAggVersionedStats.html#updateTotalStats(java.lang.String)">updateTotalStats</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -179,6 +206,30 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AggVersionedBlobTransferStats</span><wbr><span class="parameters">(io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository,
  <a href="../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;metadataRepository,
  <a href="../config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig)</span></div>
+<div class="block">Constructs an AggVersionedBlobTransferStats instance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>metricsRepository</code> - the metrics repository for recording statistics</dd>
+<dd><code>metadataRepository</code> - the store metadata repository</dd>
+<dd><code>serverConfig</code> - the Venice server configuration</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(io.tehuti.metrics.MetricsRepository,com.linkedin.venice.meta.ReadOnlyStoreRepository,com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.utils.Time)">
+<h3>AggVersionedBlobTransferStats</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AggVersionedBlobTransferStats</span><wbr><span class="parameters">(io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository,
+ <a href="../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;metadataRepository,
+ <a href="../config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
+ <a href="../../venice/utils/Time.html" title="interface in com.linkedin.venice.utils">Time</a>&nbsp;time)</span></div>
+<div class="block">Constructor for testing that allows injecting a Time instance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>metricsRepository</code> - the metrics repository for recording statistics</dd>
+<dd><code>metadataRepository</code> - the store metadata repository</dd>
+<dd><code>serverConfig</code> - the Venice server configuration</dd>
+<dd><code>time</code> - the time instance for testing purposes</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -244,6 +295,36 @@ loadScripts(document, 'script');</script>
 <dd><code>storeName</code> - the store name</dd>
 <dd><code>version</code> - the version of the store</dd>
 <dd><code>timeInSec</code> - the time in seconds</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="recordBlobTransferBytesReceived(java.lang.String,int,long)">
+<h3>recordBlobTransferBytesReceived</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordBlobTransferBytesReceived</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;version,
+ long&nbsp;value)</span></div>
+<div class="block">Records the number of bytes received during a blob transfer operation.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>storeName</code> - the name of the Venice store</dd>
+<dd><code>version</code> - the version number of the store</dd>
+<dd><code>value</code> - the number of bytes received</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="recordBlobTransferBytesSent(java.lang.String,int,long)">
+<h3>recordBlobTransferBytesSent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordBlobTransferBytesSent</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;version,
+ long&nbsp;value)</span></div>
+<div class="block">Records the number of bytes sent during a blob transfer operation.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>storeName</code> - the name of the Venice store</dd>
+<dd><code>version</code> - the version number of the store</dd>
+<dd><code>value</code> - the number of bytes sent</dd>
 </dl>
 </section>
 </li>

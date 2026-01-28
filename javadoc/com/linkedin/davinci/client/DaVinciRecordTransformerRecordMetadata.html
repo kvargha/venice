@@ -92,7 +92,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#SENTINEL_WRITER_SCHEMA_ID" class="member-name-link">SENTINEL_WRITER_SCHEMA_ID</a></code></div>
+<div class="col-second even-row-color"><code><a href="#UNSPECIFIED_SCHEMA_ID" class="member-name-link">UNSPECIFIED_SCHEMA_ID</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -105,16 +105,16 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,long,com.linkedin.venice.pubsub.api.PubSubPosition,int,java.nio.ByteBuffer)" class="member-name-link">DaVinciRecordTransformerRecordMetadata</a><wbr>(int&nbsp;writerSchemaId,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,long,com.linkedin.venice.pubsub.api.PubSubPosition,int,java.nio.ByteBuffer,int)" class="member-name-link">DaVinciRecordTransformerRecordMetadata</a><wbr>(int&nbsp;writerSchemaId,
  long&nbsp;timestamp,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;pubSubPosition,
  int&nbsp;payloadSize,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload,
+ int&nbsp;replicationMetadataVersionId)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(long,com.linkedin.venice.pubsub.api.PubSubPosition,int,java.nio.ByteBuffer)" class="member-name-link">DaVinciRecordTransformerRecordMetadata</a><wbr>(long&nbsp;timestamp,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(long,com.linkedin.venice.pubsub.api.PubSubPosition,int)" class="member-name-link">DaVinciRecordTransformerRecordMetadata</a><wbr>(long&nbsp;timestamp,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;pubSubPosition,
- int&nbsp;payloadSize,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload)</code></div>
+ int&nbsp;payloadSize)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
@@ -139,12 +139,15 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReplicationMetadataPayload()" class="member-name-link">getReplicationMetadataPayload</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTimestamp()" class="member-name-link">getTimestamp</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReplicationMetadataVersionId()" class="member-name-link">getReplicationMetadataVersionId</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWriterSchemaId()" class="member-name-link">getWriterSchemaId</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTimestamp()" class="member-name-link">getTimestamp</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWriterSchemaId()" class="member-name-link">getWriterSchemaId</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -163,14 +166,14 @@ loadScripts(document, 'script');</script>
 <h2>Field Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="SENTINEL_WRITER_SCHEMA_ID">
-<h3>SENTINEL_WRITER_SCHEMA_ID</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">SENTINEL_WRITER_SCHEMA_ID</span></div>
+<section class="detail" id="UNSPECIFIED_SCHEMA_ID">
+<h3>UNSPECIFIED_SCHEMA_ID</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">UNSPECIFIED_SCHEMA_ID</span></div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">
-<li><a href="../../../../constant-values.html#com.linkedin.davinci.client.DaVinciRecordTransformerRecordMetadata.SENTINEL_WRITER_SCHEMA_ID">Constant Field Values</a></li>
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.client.DaVinciRecordTransformerRecordMetadata.UNSPECIFIED_SCHEMA_ID">Constant Field Values</a></li>
 </ul>
 </dd>
 </dl>
@@ -185,22 +188,22 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(long,com.linkedin.venice.pubsub.api.PubSubPosition,int,java.nio.ByteBuffer)">
+<section class="detail" id="&lt;init&gt;(long,com.linkedin.venice.pubsub.api.PubSubPosition,int)">
 <h3>DaVinciRecordTransformerRecordMetadata</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DaVinciRecordTransformerRecordMetadata</span><wbr><span class="parameters">(long&nbsp;timestamp,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;pubSubPosition,
- int&nbsp;payloadSize,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload)</span></div>
+ int&nbsp;payloadSize)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(int,long,com.linkedin.venice.pubsub.api.PubSubPosition,int,java.nio.ByteBuffer)">
+<section class="detail" id="&lt;init&gt;(int,long,com.linkedin.venice.pubsub.api.PubSubPosition,int,java.nio.ByteBuffer,int)">
 <h3>DaVinciRecordTransformerRecordMetadata</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DaVinciRecordTransformerRecordMetadata</span><wbr><span class="parameters">(int&nbsp;writerSchemaId,
  long&nbsp;timestamp,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;pubSubPosition,
  int&nbsp;payloadSize,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload,
+ int&nbsp;replicationMetadataVersionId)</span></div>
 </section>
 </li>
 </ul>
@@ -218,7 +221,7 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the schema ID that the record was written with if it's a PUT.
- If the record came from disk, or it's a DELETE, it will be <a href="#SENTINEL_WRITER_SCHEMA_ID"><code>SENTINEL_WRITER_SCHEMA_ID</code></a>.</dd>
+ If the record came from disk, or it's a DELETE, it will be <a href="#UNSPECIFIED_SCHEMA_ID"><code>UNSPECIFIED_SCHEMA_ID</code></a>.</dd>
 </dl>
 </section>
 </li>
@@ -262,6 +265,17 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>the serialized replication metadata payload if it's a PUT.
  If the record came from disk or it's a DELETE, it will be null.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getReplicationMetadataVersionId()">
+<h3>getReplicationMetadataVersionId</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getReplicationMetadataVersionId</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the corresponding replication metadata schema version id used to serialize the payload. If the payload is
+ null the corresponding id will be -1.</dd>
 </dl>
 </section>
 </li>

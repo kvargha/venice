@@ -116,17 +116,26 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReadyToServeLeaderLag(java.lang.String)" class="member-name-link">getReadyToServeLeaderLag</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordCatchingUpFollowerLag(java.lang.String,long)" class="member-name-link">recordCatchingUpFollowerLag</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
- long&nbsp;startTime)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordCatchingUpFollowerLag(java.lang.String,long,long)" class="member-name-link">recordCatchingUpFollowerLag</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
+ long&nbsp;delay,
+ long&nbsp;endTime)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the heartbeat lag for a catching-up follower replica.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordReadyToServeFollowerLag(java.lang.String,long)" class="member-name-link">recordReadyToServeFollowerLag</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
- long&nbsp;startTime)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordReadyToServeFollowerLag(java.lang.String,long,long)" class="member-name-link">recordReadyToServeFollowerLag</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
+ long&nbsp;delay,
+ long&nbsp;endTime)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the heartbeat lag for a ready-to-serve follower replica.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordReadyToServeLeaderLag(java.lang.String,long)" class="member-name-link">recordReadyToServeLeaderLag</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
- long&nbsp;startTime)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordReadyToServeLeaderLag(java.lang.String,long,long)" class="member-name-link">recordReadyToServeLeaderLag</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
+ long&nbsp;delay,
+ long&nbsp;endTime)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the heartbeat lag for a ready-to-serve leader replica.</div>
+</div>
 </div>
 </div>
 </div>
@@ -160,24 +169,48 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="recordReadyToServeLeaderLag(java.lang.String,long)">
+<section class="detail" id="recordReadyToServeLeaderLag(java.lang.String,long,long)">
 <h3>recordReadyToServeLeaderLag</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordReadyToServeLeaderLag</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
- long&nbsp;startTime)</span></div>
+ long&nbsp;delay,
+ long&nbsp;endTime)</span></div>
+<div class="block">Records the heartbeat lag for a ready-to-serve leader replica.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>region</code> - The region name</dd>
+<dd><code>delay</code> - The pre-calculated delay in milliseconds</dd>
+<dd><code>endTime</code> - The pre-calculated end time</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="recordReadyToServeFollowerLag(java.lang.String,long)">
+<section class="detail" id="recordReadyToServeFollowerLag(java.lang.String,long,long)">
 <h3>recordReadyToServeFollowerLag</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordReadyToServeFollowerLag</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
- long&nbsp;startTime)</span></div>
+ long&nbsp;delay,
+ long&nbsp;endTime)</span></div>
+<div class="block">Records the heartbeat lag for a ready-to-serve follower replica.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>region</code> - The region name</dd>
+<dd><code>delay</code> - The pre-calculated delay in milliseconds</dd>
+<dd><code>endTime</code> - The pre-calculated end time</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="recordCatchingUpFollowerLag(java.lang.String,long)">
+<section class="detail" id="recordCatchingUpFollowerLag(java.lang.String,long,long)">
 <h3>recordCatchingUpFollowerLag</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordCatchingUpFollowerLag</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;region,
- long&nbsp;startTime)</span></div>
+ long&nbsp;delay,
+ long&nbsp;endTime)</span></div>
+<div class="block">Records the heartbeat lag for a catching-up follower replica.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>region</code> - The region name</dd>
+<dd><code>delay</code> - The pre-calculated delay in milliseconds (0 for squelching)</dd>
+<dd><code>endTime</code> - The pre-calculated end time</dd>
+</dl>
 </section>
 </li>
 <li>

@@ -658,7 +658,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  boolean&nbsp;deferVersionSwap)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VersionCreationResponse.html" title="class in com.linkedin.venice.controllerapi">VersionCreationResponse</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#requestTopicForWrites(java.lang.String,long,com.linkedin.venice.meta.Version.PushType,java.lang.String,boolean,boolean,boolean,java.util.Optional,java.util.Optional,java.util.Optional,boolean,long,boolean,java.lang.String,int,boolean)" class="member-name-link">requestTopicForWrites</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#requestTopicForWrites(java.lang.String,long,com.linkedin.venice.meta.Version.PushType,java.lang.String,boolean,boolean,boolean,java.util.Optional,java.util.Optional,java.util.Optional,boolean,long,boolean,java.lang.String,int,boolean,int)" class="member-name-link">requestTopicForWrites</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  long&nbsp;storeSize,
  <a href="../meta/Version.PushType.html" title="enum class in com.linkedin.venice.meta">Version.PushType</a>&nbsp;pushType,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushJobId,
@@ -673,7 +673,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  boolean&nbsp;deferVersionSwap,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;targetedRegions,
  int&nbsp;repushSourceVersion,
- boolean&nbsp;pushToSeparateRealtimeTopic)</code></div>
+ boolean&nbsp;pushToSeparateRealtimeTopic,
+ int&nbsp;repushTtlSeconds)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Request a topic for the VeniceWriter to write into.</div>
 </div>
@@ -1010,7 +1011,7 @@ R extends <a href="ControllerResponse.html" title="class in com.linkedin.venice.
 </section>
 </li>
 <li>
-<section class="detail" id="requestTopicForWrites(java.lang.String,long,com.linkedin.venice.meta.Version.PushType,java.lang.String,boolean,boolean,boolean,java.util.Optional,java.util.Optional,java.util.Optional,boolean,long,boolean,java.lang.String,int,boolean)">
+<section class="detail" id="requestTopicForWrites(java.lang.String,long,com.linkedin.venice.meta.Version.PushType,java.lang.String,boolean,boolean,boolean,java.util.Optional,java.util.Optional,java.util.Optional,boolean,long,boolean,java.lang.String,int,boolean,int)">
 <h3>requestTopicForWrites</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="VersionCreationResponse.html" title="class in com.linkedin.venice.controllerapi">VersionCreationResponse</a></span>&nbsp;<span class="element-name">requestTopicForWrites</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  long&nbsp;storeSize,
@@ -1027,7 +1028,8 @@ R extends <a href="ControllerResponse.html" title="class in com.linkedin.venice.
  boolean&nbsp;deferVersionSwap,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;targetedRegions,
  int&nbsp;repushSourceVersion,
- boolean&nbsp;pushToSeparateRealtimeTopic)</span></div>
+ boolean&nbsp;pushToSeparateRealtimeTopic,
+ int&nbsp;repushTtlSeconds)</span></div>
 <div class="block">Request a topic for the VeniceWriter to write into.  A new VPJ push, or a Samza bulk processing job should both use
  this method.  The push job ID needs to be unique for this push.  Multiple requests with the same pushJobId are
  idempotent and will return the same topic.</div>
@@ -1051,6 +1053,7 @@ R extends <a href="ControllerResponse.html" title="class in com.linkedin.venice.
 <dd><code>deferVersionSwap</code> - whether to defer version swap after the push is done</dd>
 <dd><code>targetedRegions</code> - the list of regions that is separated by comma for targeted region push.</dd>
 <dd><code>repushSourceVersion</code> - </dd>
+<dd><code>repushTtlSeconds</code> - TTL in seconds for repush operation, or -1 if not applicable</dd>
 <dt>Returns:</dt>
 <dd>VersionCreationResponse includes topic and partitioning</dd>
 </dl>

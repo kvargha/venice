@@ -162,10 +162,13 @@ loadScripts(document, 'script');</script>
  <a href="StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&nbsp;ingestionTask)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)" class="member-name-link">execSyncOffsetFromSnapshotAsync</a><wbr>(<a href="../../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,java.util.concurrent.CompletableFuture,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)" class="member-name-link">execSyncOffsetFromSnapshotAsync</a><wbr>(<a href="../../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
  <a href="../../validation/PartitionTracker.html" title="class in com.linkedin.davinci.validation">PartitionTracker</a>&nbsp;vtDivSnapshot,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html" title="class or interface in java.lang" class="external-link">Void</a>&gt;&nbsp;lastRecordPersistedFuture,
  <a href="StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&nbsp;ingestionTask)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">lastRecordPersistedFuture indicates whether the last record was persisted successfully and will have two sources.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../../venice/utils/collections/MemoryBoundBlockingQueue.html" title="class in com.linkedin.venice.utils.collections">MemoryBoundBlockingQueue</a>&lt;com.linkedin.davinci.kafka.consumer.StoreBufferService.QueueNode&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDrainerForConsumerRecord(com.linkedin.venice.pubsub.api.DefaultPubSubMessage,int)" class="member-name-link">getDrainerForConsumerRecord</a><wbr>(<a href="../../../venice/pubsub/api/DefaultPubSubMessage.html" title="interface in com.linkedin.venice.pubsub.api">DefaultPubSubMessage</a>&nbsp;consumerRecord,
  int&nbsp;partition)</code></div>
@@ -323,15 +326,20 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)">
+<section class="detail" id="execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,java.util.concurrent.CompletableFuture,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)">
 <h3>execSyncOffsetFromSnapshotAsync</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">execSyncOffsetFromSnapshotAsync</span><wbr><span class="parameters">(<a href="../../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
  <a href="../../validation/PartitionTracker.html" title="class in com.linkedin.davinci.validation">PartitionTracker</a>&nbsp;vtDivSnapshot,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html" title="class or interface in java.lang" class="external-link">Void</a>&gt;&nbsp;lastRecordPersistedFuture,
  <a href="StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&nbsp;ingestionTask)</span>
                                      throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">lastRecordPersistedFuture indicates whether the last record was persisted successfully and will have two sources.
+ 1. From the follower code path, it is lastQueuedRecordPersistedFuture from the PCS set in putConsumeRecord().
+ 2. From the leader side, it is the persistedToDBFuture from the LeaderProducedRecordContext from when the
+    LeaderProducerCallback was created.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractStoreBufferService.html#execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)">execSyncOffsetFromSnapshotAsync</a></code>&nbsp;in class&nbsp;<code><a href="AbstractStoreBufferService.html" title="class in com.linkedin.davinci.kafka.consumer">AbstractStoreBufferService</a></code></dd>
+<dd><code><a href="AbstractStoreBufferService.html#execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,java.util.concurrent.CompletableFuture,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)">execSyncOffsetFromSnapshotAsync</a></code>&nbsp;in class&nbsp;<code><a href="AbstractStoreBufferService.html" title="class in com.linkedin.davinci.kafka.consumer">AbstractStoreBufferService</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>

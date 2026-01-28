@@ -241,6 +241,16 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTombstoneCreatedDCR()" class="member-name-link">recordTombstoneCreatedDCR</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTotalBlobTransferBytesReceived(long)" class="member-name-link">recordTotalBlobTransferBytesReceived</a><wbr>(long&nbsp;bytes)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the total number of bytes received during blob transfer operations at the host level.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTotalBlobTransferBytesSend(long)" class="member-name-link">recordTotalBlobTransferBytesSend</a><wbr>(long&nbsp;bytes)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the total number of bytes sent during blob transfer operations at the host level.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTotalBytesConsumed(long)" class="member-name-link">recordTotalBytesConsumed</a><wbr>(long&nbsp;bytes)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Record a host-level byte consumption rate across all store versions</div>
@@ -406,6 +416,30 @@ loadScripts(document, 'script');</script>
 <h3>recordTotalRecordsConsumed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordTotalRecordsConsumed</span>()</div>
 <div class="block">Record a host-level record consumption rate across all store versions</div>
+</section>
+</li>
+<li>
+<section class="detail" id="recordTotalBlobTransferBytesSend(long)">
+<h3>recordTotalBlobTransferBytesSend</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordTotalBlobTransferBytesSend</span><wbr><span class="parameters">(long&nbsp;bytes)</span></div>
+<div class="block">Records the total number of bytes sent during blob transfer operations at the host level.
+ This metric aggregates blob transfer send operations across all store versions on the host.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bytes</code> - the number of bytes sent</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="recordTotalBlobTransferBytesReceived(long)">
+<h3>recordTotalBlobTransferBytesReceived</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordTotalBlobTransferBytesReceived</span><wbr><span class="parameters">(long&nbsp;bytes)</span></div>
+<div class="block">Records the total number of bytes received during blob transfer operations at the host level.
+ This metric aggregates blob transfer receive operations across all store versions on the host.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bytes</code> - the number of bytes received</dd>
+</dl>
 </section>
 </li>
 <li>

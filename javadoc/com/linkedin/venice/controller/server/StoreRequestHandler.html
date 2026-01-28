@@ -137,6 +137,11 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../protocols/controller/UpdateAclForStoreGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">UpdateAclForStoreGrpcResponse</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateAclForStore(com.linkedin.venice.protocols.controller.UpdateAclForStoreGrpcRequest)" class="member-name-link">updateAclForStore</a><wbr>(<a href="../../protocols/controller/UpdateAclForStoreGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">UpdateAclForStoreGrpcRequest</a>&nbsp;request)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../protocols/controller/ValidateStoreDeletedGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">ValidateStoreDeletedGrpcResponse</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#validateStoreDeleted(com.linkedin.venice.protocols.controller.ValidateStoreDeletedGrpcRequest)" class="member-name-link">validateStoreDeleted</a><wbr>(<a href="../../protocols/controller/ValidateStoreDeletedGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">ValidateStoreDeletedGrpcRequest</a>&nbsp;request)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Validates whether a store has been successfully deleted.</div>
+</div>
 </div>
 </div>
 </div>
@@ -223,6 +228,19 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="checkResourceCleanupForStoreCreation(com.linkedin.venice.protocols.controller.ClusterStoreGrpcInfo)">
 <h3>checkResourceCleanupForStoreCreation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkResourceCleanupForStoreCreation</span><wbr><span class="parameters">(<a href="../../protocols/controller/ClusterStoreGrpcInfo.html" title="class in com.linkedin.venice.protocols.controller">ClusterStoreGrpcInfo</a>&nbsp;request)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="validateStoreDeleted(com.linkedin.venice.protocols.controller.ValidateStoreDeletedGrpcRequest)">
+<h3>validateStoreDeleted</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../protocols/controller/ValidateStoreDeletedGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">ValidateStoreDeletedGrpcResponse</a></span>&nbsp;<span class="element-name">validateStoreDeleted</span><wbr><span class="parameters">(<a href="../../protocols/controller/ValidateStoreDeletedGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">ValidateStoreDeletedGrpcRequest</a>&nbsp;request)</span></div>
+<div class="block">Validates whether a store has been successfully deleted.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>request</code> - the request containing cluster and store name</dd>
+<dt>Returns:</dt>
+<dd>response indicating if store is deleted and reason if not</dd>
+</dl>
 </section>
 </li>
 </ul>

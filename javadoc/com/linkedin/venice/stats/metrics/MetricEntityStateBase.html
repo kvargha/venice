@@ -136,23 +136,28 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Factory method to keep the API consistent with other subclasses like <a href="MetricEntityStateOneEnum.html" title="class in com.linkedin.venice.stats.metrics"><code>MetricEntityStateOneEnum</code></a></div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.common.Attributes</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAttributes()" class="member-name-link">getAttributes</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllMetricAttributesData()" class="member-name-link">getAllMetricAttributesData</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an iterable of all MetricAttributesData for observable counter reporting.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.common.Attributes</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAttributes()" class="member-name-link">getAttributes</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">visibility for testing</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(double)" class="member-name-link">record</a><wbr>(double&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(long)" class="member-name-link">record</a><wbr>(long&nbsp;value)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(double)" class="member-name-link">record</a><wbr>(double&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(long)" class="member-name-link">record</a><wbr>(long&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.linkedin.venice.stats.metrics.MetricEntityState">Methods inherited from class&nbsp;com.linkedin.venice.stats.metrics.<a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityState</a></h3>
-<code><a href="MetricEntityState.html#recordOtelMetric(double,io.opentelemetry.api.common.Attributes)">recordOtelMetric</a></code></div>
+<code><a href="MetricEntityState.html#isObservableCounter()">isObservableCounter</a>, <a href="MetricEntityState.html#record(double,com.linkedin.venice.stats.metrics.MetricAttributesData)">record</a>, <a href="MetricEntityState.html#record(long,com.linkedin.venice.stats.metrics.MetricAttributesData)">record</a>, <a href="MetricEntityState.html#recordOtelMetric(double,com.linkedin.venice.stats.metrics.MetricAttributesData)">recordOtelMetric</a>, <a href="MetricEntityState.html#recordOtelMetric(long,com.linkedin.venice.stats.metrics.MetricAttributesData)">recordOtelMetric</a>, <a href="MetricEntityState.html#registerObservableCounterIfNeeded()">registerObservableCounterIfNeeded</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.linkedin.venice.stats.metrics.AsyncMetricEntityState">Methods inherited from class&nbsp;com.linkedin.venice.stats.metrics.<a href="AsyncMetricEntityState.html" title="class in com.linkedin.venice.stats.metrics">AsyncMetricEntityState</a></h3>
 <code><a href="AsyncMetricEntityState.html#getTehutiSensor()">getTehutiSensor</a>, <a href="AsyncMetricEntityState.html#setOtelMetric(java.lang.Object)">setOtelMetric</a>, <a href="AsyncMetricEntityState.html#setTehutiSensor(io.tehuti.metrics.Sensor)">setTehutiSensor</a></code></div>
@@ -194,15 +199,29 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="record(double)">
+<h3>record</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">record</span><wbr><span class="parameters">(double&nbsp;value)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="record(long)">
 <h3>record</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">record</span><wbr><span class="parameters">(long&nbsp;value)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="record(double)">
-<h3>record</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">record</span><wbr><span class="parameters">(double&nbsp;value)</span></div>
+<section class="detail" id="getAllMetricAttributesData()">
+<h3>getAllMetricAttributesData</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&gt;</span>&nbsp;<span class="element-name">getAllMetricAttributesData</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="MetricEntityState.html#getAllMetricAttributesData()">MetricEntityState</a></code></span></div>
+<div class="block">Returns an iterable of all MetricAttributesData for observable counter reporting.
+ Subclasses must implement this to provide iteration over their specific EnumMap structure.
+ Returns null if metrics are not enabled or no data exists.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="MetricEntityState.html#getAllMetricAttributesData()">getAllMetricAttributesData</a></code>&nbsp;in class&nbsp;<code><a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityState</a></code></dd>
+</dl>
 </section>
 </li>
 <li>

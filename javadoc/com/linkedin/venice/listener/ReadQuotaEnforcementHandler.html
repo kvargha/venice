@@ -137,15 +137,17 @@ implements <a href="../meta/RoutingDataRepository.RoutingDataChangedListener.htm
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,java.lang.String,com.linkedin.venice.stats.AggServerQuotaUsageStats)" class="member-name-link">ReadQuotaEnforcementHandler</a><wbr>(<a href="../../davinci/config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,com.linkedin.davinci.storage.StorageEngineRepository,java.lang.String,com.linkedin.venice.stats.AggServerQuotaUsageStats)" class="member-name-link">ReadQuotaEnforcementHandler</a><wbr>(<a href="../../davinci/config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
  <a href="../meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;storeRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="../helix/HelixCustomizedViewOfflinePushRepository.html" title="class in com.linkedin.venice.helix">HelixCustomizedViewOfflinePushRepository</a>&gt;&nbsp;customizedViewRepository,
+ <a href="../../davinci/storage/StorageEngineRepository.html" title="class in com.linkedin.davinci.storage">StorageEngineRepository</a>&nbsp;storageEngineRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;nodeId,
  <a href="../stats/AggServerQuotaUsageStats.html" title="class in com.linkedin.venice.stats">AggServerQuotaUsageStats</a>&nbsp;stats)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,java.lang.String,com.linkedin.venice.stats.AggServerQuotaUsageStats,java.time.Clock)" class="member-name-link">ReadQuotaEnforcementHandler</a><wbr>(<a href="../../davinci/config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,com.linkedin.davinci.storage.StorageEngineRepository,java.lang.String,com.linkedin.venice.stats.AggServerQuotaUsageStats,java.time.Clock)" class="member-name-link">ReadQuotaEnforcementHandler</a><wbr>(<a href="../../davinci/config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
  <a href="../meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;storeRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="../helix/HelixCustomizedViewOfflinePushRepository.html" title="class in com.linkedin.venice.helix">HelixCustomizedViewOfflinePushRepository</a>&gt;&nbsp;customizedViewRepository,
+ <a href="../../davinci/storage/StorageEngineRepository.html" title="class in com.linkedin.davinci.storage">StorageEngineRepository</a>&nbsp;storageEngineRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;nodeId,
  <a href="../stats/AggServerQuotaUsageStats.html" title="class in com.linkedin.venice.stats">AggServerQuotaUsageStats</a>&nbsp;stats,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Clock.html" title="class or interface in java.time" class="external-link">Clock</a>&nbsp;clock)</code></div>
@@ -307,21 +309,23 @@ implements <a href="../meta/RoutingDataRepository.RoutingDataChangedListener.htm
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,java.lang.String,com.linkedin.venice.stats.AggServerQuotaUsageStats)">
+<section class="detail" id="&lt;init&gt;(com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,com.linkedin.davinci.storage.StorageEngineRepository,java.lang.String,com.linkedin.venice.stats.AggServerQuotaUsageStats)">
 <h3>ReadQuotaEnforcementHandler</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ReadQuotaEnforcementHandler</span><wbr><span class="parameters">(<a href="../../davinci/config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
  <a href="../meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;storeRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="../helix/HelixCustomizedViewOfflinePushRepository.html" title="class in com.linkedin.venice.helix">HelixCustomizedViewOfflinePushRepository</a>&gt;&nbsp;customizedViewRepository,
+ <a href="../../davinci/storage/StorageEngineRepository.html" title="class in com.linkedin.davinci.storage">StorageEngineRepository</a>&nbsp;storageEngineRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;nodeId,
  <a href="../stats/AggServerQuotaUsageStats.html" title="class in com.linkedin.venice.stats">AggServerQuotaUsageStats</a>&nbsp;stats)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,java.lang.String,com.linkedin.venice.stats.AggServerQuotaUsageStats,java.time.Clock)">
+<section class="detail" id="&lt;init&gt;(com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,com.linkedin.davinci.storage.StorageEngineRepository,java.lang.String,com.linkedin.venice.stats.AggServerQuotaUsageStats,java.time.Clock)">
 <h3>ReadQuotaEnforcementHandler</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ReadQuotaEnforcementHandler</span><wbr><span class="parameters">(<a href="../../davinci/config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
  <a href="../meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;storeRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="../helix/HelixCustomizedViewOfflinePushRepository.html" title="class in com.linkedin.venice.helix">HelixCustomizedViewOfflinePushRepository</a>&gt;&nbsp;customizedViewRepository,
+ <a href="../../davinci/storage/StorageEngineRepository.html" title="class in com.linkedin.davinci.storage">StorageEngineRepository</a>&nbsp;storageEngineRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;nodeId,
  <a href="../stats/AggServerQuotaUsageStats.html" title="class in com.linkedin.venice.stats">AggServerQuotaUsageStats</a>&nbsp;stats,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Clock.html" title="class or interface in java.time" class="external-link">Clock</a>&nbsp;clock)</span></div>

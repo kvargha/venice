@@ -143,23 +143,31 @@ loadScripts(document, 'script');</script>
 <div class="block">Apply chunk assembly if chunking is enabled.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyTTLFilter(org.apache.spark.sql.Dataset)" class="member-name-link">applyTTLFilter</a><wbr>(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyCompaction(org.apache.spark.sql.Dataset)" class="member-name-link">applyCompaction</a><wbr>(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Apply compaction to the Kafka input dataframe.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyTTLFilter(org.apache.spark.sql.Dataset)" class="member-name-link">applyTTLFilter</a><wbr>(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Apply TTL filtering to the Kafka input dataframe.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configure(com.linkedin.venice.utils.VeniceProperties,com.linkedin.venice.hadoop.PushJobSetting)" class="member-name-link">configure</a><wbr>(<a href="../../../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;props,
- <a href="../../../hadoop/PushJobSetting.html" title="class in com.linkedin.venice.hadoop">PushJobSetting</a>&nbsp;pushJobSetting)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.api.java.function.MapPartitionsFunction&lt;org.apache.spark.sql.Row,<wbr>org.apache.spark.sql.Row&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createPartitionWriterFactory(org.apache.spark.broadcast.Broadcast,com.linkedin.venice.spark.datawriter.task.DataWriterAccumulators)" class="member-name-link">createPartitionWriterFactory</a><wbr>(org.apache.spark.broadcast.Broadcast&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&gt;&nbsp;broadcastProperties,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configure(com.linkedin.venice.utils.VeniceProperties,com.linkedin.venice.hadoop.PushJobSetting)" class="member-name-link">configure</a><wbr>(<a href="../../../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;props,
+ <a href="../../../hadoop/PushJobSetting.html" title="class in com.linkedin.venice.hadoop">PushJobSetting</a>&nbsp;pushJobSetting)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.api.java.function.MapPartitionsFunction&lt;org.apache.spark.sql.Row,<wbr>org.apache.spark.sql.Row&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createPartitionWriterFactory(org.apache.spark.broadcast.Broadcast,com.linkedin.venice.spark.datawriter.task.DataWriterAccumulators)" class="member-name-link">createPartitionWriterFactory</a><wbr>(org.apache.spark.broadcast.Broadcast&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&gt;&nbsp;broadcastProperties,
  <a href="../task/DataWriterAccumulators.html" title="class in com.linkedin.venice.spark.datawriter.task">DataWriterAccumulators</a>&nbsp;accumulators)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Creates the partition writer factory.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../task/DataWriterAccumulators.html" title="class in com.linkedin.venice.spark.datawriter.task">DataWriterAccumulators</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAccumulatorsForDataWriterJob()" class="member-name-link">getAccumulatorsForDataWriterJob</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getJobProperties()" class="member-name-link">getJobProperties</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -301,6 +309,20 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="applyCompaction(org.apache.spark.sql.Dataset)">
+<h3>applyCompaction</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</span>&nbsp;<span class="element-name">applyCompaction</span><wbr><span class="parameters">(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</span></div>
+<div class="block">Apply compaction to the Kafka input dataframe.
+ For each key, keep only the record with the highest offset.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>dataFrame</code> - Input dataframe with RAW_PUBSUB_INPUT_TABLE_SCHEMA</dd>
+<dt>Returns:</dt>
+<dd>Compacted dataframe with duplicate keys removed</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="applyChunkAssembly(org.apache.spark.sql.Dataset)">
 <h3>applyChunkAssembly</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</span>&nbsp;<span class="element-name">applyChunkAssembly</span><wbr><span class="parameters">(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</span></div>
@@ -332,6 +354,12 @@ loadScripts(document, 'script');</script>
 <dt>Specified by:</dt>
 <dd><code><a href="../../../jobs/DataWriterComputeJob.html#getTaskTracker()">getTaskTracker</a></code>&nbsp;in class&nbsp;<code><a href="../../../jobs/DataWriterComputeJob.html" title="class in com.linkedin.venice.jobs">DataWriterComputeJob</a></code></dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getAccumulatorsForDataWriterJob()">
+<h3>getAccumulatorsForDataWriterJob</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../task/DataWriterAccumulators.html" title="class in com.linkedin.venice.spark.datawriter.task">DataWriterAccumulators</a></span>&nbsp;<span class="element-name">getAccumulatorsForDataWriterJob</span>()</div>
 </section>
 </li>
 <li>

@@ -122,49 +122,52 @@ loadScripts(document, 'script');</script>
  <a href="api/PubSubConsumerAdapter.html" title="interface in com.linkedin.venice.pubsub.api">PubSubConsumerAdapter</a>&nbsp;consumerAdapter)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fromKafkaOffset(long)" class="member-name-link">fromKafkaOffset</a><wbr>(long&nbsp;offset)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#generatePubSubClientId(com.linkedin.venice.pubsub.PubSubClientType,java.lang.String,java.lang.String)" class="member-name-link">generatePubSubClientId</a><wbr>(<a href="PubSubClientType.html" title="enum class in com.linkedin.venice.pubsub">PubSubClientType</a>&nbsp;pubSubClientType,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#deserializePositionWithOffsetFallback(java.nio.ByteBuffer,long,com.linkedin.venice.pubsub.PubSubPositionDeserializer)" class="member-name-link">deserializePositionWithOffsetFallback</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;wireFormatBytes,
+ long&nbsp;offset,
+ <a href="PubSubPositionDeserializer.html" title="class in com.linkedin.venice.pubsub">PubSubPositionDeserializer</a>&nbsp;pubSubPositionDeserializer)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Deserializes a PubSubPosition from wire format bytes with fallback to offset-based position.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fromKafkaOffset(long)" class="member-name-link">fromKafkaOffset</a><wbr>(long&nbsp;offset)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#generatePubSubClientId(com.linkedin.venice.pubsub.PubSubClientType,java.lang.String,java.lang.String)" class="member-name-link">generatePubSubClientId</a><wbr>(<a href="PubSubClientType.html" title="enum class in com.linkedin.venice.pubsub">PubSubClientType</a>&nbsp;pubSubClientType,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clientName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;brokerAddress)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Generates a standardized and unique client ID for PubSub clients.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static byte[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getBase64DecodedBytes(java.lang.String)" class="member-name-link">getBase64DecodedBytes</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;bytesString)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getBase64EncodedString(byte%5B%5D)" class="member-name-link">getBase64EncodedString</a><wbr>(byte[]&nbsp;byteBuffer)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static byte[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getBase64DecodedBytes(java.lang.String)" class="member-name-link">getBase64DecodedBytes</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;bytesString)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubAdminConfigPrefix(java.lang.String)" class="member-name-link">getPubSubAdminConfigPrefix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;adapterConfigPrefix)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getBase64EncodedString(byte%5B%5D)" class="member-name-link">getBase64EncodedString</a><wbr>(byte[]&nbsp;byteBuffer)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddress(com.linkedin.venice.utils.VeniceProperties)" class="member-name-link">getPubSubBrokerAddress</a><wbr>(<a href="../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;properties)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubAdminConfigPrefix(java.lang.String)" class="member-name-link">getPubSubAdminConfigPrefix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;adapterConfigPrefix)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddress(java.util.Properties)" class="member-name-link">getPubSubBrokerAddress</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;properties)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddress(com.linkedin.venice.utils.VeniceProperties)" class="member-name-link">getPubSubBrokerAddress</a><wbr>(<a href="../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;properties)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddressOrFail(com.linkedin.venice.utils.VeniceProperties)" class="member-name-link">getPubSubBrokerAddressOrFail</a><wbr>(<a href="../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;properties)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddress(java.util.Properties)" class="member-name-link">getPubSubBrokerAddress</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;properties)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddressOrFail(java.util.Properties)" class="member-name-link">getPubSubBrokerAddressOrFail</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;properties)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddressOrFail(com.linkedin.venice.utils.VeniceProperties)" class="member-name-link">getPubSubBrokerAddressOrFail</a><wbr>(<a href="../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;properties)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddressWithDefault(com.linkedin.venice.utils.VeniceProperties,java.lang.String)" class="member-name-link">getPubSubBrokerAddressWithDefault</a><wbr>(<a href="../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;properties,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddressOrFail(java.util.Properties)" class="member-name-link">getPubSubBrokerAddressOrFail</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;properties)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubBrokerAddressWithDefault(com.linkedin.venice.utils.VeniceProperties,java.lang.String)" class="member-name-link">getPubSubBrokerAddressWithDefault</a><wbr>(<a href="../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;properties,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;defaultValue)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubConsumerConfigPrefix(java.lang.String)" class="member-name-link">getPubSubConsumerConfigPrefix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;adapterConfigPrefix)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../protocols/controller/PubSubPositionGrpcWireFormat.html" title="class in com.linkedin.venice.protocols.controller">PubSubPositionGrpcWireFormat</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubPositionGrpcWireFormat(com.linkedin.venice.pubsub.api.PubSubPosition)" class="member-name-link">getPubSubPositionGrpcWireFormat</a><wbr>(<a href="api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;position)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubConsumerConfigPrefix(java.lang.String)" class="member-name-link">getPubSubConsumerConfigPrefix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;adapterConfigPrefix)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubPositionString(com.linkedin.venice.pubsub.PubSubPositionDeserializer,java.nio.ByteBuffer)" class="member-name-link">getPubSubPositionString</a><wbr>(<a href="PubSubPositionDeserializer.html" title="class in com.linkedin.venice.pubsub">PubSubPositionDeserializer</a>&nbsp;pubSubPositionDeserializer,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;pubSubPosition)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../protocols/controller/PubSubPositionGrpcWireFormat.html" title="class in com.linkedin.venice.protocols.controller">PubSubPositionGrpcWireFormat</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubPositionGrpcWireFormat(com.linkedin.venice.pubsub.api.PubSubPosition)" class="member-name-link">getPubSubPositionGrpcWireFormat</a><wbr>(<a href="api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;position)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="api/PubSubPositionWireFormat.html" title="class in com.linkedin.venice.pubsub.api">PubSubPositionWireFormat</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubPositionWireFormat(com.linkedin.venice.protocols.controller.PubSubPositionGrpcWireFormat)" class="member-name-link">getPubSubPositionWireFormat</a><wbr>(<a href="../protocols/controller/PubSubPositionGrpcWireFormat.html" title="class in com.linkedin.venice.protocols.controller">PubSubPositionGrpcWireFormat</a>&nbsp;position)</code></div>
@@ -437,13 +440,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getPubSubPositionString(com.linkedin.venice.pubsub.PubSubPositionDeserializer,java.nio.ByteBuffer)">
-<h3>getPubSubPositionString</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getPubSubPositionString</span><wbr><span class="parameters">(<a href="PubSubPositionDeserializer.html" title="class in com.linkedin.venice.pubsub">PubSubPositionDeserializer</a>&nbsp;pubSubPositionDeserializer,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;pubSubPosition)</span></div>
-</section>
-</li>
-<li>
 <section class="detail" id="parsePositionParam(java.lang.String)">
 <h3>parsePositionParam</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="../protocols/controller/PubSubPositionGrpcWireFormat.html" title="class in com.linkedin.venice.protocols.controller">PubSubPositionGrpcWireFormat</a></span>&nbsp;<span class="element-name">parsePositionParam</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;positionWireFormatString)</span></div>
@@ -459,6 +455,36 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getPubSubPositionGrpcWireFormat(com.linkedin.venice.pubsub.api.PubSubPosition)">
 <h3>getPubSubPositionGrpcWireFormat</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="../protocols/controller/PubSubPositionGrpcWireFormat.html" title="class in com.linkedin.venice.protocols.controller">PubSubPositionGrpcWireFormat</a></span>&nbsp;<span class="element-name">getPubSubPositionGrpcWireFormat</span><wbr><span class="parameters">(<a href="api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;position)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="deserializePositionWithOffsetFallback(java.nio.ByteBuffer,long,com.linkedin.venice.pubsub.PubSubPositionDeserializer)">
+<h3>deserializePositionWithOffsetFallback</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></span>&nbsp;<span class="element-name">deserializePositionWithOffsetFallback</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;wireFormatBytes,
+ long&nbsp;offset,
+ <a href="PubSubPositionDeserializer.html" title="class in com.linkedin.venice.pubsub">PubSubPositionDeserializer</a>&nbsp;pubSubPositionDeserializer)</span></div>
+<div class="block">Deserializes a PubSubPosition from wire format bytes with fallback to offset-based position.
+
+ <p>This method attempts to deserialize a position from the provided wire format bytes.
+ If deserialization fails or the buffer is empty, it falls back to creating an offset-based
+ position using the provided offset value. This provides resilience against deserialization
+ errors while ensuring a valid position is always returned.
+
+ <p>Special handling:
+ <ul>
+   <li>Symbolic positions (EARLIEST, LATEST) are always returned as-is</li>
+   <li>If the deserialized position is behind the provided offset, uses offset-based position</li>
+   <li>Empty or null buffers result in offset-based position</li>
+   <li>Deserialization errors result in offset-based position with warning logged</li>
+ </ul></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>wireFormatBytes</code> - the serialized position bytes (can be null or empty)</dd>
+<dd><code>offset</code> - the fallback offset to use if deserialization fails or buffer is empty</dd>
+<dd><code>pubSubPositionDeserializer</code> - the deserializer to convert wire format to position</dd>
+<dt>Returns:</dt>
+<dd>a valid PubSubPosition, either deserialized or offset-based</dd>
+</dl>
 </section>
 </li>
 </ul>

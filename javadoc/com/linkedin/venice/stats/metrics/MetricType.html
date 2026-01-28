@@ -105,9 +105,19 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Enum Constant</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="#ASYNC_GAUGE" class="member-name-link">ASYNC_GAUGE</a></code></div>
+<div class="col-first even-row-color"><code><a href="#ASYNC_COUNTER_FOR_HIGH_PERF_CASES" class="member-name-link">ASYNC_COUNTER_FOR_HIGH_PERF_CASES</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">Use this instead of <a href="#COUNTER"><code>COUNTER</code></a> when recording happens at very high frequency
+ in hot path.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#ASYNC_GAUGE" class="member-name-link">ASYNC_GAUGE</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">For Async Gauge: Emits the absolute value of the metric value asynchronously.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#ASYNC_UP_DOWN_COUNTER_FOR_HIGH_PERF_CASES" class="member-name-link">ASYNC_UP_DOWN_COUNTER_FOR_HIGH_PERF_CASES</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Use this instead of <a href="#UP_DOWN_COUNTER"><code>UP_DOWN_COUNTER</code></a> when recording happens at very high frequency
+ in hot path.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#COUNTER" class="member-name-link">COUNTER</a></code></div>
 <div class="col-last odd-row-color">
@@ -149,14 +159,20 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAsyncMetric()" class="member-name-link">isAsyncMetric</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isObservableCounterType()" class="member-name-link">isObservableCounterType</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if this metric type is an observable counter type that uses LongAdder internally
+ for high-performance recording.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a>[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a>[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </div>
@@ -207,11 +223,36 @@ the order they are declared.</div>
 </section>
 </li>
 <li>
+<section class="detail" id="ASYNC_COUNTER_FOR_HIGH_PERF_CASES">
+<h3>ASYNC_COUNTER_FOR_HIGH_PERF_CASES</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a></span>&nbsp;<span class="element-name">ASYNC_COUNTER_FOR_HIGH_PERF_CASES</span></div>
+<div class="block">Use this instead of <a href="#COUNTER"><code>COUNTER</code></a> when recording happens at very high frequency
+ in hot path. <p>
+ Uses <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/atomic/LongAdder.html" title="class or interface in java.util.concurrent.atomic" class="external-link"><code>LongAdder</code></a> internally for fast recording,
+ and OpenTelemetry's <code>ObservableLongCounter</code>
+ reads the accumulated values during metrics collection.
+ <p></div>
+</section>
+</li>
+<li>
 <section class="detail" id="UP_DOWN_COUNTER">
 <h3>UP_DOWN_COUNTER</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a></span>&nbsp;<span class="element-name">UP_DOWN_COUNTER</span></div>
 <div class="block">For UpDownCounter: A counter that supports positive and negative increments.
  Useful when counts can increase or decrease over time.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ASYNC_UP_DOWN_COUNTER_FOR_HIGH_PERF_CASES">
+<h3>ASYNC_UP_DOWN_COUNTER_FOR_HIGH_PERF_CASES</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a></span>&nbsp;<span class="element-name">ASYNC_UP_DOWN_COUNTER_FOR_HIGH_PERF_CASES</span></div>
+<div class="block">Use this instead of <a href="#UP_DOWN_COUNTER"><code>UP_DOWN_COUNTER</code></a> when recording happens at very high frequency
+ in hot path. <p>
+ Uses <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/atomic/LongAdder.html" title="class or interface in java.util.concurrent.atomic" class="external-link"><code>LongAdder</code></a> internally for fast recording,
+ and OpenTelemetry's <code>ObservableLongUpDownCounter</code>
+ reads the accumulated values during metrics collection.
+ Supports both positive and negative values.
+ <p></div>
 </section>
 </li>
 <li>
@@ -272,6 +313,14 @@ not permitted.)</div>
 <section class="detail" id="isAsyncMetric()">
 <h3>isAsyncMetric</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAsyncMetric</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isObservableCounterType()">
+<h3>isObservableCounterType</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isObservableCounterType</span>()</div>
+<div class="block">Checks if this metric type is an observable counter type that uses LongAdder internally
+ for high-performance recording.</div>
 </section>
 </li>
 </ul>

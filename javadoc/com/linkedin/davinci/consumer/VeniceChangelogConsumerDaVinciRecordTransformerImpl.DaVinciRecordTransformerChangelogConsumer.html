@@ -121,9 +121,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addControlMessageToBuffer(int,com.linkedin.venice.pubsub.api.PubSubPosition,com.linkedin.venice.kafka.protocol.ControlMessage)" class="member-name-link">addControlMessageToBuffer</a><wbr>(int&nbsp;partitionId,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addControlMessageToBuffer(int,com.linkedin.venice.pubsub.api.PubSubPosition,com.linkedin.venice.kafka.protocol.ControlMessage,long)" class="member-name-link">addControlMessageToBuffer</a><wbr>(int&nbsp;partitionId,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;offset,
- <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage)</code></div>
+ <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage,
+ long&nbsp;pubSubMessageTimestamp)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Add ControlMessage to the buffer.</div>
 </div>
@@ -139,9 +140,10 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onControlMessage(int,com.linkedin.venice.pubsub.api.PubSubPosition,com.linkedin.venice.kafka.protocol.ControlMessage)" class="member-name-link">onControlMessage</a><wbr>(int&nbsp;partitionId,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onControlMessage(int,com.linkedin.venice.pubsub.api.PubSubPosition,com.linkedin.venice.kafka.protocol.ControlMessage,long)" class="member-name-link">onControlMessage</a><wbr>(int&nbsp;partitionId,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;offset,
- <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage)</code></div>
+ <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage,
+ long&nbsp;pubSubMessageTimestamp)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">If includeControlMessages is FALSE, or the client is NOT version specific, this method is a no-op.</div>
 </div>
@@ -282,11 +284,12 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="addControlMessageToBuffer(int,com.linkedin.venice.pubsub.api.PubSubPosition,com.linkedin.venice.kafka.protocol.ControlMessage)">
+<section class="detail" id="addControlMessageToBuffer(int,com.linkedin.venice.pubsub.api.PubSubPosition,com.linkedin.venice.kafka.protocol.ControlMessage,long)">
 <h3>addControlMessageToBuffer</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addControlMessageToBuffer</span><wbr><span class="parameters">(int&nbsp;partitionId,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;offset,
- <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage)</span></div>
+ <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage,
+ long&nbsp;pubSubMessageTimestamp)</span></div>
 <div class="block">Add ControlMessage to the buffer.
  Key and Value are both null. Details for control message are in controlMessage param.</div>
 </section>
@@ -334,11 +337,12 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="onControlMessage(int,com.linkedin.venice.pubsub.api.PubSubPosition,com.linkedin.venice.kafka.protocol.ControlMessage)">
+<section class="detail" id="onControlMessage(int,com.linkedin.venice.pubsub.api.PubSubPosition,com.linkedin.venice.kafka.protocol.ControlMessage,long)">
 <h3>onControlMessage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onControlMessage</span><wbr><span class="parameters">(int&nbsp;partitionId,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;offset,
- <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage)</span></div>
+ <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage,
+ long&nbsp;pubSubMessageTimestamp)</span></div>
 <div class="block">If includeControlMessages is FALSE, or the client is NOT version specific, this method is a no-op.
  If includeControlMessages is true, AND the client is version specific, it adds the control message to the buffer.</div>
 </section>

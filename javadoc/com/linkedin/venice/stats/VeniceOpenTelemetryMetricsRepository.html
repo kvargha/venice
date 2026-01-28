@@ -123,72 +123,90 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.ObservableLongGauge</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createAsyncLongGauge(com.linkedin.venice.stats.metrics.MetricEntity,java.util.function.LongSupplier,io.opentelemetry.api.common.Attributes)" class="member-name-link">createAsyncLongGauge</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceOpenTelemetryMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricsRepository</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cloneWithNewMetricPrefix(java.lang.String)" class="member-name-link">cloneWithNewMetricPrefix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;newMetricPrefix)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates a new repository that shares the same OpenTelemetry SDK instance
+ but uses a different metric prefix.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.ObservableLongGauge</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createAsyncLongGauge(com.linkedin.venice.stats.metrics.MetricEntity,java.util.function.LongSupplier,io.opentelemetry.api.common.Attributes)" class="member-name-link">createAsyncLongGauge</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/LongSupplier.html" title="class or interface in java.util.function" class="external-link">LongSupplier</a>&nbsp;asyncCallback,
  io.opentelemetry.api.common.Attributes&nbsp;attributes)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Asynchronous gauge that will call the callback during metrics collection.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.common.Attributes</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createAttributes(com.linkedin.venice.stats.metrics.MetricEntity,java.util.Map,com.linkedin.venice.stats.dimensions.VeniceDimensionInterface...)" class="member-name-link">createAttributes</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.common.Attributes</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createAttributes(com.linkedin.venice.stats.metrics.MetricEntity,java.util.Map,com.linkedin.venice.stats.dimensions.VeniceDimensionInterface...)" class="member-name-link">createAttributes</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="dimensions/VeniceMetricsDimensions.html" title="enum class in com.linkedin.venice.stats.dimensions">VeniceMetricsDimensions</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;baseDimensionsMap,
  <a href="dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>...&nbsp;additionalDimensionEnums)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.common.Attributes</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createAttributes(com.linkedin.venice.stats.metrics.MetricEntity,java.util.Map,java.util.Map)" class="member-name-link">createAttributes</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.common.Attributes</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createAttributes(com.linkedin.venice.stats.metrics.MetricEntity,java.util.Map,java.util.Map)" class="member-name-link">createAttributes</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="dimensions/VeniceMetricsDimensions.html" title="enum class in com.linkedin.venice.stats.dimensions">VeniceMetricsDimensions</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;baseDimensionsMap,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="dimensions/VeniceMetricsDimensions.html" title="enum class in com.linkedin.venice.stats.dimensions">VeniceMetricsDimensions</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;additionalDimensionsMap)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.DoubleHistogram</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createDoubleHistogram(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createDoubleHistogram</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createInstrument(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createInstrument</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.DoubleHistogram</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createDoubleHistogram(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createDoubleHistogram</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createInstrument(com.linkedin.venice.stats.metrics.MetricEntity,java.util.function.LongSupplier,io.opentelemetry.api.common.Attributes)" class="member-name-link">createInstrument</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createInstrument(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createInstrument</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createInstrument(com.linkedin.venice.stats.metrics.MetricEntity,java.util.function.LongSupplier,io.opentelemetry.api.common.Attributes)" class="member-name-link">createInstrument</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/LongSupplier.html" title="class or interface in java.util.function" class="external-link">LongSupplier</a>&nbsp;asyncCallback,
  io.opentelemetry.api.common.Attributes&nbsp;attributes)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.LongCounter</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createLongCounter(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createLongCounter</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.LongGauge</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createLongGuage(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createLongGuage</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.LongCounter</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createLongCounter(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createLongCounter</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.LongUpDownCounter</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createLongUpDownCounter(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createLongUpDownCounter</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.LongGauge</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createLongGuage(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createLongGuage</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#emitOpenTelemetryMetrics()" class="member-name-link">emitOpenTelemetryMetrics</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.LongUpDownCounter</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createLongUpDownCounter(com.linkedin.venice.stats.metrics.MetricEntity)" class="member-name-link">createLongUpDownCounter</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#emitTehutiMetrics()" class="member-name-link">emitTehutiMetrics</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#emitOpenTelemetryMetrics()" class="member-name-link">emitOpenTelemetryMetrics</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDimensionName(com.linkedin.venice.stats.dimensions.VeniceMetricsDimensions)" class="member-name-link">getDimensionName</a><wbr>(<a href="dimensions/VeniceMetricsDimensions.html" title="enum class in com.linkedin.venice.stats.dimensions">VeniceMetricsDimensions</a>&nbsp;dimension)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#emitTehutiMetrics()" class="member-name-link">emitTehutiMetrics</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceOpenTelemetryMetricNamingFormat.html" title="enum class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricNamingFormat</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMetricFormat()" class="member-name-link">getMetricFormat</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDimensionName(com.linkedin.venice.stats.dimensions.VeniceMetricsDimensions)" class="member-name-link">getDimensionName</a><wbr>(<a href="dimensions/VeniceMetricsDimensions.html" title="enum class in com.linkedin.venice.stats.dimensions">VeniceMetricsDimensions</a>&nbsp;dimension)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceMetricsConfig.html" title="class in com.linkedin.venice.stats">VeniceMetricsConfig</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMetricsConfig()" class="member-name-link">getMetricsConfig</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceOpenTelemetryMetricNamingFormat.html" title="enum class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricNamingFormat</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMetricFormat()" class="member-name-link">getMetricFormat</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="metrics/MetricEntityStateBase.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateBase</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRecordFailureMetric()" class="member-name-link">getRecordFailureMetric</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceMetricsConfig.html" title="class in com.linkedin.venice.stats">VeniceMetricsConfig</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMetricsConfig()" class="member-name-link">getMetricsConfig</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordFailureMetric(com.linkedin.venice.stats.metrics.MetricEntity,java.lang.Exception)" class="member-name-link">recordFailureMetric</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a>&nbsp;e)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="metrics/MetricEntityStateBase.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateBase</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRecordFailureMetric()" class="member-name-link">getRecordFailureMetric</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordFailureMetric(com.linkedin.venice.stats.metrics.MetricEntity,java.lang.String)" class="member-name-link">recordFailureMetric</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;error)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordFailureMetric(com.linkedin.venice.stats.metrics.MetricEntity,java.lang.Exception)" class="member-name-link">recordFailureMetric</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a>&nbsp;e)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordFailureMetric(com.linkedin.venice.stats.metrics.MetricEntity,java.lang.String)" class="member-name-link">recordFailureMetric</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;error)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.ObservableLongCounter</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registerObservableLongCounter(com.linkedin.venice.stats.metrics.MetricEntity,java.util.function.Consumer)" class="member-name-link">registerObservableLongCounter</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;io.opentelemetry.api.metrics.ObservableLongMeasurement&gt;&nbsp;reportCallback)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Registers an Observable Long Counter that reads accumulated values from a callback.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.metrics.ObservableLongUpDownCounter</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registerObservableLongUpDownCounter(com.linkedin.venice.stats.metrics.MetricEntity,java.util.function.Consumer)" class="member-name-link">registerObservableLongUpDownCounter</a><wbr>(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;io.opentelemetry.api.metrics.ObservableLongMeasurement&gt;&nbsp;reportCallback)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Registers an Observable Long UpDownCounter that reads accumulated values from a callback.</div>
+</div>
 </div>
 </div>
 </div>
@@ -249,6 +267,21 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="cloneWithNewMetricPrefix(java.lang.String)">
+<h3>cloneWithNewMetricPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="VeniceOpenTelemetryMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricsRepository</a></span>&nbsp;<span class="element-name">cloneWithNewMetricPrefix</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;newMetricPrefix)</span></div>
+<div class="block">Creates a new repository that shares the same OpenTelemetry SDK instance
+ but uses a different metric prefix. This is useful for emitting metrics with a
+ different prefix (e.g., "participant_store_client") without reinitializing OpenTelemetry.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>newMetricPrefix</code> - The metric prefix to use for the child repository</dd>
+<dt>Returns:</dt>
+<dd>A new VeniceOpenTelemetryMetricsRepository instance with the specified prefix</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="createDoubleHistogram(com.linkedin.venice.stats.metrics.MetricEntity)">
 <h3>createDoubleHistogram</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">io.opentelemetry.api.metrics.DoubleHistogram</span>&nbsp;<span class="element-name">createDoubleHistogram</span><wbr><span class="parameters">(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</span></div>
@@ -298,6 +331,51 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="createInstrument(com.linkedin.venice.stats.metrics.MetricEntity)">
 <h3>createInstrument</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">createInstrument</span><wbr><span class="parameters">(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="registerObservableLongCounter(com.linkedin.venice.stats.metrics.MetricEntity,java.util.function.Consumer)">
+<h3>registerObservableLongCounter</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">io.opentelemetry.api.metrics.ObservableLongCounter</span>&nbsp;<span class="element-name">registerObservableLongCounter</span><wbr><span class="parameters">(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+ @Nonnull
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;io.opentelemetry.api.metrics.ObservableLongMeasurement&gt;&nbsp;reportCallback)</span></div>
+<div class="block">Registers an Observable Long Counter that reads accumulated values from a callback.
+ This method should be called after the MetricEntityState is fully constructed,
+ as the callback needs access to the metricAttributesData map.
+
+ <p>For <a href="metrics/MetricType.html#ASYNC_COUNTER_FOR_HIGH_PERF_CASES"><code>MetricType.ASYNC_COUNTER_FOR_HIGH_PERF_CASES</code></a> metrics, the callback is invoked during
+ OpenTelemetry's metric collection cycle. The callback should iterate over all
+ accumulated values and report them via the provided <code>ObservableLongMeasurement</code>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>metricEntity</code> - the metric entity definition</dd>
+<dd><code>reportCallback</code> - callback that reports all accumulated values to the measurement</dd>
+<dt>Returns:</dt>
+<dd>the created ObservableLongCounter, or null if OTel metrics are disabled</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="registerObservableLongUpDownCounter(com.linkedin.venice.stats.metrics.MetricEntity,java.util.function.Consumer)">
+<h3>registerObservableLongUpDownCounter</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">io.opentelemetry.api.metrics.ObservableLongUpDownCounter</span>&nbsp;<span class="element-name">registerObservableLongUpDownCounter</span><wbr><span class="parameters">(<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&nbsp;metricEntity,
+ @Nonnull
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;io.opentelemetry.api.metrics.ObservableLongMeasurement&gt;&nbsp;reportCallback)</span></div>
+<div class="block">Registers an Observable Long UpDownCounter that reads accumulated values from a callback.
+ This method should be called after the MetricEntityState is fully constructed,
+ as the callback needs access to the metricAttributesData map.
+
+ <p>For <a href="metrics/MetricType.html#ASYNC_UP_DOWN_COUNTER_FOR_HIGH_PERF_CASES"><code>MetricType.ASYNC_UP_DOWN_COUNTER_FOR_HIGH_PERF_CASES</code></a> metrics, the callback is invoked during
+ OpenTelemetry's metric collection cycle. The callback should iterate over all
+ accumulated values and report them via the provided <code>ObservableLongMeasurement</code>.
+ Unlike ASYNC_COUNTER_FOR_HIGH_PERF_CASES, this supports both positive and negative values.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>metricEntity</code> - the metric entity definition</dd>
+<dd><code>reportCallback</code> - callback that reports all accumulated values to the measurement</dd>
+<dt>Returns:</dt>
+<dd>the created ObservableLongUpDownCounter, or null if OTel metrics are disabled</dd>
+</dl>
 </section>
 </li>
 <li>

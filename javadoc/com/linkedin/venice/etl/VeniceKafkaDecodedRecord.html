@@ -120,10 +120,10 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="col-last even-row-color">
 <div class="block">Metadata of the record; currently it contains the schemaId of the record</div>
 </div>
-<div class="col-first odd-row-color"><code>long</code></div>
-<div class="col-second odd-row-color"><code><a href="#offset" class="member-name-link">offset</a></code></div>
+<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#position" class="member-name-link">position</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The offset of this record in Kafka</div>
+<div class="block">The position of this record in Kafka</div>
 </div>
 <div class="col-first even-row-color"><code>static final org.apache.avro.Schema</code></div>
 <div class="col-second even-row-color"><code><a href="#SCHEMA$" class="member-name-link">SCHEMA$</a></code></div>
@@ -148,9 +148,9 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="col-last even-row-color">
 <div class="block">Default constructor.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.nio.ByteBuffer,java.nio.ByteBuffer,java.lang.Long,java.lang.Long,java.util.Map)" class="member-name-link">VeniceKafkaDecodedRecord</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;key,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.nio.ByteBuffer,java.nio.ByteBuffer,java.lang.CharSequence,java.lang.Long,java.util.Map)" class="member-name-link">VeniceKafkaDecodedRecord</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;value,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;offset,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;position,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;DELETED_TS,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;metadata)</code></div>
 <div class="col-last odd-row-color">
@@ -191,10 +191,10 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the value of the 'metadata' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOffset()" class="member-name-link">getOffset</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'offset' field.</div>
+<div class="block">Gets the value of the 'position' field.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.avro.Schema</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSchema()" class="member-name-link">getSchema</a>()</code></div>
@@ -230,9 +230,9 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="block">Sets the value of the 'metadata' field.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOffset(long)" class="member-name-link">setOffset</a><wbr>(long&nbsp;value)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPosition(java.lang.CharSequence)" class="member-name-link">setPosition</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the value of the 'offset' field.</div>
+<div class="block">Sets the value of the 'position' field.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setValue(java.nio.ByteBuffer)" class="member-name-link">setValue</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;value)</code></div>
@@ -286,10 +286,10 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="offset">
-<h3>offset</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">offset</span></div>
-<div class="block">The offset of this record in Kafka</div>
+<section class="detail" id="position">
+<h3>position</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></span>&nbsp;<span class="element-name">position</span></div>
+<div class="block">The position of this record in Kafka</div>
 </section>
 </li>
 <li>
@@ -324,11 +324,11 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(java.nio.ByteBuffer,java.nio.ByteBuffer,java.lang.Long,java.lang.Long,java.util.Map)">
+<section class="detail" id="&lt;init&gt;(java.nio.ByteBuffer,java.nio.ByteBuffer,java.lang.CharSequence,java.lang.Long,java.util.Map)">
 <h3>VeniceKafkaDecodedRecord</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">VeniceKafkaDecodedRecord</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;value,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;offset,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;position,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;DELETED_TS,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;metadata)</span></div>
 <div class="block">All-args constructor.</div>
@@ -336,7 +336,7 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <dt>Parameters:</dt>
 <dd><code>key</code> - Raw bytes of the key</dd>
 <dd><code>value</code> - Raw bytes of the value</dd>
-<dd><code>offset</code> - The offset of this record in Kafka</dd>
+<dd><code>position</code> - The position of this record in Kafka</dd>
 <dd><code>DELETED_TS</code> - If the current record is a PUT, this field will be null; if it's a DELETE, this field will be the offset of the record in Kafka</dd>
 <dd><code>metadata</code> - Metadata of the record; currently it contains the schemaId of the record</dd>
 </dl>
@@ -450,22 +450,22 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="getOffset()">
-<h3>getOffset</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">getOffset</span>()</div>
-<div class="block">Gets the value of the 'offset' field.</div>
+<section class="detail" id="getPosition()">
+<h3>getPosition</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></span>&nbsp;<span class="element-name">getPosition</span>()</div>
+<div class="block">Gets the value of the 'position' field.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The offset of this record in Kafka</dd>
+<dd>The position of this record in Kafka</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="setOffset(long)">
-<h3>setOffset</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setOffset</span><wbr><span class="parameters">(long&nbsp;value)</span></div>
-<div class="block">Sets the value of the 'offset' field.
- The offset of this record in Kafka</div>
+<section class="detail" id="setPosition(java.lang.CharSequence)">
+<h3>setPosition</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPosition</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</span></div>
+<div class="block">Sets the value of the 'position' field.
+ The position of this record in Kafka</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>value</code> - the value to set.</dd>

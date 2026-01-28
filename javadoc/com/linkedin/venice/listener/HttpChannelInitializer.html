@@ -108,7 +108,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,io.tehuti.metrics.MetricsRepository,java.util.Optional,java.util.concurrent.ThreadPoolExecutor,com.linkedin.davinci.config.VeniceServerConfig,java.util.Optional,java.util.Optional,com.linkedin.venice.listener.StorageReadRequestHandler)" class="member-name-link">HttpChannelInitializer</a><wbr>(<a href="../meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;storeMetadataRepository,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,io.tehuti.metrics.MetricsRepository,java.util.Optional,java.util.concurrent.ThreadPoolExecutor,com.linkedin.davinci.config.VeniceServerConfig,java.util.Optional,java.util.Optional,com.linkedin.venice.listener.StorageReadRequestHandler,com.linkedin.davinci.storage.StorageEngineRepository)" class="member-name-link">HttpChannelInitializer</a><wbr>(<a href="../meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;storeMetadataRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="../helix/HelixCustomizedViewOfflinePushRepository.html" title="class in com.linkedin.venice.helix">HelixCustomizedViewOfflinePushRepository</a>&gt;&nbsp;customizedViewRepository,
  io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../security/SSLFactory.html" title="interface in com.linkedin.venice.security">SSLFactory</a>&gt;&nbsp;sslFactory,
@@ -116,7 +116,8 @@ loadScripts(document, 'script');</script>
  <a href="../../davinci/config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../acl/StaticAccessController.html" title="interface in com.linkedin.venice.acl">StaticAccessController</a>&gt;&nbsp;routerAccessController,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../acl/DynamicAccessController.html" title="interface in com.linkedin.venice.acl">DynamicAccessController</a>&gt;&nbsp;storeAccessController,
- <a href="StorageReadRequestHandler.html" title="class in com.linkedin.venice.listener">StorageReadRequestHandler</a>&nbsp;requestHandler)</code></div>
+ <a href="StorageReadRequestHandler.html" title="class in com.linkedin.venice.listener">StorageReadRequestHandler</a>&nbsp;requestHandler,
+ <a href="../../davinci/storage/StorageEngineRepository.html" title="class in com.linkedin.davinci.storage">StorageEngineRepository</a>&nbsp;storageEngineRepository)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -174,7 +175,7 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,io.tehuti.metrics.MetricsRepository,java.util.Optional,java.util.concurrent.ThreadPoolExecutor,com.linkedin.davinci.config.VeniceServerConfig,java.util.Optional,java.util.Optional,com.linkedin.venice.listener.StorageReadRequestHandler)">
+<section class="detail" id="&lt;init&gt;(com.linkedin.venice.meta.ReadOnlyStoreRepository,java.util.concurrent.CompletableFuture,io.tehuti.metrics.MetricsRepository,java.util.Optional,java.util.concurrent.ThreadPoolExecutor,com.linkedin.davinci.config.VeniceServerConfig,java.util.Optional,java.util.Optional,com.linkedin.venice.listener.StorageReadRequestHandler,com.linkedin.davinci.storage.StorageEngineRepository)">
 <h3>HttpChannelInitializer</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">HttpChannelInitializer</span><wbr><span class="parameters">(<a href="../meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;storeMetadataRepository,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="../helix/HelixCustomizedViewOfflinePushRepository.html" title="class in com.linkedin.venice.helix">HelixCustomizedViewOfflinePushRepository</a>&gt;&nbsp;customizedViewRepository,
@@ -184,7 +185,8 @@ loadScripts(document, 'script');</script>
  <a href="../../davinci/config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../acl/StaticAccessController.html" title="interface in com.linkedin.venice.acl">StaticAccessController</a>&gt;&nbsp;routerAccessController,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../acl/DynamicAccessController.html" title="interface in com.linkedin.venice.acl">DynamicAccessController</a>&gt;&nbsp;storeAccessController,
- <a href="StorageReadRequestHandler.html" title="class in com.linkedin.venice.listener">StorageReadRequestHandler</a>&nbsp;requestHandler)</span></div>
+ <a href="StorageReadRequestHandler.html" title="class in com.linkedin.venice.listener">StorageReadRequestHandler</a>&nbsp;requestHandler,
+ <a href="../../davinci/storage/StorageEngineRepository.html" title="class in com.linkedin.davinci.storage">StorageEngineRepository</a>&nbsp;storageEngineRepository)</span></div>
 </section>
 </li>
 </ul>

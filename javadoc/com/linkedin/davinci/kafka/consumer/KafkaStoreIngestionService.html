@@ -201,20 +201,26 @@ implements <a href="StoreIngestionService.html" title="interface in com.linkedin
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConsumptionSnapshots(java.lang.String,com.linkedin.venice.utils.ComplementSet)" class="member-name-link">getConsumptionSnapshots</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;topicName,
  <a href="../../../venice/utils/ComplementSet.html" title="class in com.linkedin.venice.utils">ComplementSet</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;partitions)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getIngestingTopicsWithVersionStatusNotOnline()" class="member-name-link">getIngestingTopicsWithVersionStatusNotOnline</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../stats/AggHostLevelIngestionStats.html" title="class in com.linkedin.davinci.stats">AggHostLevelIngestionStats</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHostLevelIngestionStats()" class="member-name-link">getHostLevelIngestionStats</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getIngestingTopicsWithVersionStatusNotOnline()" class="member-name-link">getIngestingTopicsWithVersionStatusNotOnline</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get topic names that are currently maintained by the ingestion service with corresponding version status not in an
  online state.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../client/InternalDaVinciRecordTransformerConfig.html" title="class in com.linkedin.davinci.client">InternalDaVinciRecordTransformerConfig</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInternalRecordTransformerConfig(java.lang.String)" class="member-name-link">getInternalRecordTransformerConfig</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../venice/serialization/avro/KafkaValueSerializer.html" title="class in com.linkedin.venice.serialization.avro">KafkaValueSerializer</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getKafkaValueSerializer()" class="member-name-link">getKafkaValueSerializer</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../client/InternalDaVinciRecordTransformerConfig.html" title="class in com.linkedin.davinci.client">InternalDaVinciRecordTransformerConfig</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInternalRecordTransformerConfig(java.lang.String)" class="member-name-link">getInternalRecordTransformerConfig</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="../../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMetadataRepo()" class="member-name-link">getMetadataRepo</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../venice/serialization/avro/KafkaValueSerializer.html" title="class in com.linkedin.venice.serialization.avro">KafkaValueSerializer</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getKafkaValueSerializer()" class="member-name-link">getKafkaValueSerializer</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="../../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMetadataRepo()" class="member-name-link">getMetadataRepo</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ParticipantStoreConsumptionTask.html" title="class in com.linkedin.davinci.kafka.consumer">ParticipantStoreConsumptionTask</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getParticipantStoreConsumptionTask()" class="member-name-link">getParticipantStoreConsumptionTask</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPartitionOffsetRecords(java.lang.String,int)" class="member-name-link">getPartitionOffsetRecords</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;topicName,
@@ -858,6 +864,12 @@ implements <a href="StoreIngestionService.html" title="interface in com.linkedin
 </section>
 </li>
 <li>
+<section class="detail" id="getParticipantStoreConsumptionTask()">
+<h3>getParticipantStoreConsumptionTask</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ParticipantStoreConsumptionTask.html" title="class in com.linkedin.davinci.kafka.consumer">ParticipantStoreConsumptionTask</a></span>&nbsp;<span class="element-name">getParticipantStoreConsumptionTask</span>()</div>
+</section>
+</li>
+<li>
 <section class="detail" id="getTopicNameToIngestionTaskMap()">
 <h3>getTopicNameToIngestionTaskMap</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&gt;</span>&nbsp;<span class="element-name">getTopicNameToIngestionTaskMap</span>()</div>
@@ -891,6 +903,12 @@ implements <a href="StoreIngestionService.html" title="interface in com.linkedin
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">maybeAddResubscribeRequest</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  int&nbsp;version,
  int&nbsp;partition)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getHostLevelIngestionStats()">
+<h3>getHostLevelIngestionStats</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../stats/AggHostLevelIngestionStats.html" title="class in com.linkedin.davinci.stats">AggHostLevelIngestionStats</a></span>&nbsp;<span class="element-name">getHostLevelIngestionStats</span>()</div>
 </section>
 </li>
 </ul>

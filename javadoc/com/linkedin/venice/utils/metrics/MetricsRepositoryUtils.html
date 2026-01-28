@@ -106,35 +106,38 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createMultiThreadedMetricsRepository()" class="member-name-link">createMultiThreadedMetricsRepository</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricConfig</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createDefaultSingleThreadedMetricConfig()" class="member-name-link">createDefaultSingleThreadedMetricConfig</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedMetricsRepository()" class="member-name-link">createSingleThreadedMetricsRepository</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createMultiThreadedMetricsRepository()" class="member-name-link">createMultiThreadedMetricsRepository</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedMetricsRepository(long,long)" class="member-name-link">createSingleThreadedMetricsRepository</a><wbr>(long&nbsp;maxMetricsMeasurementTimeoutMs,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedMetricsRepository()" class="member-name-link">createSingleThreadedMetricsRepository</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedMetricsRepository(long,long)" class="member-name-link">createSingleThreadedMetricsRepository</a><wbr>(long&nbsp;maxMetricsMeasurementTimeoutMs,
  long&nbsp;initialMetricsMeasurementTimeoutMs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedVeniceMetricsRepository()" class="member-name-link">createSingleThreadedVeniceMetricsRepository</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedVeniceMetricsRepository(boolean,com.linkedin.venice.stats.VeniceOpenTelemetryMetricNamingFormat,java.util.Collection)" class="member-name-link">createSingleThreadedVeniceMetricsRepository</a><wbr>(boolean&nbsp;isOtelEnabled,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedVeniceMetricsRepository()" class="member-name-link">createSingleThreadedVeniceMetricsRepository</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedVeniceMetricsRepository(boolean,com.linkedin.venice.stats.VeniceOpenTelemetryMetricNamingFormat,java.util.Collection)" class="member-name-link">createSingleThreadedVeniceMetricsRepository</a><wbr>(boolean&nbsp;isOtelEnabled,
  <a href="../../stats/VeniceOpenTelemetryMetricNamingFormat.html" title="enum class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricNamingFormat</a>&nbsp;otelFormat,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../../stats/metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedVeniceMetricsRepository(long,long,boolean,com.linkedin.venice.stats.VeniceOpenTelemetryMetricNamingFormat,java.util.Collection)" class="member-name-link">createSingleThreadedVeniceMetricsRepository</a><wbr>(long&nbsp;maxMetricsMeasurementTimeoutMs,
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricsRepository</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createSingleThreadedVeniceMetricsRepository(long,long,boolean,com.linkedin.venice.stats.VeniceOpenTelemetryMetricNamingFormat,java.util.Collection)" class="member-name-link">createSingleThreadedVeniceMetricsRepository</a><wbr>(long&nbsp;maxMetricsMeasurementTimeoutMs,
  long&nbsp;initialMetricsMeasurementTimeoutMs,
  boolean&nbsp;isOtelEnabled,
  <a href="../../stats/VeniceOpenTelemetryMetricNamingFormat.html" title="enum class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricNamingFormat</a>&nbsp;otelFormat,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../../stats/metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricConfig</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getMetricConfig(long,long)" class="member-name-link">getMetricConfig</a><wbr>(long&nbsp;maxMetricsMeasurementTimeoutMs,
- long&nbsp;initialMetricsMeasurementTimeoutMs)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static io.tehuti.metrics.MetricConfig</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getMetricConfig(long,long)" class="member-name-link">getMetricConfig</a><wbr>(long&nbsp;maxMetricsMeasurementTimeoutMs,
+ long&nbsp;initialMetricsMeasurementTimeoutMs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -207,6 +210,12 @@ loadScripts(document, 'script');</script>
  boolean&nbsp;isOtelEnabled,
  <a href="../../stats/VeniceOpenTelemetryMetricNamingFormat.html" title="enum class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricNamingFormat</a>&nbsp;otelFormat,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../../stats/metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="createDefaultSingleThreadedMetricConfig()">
+<h3>createDefaultSingleThreadedMetricConfig</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">io.tehuti.metrics.MetricConfig</span>&nbsp;<span class="element-name">createDefaultSingleThreadedMetricConfig</span>()</div>
 </section>
 </li>
 <li>

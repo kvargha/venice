@@ -173,7 +173,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
  <a href="../schema/avro/DirectionalSchemaCompatibilityType.html" title="enum class in com.linkedin.venice.schema.avro">DirectionalSchemaCompatibilityType</a>&nbsp;expectedCompatibilityType)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int)" class="member-name-link">addVersionAndStartIngestion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int,int)" class="member-name-link">addVersionAndStartIngestion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushJobId,
  int&nbsp;versionNumber,
@@ -183,7 +183,8 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
  long&nbsp;rewindTimeInSecondsOverride,
  int&nbsp;replicationMetadataVersionId,
  boolean&nbsp;versionSwapDeferred,
- int&nbsp;repushSourceVersion)</code></div>
+ int&nbsp;repushSourceVersion,
+ int&nbsp;repushTtlSeconds)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">This method behaves differently in <a href="VeniceHelixAdmin.html" title="class in com.linkedin.venice.controller"><code>VeniceHelixAdmin</code></a> and <a href="VeniceParentHelixAdmin.html" title="class in com.linkedin.venice.controller"><code>VeniceParentHelixAdmin</code></a>.</div>
 </div>
@@ -746,7 +747,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
  int&nbsp;repushSourceVersion)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../meta/Version.html" title="interface in com.linkedin.venice.meta">Version</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int)" class="member-name-link">incrementVersionIdempotent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int,int)" class="member-name-link">incrementVersionIdempotent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushJobId,
  int&nbsp;numberOfPartitions,
@@ -761,7 +762,8 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;emergencySourceRegion,
  boolean&nbsp;versionSwapDeferred,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;targetedRegions,
- int&nbsp;repushSourceVersion)</code></div>
+ int&nbsp;repushSourceVersion,
+ int&nbsp;repushTtlSeconds)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#initiateDataRecovery(java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,boolean,java.util.Optional)" class="member-name-link">initiateDataRecovery</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
@@ -1223,7 +1225,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 </section>
 </li>
 <li>
-<section class="detail" id="addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int)">
+<section class="detail" id="addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int,int)">
 <h3>addVersionAndStartIngestion</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">addVersionAndStartIngestion</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
@@ -1235,7 +1237,8 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
  long&nbsp;rewindTimeInSecondsOverride,
  int&nbsp;replicationMetadataVersionId,
  boolean&nbsp;versionSwapDeferred,
- int&nbsp;repushSourceVersion)</span></div>
+ int&nbsp;repushSourceVersion,
+ int&nbsp;repushTtlSeconds)</span></div>
 <div class="block">This method behaves differently in <a href="VeniceHelixAdmin.html" title="class in com.linkedin.venice.controller"><code>VeniceHelixAdmin</code></a> and <a href="VeniceParentHelixAdmin.html" title="class in com.linkedin.venice.controller"><code>VeniceParentHelixAdmin</code></a>.</div>
 </section>
 </li>
@@ -1287,7 +1290,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 </section>
 </li>
 <li>
-<section class="detail" id="incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int)">
+<section class="detail" id="incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int,int)">
 <h3>incrementVersionIdempotent</h3>
 <div class="member-signature"><span class="return-type"><a href="../meta/Version.html" title="interface in com.linkedin.venice.meta">Version</a></span>&nbsp;<span class="element-name">incrementVersionIdempotent</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
@@ -1304,7 +1307,8 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;emergencySourceRegion,
  boolean&nbsp;versionSwapDeferred,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;targetedRegions,
- int&nbsp;repushSourceVersion)</span></div>
+ int&nbsp;repushSourceVersion,
+ int&nbsp;repushTtlSeconds)</span></div>
 </section>
 </li>
 <li>

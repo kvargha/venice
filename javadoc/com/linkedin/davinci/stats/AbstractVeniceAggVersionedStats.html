@@ -146,28 +146,38 @@ implements <a href="../../venice/meta/StoreDataChangedListener.html" title="inte
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">return <a href="../../venice/meta/Store.html#NON_EXISTING_VERSION"><code>Store.NON_EXISTING_VERSION</code></a> if future version doesn't exist.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="AbstractVeniceAggVersionedStats.html" title="type parameter in AbstractVeniceAggVersionedStats">STATS</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStats(java.lang.String,int)" class="member-name-link">getStats</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
- int&nbsp;version)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected io.tehuti.metrics.MetricsRepository</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMetricsRepository()" class="member-name-link">getMetricsRepository</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="AbstractVeniceAggVersionedStats.html" title="type parameter in AbstractVeniceAggVersionedStats">STATS</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTotalStats(java.lang.String)" class="member-name-link">getTotalStats</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStats(java.lang.String,int)" class="member-name-link">getStats</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;version)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleStoreChanged(com.linkedin.venice.meta.Store)" class="member-name-link">handleStoreChanged</a><wbr>(<a href="../../venice/meta/Store.html" title="interface in com.linkedin.venice.meta">Store</a>&nbsp;store)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="AbstractVeniceAggVersionedStats.html" title="type parameter in AbstractVeniceAggVersionedStats">STATS</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTotalStats(java.lang.String)" class="member-name-link">getTotalStats</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleStoreCreated(com.linkedin.venice.meta.Store)" class="member-name-link">handleStoreCreated</a><wbr>(<a href="../../venice/meta/Store.html" title="interface in com.linkedin.venice.meta">Store</a>&nbsp;store)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleStoreChanged(com.linkedin.venice.meta.Store)" class="member-name-link">handleStoreChanged</a><wbr>(<a href="../../venice/meta/Store.html" title="interface in com.linkedin.venice.meta">Store</a>&nbsp;store)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleStoreCreated(com.linkedin.venice.meta.Store)" class="member-name-link">handleStoreCreated</a><wbr>(<a href="../../venice/meta/Store.html" title="interface in com.linkedin.venice.meta">Store</a>&nbsp;store)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Do NOT try to acquire the lock of store repository again in the implementation, otherwise a dead lock issue will
  happen.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleStoreDeleted(java.lang.String)" class="member-name-link">handleStoreDeleted</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadAllStats()" class="member-name-link">loadAllStats</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleStoreDeleted(java.lang.String)" class="member-name-link">handleStoreDeleted</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadAllStats()" class="member-name-link">loadAllStats</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onVersionInfoUpdated(java.lang.String,int,int)" class="member-name-link">onVersionInfoUpdated</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;currentVersion,
+ int&nbsp;futureVersion)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Hook method called when version info is updated for a store.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordVersionedAndTotalStat(java.lang.String,int,java.util.function.Consumer)" class="member-name-link">recordVersionedAndTotalStat</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  int&nbsp;version,
@@ -239,6 +249,12 @@ implements <a href="../../venice/meta/StoreDataChangedListener.html" title="inte
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="getMetricsRepository()">
+<h3>getMetricsRepository</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">io.tehuti.metrics.MetricsRepository</span>&nbsp;<span class="element-name">getMetricsRepository</span>()</div>
+</section>
+</li>
 <li>
 <section class="detail" id="loadAllStats()">
 <h3>loadAllStats</h3>
@@ -339,6 +355,22 @@ implements <a href="../../venice/meta/StoreDataChangedListener.html" title="inte
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateTotalStats</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</span></div>
 <div class="block">Some versioned stats might always increasing; in this case, the value in the total stats should be updated with
  the aggregated values across the new version list.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="onVersionInfoUpdated(java.lang.String,int,int)">
+<h3>onVersionInfoUpdated</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onVersionInfoUpdated</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;currentVersion,
+ int&nbsp;futureVersion)</span></div>
+<div class="block">Hook method called when version info is updated for a store.
+ Subclasses can override this to react to version changes.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>storeName</code> - The store whose version info changed</dd>
+<dd><code>currentVersion</code> - The new current version</dd>
+<dd><code>futureVersion</code> - The new future version</dd>
+</dl>
 </section>
 </li>
 </ul>

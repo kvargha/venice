@@ -135,17 +135,50 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordOtelMetric(double,io.opentelemetry.api.common.Attributes)" class="member-name-link">recordOtelMetric</a><wbr>(double&nbsp;value,
- io.opentelemetry.api.common.Attributes&nbsp;attributes)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getAllMetricAttributesData()" class="member-name-link">getAllMetricAttributesData</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Returns an iterable of all MetricAttributesData for observable counter reporting.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isObservableCounter()" class="member-name-link">isObservableCounter</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether this metric entity state is for an Observable Counter</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected final void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(double,com.linkedin.venice.stats.metrics.MetricAttributesData)" class="member-name-link">record</a><wbr>(double&nbsp;value,
+ <a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&nbsp;holder)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Record otel metrics</div>
+<div class="block">Records a double value using MetricAttributesData.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected final void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(long,com.linkedin.venice.stats.metrics.MetricAttributesData)" class="member-name-link">record</a><wbr>(long&nbsp;value,
+ <a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&nbsp;holder)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records a long value using MetricAttributesData.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordOtelMetric(double,com.linkedin.venice.stats.metrics.MetricAttributesData)" class="member-name-link">recordOtelMetric</a><wbr>(double&nbsp;value,
+ <a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&nbsp;holder)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Record otel metrics with MetricAttributesData (double version for histograms)</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordOtelMetric(long,com.linkedin.venice.stats.metrics.MetricAttributesData)" class="member-name-link">recordOtelMetric</a><wbr>(long&nbsp;value,
+ <a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&nbsp;holder)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Record otel metrics with MetricAttributesData (long version)</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected final void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registerObservableCounterIfNeeded()" class="member-name-link">registerObservableCounterIfNeeded</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Registers the Observable Counter with the OTel repository if this metric uses async recording.</div>
 </div>
 </div>
 </div>
@@ -187,11 +220,62 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="recordOtelMetric(double,io.opentelemetry.api.common.Attributes)">
+<section class="detail" id="getAllMetricAttributesData()">
+<h3>getAllMetricAttributesData</h3>
+<div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&gt;</span>&nbsp;<span class="element-name">getAllMetricAttributesData</span>()</div>
+<div class="block">Returns an iterable of all MetricAttributesData for observable counter reporting.
+ Subclasses must implement this to provide iteration over their specific EnumMap structure.
+ Returns null if metrics are not enabled or no data exists.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="registerObservableCounterIfNeeded()">
+<h3>registerObservableCounterIfNeeded</h3>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registerObservableCounterIfNeeded</span>()</div>
+<div class="block">Registers the Observable Counter with the OTel repository if this metric uses async recording.
+ Supports both ASYNC_COUNTER_FOR_HIGH_PERF_CASES and ASYNC_UP_DOWN_COUNTER_FOR_HIGH_PERF_CASES.
+ This must be called by subclasses after their constructor completes and the metricAttributesData map is initialized.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isObservableCounter()">
+<h3>isObservableCounter</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isObservableCounter</span>()</div>
+<div class="block">Returns whether this metric entity state is for an Observable Counter</div>
+</section>
+</li>
+<li>
+<section class="detail" id="recordOtelMetric(double,com.linkedin.venice.stats.metrics.MetricAttributesData)">
 <h3>recordOtelMetric</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordOtelMetric</span><wbr><span class="parameters">(double&nbsp;value,
- io.opentelemetry.api.common.Attributes&nbsp;attributes)</span></div>
-<div class="block">Record otel metrics</div>
+ <a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&nbsp;holder)</span></div>
+<div class="block">Record otel metrics with MetricAttributesData (double version for histograms)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="recordOtelMetric(long,com.linkedin.venice.stats.metrics.MetricAttributesData)">
+<h3>recordOtelMetric</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordOtelMetric</span><wbr><span class="parameters">(long&nbsp;value,
+ <a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&nbsp;holder)</span></div>
+<div class="block">Record otel metrics with MetricAttributesData (long version)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="record(double,com.linkedin.venice.stats.metrics.MetricAttributesData)">
+<h3>record</h3>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">record</span><wbr><span class="parameters">(double&nbsp;value,
+ <a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&nbsp;holder)</span></div>
+<div class="block">Records a double value using MetricAttributesData.
+ Use this for histogram metrics that need double precision.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="record(long,com.linkedin.venice.stats.metrics.MetricAttributesData)">
+<h3>record</h3>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">record</span><wbr><span class="parameters">(long&nbsp;value,
+ <a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&nbsp;holder)</span></div>
+<div class="block">Records a long value using MetricAttributesData.
+ More efficient for counter/gauge metrics - avoids long->double->long conversion.</div>
 </section>
 </li>
 </ul>

@@ -142,36 +142,41 @@ E3 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Factory method with named parameters to ensure the passed in enumTypeClass are in the same order as E</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.common.Attributes</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAttributes(E1,E2,E3)" class="member-name-link">getAttributes</a><wbr>(<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>&nbsp;dimension1,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllMetricAttributesData()" class="member-name-link">getAllMetricAttributesData</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an iterable of all MetricAttributesData for observable counter reporting.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.opentelemetry.api.common.Attributes</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAttributes(E1,E2,E3)" class="member-name-link">getAttributes</a><wbr>(<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>&nbsp;dimension1,
  <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>&nbsp;dimension2,
  <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>&nbsp;dimension3)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>,<wbr><a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&gt;&gt;&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMetricAttributesDataEnumMap()" class="member-name-link">getMetricAttributesDataEnumMap</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Manages the nested EnumMap structure for lazy initialization of Attributes.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>,<wbr>io.opentelemetry.api.common.Attributes&gt;&gt;&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAttributesEnumMap()" class="member-name-link">getAttributesEnumMap</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">visible for testing</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(double,E1,E2,E3)" class="member-name-link">record</a><wbr>(double&nbsp;value,
+ <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>&nbsp;dimension1,
+ <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>&nbsp;dimension2,
+ <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>&nbsp;dimension3)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records a value for the given dimensions.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(double,E1,E2,E3)" class="member-name-link">record</a><wbr>(double&nbsp;value,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(long,E1,E2,E3)" class="member-name-link">record</a><wbr>(long&nbsp;value,
  <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>&nbsp;dimension1,
  <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>&nbsp;dimension2,
  <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>&nbsp;dimension3)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#record(long,E1,E2,E3)" class="member-name-link">record</a><wbr>(long&nbsp;value,
- <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>&nbsp;dimension1,
- <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>&nbsp;dimension2,
- <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>&nbsp;dimension3)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.linkedin.venice.stats.metrics.MetricEntityState">Methods inherited from class&nbsp;com.linkedin.venice.stats.metrics.<a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityState</a></h3>
-<code><a href="MetricEntityState.html#recordOtelMetric(double,io.opentelemetry.api.common.Attributes)">recordOtelMetric</a></code></div>
+<code><a href="MetricEntityState.html#isObservableCounter()">isObservableCounter</a>, <a href="MetricEntityState.html#record(double,com.linkedin.venice.stats.metrics.MetricAttributesData)">record</a>, <a href="MetricEntityState.html#record(long,com.linkedin.venice.stats.metrics.MetricAttributesData)">record</a>, <a href="MetricEntityState.html#recordOtelMetric(double,com.linkedin.venice.stats.metrics.MetricAttributesData)">recordOtelMetric</a>, <a href="MetricEntityState.html#recordOtelMetric(long,com.linkedin.venice.stats.metrics.MetricAttributesData)">recordOtelMetric</a>, <a href="MetricEntityState.html#registerObservableCounterIfNeeded()">registerObservableCounterIfNeeded</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.linkedin.venice.stats.metrics.AsyncMetricEntityState">Methods inherited from class&nbsp;com.linkedin.venice.stats.metrics.<a href="AsyncMetricEntityState.html" title="class in com.linkedin.venice.stats.metrics">AsyncMetricEntityState</a></h3>
 <code><a href="AsyncMetricEntityState.html#getTehutiSensor()">getTehutiSensor</a>, <a href="AsyncMetricEntityState.html#setOtelMetric(java.lang.Object)">setOtelMetric</a>, <a href="AsyncMetricEntityState.html#setTehutiSensor(io.tehuti.metrics.Sensor)">setTehutiSensor</a></code></div>
@@ -228,11 +233,24 @@ E3 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">io.opentelemetry.api.common.Attributes</span>&nbsp;<span class="element-name">getAttributes</span><wbr><span class="parameters">(<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>&nbsp;dimension1,
  <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>&nbsp;dimension2,
  <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>&nbsp;dimension3)</span></div>
-<div class="block">Manages the nested EnumMap structure for lazy initialization of Attributes.
- The structure is a three-level nested EnumMap: EnumMap&lt;E1, EnumMap&lt;E2, EnumMap&lt;E3, Attributes>>>.
- This allows efficient retrieval of Attributes based on three enum dimensions (E1, E2, E3).
-
- For thread safety considerations, refer <code>MetricEntityStateOneEnum.getAttributes(E)</code>.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="record(double,E1,E2,E3)">
+<h3 id="record(double,java.lang.Enum,java.lang.Enum,java.lang.Enum)">record</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">record</span><wbr><span class="parameters">(double&nbsp;value,
+ @Nonnull
+ <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>&nbsp;dimension1,
+ @Nonnull
+ <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>&nbsp;dimension2,
+ @Nonnull
+ <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>&nbsp;dimension3)</span></div>
+<div class="block">Records a value for the given dimensions.
+ <p>
+ For <a href="MetricType.html#ASYNC_COUNTER_FOR_HIGH_PERF_CASES"><code>MetricType.ASYNC_COUNTER_FOR_HIGH_PERF_CASES</code></a> metrics, this uses the internal LongAdder for fast,
+ contention-free recording. The accumulated value is read during OTel's collection callback.
+ <p>
+ For other metric types, this delegates to the parent class's record method.</div>
 </section>
 </li>
 <li>
@@ -248,21 +266,23 @@ E3 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="record(double,E1,E2,E3)">
-<h3 id="record(double,java.lang.Enum,java.lang.Enum,java.lang.Enum)">record</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">record</span><wbr><span class="parameters">(double&nbsp;value,
- @Nonnull
- <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>&nbsp;dimension1,
- @Nonnull
- <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>&nbsp;dimension2,
- @Nonnull
- <a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>&nbsp;dimension3)</span></div>
+<section class="detail" id="getAllMetricAttributesData()">
+<h3>getAllMetricAttributesData</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&gt;</span>&nbsp;<span class="element-name">getAllMetricAttributesData</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="MetricEntityState.html#getAllMetricAttributesData()">MetricEntityState</a></code></span></div>
+<div class="block">Returns an iterable of all MetricAttributesData for observable counter reporting.
+ Subclasses must implement this to provide iteration over their specific EnumMap structure.
+ Returns null if metrics are not enabled or no data exists.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="MetricEntityState.html#getAllMetricAttributesData()">getAllMetricAttributesData</a></code>&nbsp;in class&nbsp;<code><a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityState</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getAttributesEnumMap()">
-<h3>getAttributesEnumMap</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>,<wbr>io.opentelemetry.api.common.Attributes&gt;&gt;&gt;</span>&nbsp;<span class="element-name">getAttributesEnumMap</span>()</div>
+<section class="detail" id="getMetricAttributesDataEnumMap()">
+<h3>getMetricAttributesDataEnumMap</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E1</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E2</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/EnumMap.html" title="class or interface in java.util" class="external-link">EnumMap</a>&lt;<a href="MetricEntityStateThreeEnums.html" title="type parameter in MetricEntityStateThreeEnums">E3</a>,<wbr><a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a>&gt;&gt;&gt;</span>&nbsp;<span class="element-name">getMetricAttributesDataEnumMap</span>()</div>
 <div class="block">visible for testing</div>
 </section>
 </li>

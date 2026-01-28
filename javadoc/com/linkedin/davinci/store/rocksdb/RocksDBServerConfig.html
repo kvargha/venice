@@ -312,6 +312,16 @@ loadScripts(document, 'script');</script>
 <div class="block">File block size, and this config has impact to the index size and read performance.</div>
 </div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#ROCKSDB_SST_FILE_MANAGER_DELETE_RATE_BYTES_PER_SECOND" class="member-name-link">ROCKSDB_SST_FILE_MANAGER_DELETE_RATE_BYTES_PER_SECOND</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">SstFileManager deletion rate limiting configuration.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#ROCKSDB_SST_FILE_MANAGER_MAX_TRASH_DB_RATIO" class="member-name-link">ROCKSDB_SST_FILE_MANAGER_MAX_TRASH_DB_RATIO</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Maximum trash-to-DB ratio for SstFileManager.</div>
+</div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#ROCKSDB_STATISTICS_ENABLED" class="member-name-link">ROCKSDB_STATISTICS_ENABLED</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">Whether to enable rocksdb statistics.</div>
@@ -496,6 +506,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRocksDBUseDirectReads()" class="member-name-link">getRocksDBUseDirectReads</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSstFileManagerDeleteRateBytesPerSecond()" class="member-name-link">getSstFileManagerDeleteRateBytesPerSecond</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSstFileManagerMaxTrashDBRatio()" class="member-name-link">getSstFileManagerMaxTrashDBRatio</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTargetFileSizeInBytes()" class="member-name-link">getTargetFileSizeInBytes</a>()</code></div>
@@ -1263,6 +1279,41 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="ROCKSDB_SST_FILE_MANAGER_DELETE_RATE_BYTES_PER_SECOND">
+<h3>ROCKSDB_SST_FILE_MANAGER_DELETE_RATE_BYTES_PER_SECOND</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">ROCKSDB_SST_FILE_MANAGER_DELETE_RATE_BYTES_PER_SECOND</span></div>
+<div class="block">SstFileManager deletion rate limiting configuration.
+ Check the following links for more details:
+ https://github.com/facebook/rocksdb/wiki/Managing-Disk-Space-Utilization
+ This is used to throttle file deletion operations during store cleanup to prevent I/O saturation
+ Set to 0 to disable throttling.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#com.linkedin.davinci.store.rocksdb.RocksDBServerConfig.ROCKSDB_SST_FILE_MANAGER_DELETE_RATE_BYTES_PER_SECOND">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ROCKSDB_SST_FILE_MANAGER_MAX_TRASH_DB_RATIO">
+<h3>ROCKSDB_SST_FILE_MANAGER_MAX_TRASH_DB_RATIO</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">ROCKSDB_SST_FILE_MANAGER_MAX_TRASH_DB_RATIO</span></div>
+<div class="block">Maximum trash-to-DB ratio for SstFileManager.
+ When deletion rate limiting is enabled, this ratio determines when to start deleting files without rate limiting</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#com.linkedin.davinci.store.rocksdb.RocksDBServerConfig.ROCKSDB_SST_FILE_MANAGER_MAX_TRASH_DB_RATIO">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="ROCKSDB_ATOMIC_FLUSH_ENABLED">
 <h3>ROCKSDB_ATOMIC_FLUSH_ENABLED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">ROCKSDB_ATOMIC_FLUSH_ENABLED</span></div>
@@ -1740,6 +1791,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isAutoTunedRateLimiterEnabled()">
 <h3>isAutoTunedRateLimiterEnabled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAutoTunedRateLimiterEnabled</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getSstFileManagerDeleteRateBytesPerSecond()">
+<h3>getSstFileManagerDeleteRateBytesPerSecond</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">getSstFileManagerDeleteRateBytesPerSecond</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getSstFileManagerMaxTrashDBRatio()">
+<h3>getSstFileManagerMaxTrashDBRatio</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getSstFileManagerMaxTrashDBRatio</span>()</div>
 </section>
 </li>
 <li>

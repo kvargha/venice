@@ -114,7 +114,7 @@ implements <a href="../../venice/pubsub/api/PubSubMessage.html" title="interface
  int&nbsp;writerSchemaId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(K,V,com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.venice.pubsub.api.PubSubPosition,long,int,boolean,long,int,java.nio.ByteBuffer,com.linkedin.venice.kafka.protocol.ControlMessage)" class="member-name-link">ImmutableChangeCapturePubSubMessage</a><wbr>(<a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">K</a>&nbsp;key,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(K,V,com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.venice.pubsub.api.PubSubPosition,long,int,boolean,long,int,java.nio.ByteBuffer,com.linkedin.venice.kafka.protocol.ControlMessage,org.apache.avro.generic.GenericRecord)" class="member-name-link">ImmutableChangeCapturePubSubMessage</a><wbr>(<a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">K</a>&nbsp;key,
  <a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">V</a>&nbsp;value,
  <a href="../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
  <a href="../../venice/pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;pubSubPosition,
@@ -124,7 +124,8 @@ implements <a href="../../venice/pubsub/api/PubSubMessage.html" title="interface
  long&nbsp;consumerSequenceId,
  int&nbsp;writerSchemaId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload,
- <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage)</code></div>
+ <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage,
+ org.apache.avro.generic.GenericRecord&nbsp;deserializedReplicationMetadata)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -143,39 +144,42 @@ implements <a href="../../venice/pubsub/api/PubSubMessage.html" title="interface
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getControlMessage()" class="member-name-link">getControlMessage</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHeapSize()" class="member-name-link">getHeapSize</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.avro.generic.GenericRecord</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDeserializedReplicationMetadata()" class="member-name-link">getDeserializedReplicationMetadata</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">K</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHeapSize()" class="member-name-link">getHeapSize</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPayloadSize()" class="member-name-link">getPayloadSize</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">K</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceChangeCoordinate.html" title="class in com.linkedin.davinci.consumer">VeniceChangeCoordinate</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPayloadSize()" class="member-name-link">getPayloadSize</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPubSubMessageTime()" class="member-name-link">getPubSubMessageTime</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceChangeCoordinate.html" title="class in com.linkedin.davinci.consumer">VeniceChangeCoordinate</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReplicationMetadataPayload()" class="member-name-link">getReplicationMetadataPayload</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPubSubMessageTime()" class="member-name-link">getPubSubMessageTime</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicPartition()" class="member-name-link">getTopicPartition</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReplicationMetadataPayload()" class="member-name-link">getReplicationMetadataPayload</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">V</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getValue()" class="member-name-link">getValue</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicPartition()" class="member-name-link">getTopicPartition</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWriterSchemaId()" class="member-name-link">getWriterSchemaId</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">V</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getValue()" class="member-name-link">getValue</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEndOfBootstrap()" class="member-name-link">isEndOfBootstrap</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWriterSchemaId()" class="member-name-link">getWriterSchemaId</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEndOfBootstrap()" class="member-name-link">isEndOfBootstrap</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -225,8 +229,8 @@ implements <a href="../../venice/pubsub/api/PubSubMessage.html" title="interface
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(K,V,com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.venice.pubsub.api.PubSubPosition,long,int,boolean,long,int,java.nio.ByteBuffer,com.linkedin.venice.kafka.protocol.ControlMessage)">
-<h3 id="&lt;init&gt;(java.lang.Object,java.lang.Object,com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.venice.pubsub.api.PubSubPosition,long,int,boolean,long,int,java.nio.ByteBuffer,com.linkedin.venice.kafka.protocol.ControlMessage)">ImmutableChangeCapturePubSubMessage</h3>
+<section class="detail" id="&lt;init&gt;(K,V,com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.venice.pubsub.api.PubSubPosition,long,int,boolean,long,int,java.nio.ByteBuffer,com.linkedin.venice.kafka.protocol.ControlMessage,org.apache.avro.generic.GenericRecord)">
+<h3 id="&lt;init&gt;(java.lang.Object,java.lang.Object,com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.venice.pubsub.api.PubSubPosition,long,int,boolean,long,int,java.nio.ByteBuffer,com.linkedin.venice.kafka.protocol.ControlMessage,org.apache.avro.generic.GenericRecord)">ImmutableChangeCapturePubSubMessage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ImmutableChangeCapturePubSubMessage</span><wbr><span class="parameters">(<a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">K</a>&nbsp;key,
  <a href="ImmutableChangeCapturePubSubMessage.html" title="type parameter in ImmutableChangeCapturePubSubMessage">V</a>&nbsp;value,
  <a href="../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
@@ -237,7 +241,8 @@ implements <a href="../../venice/pubsub/api/PubSubMessage.html" title="interface
  long&nbsp;consumerSequenceId,
  int&nbsp;writerSchemaId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;replicationMetadataPayload,
- <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage)</span></div>
+ <a href="../../venice/kafka/protocol/ControlMessage.html" title="class in com.linkedin.venice.kafka.protocol">ControlMessage</a>&nbsp;controlMessage,
+ org.apache.avro.generic.GenericRecord&nbsp;deserializedReplicationMetadata)</span></div>
 </section>
 </li>
 </ul>
@@ -340,6 +345,12 @@ implements <a href="../../venice/pubsub/api/PubSubMessage.html" title="interface
 <section class="detail" id="getReplicationMetadataPayload()">
 <h3>getReplicationMetadataPayload</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a></span>&nbsp;<span class="element-name">getReplicationMetadataPayload</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getDeserializedReplicationMetadata()">
+<h3>getDeserializedReplicationMetadata</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.apache.avro.generic.GenericRecord</span>&nbsp;<span class="element-name">getDeserializedReplicationMetadata</span>()</div>
 </section>
 </li>
 <li>

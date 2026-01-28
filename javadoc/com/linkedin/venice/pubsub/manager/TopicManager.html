@@ -252,151 +252,158 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves the latest (end) positions for all partitions of the specified topic.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLatestPositionCached(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">getLatestPositionCached</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLatestPositionCachedNonBlocking(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">getLatestPositionCachedNonBlocking</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLatestPositionWithRetries(com.linkedin.venice.pubsub.api.PubSubTopicPartition,int)" class="member-name-link">getLatestPositionWithRetries</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition,
- int&nbsp;retries)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNumRecordsInPartition(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">getNumRecordsInPartition</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the total number of records currently available in the given topic-partition.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPartitionCount(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getPartitionCount</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getIngestionProgressPercentage(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.venice.pubsub.api.PubSubPosition)" class="member-name-link">getIngestionProgressPercentage</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
+ <a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;position)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get partition count for a given topic.</div>
+<div class="block">Indicates ingestion progress by returning the percentage of records in the given topic-partition
+ up to the specified position.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPositionByTime(com.linkedin.venice.pubsub.api.PubSubTopicPartition,long)" class="member-name-link">getPositionByTime</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition,
- long&nbsp;timestamp)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get position for only one partition with a specific timestamp.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPubSubClusterAddress()" class="member-name-link">getPubSubClusterAddress</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>,<wbr><a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSomeTopicConfigs(java.util.Set)" class="member-name-link">getSomeTopicConfigs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&gt;&nbsp;topicNames)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLatestPositionCached(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">getLatestPositionCached</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStartPositionsForPartitionWithRetries(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">getStartPositionsForPartitionWithRetries</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLatestPositionCachedNonBlocking(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">getLatestPositionCachedNonBlocking</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>,<wbr><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStartPositionsForTopicWithRetries(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getStartPositionsForTopicWithRetries</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicConfig(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicConfig</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This operation is a little heavy, since it will pull the configs for all the topics.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicConfigWithRetry(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicConfigWithRetry</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicMaxLogCompactionLagMs(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicMaxLogCompactionLagMs</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicMinLogCompactionLagMs(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicMinLogCompactionLagMs</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../PubSubTopicPartitionInfo.html" title="class in com.linkedin.venice.pubsub">PubSubTopicPartitionInfo</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicPartitionInfo(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicPartitionInfo</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get information about all partitions for a given topic.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PubSubTopicRepository.html" title="class in com.linkedin.venice.pubsub">PubSubTopicRepository</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicRepository()" class="member-name-link">getTopicRepository</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLatestPositionWithRetries(com.linkedin.venice.pubsub.api.PubSubTopicPartition,int)" class="member-name-link">getLatestPositionWithRetries</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition,
+ int&nbsp;retries)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicRetention(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicRetention</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNumRecordsInPartition(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">getNumRecordsInPartition</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Return topic retention time in MS.</div>
+<div class="block">Returns the total number of records currently available in the given topic-partition.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getTopicRetention(com.linkedin.venice.pubsub.PubSubTopicConfiguration)" class="member-name-link">getTopicRetention</a><wbr>(<a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a>&nbsp;pubSubTopicConfiguration)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html" title="class or interface in java.lang" class="external-link">Void</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#invalidateCache(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">invalidateCache</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Invalidate the cache for the given topic and all its partitions.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRetentionBelowTruncatedThreshold(long,long)" class="member-name-link">isRetentionBelowTruncatedThreshold</a><wbr>(long&nbsp;retention,
- long&nbsp;truncatedTopicMaxRetentionMs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isTopicCompactionEnabled(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">isTopicCompactionEnabled</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isTopicTruncated(com.linkedin.venice.pubsub.api.PubSubTopic,long)" class="member-name-link">isTopicTruncated</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
- long&nbsp;truncatedTopicMaxRetentionMs)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPartitionCount(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getPartitionCount</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Check whether topic is absent or truncated</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#listTopics()" class="member-name-link">listTopics</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#prefetchAndCacheLatestOffset(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">prefetchAndCacheLatestOffset</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Prefetch and cache the latest offset for the given topic-partition.</div>
+<div class="block">Get partition count for a given topic.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolvePosition(com.linkedin.venice.pubsub.api.PubSubTopicPartition,int,java.nio.ByteBuffer)" class="member-name-link">resolvePosition</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;partition,
- int&nbsp;positionTypeId,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;buffer)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPositionByTime(com.linkedin.venice.pubsub.api.PubSubTopicPartition,long)" class="member-name-link">getPositionByTime</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition,
+ long&nbsp;timestamp)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Resolves a <a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api"><code>PubSubPosition</code></a> from the given serialized buffer using the specified position type ID.</div>
+<div class="block">Get position for only one partition with a specific timestamp.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTopicConfigCache(com.github.benmanes.caffeine.cache.Cache)" class="member-name-link">setTopicConfigCache</a><wbr>(com.github.benmanes.caffeine.cache.Cache&lt;<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>,<wbr><a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a>&gt;&nbsp;topicConfigCache)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPubSubClusterAddress()" class="member-name-link">getPubSubClusterAddress</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>,<wbr><a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSomeTopicConfigs(java.util.Set)" class="member-name-link">getSomeTopicConfigs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&gt;&nbsp;topicNames)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicCompactionPolicy(com.linkedin.venice.pubsub.api.PubSubTopic,boolean)" class="member-name-link">updateTopicCompactionPolicy</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topic,
- boolean&nbsp;expectedLogCompacted)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStartPositionsForPartitionWithRetries(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">getStartPositionsForPartitionWithRetries</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>,<wbr><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStartPositionsForTopicWithRetries(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getStartPositionsForTopicWithRetries</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicConfig(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicConfig</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This operation is a little heavy, since it will pull the configs for all the topics.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicConfigWithRetry(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicConfigWithRetry</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicMaxLogCompactionLagMs(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicMaxLogCompactionLagMs</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicMinLogCompactionLagMs(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicMinLogCompactionLagMs</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../PubSubTopicPartitionInfo.html" title="class in com.linkedin.venice.pubsub">PubSubTopicPartitionInfo</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicPartitionInfo(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicPartitionInfo</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get information about all partitions for a given topic.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PubSubTopicRepository.html" title="class in com.linkedin.venice.pubsub">PubSubTopicRepository</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicRepository()" class="member-name-link">getTopicRepository</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopicRetention(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">getTopicRetention</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Return topic retention time in MS.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static long</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getTopicRetention(com.linkedin.venice.pubsub.PubSubTopicConfiguration)" class="member-name-link">getTopicRetention</a><wbr>(<a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a>&nbsp;pubSubTopicConfiguration)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html" title="class or interface in java.lang" class="external-link">Void</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#invalidateCache(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">invalidateCache</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;pubSubTopic)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Invalidate the cache for the given topic and all its partitions.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRetentionBelowTruncatedThreshold(long,long)" class="member-name-link">isRetentionBelowTruncatedThreshold</a><wbr>(long&nbsp;retention,
+ long&nbsp;truncatedTopicMaxRetentionMs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isTopicCompactionEnabled(com.linkedin.venice.pubsub.api.PubSubTopic)" class="member-name-link">isTopicCompactionEnabled</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isTopicTruncated(com.linkedin.venice.pubsub.api.PubSubTopic,long)" class="member-name-link">isTopicTruncated</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
+ long&nbsp;truncatedTopicMaxRetentionMs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Check whether topic is absent or truncated</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#listTopics()" class="member-name-link">listTopics</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicCompactionPolicy(com.linkedin.venice.pubsub.api.PubSubTopic,boolean,long,java.util.Optional)" class="member-name-link">updateTopicCompactionPolicy</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topic,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#prefetchAndCacheLatestOffset(com.linkedin.venice.pubsub.api.PubSubTopicPartition)" class="member-name-link">prefetchAndCacheLatestOffset</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;pubSubTopicPartition)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Prefetch and cache the latest offset for the given topic-partition.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolvePosition(com.linkedin.venice.pubsub.api.PubSubTopicPartition,int,java.nio.ByteBuffer)" class="member-name-link">resolvePosition</a><wbr>(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;partition,
+ int&nbsp;positionTypeId,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/ByteBuffer.html" title="class or interface in java.nio" class="external-link">ByteBuffer</a>&nbsp;buffer)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Resolves a <a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api"><code>PubSubPosition</code></a> from the given serialized buffer using the specified position type ID.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTopicConfigCache(com.github.benmanes.caffeine.cache.Cache)" class="member-name-link">setTopicConfigCache</a><wbr>(com.github.benmanes.caffeine.cache.Cache&lt;<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>,<wbr><a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a>&gt;&nbsp;topicConfigCache)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicCompactionPolicy(com.linkedin.venice.pubsub.api.PubSubTopic,boolean)" class="member-name-link">updateTopicCompactionPolicy</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topic,
+ boolean&nbsp;expectedLogCompacted)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicCompactionPolicy(com.linkedin.venice.pubsub.api.PubSubTopic,boolean,long,java.util.Optional)" class="member-name-link">updateTopicCompactionPolicy</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topic,
  boolean&nbsp;expectedLogCompacted,
  long&nbsp;minLogCompactionLagMs,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;&nbsp;maxLogCompactionLagMs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update topic compaction policy.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicMinInSyncReplica(com.linkedin.venice.pubsub.api.PubSubTopic,int)" class="member-name-link">updateTopicMinInSyncReplica</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
- int&nbsp;minISR)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicRetention(com.linkedin.venice.pubsub.api.PubSubTopic,long)" class="member-name-link">updateTopicRetention</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicMinInSyncReplica(com.linkedin.venice.pubsub.api.PubSubTopic,int)" class="member-name-link">updateTopicMinInSyncReplica</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
+ int&nbsp;minISR)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicRetention(com.linkedin.venice.pubsub.api.PubSubTopic,long)" class="member-name-link">updateTopicRetention</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
  long&nbsp;retentionInMS)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update retention for the given topic.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicRetention(com.linkedin.venice.pubsub.api.PubSubTopic,long,com.linkedin.venice.pubsub.PubSubTopicConfiguration)" class="member-name-link">updateTopicRetention</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicRetention(com.linkedin.venice.pubsub.api.PubSubTopic,long,com.linkedin.venice.pubsub.PubSubTopicConfiguration)" class="member-name-link">updateTopicRetention</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
  long&nbsp;expectedRetentionInMs,
  <a href="../PubSubTopicConfiguration.html" title="class in com.linkedin.venice.pubsub">PubSubTopicConfiguration</a>&nbsp;pubSubTopicConfiguration)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update retention for the given topic given a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link"><code>Properties</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicRetentionWithRetries(com.linkedin.venice.pubsub.api.PubSubTopic,long)" class="member-name-link">updateTopicRetentionWithRetries</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTopicRetentionWithRetries(com.linkedin.venice.pubsub.api.PubSubTopic,long)" class="member-name-link">updateTopicRetentionWithRetries</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
  long&nbsp;expectedRetentionInMs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#waitUntilTopicCreated(com.linkedin.venice.pubsub.api.PubSubTopic,int,long)" class="member-name-link">waitUntilTopicCreated</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#waitUntilTopicCreated(com.linkedin.venice.pubsub.api.PubSubTopic,int,long)" class="member-name-link">waitUntilTopicCreated</a><wbr>(<a href="../api/PubSubTopic.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopic</a>&nbsp;topicName,
  int&nbsp;partitionCount,
  long&nbsp;deadlineMs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -845,6 +852,21 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code>endPosition</code> - the position up to which records are counted</dd>
 <dt>Returns:</dt>
 <dd>the number of records from EARLIEST to <code>endPosition</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getIngestionProgressPercentage(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.venice.pubsub.api.PubSubPosition)">
+<h3>getIngestionProgressPercentage</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getIngestionProgressPercentage</span><wbr><span class="parameters">(<a href="../api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
+ <a href="../api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;position)</span></div>
+<div class="block">Indicates ingestion progress by returning the percentage of records in the given topic-partition
+ up to the specified position.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>position</code> - the position up to which records are counted</dd>
+<dt>Returns:</dt>
+<dd>the percentage of records up to the specified position (0-100)</dd>
 </dl>
 </section>
 </li>

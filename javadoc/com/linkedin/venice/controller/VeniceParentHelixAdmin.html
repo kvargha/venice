@@ -241,7 +241,7 @@ implements <a href="Admin.html" title="interface in com.linkedin.venice.controll
  <a href="kafka/protocol/enums/AdminMessageType.html#VALUE_SCHEMA_CREATION"><code>VALUE_SCHEMA_CREATION</code></a> admin message.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int)" class="member-name-link">addVersionAndStartIngestion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int,int)" class="member-name-link">addVersionAndStartIngestion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushJobId,
  int&nbsp;versionNumber,
@@ -251,7 +251,8 @@ implements <a href="Admin.html" title="interface in com.linkedin.venice.controll
  long&nbsp;rewindTimeInSecondsOverride,
  int&nbsp;ignoredRmdVersionID,
  boolean&nbsp;versionSwapDeferred,
- int&nbsp;repushSourceVersion)</code></div>
+ int&nbsp;repushSourceVersion,
+ int&nbsp;repushTtlSeconds)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method behaves differently in <a href="VeniceHelixAdmin.html" title="class in com.linkedin.venice.controller"><code>VeniceHelixAdmin</code></a> and <a href="VeniceParentHelixAdmin.html" title="class in com.linkedin.venice.controller"><code>VeniceParentHelixAdmin</code></a>.</div>
 </div>
@@ -824,7 +825,7 @@ implements <a href="Admin.html" title="interface in com.linkedin.venice.controll
 <div class="block">Test if the given certificate has the write-access permission for the given batch-job heartbeat store.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../meta/Version.html" title="interface in com.linkedin.venice.meta">Version</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int)" class="member-name-link">incrementVersionIdempotent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int,int)" class="member-name-link">incrementVersionIdempotent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushJobId,
  int&nbsp;numberOfPartitions,
@@ -839,7 +840,8 @@ implements <a href="Admin.html" title="interface in com.linkedin.venice.controll
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;emergencySourceRegion,
  boolean&nbsp;versionSwapDeferred,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;targetedRegions,
- int&nbsp;repushSourceVersion)</code></div>
+ int&nbsp;repushSourceVersion,
+ int&nbsp;repushTtlSeconds)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initiateDataRecovery(java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,boolean,java.util.Optional)" class="member-name-link">initiateDataRecovery</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
@@ -1453,7 +1455,7 @@ implements <a href="Admin.html" title="interface in com.linkedin.venice.controll
 </section>
 </li>
 <li>
-<section class="detail" id="addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int)">
+<section class="detail" id="addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int,int)">
 <h3>addVersionAndStartIngestion</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addVersionAndStartIngestion</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
@@ -1465,16 +1467,17 @@ implements <a href="Admin.html" title="interface in com.linkedin.venice.controll
  long&nbsp;rewindTimeInSecondsOverride,
  int&nbsp;ignoredRmdVersionID,
  boolean&nbsp;versionSwapDeferred,
- int&nbsp;repushSourceVersion)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Admin.html#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int)">Admin</a></code></span></div>
+ int&nbsp;repushSourceVersion,
+ int&nbsp;repushTtlSeconds)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Admin.html#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int,int)">Admin</a></code></span></div>
 <div class="block">This method behaves differently in <a href="VeniceHelixAdmin.html" title="class in com.linkedin.venice.controller"><code>VeniceHelixAdmin</code></a> and <a href="VeniceParentHelixAdmin.html" title="class in com.linkedin.venice.controller"><code>VeniceParentHelixAdmin</code></a>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Admin.html#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int)">addVersionAndStartIngestion</a></code>&nbsp;in interface&nbsp;<code><a href="Admin.html" title="interface in com.linkedin.venice.controller">Admin</a></code></dd>
+<dd><code><a href="Admin.html#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int,int)">addVersionAndStartIngestion</a></code>&nbsp;in interface&nbsp;<code><a href="Admin.html" title="interface in com.linkedin.venice.controller">Admin</a></code></dd>
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list-long">
-<li><a href="Admin.html#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int)"><code>Admin.addVersionAndStartIngestion(String, String, String, int, int, Version.PushType, String, long, int, boolean, int)</code></a></li>
+<li><a href="Admin.html#addVersionAndStartIngestion(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,java.lang.String,long,int,boolean,int,int)"><code>Admin.addVersionAndStartIngestion(String, String, String, int, int, Version.PushType, String, long, int, boolean, int, int)</code></a></li>
 </ul>
 </dd>
 </dl>
@@ -1523,7 +1526,7 @@ implements <a href="Admin.html" title="interface in com.linkedin.venice.controll
 </section>
 </li>
 <li>
-<section class="detail" id="incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int)">
+<section class="detail" id="incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int,int)">
 <h3>incrementVersionIdempotent</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../meta/Version.html" title="interface in com.linkedin.venice.meta">Version</a></span>&nbsp;<span class="element-name">incrementVersionIdempotent</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
@@ -1540,10 +1543,11 @@ implements <a href="Admin.html" title="interface in com.linkedin.venice.controll
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;emergencySourceRegion,
  boolean&nbsp;versionSwapDeferred,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;targetedRegions,
- int&nbsp;repushSourceVersion)</span></div>
+ int&nbsp;repushSourceVersion,
+ int&nbsp;repushTtlSeconds)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Admin.html#incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int)">incrementVersionIdempotent</a></code>&nbsp;in interface&nbsp;<code><a href="Admin.html" title="interface in com.linkedin.venice.controller">Admin</a></code></dd>
+<dd><code><a href="Admin.html#incrementVersionIdempotent(java.lang.String,java.lang.String,java.lang.String,int,int,com.linkedin.venice.meta.Version.PushType,boolean,boolean,java.lang.String,java.util.Optional,java.util.Optional,long,java.util.Optional,boolean,java.lang.String,int,int)">incrementVersionIdempotent</a></code>&nbsp;in interface&nbsp;<code><a href="Admin.html" title="interface in com.linkedin.venice.controller">Admin</a></code></dd>
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list-long">

@@ -82,7 +82,10 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AggHostLevelIngestionStats</span>
 <span class="extends-implements">extends <a href="../../venice/stats/AbstractVeniceAggStoreStats.html" title="class in com.linkedin.venice.stats">AbstractVeniceAggStoreStats</a>&lt;<a href="HostLevelIngestionStats.html" title="class in com.linkedin.davinci.stats">HostLevelIngestionStats</a>&gt;</span></div>
-<div class="block">This class provides aggregate initialization support for host level ingestion stats class <a href="HostLevelIngestionStats.html" title="class in com.linkedin.davinci.stats"><code>HostLevelIngestionStats</code></a></div>
+<div class="block">Aggregates host-level ingestion statistics across all stores.
+ This class provides aggregate initialization and management support for <a href="HostLevelIngestionStats.html" title="class in com.linkedin.davinci.stats"><code>HostLevelIngestionStats</code></a>,
+ enabling centralized tracking of ingestion metrics at the host level. It extends
+ <a href="../../venice/stats/AbstractVeniceAggStoreStats.html" title="class in com.linkedin.venice.stats"><code>AbstractVeniceAggStoreStats</code></a> to provide automatic aggregation across all stores on the host.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,7 +112,9 @@ loadScripts(document, 'script');</script>
  <a href="../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;metadataRepository,
  boolean&nbsp;unregisterMetricForDeletedStoreEnabled,
  <a href="../../venice/utils/Time.html" title="interface in com.linkedin.venice.utils">Time</a>&nbsp;time)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs an AggHostLevelIngestionStats instance.</div>
+</div>
 </div>
 </section>
 </li>
@@ -149,6 +154,16 @@ loadScripts(document, 'script');</script>
  <a href="../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;metadataRepository,
  boolean&nbsp;unregisterMetricForDeletedStoreEnabled,
  <a href="../../venice/utils/Time.html" title="interface in com.linkedin.venice.utils">Time</a>&nbsp;time)</span></div>
+<div class="block">Constructs an AggHostLevelIngestionStats instance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>metricsRepository</code> - the metrics repository for recording statistics</dd>
+<dd><code>serverConfig</code> - the Venice server configuration</dd>
+<dd><code>ingestionTaskMap</code> - a map of store names to their corresponding ingestion tasks</dd>
+<dd><code>metadataRepository</code> - the store metadata repository</dd>
+<dd><code>unregisterMetricForDeletedStoreEnabled</code> - whether to unregister metrics when stores are deleted</dd>
+<dd><code>time</code> - the time instance for timestamp operations</dd>
+</dl>
 </section>
 </li>
 </ul>

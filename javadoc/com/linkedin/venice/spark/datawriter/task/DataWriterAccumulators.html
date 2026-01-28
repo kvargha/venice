@@ -134,20 +134,23 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-second even-row-color"><code><a href="#sprayAllPartitionsTriggeredCount" class="member-name-link">sprayAllPartitionsTriggeredCount</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>final org.apache.spark.util.LongAccumulator</code></div>
-<div class="col-second odd-row-color"><code><a href="#totalKeySizeCounter" class="member-name-link">totalKeySizeCounter</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#totalDuplicateKeyCounter" class="member-name-link">totalDuplicateKeyCounter</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>final org.apache.spark.util.LongAccumulator</code></div>
-<div class="col-second even-row-color"><code><a href="#uncompressedRecordTooLargeFailureCounter" class="member-name-link">uncompressedRecordTooLargeFailureCounter</a></code></div>
+<div class="col-second even-row-color"><code><a href="#totalKeySizeCounter" class="member-name-link">totalKeySizeCounter</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>final org.apache.spark.util.LongAccumulator</code></div>
-<div class="col-second odd-row-color"><code><a href="#uncompressedValueSizeCounter" class="member-name-link">uncompressedValueSizeCounter</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#uncompressedRecordTooLargeFailureCounter" class="member-name-link">uncompressedRecordTooLargeFailureCounter</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>final org.apache.spark.util.LongAccumulator</code></div>
-<div class="col-second even-row-color"><code><a href="#writeAclAuthorizationFailureCounter" class="member-name-link">writeAclAuthorizationFailureCounter</a></code></div>
+<div class="col-second even-row-color"><code><a href="#uncompressedValueSizeCounter" class="member-name-link">uncompressedValueSizeCounter</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>final org.apache.spark.util.LongAccumulator</code></div>
-<div class="col-second odd-row-color"><code><a href="#zstdCompressedValueSizeCounter" class="member-name-link">zstdCompressedValueSizeCounter</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#writeAclAuthorizationFailureCounter" class="member-name-link">writeAclAuthorizationFailureCounter</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>final org.apache.spark.util.LongAccumulator</code></div>
+<div class="col-second even-row-color"><code><a href="#zstdCompressedValueSizeCounter" class="member-name-link">zstdCompressedValueSizeCounter</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -276,6 +279,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="repushTtlFilteredRecordCounter">
 <h3>repushTtlFilteredRecordCounter</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">org.apache.spark.util.LongAccumulator</span>&nbsp;<span class="element-name">repushTtlFilteredRecordCounter</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="totalDuplicateKeyCounter">
+<h3>totalDuplicateKeyCounter</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">org.apache.spark.util.LongAccumulator</span>&nbsp;<span class="element-name">totalDuplicateKeyCounter</span></div>
 </section>
 </li>
 </ul>

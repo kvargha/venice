@@ -145,8 +145,9 @@ loadScripts(document, 'script');</script>
  <a href="StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&nbsp;ingestionTask)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)" class="member-name-link">execSyncOffsetFromSnapshotAsync</a><wbr>(<a href="../../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,java.util.concurrent.CompletableFuture,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)" class="member-name-link">execSyncOffsetFromSnapshotAsync</a><wbr>(<a href="../../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
  <a href="../../validation/PartitionTracker.html" title="class in com.linkedin.davinci.validation">PartitionTracker</a>&nbsp;vtDivSnapshot,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html" title="class or interface in java.lang" class="external-link">Void</a>&gt;&nbsp;lastRecordPersistedFuture,
  <a href="StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&nbsp;ingestionTask)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract long</code></div>
@@ -269,10 +270,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)">
+<section class="detail" id="execSyncOffsetFromSnapshotAsync(com.linkedin.venice.pubsub.api.PubSubTopicPartition,com.linkedin.davinci.validation.PartitionTracker,java.util.concurrent.CompletableFuture,com.linkedin.davinci.kafka.consumer.StoreIngestionTask)">
 <h3>execSyncOffsetFromSnapshotAsync</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">execSyncOffsetFromSnapshotAsync</span><wbr><span class="parameters">(<a href="../../../venice/pubsub/api/PubSubTopicPartition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubTopicPartition</a>&nbsp;topicPartition,
  <a href="../../validation/PartitionTracker.html" title="class in com.linkedin.davinci.validation">PartitionTracker</a>&nbsp;vtDivSnapshot,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Void.html" title="class or interface in java.lang" class="external-link">Void</a>&gt;&nbsp;lastRecordPersistedFuture,
  <a href="StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&nbsp;ingestionTask)</span>
                                               throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <dl class="notes">

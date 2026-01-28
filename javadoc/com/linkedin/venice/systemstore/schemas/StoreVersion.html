@@ -239,57 +239,62 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="col-last even-row-color">
 <div class="block">For store version created from repush, indicates the source store version its created from.</div>
 </div>
-<div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><code><a href="#rmdChunkingEnabled" class="member-name-link">rmdChunkingEnabled</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Whether or not large replication metadata are supported (via chunking).</div>
-</div>
-<div class="col-first even-row-color"><code>static final org.apache.avro.Schema</code></div>
-<div class="col-second even-row-color"><code><a href="#SCHEMA$" class="member-name-link">SCHEMA$</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><code><a href="#separateRealTimeTopicEnabled" class="member-name-link">separateRealTimeTopicEnabled</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Flag to see if the store supports separate real-time topic for incremental push.</div>
-</div>
-<div class="col-first even-row-color"><code>int</code></div>
-<div class="col-second even-row-color"><code><a href="#status" class="member-name-link">status</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Status of version, and default is 'STARTED'</div>
-</div>
-<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#storeName" class="member-name-link">storeName</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Name of the store which this version belong to.</div>
-</div>
-<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
-<div class="col-second even-row-color"><code><a href="#targetSwapRegion" class="member-name-link">targetSwapRegion</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Controls what region to swap in the current version during target colo push</div>
-</div>
 <div class="col-first odd-row-color"><code>int</code></div>
-<div class="col-second odd-row-color"><code><a href="#targetSwapRegionWaitTime" class="member-name-link">targetSwapRegionWaitTime</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#repushTtlSeconds" class="member-name-link">repushTtlSeconds</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Controls how long to wait in minutes before swapping the version on the regions</div>
-</div>
-<div class="col-first even-row-color"><code>int</code></div>
-<div class="col-second even-row-color"><code><a href="#timestampMetadataVersionId" class="member-name-link">timestampMetadataVersionId</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">The A/A timestamp metadata schema version ID that will be used to deserialize metadataPayload.</div>
-</div>
-<div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><code><a href="#useVersionLevelHybridConfig" class="member-name-link">useVersionLevelHybridConfig</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Flag to see if hybridConfig at StoreVersion should be used.</div>
+<div class="block">For store version created from repush, indicates the time-to-live in seconds set during the repush</div>
 </div>
 <div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><code><a href="#useVersionLevelIncrementalPushEnabled" class="member-name-link">useVersionLevelIncrementalPushEnabled</a></code></div>
+<div class="col-second even-row-color"><code><a href="#rmdChunkingEnabled" class="member-name-link">rmdChunkingEnabled</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">Whether or not large replication metadata are supported (via chunking).</div>
+</div>
+<div class="col-first odd-row-color"><code>static final org.apache.avro.Schema</code></div>
+<div class="col-second odd-row-color"><code><a href="#SCHEMA$" class="member-name-link">SCHEMA$</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#separateRealTimeTopicEnabled" class="member-name-link">separateRealTimeTopicEnabled</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Flag to see if the store supports separate real-time topic for incremental push.</div>
+</div>
+<div class="col-first odd-row-color"><code>int</code></div>
+<div class="col-second odd-row-color"><code><a href="#status" class="member-name-link">status</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Status of version, and default is 'STARTED'</div>
+</div>
+<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
+<div class="col-second even-row-color"><code><a href="#storeName" class="member-name-link">storeName</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Name of the store which this version belong to.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#targetSwapRegion" class="member-name-link">targetSwapRegion</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Controls what region to swap in the current version during target colo push</div>
+</div>
+<div class="col-first even-row-color"><code>int</code></div>
+<div class="col-second even-row-color"><code><a href="#targetSwapRegionWaitTime" class="member-name-link">targetSwapRegionWaitTime</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Controls how long to wait in minutes before swapping the version on the regions</div>
+</div>
+<div class="col-first odd-row-color"><code>int</code></div>
+<div class="col-second odd-row-color"><code><a href="#timestampMetadataVersionId" class="member-name-link">timestampMetadataVersionId</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The A/A timestamp metadata schema version ID that will be used to deserialize metadataPayload.</div>
+</div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#useVersionLevelHybridConfig" class="member-name-link">useVersionLevelHybridConfig</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Flag to see if hybridConfig at StoreVersion should be used.</div>
+</div>
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><code><a href="#useVersionLevelIncrementalPushEnabled" class="member-name-link">useVersionLevelIncrementalPushEnabled</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Flag to see if incrementalPushEnabled config at StoreVersion should be used.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="StoreViewConfig.html" title="class in com.linkedin.venice.systemstore.schemas">StoreViewConfig</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#views" class="member-name-link">views</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="StoreViewConfig.html" title="class in com.linkedin.venice.systemstore.schemas">StoreViewConfig</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#views" class="member-name-link">views</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">A list of views which describe and configure a downstream view of a venice store.</div>
 </div>
 </div>
@@ -307,7 +312,7 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="col-last even-row-color">
 <div class="block">Default constructor.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.CharSequence,java.lang.Integer,java.lang.Long,java.lang.Integer,java.lang.CharSequence,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.CharSequence,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Integer,java.lang.Integer,com.linkedin.venice.systemstore.schemas.StorePartitionerConfig,java.lang.Integer,java.lang.Integer,java.lang.CharSequence,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,com.linkedin.venice.systemstore.schemas.StoreHybridConfig,java.lang.Boolean,java.lang.Boolean,java.lang.Integer,com.linkedin.venice.systemstore.schemas.DataRecoveryConfig,java.lang.Boolean,java.util.Map,java.lang.Integer,java.lang.CharSequence,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.CharSequence,java.lang.Boolean,java.util.List)" class="member-name-link">StoreVersion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;storeName,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.CharSequence,java.lang.Integer,java.lang.Long,java.lang.Integer,java.lang.CharSequence,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.CharSequence,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Integer,java.lang.Integer,com.linkedin.venice.systemstore.schemas.StorePartitionerConfig,java.lang.Integer,java.lang.Integer,java.lang.CharSequence,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,com.linkedin.venice.systemstore.schemas.StoreHybridConfig,java.lang.Boolean,java.lang.Boolean,java.lang.Integer,com.linkedin.venice.systemstore.schemas.DataRecoveryConfig,java.lang.Boolean,java.util.Map,java.lang.Integer,java.lang.CharSequence,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.CharSequence,java.lang.Boolean,java.util.List,java.lang.Integer)" class="member-name-link">StoreVersion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;storeName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;number,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;createdTime,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;status,
@@ -343,7 +348,8 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;globalRtDivEnabled,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;blobTransferInServerEnabled,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;keyUrnCompressionEnabled,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;keyUrnFields)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;keyUrnFields,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;repushTtlSeconds)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">All-args constructor.</div>
 </div>
@@ -502,203 +508,213 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the value of the 'repushSourceVersion' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRmdChunkingEnabled()" class="member-name-link">getRmdChunkingEnabled</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'rmdChunkingEnabled' field.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.avro.Schema</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSchema()" class="member-name-link">getSchema</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSeparateRealTimeTopicEnabled()" class="member-name-link">getSeparateRealTimeTopicEnabled</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'separateRealTimeTopicEnabled' field.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.avro.specific.SpecificData</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSpecificData()" class="member-name-link">getSpecificData</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStatus()" class="member-name-link">getStatus</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRepushTtlSeconds()" class="member-name-link">getRepushTtlSeconds</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'status' field.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStoreName()" class="member-name-link">getStoreName</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'storeName' field.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTargetSwapRegion()" class="member-name-link">getTargetSwapRegion</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'targetSwapRegion' field.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTargetSwapRegionWaitTime()" class="member-name-link">getTargetSwapRegionWaitTime</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'targetSwapRegionWaitTime' field.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTimestampMetadataVersionId()" class="member-name-link">getTimestampMetadataVersionId</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'timestampMetadataVersionId' field.</div>
+<div class="block">Gets the value of the 'repushTtlSeconds' field.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUseVersionLevelHybridConfig()" class="member-name-link">getUseVersionLevelHybridConfig</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRmdChunkingEnabled()" class="member-name-link">getRmdChunkingEnabled</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the value of the 'useVersionLevelHybridConfig' field.</div>
+<div class="block">Gets the value of the 'rmdChunkingEnabled' field.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.avro.Schema</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSchema()" class="member-name-link">getSchema</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSeparateRealTimeTopicEnabled()" class="member-name-link">getSeparateRealTimeTopicEnabled</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the value of the 'separateRealTimeTopicEnabled' field.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.avro.specific.SpecificData</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSpecificData()" class="member-name-link">getSpecificData</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStatus()" class="member-name-link">getStatus</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the value of the 'status' field.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStoreName()" class="member-name-link">getStoreName</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the value of the 'storeName' field.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTargetSwapRegion()" class="member-name-link">getTargetSwapRegion</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the value of the 'targetSwapRegion' field.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTargetSwapRegionWaitTime()" class="member-name-link">getTargetSwapRegionWaitTime</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the value of the 'targetSwapRegionWaitTime' field.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTimestampMetadataVersionId()" class="member-name-link">getTimestampMetadataVersionId</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the value of the 'timestampMetadataVersionId' field.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUseVersionLevelIncrementalPushEnabled()" class="member-name-link">getUseVersionLevelIncrementalPushEnabled</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUseVersionLevelHybridConfig()" class="member-name-link">getUseVersionLevelHybridConfig</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the value of the 'useVersionLevelHybridConfig' field.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUseVersionLevelIncrementalPushEnabled()" class="member-name-link">getUseVersionLevelIncrementalPushEnabled</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the value of the 'useVersionLevelIncrementalPushEnabled' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="StoreViewConfig.html" title="class in com.linkedin.venice.systemstore.schemas">StoreViewConfig</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getViews()" class="member-name-link">getViews</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="StoreViewConfig.html" title="class in com.linkedin.venice.systemstore.schemas">StoreViewConfig</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getViews()" class="member-name-link">getViews</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the value of the 'views' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(int,java.lang.Object)" class="member-name-link">put</a><wbr>(int&nbsp;field$,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value$)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readExternal(java.io.ObjectInput)" class="member-name-link">readExternal</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/ObjectInput.html" title="class or interface in java.io" class="external-link">ObjectInput</a>&nbsp;in)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(int,java.lang.Object)" class="member-name-link">put</a><wbr>(int&nbsp;field$,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value$)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setActiveActiveReplicationEnabled(boolean)" class="member-name-link">setActiveActiveReplicationEnabled</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readExternal(java.io.ObjectInput)" class="member-name-link">readExternal</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/ObjectInput.html" title="class or interface in java.io" class="external-link">ObjectInput</a>&nbsp;in)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setActiveActiveReplicationEnabled(boolean)" class="member-name-link">setActiveActiveReplicationEnabled</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'activeActiveReplicationEnabled' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBlobTransferEnabled(boolean)" class="member-name-link">setBlobTransferEnabled</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBlobTransferEnabled(boolean)" class="member-name-link">setBlobTransferEnabled</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'blobTransferEnabled' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBlobTransferInServerEnabled(java.lang.CharSequence)" class="member-name-link">setBlobTransferInServerEnabled</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBlobTransferInServerEnabled(java.lang.CharSequence)" class="member-name-link">setBlobTransferInServerEnabled</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'blobTransferInServerEnabled' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBufferReplayEnabledForHybrid(boolean)" class="member-name-link">setBufferReplayEnabledForHybrid</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBufferReplayEnabledForHybrid(boolean)" class="member-name-link">setBufferReplayEnabledForHybrid</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'bufferReplayEnabledForHybrid' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setChunkingEnabled(boolean)" class="member-name-link">setChunkingEnabled</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setChunkingEnabled(boolean)" class="member-name-link">setChunkingEnabled</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'chunkingEnabled' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCompressionStrategy(int)" class="member-name-link">setCompressionStrategy</a><wbr>(int&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCompressionStrategy(int)" class="member-name-link">setCompressionStrategy</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'compressionStrategy' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCreatedTime(long)" class="member-name-link">setCreatedTime</a><wbr>(long&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCreatedTime(long)" class="member-name-link">setCreatedTime</a><wbr>(long&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'createdTime' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDataRecoveryConfig(com.linkedin.venice.systemstore.schemas.DataRecoveryConfig)" class="member-name-link">setDataRecoveryConfig</a><wbr>(<a href="DataRecoveryConfig.html" title="class in com.linkedin.venice.systemstore.schemas">DataRecoveryConfig</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDataRecoveryConfig(com.linkedin.venice.systemstore.schemas.DataRecoveryConfig)" class="member-name-link">setDataRecoveryConfig</a><wbr>(<a href="DataRecoveryConfig.html" title="class in com.linkedin.venice.systemstore.schemas">DataRecoveryConfig</a>&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'dataRecoveryConfig' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeferVersionSwap(boolean)" class="member-name-link">setDeferVersionSwap</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeferVersionSwap(boolean)" class="member-name-link">setDeferVersionSwap</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'deferVersionSwap' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGlobalRtDivEnabled(boolean)" class="member-name-link">setGlobalRtDivEnabled</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGlobalRtDivEnabled(boolean)" class="member-name-link">setGlobalRtDivEnabled</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'globalRtDivEnabled' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setHybridConfig(com.linkedin.venice.systemstore.schemas.StoreHybridConfig)" class="member-name-link">setHybridConfig</a><wbr>(<a href="StoreHybridConfig.html" title="class in com.linkedin.venice.systemstore.schemas">StoreHybridConfig</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setHybridConfig(com.linkedin.venice.systemstore.schemas.StoreHybridConfig)" class="member-name-link">setHybridConfig</a><wbr>(<a href="StoreHybridConfig.html" title="class in com.linkedin.venice.systemstore.schemas">StoreHybridConfig</a>&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'hybridConfig' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIncrementalPushEnabled(boolean)" class="member-name-link">setIncrementalPushEnabled</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIncrementalPushEnabled(boolean)" class="member-name-link">setIncrementalPushEnabled</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'incrementalPushEnabled' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIncrementalPushPolicy(int)" class="member-name-link">setIncrementalPushPolicy</a><wbr>(int&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIncrementalPushPolicy(int)" class="member-name-link">setIncrementalPushPolicy</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'incrementalPushPolicy' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIsDaVinciHeartBeatReported(boolean)" class="member-name-link">setIsDaVinciHeartBeatReported</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIsDaVinciHeartBeatReported(boolean)" class="member-name-link">setIsDaVinciHeartBeatReported</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'isDaVinciHeartBeatReported' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setKeyUrnCompressionEnabled(boolean)" class="member-name-link">setKeyUrnCompressionEnabled</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setKeyUrnCompressionEnabled(boolean)" class="member-name-link">setKeyUrnCompressionEnabled</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'keyUrnCompressionEnabled' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setKeyUrnFields(java.util.List)" class="member-name-link">setKeyUrnFields</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setKeyUrnFields(java.util.List)" class="member-name-link">setKeyUrnFields</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'keyUrnFields' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLeaderFollowerModelEnabled(boolean)" class="member-name-link">setLeaderFollowerModelEnabled</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLeaderFollowerModelEnabled(boolean)" class="member-name-link">setLeaderFollowerModelEnabled</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'leaderFollowerModelEnabled' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNativeReplicationEnabled(boolean)" class="member-name-link">setNativeReplicationEnabled</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNativeReplicationEnabled(boolean)" class="member-name-link">setNativeReplicationEnabled</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'nativeReplicationEnabled' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNativeReplicationSourceFabric(java.lang.CharSequence)" class="member-name-link">setNativeReplicationSourceFabric</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNativeReplicationSourceFabric(java.lang.CharSequence)" class="member-name-link">setNativeReplicationSourceFabric</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'nativeReplicationSourceFabric' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNumber(int)" class="member-name-link">setNumber</a><wbr>(int&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNumber(int)" class="member-name-link">setNumber</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'number' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPartitionCount(int)" class="member-name-link">setPartitionCount</a><wbr>(int&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPartitionCount(int)" class="member-name-link">setPartitionCount</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'partitionCount' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPartitionerConfig(com.linkedin.venice.systemstore.schemas.StorePartitionerConfig)" class="member-name-link">setPartitionerConfig</a><wbr>(<a href="StorePartitionerConfig.html" title="class in com.linkedin.venice.systemstore.schemas">StorePartitionerConfig</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPartitionerConfig(com.linkedin.venice.systemstore.schemas.StorePartitionerConfig)" class="member-name-link">setPartitionerConfig</a><wbr>(<a href="StorePartitionerConfig.html" title="class in com.linkedin.venice.systemstore.schemas">StorePartitionerConfig</a>&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'partitionerConfig' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPushJobId(java.lang.CharSequence)" class="member-name-link">setPushJobId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPushJobId(java.lang.CharSequence)" class="member-name-link">setPushJobId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'pushJobId' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPushStreamSourceAddress(java.lang.CharSequence)" class="member-name-link">setPushStreamSourceAddress</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPushStreamSourceAddress(java.lang.CharSequence)" class="member-name-link">setPushStreamSourceAddress</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'pushStreamSourceAddress' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPushType(int)" class="member-name-link">setPushType</a><wbr>(int&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPushType(int)" class="member-name-link">setPushType</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'pushType' field.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReplicationFactor(int)" class="member-name-link">setReplicationFactor</a><wbr>(int&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReplicationFactor(int)" class="member-name-link">setReplicationFactor</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'replicationFactor' field.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRepushSourceVersion(int)" class="member-name-link">setRepushSourceVersion</a><wbr>(int&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRepushSourceVersion(int)" class="member-name-link">setRepushSourceVersion</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the value of the 'repushSourceVersion' field.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRepushTtlSeconds(int)" class="member-name-link">setRepushTtlSeconds</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the value of the 'repushTtlSeconds' field.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRmdChunkingEnabled(boolean)" class="member-name-link">setRmdChunkingEnabled</a><wbr>(boolean&nbsp;value)</code></div>
@@ -1040,6 +1056,13 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="block">List of fields in the key schema that will be eligible for key urn compression</div>
 </section>
 </li>
+<li>
+<section class="detail" id="repushTtlSeconds">
+<h3>repushTtlSeconds</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">repushTtlSeconds</span></div>
+<div class="block">For store version created from repush, indicates the time-to-live in seconds set during the repush</div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -1058,7 +1081,7 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.CharSequence,java.lang.Integer,java.lang.Long,java.lang.Integer,java.lang.CharSequence,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.CharSequence,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Integer,java.lang.Integer,com.linkedin.venice.systemstore.schemas.StorePartitionerConfig,java.lang.Integer,java.lang.Integer,java.lang.CharSequence,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,com.linkedin.venice.systemstore.schemas.StoreHybridConfig,java.lang.Boolean,java.lang.Boolean,java.lang.Integer,com.linkedin.venice.systemstore.schemas.DataRecoveryConfig,java.lang.Boolean,java.util.Map,java.lang.Integer,java.lang.CharSequence,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.CharSequence,java.lang.Boolean,java.util.List)">
+<section class="detail" id="&lt;init&gt;(java.lang.CharSequence,java.lang.Integer,java.lang.Long,java.lang.Integer,java.lang.CharSequence,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.CharSequence,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Integer,java.lang.Integer,com.linkedin.venice.systemstore.schemas.StorePartitionerConfig,java.lang.Integer,java.lang.Integer,java.lang.CharSequence,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,com.linkedin.venice.systemstore.schemas.StoreHybridConfig,java.lang.Boolean,java.lang.Boolean,java.lang.Integer,com.linkedin.venice.systemstore.schemas.DataRecoveryConfig,java.lang.Boolean,java.util.Map,java.lang.Integer,java.lang.CharSequence,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.CharSequence,java.lang.Boolean,java.util.List,java.lang.Integer)">
 <h3>StoreVersion</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">StoreVersion</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;storeName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;number,
@@ -1096,7 +1119,8 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;globalRtDivEnabled,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;blobTransferInServerEnabled,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;keyUrnCompressionEnabled,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;keyUrnFields)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;keyUrnFields,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;repushTtlSeconds)</span></div>
 <div class="block">All-args constructor.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -1137,6 +1161,7 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <dd><code>blobTransferInServerEnabled</code> - Flag to indicate if the blob transfer is allowed or not in server. Values can be 'NOT_SPECIFIED' as default, 'ENABLED', or 'DISABLED'.</dd>
 <dd><code>keyUrnCompressionEnabled</code> - Flag to control whether the key urn compression is enabled or not</dd>
 <dd><code>keyUrnFields</code> - List of fields in the key schema that will be eligible for key urn compression</dd>
+<dd><code>repushTtlSeconds</code> - For store version created from repush, indicates the time-to-live in seconds set during the repush</dd>
 </dl>
 </section>
 </li>
@@ -2045,6 +2070,29 @@ implements org.apache.avro.specific.SpecificRecord</span></div>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setKeyUrnFields</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;value)</span></div>
 <div class="block">Sets the value of the 'keyUrnFields' field.
  List of fields in the key schema that will be eligible for key urn compression</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>value</code> - the value to set.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getRepushTtlSeconds()">
+<h3>getRepushTtlSeconds</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getRepushTtlSeconds</span>()</div>
+<div class="block">Gets the value of the 'repushTtlSeconds' field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>For store version created from repush, indicates the time-to-live in seconds set during the repush</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setRepushTtlSeconds(int)">
+<h3>setRepushTtlSeconds</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setRepushTtlSeconds</span><wbr><span class="parameters">(int&nbsp;value)</span></div>
+<div class="block">Sets the value of the 'repushTtlSeconds' field.
+ For store version created from repush, indicates the time-to-live in seconds set during the repush</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>value</code> - the value to set.</dd>

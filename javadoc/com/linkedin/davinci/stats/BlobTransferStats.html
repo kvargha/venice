@@ -92,6 +92,12 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#BLOB_TRANSFER_BYTES_RECEIVED" class="member-name-link">BLOB_TRANSFER_BYTES_RECEIVED</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#BLOB_TRANSFER_BYTES_SENT" class="member-name-link">BLOB_TRANSFER_BYTES_SENT</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#BLOB_TRANSFER_FAILED_NUM_RESPONSES" class="member-name-link">BLOB_TRANSFER_FAILED_NUM_RESPONSES</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
@@ -119,6 +125,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">BlobTransferStats</a>()</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.linkedin.venice.utils.Time)" class="member-name-link">BlobTransferStats</a><wbr>(<a href="../../venice/utils/Time.html" title="interface in com.linkedin.venice.utils">Time</a>&nbsp;time)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -133,6 +141,12 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBlobTransferBytesReceived()" class="member-name-link">getBlobTransferBytesReceived</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBlobTransferBytesSent()" class="member-name-link">getBlobTransferBytesSent</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBlobTransferFailedNumResponses()" class="member-name-link">getBlobTransferFailedNumResponses</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -150,6 +164,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">All get methods to get the sensor value</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordBlobTransferBytesReceived(long)" class="member-name-link">recordBlobTransferBytesReceived</a><wbr>(long&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordBlobTransferBytesSent(long)" class="member-name-link">recordBlobTransferBytesSent</a><wbr>(long&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordBlobTransferFileReceiveThroughput(double)" class="member-name-link">recordBlobTransferFileReceiveThroughput</a><wbr>(double&nbsp;throughput)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -258,6 +278,34 @@ loadScripts(document, 'script');</script>
 </dl>
 </section>
 </li>
+<li>
+<section class="detail" id="BLOB_TRANSFER_BYTES_RECEIVED">
+<h3>BLOB_TRANSFER_BYTES_RECEIVED</h3>
+<div class="member-signature"><span class="modifiers">protected static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">BLOB_TRANSFER_BYTES_RECEIVED</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.BlobTransferStats.BLOB_TRANSFER_BYTES_RECEIVED">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="BLOB_TRANSFER_BYTES_SENT">
+<h3>BLOB_TRANSFER_BYTES_SENT</h3>
+<div class="member-signature"><span class="modifiers">protected static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">BLOB_TRANSFER_BYTES_SENT</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.BlobTransferStats.BLOB_TRANSFER_BYTES_SENT">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -270,6 +318,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>BlobTransferStats</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BlobTransferStats</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(com.linkedin.venice.utils.Time)">
+<h3>BlobTransferStats</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BlobTransferStats</span><wbr><span class="parameters">(<a href="../../venice/utils/Time.html" title="interface in com.linkedin.venice.utils">Time</a>&nbsp;time)</span></div>
 </section>
 </li>
 </ul>
@@ -354,6 +408,30 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getBlobTransferTime()">
 <h3>getBlobTransferTime</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getBlobTransferTime</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getBlobTransferBytesReceived()">
+<h3>getBlobTransferBytesReceived</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getBlobTransferBytesReceived</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="recordBlobTransferBytesReceived(long)">
+<h3>recordBlobTransferBytesReceived</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordBlobTransferBytesReceived</span><wbr><span class="parameters">(long&nbsp;value)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getBlobTransferBytesSent()">
+<h3>getBlobTransferBytesSent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getBlobTransferBytesSent</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="recordBlobTransferBytesSent(long)">
+<h3>recordBlobTransferBytesSent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordBlobTransferBytesSent</span><wbr><span class="parameters">(long&nbsp;value)</span></div>
 </section>
 </li>
 </ul>

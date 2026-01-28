@@ -122,31 +122,44 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceOpenTelemetryMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricsRepository</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOpenTelemetryMetricsRepository()" class="member-name-link">getOpenTelemetryMetricsRepository</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cloneWithNewMetricPrefix(java.lang.String)" class="member-name-link">cloneWithNewMetricPrefix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;newMetricPrefix)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates a child repository that shares the same OpenTelemetry SDK instance
+ but uses a different metric prefix.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceMetricsConfig.html" title="class in com.linkedin.venice.stats">VeniceMetricsConfig</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVeniceMetricsConfig()" class="member-name-link">getVeniceMetricsConfig</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceOpenTelemetryMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceOpenTelemetryMetricsRepository</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOpenTelemetryMetricsRepository()" class="member-name-link">getOpenTelemetryMetricsRepository</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getVeniceMetricsRepository(com.linkedin.venice.stats.ClientType,java.util.Collection,boolean)" class="member-name-link">getVeniceMetricsRepository</a><wbr>(<a href="ClientType.html" title="enum class in com.linkedin.venice.stats">ClientType</a>&nbsp;clientType,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="VeniceMetricsConfig.html" title="class in com.linkedin.venice.stats">VeniceMetricsConfig</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVeniceMetricsConfig()" class="member-name-link">getVeniceMetricsConfig</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getVeniceMetricsRepository(com.linkedin.venice.stats.ClientType,java.util.Collection,boolean)" class="member-name-link">getVeniceMetricsRepository</a><wbr>(<a href="ClientType.html" title="enum class in com.linkedin.venice.stats">ClientType</a>&nbsp;clientType,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities,
  boolean&nbsp;emitOtelMetrics)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getVeniceMetricsRepository(com.linkedin.venice.stats.ClientType,java.util.Collection,boolean,io.opentelemetry.sdk.metrics.export.MetricReader)" class="member-name-link">getVeniceMetricsRepository</a><wbr>(<a href="ClientType.html" title="enum class in com.linkedin.venice.stats">ClientType</a>&nbsp;clientType,
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getVeniceMetricsRepository(com.linkedin.venice.stats.ClientType,java.util.Collection,boolean,io.opentelemetry.sdk.metrics.export.MetricReader)" class="member-name-link">getVeniceMetricsRepository</a><wbr>(<a href="ClientType.html" title="enum class in com.linkedin.venice.stats">ClientType</a>&nbsp;clientType,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities,
  boolean&nbsp;emitOtelMetrics,
  io.opentelemetry.sdk.metrics.export.MetricReader&nbsp;additionalMetricReader)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getVeniceMetricsRepository(java.lang.String,java.lang.String,java.util.Collection,java.util.Map)" class="member-name-link">getVeniceMetricsRepository</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;serviceName,
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getVeniceMetricsRepository(java.lang.String,java.lang.String,java.util.Collection,java.util.Map)" class="member-name-link">getVeniceMetricsRepository</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;serviceName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;metricPrefix,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;configs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getVeniceMetricsRepository(java.lang.String,java.lang.String,java.util.Collection,java.util.Map,boolean)" class="member-name-link">getVeniceMetricsRepository</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;serviceName,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;metricPrefix,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;configs,
+ boolean&nbsp;useSingleThreadedMetricsRepository)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
@@ -208,6 +221,21 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </section>
 </li>
 <li>
+<section class="detail" id="cloneWithNewMetricPrefix(java.lang.String)">
+<h3>cloneWithNewMetricPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></span>&nbsp;<span class="element-name">cloneWithNewMetricPrefix</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;newMetricPrefix)</span></div>
+<div class="block">Creates a child repository that shares the same OpenTelemetry SDK instance
+ but uses a different metric prefix. This is useful for emitting metrics with a
+ different prefix (e.g., "participant_store_client") without reinitializing OpenTelemetry.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>newMetricPrefix</code> - The metric prefix to use for the child repository</dd>
+<dt>Returns:</dt>
+<dd>A new VeniceMetricsRepository instance with the specified prefix</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="close()">
 <h3>close</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">close</span>()</div>
@@ -228,6 +256,16 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;metricPrefix,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;configs)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getVeniceMetricsRepository(java.lang.String,java.lang.String,java.util.Collection,java.util.Map,boolean)">
+<h3>getVeniceMetricsRepository</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="VeniceMetricsRepository.html" title="class in com.linkedin.venice.stats">VeniceMetricsRepository</a></span>&nbsp;<span class="element-name">getVeniceMetricsRepository</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;serviceName,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;metricPrefix,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="metrics/MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a>&gt;&nbsp;metricEntities,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;configs,
+ boolean&nbsp;useSingleThreadedMetricsRepository)</span></div>
 </section>
 </li>
 <li>
