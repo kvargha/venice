@@ -132,21 +132,26 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <div class="col-second even-row-color"><code><a href="#STREAM_REPROCESSING_TOPIC_SUFFIX" class="member-name-link">STREAM_REPROCESSING_TOPIC_SUFFIX</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#VENICE_RE_PUSH_PUSH_ID_PREFIX" class="member-name-link">VENICE_RE_PUSH_PUSH_ID_PREFIX</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#VENICE_COMPLIANCE_PUSH_ID_PREFIX" class="member-name-link">VENICE_COMPLIANCE_PUSH_ID_PREFIX</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">Prefix used in push id to indicate a compliance/privacy deletion push.</div>
+</div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#VENICE_RE_PUSH_PUSH_ID_PREFIX" class="member-name-link">VENICE_RE_PUSH_PUSH_ID_PREFIX</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Prefix used in push id to indicate the version's data source is coming from an existing version topic.</div>
 </div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#VENICE_REGULAR_PUSH_WITH_TTL_RE_PUSH_PREFIX" class="member-name-link">VENICE_REGULAR_PUSH_WITH_TTL_RE_PUSH_PREFIX</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#VENICE_REGULAR_PUSH_WITH_TTL_RE_PUSH_PREFIX" class="member-name-link">VENICE_REGULAR_PUSH_WITH_TTL_RE_PUSH_PREFIX</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Prefix used in push id to indicate a regular batch push is made to a store with TTL re-push enabled.</div>
 </div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#VENICE_TTL_RE_PUSH_PUSH_ID_PREFIX" class="member-name-link">VENICE_TTL_RE_PUSH_PUSH_ID_PREFIX</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#VERSION_SEPARATOR" class="member-name-link">VERSION_SEPARATOR</a></code></div>
+<div class="col-second even-row-color"><code><a href="#VENICE_TTL_RE_PUSH_PUSH_ID_PREFIX" class="member-name-link">VENICE_TTL_RE_PUSH_PUSH_ID_PREFIX</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#VERSION_SEPARATOR" class="member-name-link">VERSION_SEPARATOR</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -162,28 +167,38 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#checkVersionSRTopic(java.lang.String,boolean)" class="member-name-link">checkVersionSRTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;kafkaTopic,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#canIncomingPushKillExistingPush(java.lang.String,java.lang.String,com.linkedin.venice.meta.Version.PushType)" class="member-name-link">canIncomingPushKillExistingPush</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;existingPushJobId,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;incomingPushJobId,
+ <a href="Version.PushType.html" title="enum class in com.linkedin.venice.meta">Version.PushType</a>&nbsp;incomingPushType)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Determine if an existing push job can be killed by an incoming push job.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#checkVersionSRTopic(java.lang.String,boolean)" class="member-name-link">checkVersionSRTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;kafkaTopic,
  boolean&nbsp;checkSR)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Version.html" title="interface in com.linkedin.venice.meta">Version</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#cloneVersion()" class="member-name-link">cloneVersion</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#composeKafkaTopic(java.lang.String,int)" class="member-name-link">composeKafkaTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
- int&nbsp;versionNumber)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Version.html" title="interface in com.linkedin.venice.meta">Version</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#cloneVersion()" class="member-name-link">cloneVersion</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#composeStreamReprocessingTopic(java.lang.String,int)" class="member-name-link">composeStreamReprocessingTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#composeKafkaTopic(java.lang.String,int)" class="member-name-link">composeKafkaTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  int&nbsp;versionNumber)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#composeStreamReprocessingTopicFromVersionTopic(java.lang.String)" class="member-name-link">composeStreamReprocessingTopicFromVersionTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;versionTopic)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#composeStreamReprocessingTopic(java.lang.String,int)" class="member-name-link">composeStreamReprocessingTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ int&nbsp;versionNumber)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#composeVersionTopicFromStreamReprocessingTopic(java.lang.String)" class="member-name-link">composeVersionTopicFromStreamReprocessingTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;kafkaTopic)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#composeStreamReprocessingTopicFromVersionTopic(java.lang.String)" class="member-name-link">composeStreamReprocessingTopicFromVersionTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;versionTopic)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#containsHybridVersion(java.util.List)" class="member-name-link">containsHybridVersion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Version.html" title="interface in com.linkedin.venice.meta">Version</a>&gt;&nbsp;versions)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#composeVersionTopicFromStreamReprocessingTopic(java.lang.String)" class="member-name-link">composeVersionTopicFromStreamReprocessingTopic</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;kafkaTopic)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#containsHybridVersion(java.util.List)" class="member-name-link">containsHybridVersion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Version.html" title="interface in com.linkedin.venice.meta">Version</a>&gt;&nbsp;versions)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#generateCompliancePushId(java.lang.String)" class="member-name-link">generateCompliancePushId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#generateRegularPushWithTTLRePushId(java.lang.String)" class="member-name-link">generateRegularPushWithTTLRePushId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</code></div>
@@ -311,12 +326,20 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isKeyUrnCompressionEnabled()" class="member-name-link">isKeyUrnCompressionEnabled</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#isLeaderFollowerModelEnabled()" class="member-name-link">isLeaderFollowerModelEnabled</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isNativeReplicationEnabled()" class="member-name-link">isNativeReplicationEnabled</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#isKillableSystemPush(java.lang.String)" class="member-name-link">isKillableSystemPush</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Check if the push ID represents a system-initiated push that can be killed by user-initiated pushes.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#isLeaderFollowerModelEnabled()" class="member-name-link">isLeaderFollowerModelEnabled</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isNativeReplicationEnabled()" class="member-name-link">isNativeReplicationEnabled</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#isPushIdCompliancePush(java.lang.String)" class="member-name-link">isPushIdCompliancePush</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#isPushIdRegularPushWithTTLRePush(java.lang.String)" class="member-name-link">isPushIdRegularPushWithTTLRePush</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
@@ -644,6 +667,22 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <dd>
 <ul class="see-list">
 <li><a href="../../../../constant-values.html#com.linkedin.venice.meta.Version.VENICE_REGULAR_PUSH_WITH_TTL_RE_PUSH_PREFIX">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="VENICE_COMPLIANCE_PUSH_ID_PREFIX">
+<h3>VENICE_COMPLIANCE_PUSH_ID_PREFIX</h3>
+<div class="member-signature"><span class="modifiers">static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">VENICE_COMPLIANCE_PUSH_ID_PREFIX</span></div>
+<div class="block">Prefix used in push id to indicate a compliance/privacy deletion push. These are system-initiated pushes
+ that can be killed by user-initiated pushes.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../constant-values.html#com.linkedin.venice.meta.Version.VENICE_COMPLIANCE_PUSH_ID_PREFIX">Constant Field Values</a></li>
 </ul>
 </dd>
 </dl>
@@ -1343,6 +1382,12 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 </section>
 </li>
 <li>
+<section class="detail" id="generateCompliancePushId(java.lang.String)">
+<h3>generateCompliancePushId</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">generateCompliancePushId</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="isPushIdTTLRePush(java.lang.String)">
 <h3>isPushIdTTLRePush</h3>
 <div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPushIdTTLRePush</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</span></div>
@@ -1358,6 +1403,51 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <section class="detail" id="isPushIdRegularPushWithTTLRePush(java.lang.String)">
 <h3>isPushIdRegularPushWithTTLRePush</h3>
 <div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPushIdRegularPushWithTTLRePush</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="isPushIdCompliancePush(java.lang.String)">
+<h3>isPushIdCompliancePush</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPushIdCompliancePush</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="isKillableSystemPush(java.lang.String)">
+<h3>isKillableSystemPush</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isKillableSystemPush</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pushId)</span></div>
+<div class="block">Check if the push ID represents a system-initiated push that can be killed by user-initiated pushes.
+ This includes regular repushes and compliance pushes.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pushId</code> - the push job ID to check</dd>
+<dt>Returns:</dt>
+<dd>true if the push is a killable system push</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="canIncomingPushKillExistingPush(java.lang.String,java.lang.String,com.linkedin.venice.meta.Version.PushType)">
+<h3>canIncomingPushKillExistingPush</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canIncomingPushKillExistingPush</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;existingPushJobId,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;incomingPushJobId,
+ <a href="Version.PushType.html" title="enum class in com.linkedin.venice.meta">Version.PushType</a>&nbsp;incomingPushType)</span></div>
+<div class="block">Determine if an existing push job can be killed by an incoming push job.
+
+ An existing push can be killed if:
+ 1. The existing push is a killable system push (repush or compliance push), AND
+ 2. The incoming push is NOT an incremental push, AND
+ 3. The incoming push is NOT itself a killable system push (i.e., it's a user-initiated push)
+
+ This allows user-initiated batch pushes to preempt system-initiated pushes like repushes
+ and compliance pushes, but prevents system pushes from killing each other.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>existingPushJobId</code> - the push job ID of the currently running push</dd>
+<dd><code>incomingPushJobId</code> - the push job ID of the new push attempting to start</dd>
+<dd><code>incomingPushType</code> - the type of the incoming push</dd>
+<dt>Returns:</dt>
+<dd>true if the existing push can be killed to allow the incoming push to proceed</dd>
+</dl>
 </section>
 </li>
 <li>

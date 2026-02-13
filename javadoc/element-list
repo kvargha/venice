@@ -253,6 +253,7 @@ com.linkedin.venice.service
 com.linkedin.venice.servicediscovery
 com.linkedin.venice.spark
 com.linkedin.venice.spark.chunk
+com.linkedin.venice.spark.datawriter.compression
 com.linkedin.venice.spark.datawriter.jobs
 com.linkedin.venice.spark.datawriter.partition
 com.linkedin.venice.spark.datawriter.recordprocessor

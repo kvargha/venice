@@ -114,7 +114,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.linkedin.venice.controller.VeniceControllerMultiClusterConfig,io.tehuti.metrics.MetricsRepository,boolean,java.util.Optional,java.util.Optional,java.util.Optional,com.linkedin.d2.balancer.D2Client,java.util.Map,java.util.Optional,java.util.Optional,java.util.Optional,com.linkedin.venice.pubsub.PubSubTopicRepository,com.linkedin.venice.pubsub.PubSubClientsFactory,com.linkedin.venice.pubsub.PubSubPositionTypeRegistry,java.util.Optional)" class="member-name-link">VeniceControllerService</a><wbr>(<a href="VeniceControllerMultiClusterConfig.html" title="class in com.linkedin.venice.controller">VeniceControllerMultiClusterConfig</a>&nbsp;multiClusterConfigs,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.linkedin.venice.controller.VeniceControllerMultiClusterConfig,io.tehuti.metrics.MetricsRepository,boolean,java.util.Optional,java.util.Optional,java.util.Optional,com.linkedin.d2.balancer.D2Client,java.util.Map,java.util.Optional,java.util.Optional,java.util.Optional,com.linkedin.venice.pubsub.PubSubTopicRepository,com.linkedin.venice.pubsub.PubSubClientsFactory,com.linkedin.venice.pubsub.PubSubPositionTypeRegistry,java.util.Optional,java.util.Optional)" class="member-name-link">VeniceControllerService</a><wbr>(<a href="VeniceControllerMultiClusterConfig.html" title="class in com.linkedin.venice.controller">VeniceControllerMultiClusterConfig</a>&nbsp;multiClusterConfigs,
  io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository,
  boolean&nbsp;sslEnabled,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../SSLConfig.html" title="class in com.linkedin.venice">SSLConfig</a>&gt;&nbsp;sslConfig,
@@ -128,7 +128,8 @@ loadScripts(document, 'script');</script>
  <a href="../pubsub/PubSubTopicRepository.html" title="class in com.linkedin.venice.pubsub">PubSubTopicRepository</a>&nbsp;pubSubTopicRepository,
  <a href="../pubsub/PubSubClientsFactory.html" title="class in com.linkedin.venice.pubsub">PubSubClientsFactory</a>&nbsp;pubSubClientsFactory,
  <a href="../pubsub/PubSubPositionTypeRegistry.html" title="class in com.linkedin.venice.pubsub">PubSubPositionTypeRegistry</a>&nbsp;pubSubPositionTypeRegistry,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="VeniceVersionLifecycleEventListener.html" title="interface in com.linkedin.venice.controller">VeniceVersionLifecycleEventListener</a>&gt;&nbsp;versionLifecycleEventListener)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="VeniceVersionLifecycleEventListener.html" title="interface in com.linkedin.venice.controller">VeniceVersionLifecycleEventListener</a>&gt;&gt;&nbsp;versionLifecycleEventListeners,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="ExternalETLService.html" title="interface in com.linkedin.venice.controller">ExternalETLService</a>&gt;&nbsp;externalETLService)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -186,7 +187,7 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.linkedin.venice.controller.VeniceControllerMultiClusterConfig,io.tehuti.metrics.MetricsRepository,boolean,java.util.Optional,java.util.Optional,java.util.Optional,com.linkedin.d2.balancer.D2Client,java.util.Map,java.util.Optional,java.util.Optional,java.util.Optional,com.linkedin.venice.pubsub.PubSubTopicRepository,com.linkedin.venice.pubsub.PubSubClientsFactory,com.linkedin.venice.pubsub.PubSubPositionTypeRegistry,java.util.Optional)">
+<section class="detail" id="&lt;init&gt;(com.linkedin.venice.controller.VeniceControllerMultiClusterConfig,io.tehuti.metrics.MetricsRepository,boolean,java.util.Optional,java.util.Optional,java.util.Optional,com.linkedin.d2.balancer.D2Client,java.util.Map,java.util.Optional,java.util.Optional,java.util.Optional,com.linkedin.venice.pubsub.PubSubTopicRepository,com.linkedin.venice.pubsub.PubSubClientsFactory,com.linkedin.venice.pubsub.PubSubPositionTypeRegistry,java.util.Optional,java.util.Optional)">
 <h3>VeniceControllerService</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">VeniceControllerService</span><wbr><span class="parameters">(<a href="VeniceControllerMultiClusterConfig.html" title="class in com.linkedin.venice.controller">VeniceControllerMultiClusterConfig</a>&nbsp;multiClusterConfigs,
  io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository,
@@ -202,7 +203,8 @@ loadScripts(document, 'script');</script>
  <a href="../pubsub/PubSubTopicRepository.html" title="class in com.linkedin.venice.pubsub">PubSubTopicRepository</a>&nbsp;pubSubTopicRepository,
  <a href="../pubsub/PubSubClientsFactory.html" title="class in com.linkedin.venice.pubsub">PubSubClientsFactory</a>&nbsp;pubSubClientsFactory,
  <a href="../pubsub/PubSubPositionTypeRegistry.html" title="class in com.linkedin.venice.pubsub">PubSubPositionTypeRegistry</a>&nbsp;pubSubPositionTypeRegistry,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="VeniceVersionLifecycleEventListener.html" title="interface in com.linkedin.venice.controller">VeniceVersionLifecycleEventListener</a>&gt;&nbsp;versionLifecycleEventListener)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="VeniceVersionLifecycleEventListener.html" title="interface in com.linkedin.venice.controller">VeniceVersionLifecycleEventListener</a>&gt;&gt;&nbsp;versionLifecycleEventListeners,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="ExternalETLService.html" title="interface in com.linkedin.venice.controller">ExternalETLService</a>&gt;&nbsp;externalETLService)</span></div>
 </section>
 </li>
 </ul>

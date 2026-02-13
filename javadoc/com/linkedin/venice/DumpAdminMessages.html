@@ -44,7 +44,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested-class-summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
@@ -87,21 +87,6 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="summary">
 <ul class="summary-list">
-<!-- ======== NESTED CLASS SUMMARY ======== -->
-<li>
-<section class="nested-class-summary" id="nested-class-summary">
-<h2>Nested Class Summary</h2>
-<div class="caption"><span>Nested Classes</span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Class</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static class&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="DumpAdminMessages.AdminOperationInfo.html" class="type-name-link" title="class in com.linkedin.venice">DumpAdminMessages.AdminOperationInfo</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-</div>
-</section>
-</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -126,16 +111,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="DumpAdminMessages.AdminOperationInfo.html" title="class in com.linkedin.venice">DumpAdminMessages.AdminOperationInfo</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#dumpAdminMessages(com.linkedin.venice.pubsub.api.PubSubConsumerAdapter,java.lang.String,com.linkedin.venice.pubsub.api.PubSubPosition,int)" class="member-name-link">dumpAdminMessages</a><wbr>(<a href="pubsub/api/PubSubConsumerAdapter.html" title="interface in com.linkedin.venice.pubsub.api">PubSubConsumerAdapter</a>&nbsp;consumer,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;startingPosition,
  int&nbsp;messageCnt)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPubSubConsumerProperties(java.lang.String,java.util.Properties)" class="member-name-link">getPubSubConsumerProperties</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;kafkaUrl,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;pubSubConsumerProperties)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Dumps admin messages from the admin topic for the given cluster.</div>
+</div>
 </div>
 </div>
 </div>
@@ -170,17 +153,21 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="dumpAdminMessages(com.linkedin.venice.pubsub.api.PubSubConsumerAdapter,java.lang.String,com.linkedin.venice.pubsub.api.PubSubPosition,int)">
 <h3>dumpAdminMessages</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="DumpAdminMessages.AdminOperationInfo.html" title="class in com.linkedin.venice">DumpAdminMessages.AdminOperationInfo</a>&gt;</span>&nbsp;<span class="element-name">dumpAdminMessages</span><wbr><span class="parameters">(<a href="pubsub/api/PubSubConsumerAdapter.html" title="interface in com.linkedin.venice.pubsub.api">PubSubConsumerAdapter</a>&nbsp;consumer,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">dumpAdminMessages</span><wbr><span class="parameters">(<a href="pubsub/api/PubSubConsumerAdapter.html" title="interface in com.linkedin.venice.pubsub.api">PubSubConsumerAdapter</a>&nbsp;consumer,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="pubsub/api/PubSubPosition.html" title="interface in com.linkedin.venice.pubsub.api">PubSubPosition</a>&nbsp;startingPosition,
  int&nbsp;messageCnt)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="getPubSubConsumerProperties(java.lang.String,java.util.Properties)">
-<h3>getPubSubConsumerProperties</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a></span>&nbsp;<span class="element-name">getPubSubConsumerProperties</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;kafkaUrl,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;pubSubConsumerProperties)</span></div>
+<div class="block">Dumps admin messages from the admin topic for the given cluster.
+ Messages are logged as they are received instead of being buffered.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>consumer</code> - the PubSub consumer to use</dd>
+<dd><code>clusterName</code> - the name of the cluster</dd>
+<dd><code>startingPosition</code> - the starting position to consume from</dd>
+<dd><code>messageCnt</code> - the maximum number of messages to consume</dd>
+<dt>Returns:</dt>
+<dd>the number of messages processed</dd>
+</dl>
 </section>
 </li>
 </ul>

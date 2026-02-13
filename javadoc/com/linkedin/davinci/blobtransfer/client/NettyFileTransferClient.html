@@ -124,18 +124,23 @@ loadScripts(document, 'script');</script>
  int&nbsp;partition,
  <a href="../BlobTransferUtils.BlobTransferTableFormat.html" title="enum class in com.linkedin.davinci.blobtransfer">BlobTransferUtils.BlobTransferTableFormat</a>&nbsp;requestedTableFormat)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConnectableHosts(java.util.HashSet,java.lang.String,int,int)" class="member-name-link">getConnectableHosts</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashSet.html" title="class or interface in java.util" class="external-link">HashSet</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;discoveredHosts,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.netty.channel.Channel</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getActiveChannel(java.lang.String)" class="member-name-link">getActiveChannel</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;replicaId)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the active channel for a given transfer, if any.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConnectableHosts(java.util.HashSet,java.lang.String,int,int)" class="member-name-link">getConnectableHosts</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashSet.html" title="class or interface in java.util" class="external-link">HashSet</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;discoveredHosts,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
  int&nbsp;version,
  int&nbsp;partition)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">A method to get the connectable hosts for the given store, version, and partition
  This method is only used for checking connectivity to the hosts.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#purgeStaleConnectivityRecords(com.linkedin.venice.utils.concurrent.VeniceConcurrentHashMap)" class="member-name-link">purgeStaleConnectivityRecords</a><wbr>(<a href="../../../venice/utils/concurrent/VeniceConcurrentHashMap.html" title="class in com.linkedin.venice.utils.concurrent">VeniceConcurrentHashMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;&nbsp;hostsToTimestamp)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#purgeStaleConnectivityRecords(com.linkedin.venice.utils.concurrent.VeniceConcurrentHashMap)" class="member-name-link">purgeStaleConnectivityRecords</a><wbr>(<a href="../../../venice/utils/concurrent/VeniceConcurrentHashMap.html" title="class in com.linkedin.venice.utils.concurrent">VeniceConcurrentHashMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;&nbsp;hostsToTimestamp)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Check the freshness of the connectivity records and purge the stale records</div>
 </div>
 </div>
@@ -217,6 +222,19 @@ loadScripts(document, 'script');</script>
  int&nbsp;version,
  int&nbsp;partition,
  <a href="../BlobTransferUtils.BlobTransferTableFormat.html" title="enum class in com.linkedin.davinci.blobtransfer">BlobTransferUtils.BlobTransferTableFormat</a>&nbsp;requestedTableFormat)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getActiveChannel(java.lang.String)">
+<h3>getActiveChannel</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">io.netty.channel.Channel</span>&nbsp;<span class="element-name">getActiveChannel</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;replicaId)</span></div>
+<div class="block">Get the active channel for a given transfer, if any.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>replicaId</code> - the replica ID (format: storeName_vVersion-partition)</dd>
+<dt>Returns:</dt>
+<dd>the active Channel, or null if no active transfer</dd>
+</dl>
 </section>
 </li>
 <li>

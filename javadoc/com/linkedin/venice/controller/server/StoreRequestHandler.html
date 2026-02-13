@@ -134,6 +134,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../protocols/controller/GetAclForStoreGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">GetAclForStoreGrpcResponse</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAclForStore(com.linkedin.venice.protocols.controller.GetAclForStoreGrpcRequest)" class="member-name-link">getAclForStore</a><wbr>(<a href="../../protocols/controller/GetAclForStoreGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">GetAclForStoreGrpcRequest</a>&nbsp;request)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../meta/StoreInfo.html" title="class in com.linkedin.venice.meta">StoreInfo</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStore(java.lang.String,java.lang.String)" class="member-name-link">getStore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets store information for a given store in a cluster.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../protocols/controller/ListStoresGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">ListStoresGrpcResponse</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#listStores(com.linkedin.venice.protocols.controller.ListStoresGrpcRequest)" class="member-name-link">listStores</a><wbr>(<a href="../../protocols/controller/ListStoresGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">ListStoresGrpcRequest</a>&nbsp;request)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Lists all stores in the specified cluster with optional filtering.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../protocols/controller/UpdateAclForStoreGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">UpdateAclForStoreGrpcResponse</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateAclForStore(com.linkedin.venice.protocols.controller.UpdateAclForStoreGrpcRequest)" class="member-name-link">updateAclForStore</a><wbr>(<a href="../../protocols/controller/UpdateAclForStoreGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">UpdateAclForStoreGrpcRequest</a>&nbsp;request)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -240,6 +251,34 @@ loadScripts(document, 'script');</script>
 <dd><code>request</code> - the request containing cluster and store name</dd>
 <dt>Returns:</dt>
 <dd>response indicating if store is deleted and reason if not</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="listStores(com.linkedin.venice.protocols.controller.ListStoresGrpcRequest)">
+<h3>listStores</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../protocols/controller/ListStoresGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">ListStoresGrpcResponse</a></span>&nbsp;<span class="element-name">listStores</span><wbr><span class="parameters">(<a href="../../protocols/controller/ListStoresGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">ListStoresGrpcRequest</a>&nbsp;request)</span></div>
+<div class="block">Lists all stores in the specified cluster with optional filtering.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>request</code> - the request containing cluster name and optional filters</dd>
+<dt>Returns:</dt>
+<dd>response containing the list of store names</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getStore(java.lang.String,java.lang.String)">
+<h3>getStore</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../meta/StoreInfo.html" title="class in com.linkedin.venice.meta">StoreInfo</a></span>&nbsp;<span class="element-name">getStore</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName)</span></div>
+<div class="block">Gets store information for a given store in a cluster.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>clusterName</code> - the name of the cluster</dd>
+<dd><code>storeName</code> - the name of the store</dd>
+<dt>Returns:</dt>
+<dd>StoreInfo containing the store metadata</dd>
 </dl>
 </section>
 </li>

@@ -115,13 +115,20 @@ loadScripts(document, 'script');</script>
  io.grpc.stub.StreamObserver&lt;<a href="LastSuccessfulAdminCommandExecutionGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">LastSuccessfulAdminCommandExecutionGrpcResponse</a>&gt;&nbsp;responseObserver)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#updateAdminOperationProtocolVersion(com.linkedin.venice.protocols.controller.UpdateAdminOperationProtocolVersionGrpcRequest,io.grpc.stub.StreamObserver)" class="member-name-link">updateAdminOperationProtocolVersion</a><wbr>(<a href="UpdateAdminOperationProtocolVersionGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">UpdateAdminOperationProtocolVersionGrpcRequest</a>&nbsp;request,
- io.grpc.stub.StreamObserver&lt;<a href="AdminTopicMetadataGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">AdminTopicMetadataGrpcResponse</a>&gt;&nbsp;responseObserver)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#isStoreMigrationAllowed(com.linkedin.venice.protocols.controller.StoreMigrationCheckGrpcRequest,io.grpc.stub.StreamObserver)" class="member-name-link">isStoreMigrationAllowed</a><wbr>(<a href="StoreMigrationCheckGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">StoreMigrationCheckGrpcRequest</a>&nbsp;request,
+ io.grpc.stub.StreamObserver&lt;<a href="StoreMigrationCheckGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">StoreMigrationCheckGrpcResponse</a>&gt;&nbsp;responseObserver)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">
+ StoreMigration</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#updateAdminTopicMetadata(com.linkedin.venice.protocols.controller.UpdateAdminTopicMetadataGrpcRequest,io.grpc.stub.StreamObserver)" class="member-name-link">updateAdminTopicMetadata</a><wbr>(<a href="UpdateAdminTopicMetadataGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">UpdateAdminTopicMetadataGrpcRequest</a>&nbsp;request,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#updateAdminOperationProtocolVersion(com.linkedin.venice.protocols.controller.UpdateAdminOperationProtocolVersionGrpcRequest,io.grpc.stub.StreamObserver)" class="member-name-link">updateAdminOperationProtocolVersion</a><wbr>(<a href="UpdateAdminOperationProtocolVersionGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">UpdateAdminOperationProtocolVersionGrpcRequest</a>&nbsp;request,
  io.grpc.stub.StreamObserver&lt;<a href="AdminTopicMetadataGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">AdminTopicMetadataGrpcResponse</a>&gt;&nbsp;responseObserver)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#updateAdminTopicMetadata(com.linkedin.venice.protocols.controller.UpdateAdminTopicMetadataGrpcRequest,io.grpc.stub.StreamObserver)" class="member-name-link">updateAdminTopicMetadata</a><wbr>(<a href="UpdateAdminTopicMetadataGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">UpdateAdminTopicMetadataGrpcRequest</a>&nbsp;request,
+ io.grpc.stub.StreamObserver&lt;<a href="AdminTopicMetadataGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">AdminTopicMetadataGrpcResponse</a>&gt;&nbsp;responseObserver)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -175,6 +182,16 @@ loadScripts(document, 'script');</script>
 <h3>updateAdminOperationProtocolVersion</h3>
 <div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateAdminOperationProtocolVersion</span><wbr><span class="parameters">(<a href="UpdateAdminOperationProtocolVersionGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">UpdateAdminOperationProtocolVersionGrpcRequest</a>&nbsp;request,
  io.grpc.stub.StreamObserver&lt;<a href="AdminTopicMetadataGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">AdminTopicMetadataGrpcResponse</a>&gt;&nbsp;responseObserver)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="isStoreMigrationAllowed(com.linkedin.venice.protocols.controller.StoreMigrationCheckGrpcRequest,io.grpc.stub.StreamObserver)">
+<h3>isStoreMigrationAllowed</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">isStoreMigrationAllowed</span><wbr><span class="parameters">(<a href="StoreMigrationCheckGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">StoreMigrationCheckGrpcRequest</a>&nbsp;request,
+ io.grpc.stub.StreamObserver&lt;<a href="StoreMigrationCheckGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">StoreMigrationCheckGrpcResponse</a>&gt;&nbsp;responseObserver)</span></div>
+<div class="block"><pre>
+ StoreMigration
+ </pre></div>
 </section>
 </li>
 </ul>

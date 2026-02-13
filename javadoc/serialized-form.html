@@ -3044,6 +3044,12 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="serialized-class-details" id="com.linkedin.venice.exceptions.VeniceBlobTransferCancelledException">
+<h3>Exception&nbsp;<a href="com/linkedin/venice/exceptions/VeniceBlobTransferCancelledException.html" title="class in com.linkedin.venice.exceptions">com.linkedin.venice.exceptions.VeniceBlobTransferCancelledException</a></h3>
+<div class="type-signature">class VeniceBlobTransferCancelledException extends <a href="com/linkedin/venice/exceptions/VeniceException.html" title="class in com.linkedin.venice.exceptions">VeniceException</a> implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+</section>
+</li>
+<li>
 <section class="serialized-class-details" id="com.linkedin.venice.exceptions.VeniceBlobTransferFileNotFoundException">
 <h3>Exception&nbsp;<a href="com/linkedin/venice/exceptions/VeniceBlobTransferFileNotFoundException.html" title="class in com.linkedin.venice.exceptions">com.linkedin.venice.exceptions.VeniceBlobTransferFileNotFoundException</a></h3>
 <div class="type-signature">class VeniceBlobTransferFileNotFoundException extends <a href="com/linkedin/venice/exceptions/VeniceException.html" title="class in com.linkedin.venice.exceptions">VeniceException</a> implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
@@ -3523,6 +3529,10 @@ loadScripts(document, 'script');</script>
 <pre>boolean isChunkingEnabled</pre>
 </li>
 <li class="block-list">
+<h5>isCompliancePush</h5>
+<pre>boolean isCompliancePush</pre>
+</li>
+<li class="block-list">
 <h5>isDuplicateKeyAllowed</h5>
 <pre>boolean isDuplicateKeyAllowed</pre>
 </li>
@@ -3735,6 +3745,10 @@ loadScripts(document, 'script');</script>
 <pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a> sharedTmpDir</pre>
 </li>
 <li class="block-list">
+<h5>sourceDictionary</h5>
+<pre>byte[] sourceDictionary</pre>
+</li>
+<li class="block-list">
 <h5>sourceGridFabric</h5>
 <pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a> sourceGridFabric</pre>
 </li>
@@ -3785,6 +3799,10 @@ loadScripts(document, 'script');</script>
 <li class="block-list">
 <h5>topicCompressionStrategy</h5>
 <pre><a href="com/linkedin/venice/compression/CompressionStrategy.html" title="enum class in com.linkedin.venice.compression">CompressionStrategy</a> topicCompressionStrategy</pre>
+</li>
+<li class="block-list">
+<h5>topicDictionary</h5>
+<pre>byte[] topicDictionary</pre>
 </li>
 <li class="block-list">
 <h5>validateRemoteReplayPolicy</h5>
@@ -6670,6 +6688,216 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.GetKeySchemaGrpcRequest">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/GetKeySchemaGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.GetKeySchemaGrpcRequest</a></h3>
+<div class="type-signature">class GetKeySchemaGrpcRequest extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>bitField0_</h5>
+<pre>int bitField0_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>storeInfo_</h5>
+<pre><a href="com/linkedin/venice/protocols/controller/ClusterStoreGrpcInfo.html" title="class in com.linkedin.venice.protocols.controller">ClusterStoreGrpcInfo</a> storeInfo_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.GetKeySchemaGrpcResponse">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/GetKeySchemaGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.GetKeySchemaGrpcResponse</a></h3>
+<div class="type-signature">class GetKeySchemaGrpcResponse extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>bitField0_</h5>
+<pre>int bitField0_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>schemaId_</h5>
+<pre>int schemaId_</pre>
+</li>
+<li class="block-list">
+<h5>schemaStr_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> schemaStr_</pre>
+</li>
+<li class="block-list">
+<h5>storeInfo_</h5>
+<pre><a href="com/linkedin/venice/protocols/controller/ClusterStoreGrpcInfo.html" title="class in com.linkedin.venice.protocols.controller">ClusterStoreGrpcInfo</a> storeInfo_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.GetStoreGrpcRequest">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/GetStoreGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.GetStoreGrpcRequest</a></h3>
+<div class="type-signature">class GetStoreGrpcRequest extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>bitField0_</h5>
+<pre>int bitField0_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>storeInfo_</h5>
+<pre><a href="com/linkedin/venice/protocols/controller/ClusterStoreGrpcInfo.html" title="class in com.linkedin.venice.protocols.controller">ClusterStoreGrpcInfo</a> storeInfo_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.GetStoreGrpcResponse">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/GetStoreGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.GetStoreGrpcResponse</a></h3>
+<div class="type-signature">class GetStoreGrpcResponse extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>bitField0_</h5>
+<pre>int bitField0_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>storeInfo_</h5>
+<pre><a href="com/linkedin/venice/protocols/controller/ClusterStoreGrpcInfo.html" title="class in com.linkedin.venice.protocols.controller">ClusterStoreGrpcInfo</a> storeInfo_</pre>
+</li>
+<li class="block-list">
+<h5>storeInfoJson_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> storeInfoJson_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.GetValueSchemaGrpcRequest">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/GetValueSchemaGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.GetValueSchemaGrpcRequest</a></h3>
+<div class="type-signature">class GetValueSchemaGrpcRequest extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>bitField0_</h5>
+<pre>int bitField0_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>schemaId_</h5>
+<pre>int schemaId_</pre>
+</li>
+<li class="block-list">
+<h5>storeInfo_</h5>
+<pre><a href="com/linkedin/venice/protocols/controller/ClusterStoreGrpcInfo.html" title="class in com.linkedin.venice.protocols.controller">ClusterStoreGrpcInfo</a> storeInfo_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.GetValueSchemaGrpcResponse">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/GetValueSchemaGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.GetValueSchemaGrpcResponse</a></h3>
+<div class="type-signature">class GetValueSchemaGrpcResponse extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>bitField0_</h5>
+<pre>int bitField0_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>schemaId_</h5>
+<pre>int schemaId_</pre>
+</li>
+<li class="block-list">
+<h5>schemaStr_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> schemaStr_</pre>
+</li>
+<li class="block-list">
+<h5>storeInfo_</h5>
+<pre><a href="com/linkedin/venice/protocols/controller/ClusterStoreGrpcInfo.html" title="class in com.linkedin.venice.protocols.controller">ClusterStoreGrpcInfo</a> storeInfo_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
 <section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.LastSuccessfulAdminCommandExecutionGrpcRequest">
 <h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/LastSuccessfulAdminCommandExecutionGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.LastSuccessfulAdminCommandExecutionGrpcRequest</a></h3>
 <div class="type-signature">class LastSuccessfulAdminCommandExecutionGrpcRequest extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
@@ -6798,6 +7026,80 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.ListStoresGrpcRequest">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/ListStoresGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.ListStoresGrpcRequest</a></h3>
+<div class="type-signature">class ListStoresGrpcRequest extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>bitField0_</h5>
+<pre>int bitField0_</pre>
+</li>
+<li class="block-list">
+<h5>clusterName_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> clusterName_</pre>
+</li>
+<li class="block-list">
+<h5>includeSystemStores_</h5>
+<pre>boolean includeSystemStores_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>storeConfigNameFilter_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> storeConfigNameFilter_</pre>
+</li>
+<li class="block-list">
+<h5>storeConfigValueFilter_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> storeConfigValueFilter_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.ListStoresGrpcResponse">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/ListStoresGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.ListStoresGrpcResponse</a></h3>
+<div class="type-signature">class ListStoresGrpcResponse extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>clusterName_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> clusterName_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>storeNames_</h5>
+<pre>com.google.protobuf.LazyStringArrayList storeNames_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
 <section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.PubSubPositionGrpcWireFormat">
 <h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/PubSubPositionGrpcWireFormat.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.PubSubPositionGrpcWireFormat</a></h3>
 <div class="type-signature">class PubSubPositionGrpcWireFormat extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
@@ -6860,6 +7162,64 @@ loadScripts(document, 'script');</script>
 <li class="block-list">
 <h5>storeInfo_</h5>
 <pre><a href="com/linkedin/venice/protocols/controller/ClusterStoreGrpcInfo.html" title="class in com.linkedin.venice.protocols.controller">ClusterStoreGrpcInfo</a> storeInfo_</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.StoreMigrationCheckGrpcRequest">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/StoreMigrationCheckGrpcRequest.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.StoreMigrationCheckGrpcRequest</a></h3>
+<div class="type-signature">class StoreMigrationCheckGrpcRequest extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>clusterName_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> clusterName_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.protocols.controller.StoreMigrationCheckGrpcResponse">
+<h3>Class&nbsp;<a href="com/linkedin/venice/protocols/controller/StoreMigrationCheckGrpcResponse.html" title="class in com.linkedin.venice.protocols.controller">com.linkedin.venice.protocols.controller.StoreMigrationCheckGrpcResponse</a></h3>
+<div class="type-signature">class StoreMigrationCheckGrpcResponse extends com.google.protobuf.GeneratedMessageV3 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>clusterName_</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> clusterName_</pre>
+</li>
+<li class="block-list">
+<h5>memoizedIsInitialized</h5>
+<pre>byte memoizedIsInitialized</pre>
+</li>
+<li class="block-list">
+<h5>storeMigrationAllowed_</h5>
+<pre>boolean storeMigrationAllowed_</pre>
 </li>
 </ul>
 </section>
@@ -7777,6 +8137,64 @@ loadScripts(document, 'script');</script>
 <li class="block-list">
 <h5>isTTLFilteringEnabled</h5>
 <pre>boolean isTTLFilteringEnabled</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-package-container">
+<h2 title="Package">Package&nbsp;<a href="com/linkedin/venice/spark/datawriter/compression/package-summary.html">com.linkedin.venice.spark.datawriter.compression</a></h2>
+<ul class="block-list">
+<li>
+<section class="serialized-class-details" id="com.linkedin.venice.spark.datawriter.compression.SparkCompressionReEncoder">
+<h3>Class&nbsp;<a href="com/linkedin/venice/spark/datawriter/compression/SparkCompressionReEncoder.html" title="class in com.linkedin.venice.spark.datawriter.compression">com.linkedin.venice.spark.datawriter.compression.SparkCompressionReEncoder</a></h3>
+<div class="type-signature">class SparkCompressionReEncoder extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<dl class="name-value">
+<dt>serialVersionUID:</dt>
+<dd>1L</dd>
+</dl>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>accumulators</h5>
+<pre><a href="com/linkedin/venice/spark/datawriter/task/DataWriterAccumulators.html" title="class in com.linkedin.venice.spark.datawriter.task">DataWriterAccumulators</a> accumulators</pre>
+</li>
+<li class="block-list">
+<h5>compressionMetricCollectionEnabled</h5>
+<pre>boolean compressionMetricCollectionEnabled</pre>
+</li>
+<li class="block-list">
+<h5>destDict</h5>
+<pre>byte[] destDict</pre>
+</li>
+<li class="block-list">
+<h5>destStrategy</h5>
+<pre><a href="com/linkedin/venice/compression/CompressionStrategy.html" title="enum class in com.linkedin.venice.compression">CompressionStrategy</a> destStrategy</pre>
+</li>
+<li class="block-list">
+<h5>schema</h5>
+<pre>org.apache.spark.sql.types.StructType schema</pre>
+</li>
+<li class="block-list">
+<h5>sourceDict</h5>
+<pre>byte[] sourceDict</pre>
+</li>
+<li class="block-list">
+<h5>sourceStrategy</h5>
+<pre><a href="com/linkedin/venice/compression/CompressionStrategy.html" title="enum class in com.linkedin.venice.compression">CompressionStrategy</a> sourceStrategy</pre>
+</li>
+<li class="block-list">
+<h5>valueColumnIndex</h5>
+<pre>int valueColumnIndex</pre>
 </li>
 </ul>
 </section>

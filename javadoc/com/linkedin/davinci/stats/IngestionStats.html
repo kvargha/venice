@@ -113,7 +113,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY" class="member-name-link">CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Consumer metric: Measures the total time from when a record starts being processed (after polling from Kafka and
+ schema checks) until it completes all processing stages.</div>
+</div>
 <div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#FOLLOWER_BYTES_CONSUMED_METRIC_NAME" class="member-name-link">FOLLOWER_BYTES_CONSUMED_METRIC_NAME</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
@@ -131,7 +134,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#INTERNAL_PREPROCESSING_LATENCY" class="member-name-link">INTERNAL_PREPROCESSING_LATENCY</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Drainer metric: Measures the time spent on lightweight preprocessing tasks before heavy message processing begins.</div>
+</div>
 <div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#LEADER_BYTES_CONSUMED_METRIC_NAME" class="member-name-link">LEADER_BYTES_CONSUMED_METRIC_NAME</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
@@ -140,28 +145,63 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#LEADER_PREPROCESSING_LATENCY" class="member-name-link">LEADER_PREPROCESSING_LATENCY</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Leader metric: Measures the time from when keys are locked for a batch of records to just before producing to Kafka.</div>
+</div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#LEADER_PRODUCER_COMPLETION_LATENCY" class="member-name-link">LEADER_PRODUCER_COMPLETION_LATENCY</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Leader metric: Measures the time from when a produce call is made to when the producer callback is invoked,
+ indicating how long Kafka took to write the message to the broker and invoke the callback.</div>
+</div>
+<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#LEADER_RECORDS_CONSUMED_METRIC_NAME" class="member-name-link">LEADER_RECORDS_CONSUMED_METRIC_NAME</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#LEADER_RECORDS_CONSUMED_METRIC_NAME" class="member-name-link">LEADER_RECORDS_CONSUMED_METRIC_NAME</a></code></div>
+<div class="col-second even-row-color"><code><a href="#LEADER_RECORDS_PRODUCED_METRIC_NAME" class="member-name-link">LEADER_RECORDS_PRODUCED_METRIC_NAME</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#LOCAL_BROKER_TO_FOLLOWER_CONSUMER_LATENCY" class="member-name-link">LOCAL_BROKER_TO_FOLLOWER_CONSUMER_LATENCY</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Follower metric: Measures the latency from when the local broker (local region Kafka) received a message to when
+ the follower consumer fetched it.</div>
+</div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#NEARLINE_PRODUCER_TO_LOCAL_BROKER_LATENCY" class="member-name-link">NEARLINE_PRODUCER_TO_LOCAL_BROKER_LATENCY</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Leader metric: Measures the latency from when a nearline producer originally produced a message (with its producer
+ timestamp) to when that message is successfully written to the local broker's version topic by the leader.</div>
+</div>
 <div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#LEADER_RECORDS_PRODUCED_METRIC_NAME" class="member-name-link">LEADER_RECORDS_PRODUCED_METRIC_NAME</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#OFFSET_REGRESSION_DCR_ERROR" class="member-name-link">OFFSET_REGRESSION_DCR_ERROR</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#NEARLINE_LOCAL_BROKER_TO_READY_TO_SERVE_LATENCY" class="member-name-link">NEARLINE_LOCAL_BROKER_TO_READY_TO_SERVE_LATENCY</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-second even-row-color"><code><a href="#PRODUCER_CALLBACK_LATENCY" class="member-name-link">PRODUCER_CALLBACK_LATENCY</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Leader metric: Measures the time spent within the leader's producer callback processing after a message is
+ successfully produced to the local broker.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#NEARLINE_PRODUCER_TO_LOCAL_BROKER_LATENCY" class="member-name-link">NEARLINE_PRODUCER_TO_LOCAL_BROKER_LATENCY</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#PRODUCER_TO_LOCAL_BROKER_LATENCY" class="member-name-link">PRODUCER_TO_LOCAL_BROKER_LATENCY</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Follower metric: Measures the latency from when the leader produced a message to when the local broker
+ (local region Kafka) received it.</div>
+</div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#PRODUCER_TO_SOURCE_BROKER_LATENCY" class="member-name-link">PRODUCER_TO_SOURCE_BROKER_LATENCY</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Leader metric: Measures the latency from when a producer created a message (producer timestamp) to when the
+ source broker (remote region Kafka) received it.</div>
+</div>
+<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#RECORDS_CONSUMED_METRIC_NAME" class="member-name-link">RECORDS_CONSUMED_METRIC_NAME</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#OFFSET_REGRESSION_DCR_ERROR" class="member-name-link">OFFSET_REGRESSION_DCR_ERROR</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#PRODUCER_CALLBACK_LATENCY" class="member-name-link">PRODUCER_CALLBACK_LATENCY</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#RECORDS_CONSUMED_METRIC_NAME" class="member-name-link">RECORDS_CONSUMED_METRIC_NAME</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#SOURCE_BROKER_TO_LEADER_CONSUMER_LATENCY" class="member-name-link">SOURCE_BROKER_TO_LEADER_CONSUMER_LATENCY</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Leader metric: Measures the latency from when the source broker (remote region Kafka) received a message to when
+ the leader consumer fetched it.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#STORAGE_QUOTA_USED" class="member-name-link">STORAGE_QUOTA_USED</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
@@ -286,12 +326,6 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLocalBrokerFollowerConsumerLatencySensor()" class="member-name-link">getLocalBrokerFollowerConsumerLatencySensor</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNearlineLocalBrokerToReadyToServeLatencyAvg()" class="member-name-link">getNearlineLocalBrokerToReadyToServeLatencyAvg</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNearlineLocalBrokerToReadyToServeLatencyMax()" class="member-name-link">getNearlineLocalBrokerToReadyToServeLatencyMax</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNearlineProducerToLocalBrokerLatencyAvg()" class="member-name-link">getNearlineProducerToLocalBrokerLatencyAvg</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
@@ -406,73 +440,69 @@ loadScripts(document, 'script');</script>
  long&nbsp;currentTimeMs)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordNearlineLocalBrokerToReadyToServeLatency(double,long)" class="member-name-link">recordNearlineLocalBrokerToReadyToServeLatency</a><wbr>(double&nbsp;value,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordNearlineProducerToLocalBrokerLatency(double,long)" class="member-name-link">recordNearlineProducerToLocalBrokerLatency</a><wbr>(double&nbsp;value,
  long&nbsp;currentTimeMs)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordNearlineProducerToLocalBrokerLatency(double,long)" class="member-name-link">recordNearlineProducerToLocalBrokerLatency</a><wbr>(double&nbsp;value,
- long&nbsp;currentTimeMs)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordOffsetRegressionDCRError()" class="member-name-link">recordOffsetRegressionDCRError</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordOffsetRegressionDCRError()" class="member-name-link">recordOffsetRegressionDCRError</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordProducerCallBackLatency(double,long)" class="member-name-link">recordProducerCallBackLatency</a><wbr>(double&nbsp;value,
- long&nbsp;currentTimeMs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordProducerLocalBrokerLatencyMs(double,long)" class="member-name-link">recordProducerLocalBrokerLatencyMs</a><wbr>(double&nbsp;value,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordProducerCallBackLatency(double,long)" class="member-name-link">recordProducerCallBackLatency</a><wbr>(double&nbsp;value,
  long&nbsp;currentTimeMs)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordProducerSourceBrokerLatencyMs(double,long)" class="member-name-link">recordProducerSourceBrokerLatencyMs</a><wbr>(double&nbsp;value,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordProducerLocalBrokerLatencyMs(double,long)" class="member-name-link">recordProducerLocalBrokerLatencyMs</a><wbr>(double&nbsp;value,
  long&nbsp;currentTimeMs)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordRecordsConsumed()" class="member-name-link">recordRecordsConsumed</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordProducerSourceBrokerLatencyMs(double,long)" class="member-name-link">recordProducerSourceBrokerLatencyMs</a><wbr>(double&nbsp;value,
+ long&nbsp;currentTimeMs)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordRegionHybridBytesConsumed(int,double,long)" class="member-name-link">recordRegionHybridBytesConsumed</a><wbr>(int&nbsp;regionId,
- double&nbsp;value,
- long&nbsp;currentTimeMs)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordRecordsConsumed()" class="member-name-link">recordRecordsConsumed</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordRegionHybridRecordsConsumed(int,double,long)" class="member-name-link">recordRegionHybridRecordsConsumed</a><wbr>(int&nbsp;regionId,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordRegionHybridBytesConsumed(int,double,long)" class="member-name-link">recordRegionHybridBytesConsumed</a><wbr>(int&nbsp;regionId,
  double&nbsp;value,
  long&nbsp;currentTimeMs)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordSourceBrokerLeaderConsumerLatencyMs(double,long)" class="member-name-link">recordSourceBrokerLeaderConsumerLatencyMs</a><wbr>(double&nbsp;value,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordRegionHybridRecordsConsumed(int,double,long)" class="member-name-link">recordRegionHybridRecordsConsumed</a><wbr>(int&nbsp;regionId,
+ double&nbsp;value,
  long&nbsp;currentTimeMs)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordSubscribePrepLatency(double,long)" class="member-name-link">recordSubscribePrepLatency</a><wbr>(double&nbsp;value,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordSourceBrokerLeaderConsumerLatencyMs(double,long)" class="member-name-link">recordSourceBrokerLeaderConsumerLatencyMs</a><wbr>(double&nbsp;value,
  long&nbsp;currentTimeMs)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTimestampRegressionDCRError()" class="member-name-link">recordTimestampRegressionDCRError</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordSubscribePrepLatency(double,long)" class="member-name-link">recordSubscribePrepLatency</a><wbr>(double&nbsp;value,
+ long&nbsp;currentTimeMs)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTombStoneCreationDCR()" class="member-name-link">recordTombStoneCreationDCR</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTimestampRegressionDCRError()" class="member-name-link">recordTimestampRegressionDCRError</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTotalDCR()" class="member-name-link">recordTotalDCR</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTombStoneCreationDCR()" class="member-name-link">recordTombStoneCreationDCR</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTotalDuplicateKeyUpdate()" class="member-name-link">recordTotalDuplicateKeyUpdate</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTotalDCR()" class="member-name-link">recordTotalDCR</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordUpdateIgnoredDCR()" class="member-name-link">recordUpdateIgnoredDCR</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordTotalDuplicateKeyUpdate()" class="member-name-link">recordTotalDuplicateKeyUpdate</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIngestionTask(com.linkedin.davinci.kafka.consumer.StoreIngestionTask)" class="member-name-link">setIngestionTask</a><wbr>(<a href="../kafka/consumer/StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&nbsp;ingestionTask)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordUpdateIgnoredDCR()" class="member-name-link">recordUpdateIgnoredDCR</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIngestionTaskPushTimeoutGauge(int)" class="member-name-link">setIngestionTaskPushTimeoutGauge</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIngestionTask(com.linkedin.davinci.kafka.consumer.StoreIngestionTask)" class="member-name-link">setIngestionTask</a><wbr>(<a href="../kafka/consumer/StoreIngestionTask.html" title="class in com.linkedin.davinci.kafka.consumer">StoreIngestionTask</a>&nbsp;ingestionTask)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#unAvailableToZero(double)" class="member-name-link">unAvailableToZero</a><wbr>(double&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIngestionTaskPushTimeoutGauge(int)" class="member-name-link">setIngestionTaskPushTimeoutGauge</a><wbr>(int&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#unAvailableToZero(double)" class="member-name-link">unAvailableToZero</a><wbr>(double&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -659,20 +689,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY">
-<h3>CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY</h3>
-<div class="member-signature"><span class="modifiers">protected static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY</span></div>
-<dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.IngestionStats.CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY">Constant Field Values</a></li>
-</ul>
-</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="UPDATE_IGNORED_DCR">
 <h3>UPDATE_IGNORED_DCR</h3>
 <div class="member-signature"><span class="modifiers">protected static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">UPDATE_IGNORED_DCR</span></div>
@@ -757,9 +773,28 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY">
+<h3>CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY</h3>
+<div class="member-signature"><span class="modifiers">protected static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY</span></div>
+<div class="block">Consumer metric: Measures the total time from when a record starts being processed (after polling from Kafka and
+ schema checks) until it completes all processing stages. This includes leader preprocessing, producing to local
+ Kafka (for leaders), queueing to drainer, drainer processing (persisting to storage), and offset updates.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.IngestionStats.CONSUMED_RECORD_END_TO_END_PROCESSING_LATENCY">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="NEARLINE_PRODUCER_TO_LOCAL_BROKER_LATENCY">
 <h3>NEARLINE_PRODUCER_TO_LOCAL_BROKER_LATENCY</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">NEARLINE_PRODUCER_TO_LOCAL_BROKER_LATENCY</span></div>
+<div class="block">Leader metric: Measures the latency from when a nearline producer originally produced a message (with its producer
+ timestamp) to when that message is successfully written to the local broker's version topic by the leader.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -771,14 +806,80 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="NEARLINE_LOCAL_BROKER_TO_READY_TO_SERVE_LATENCY">
-<h3>NEARLINE_LOCAL_BROKER_TO_READY_TO_SERVE_LATENCY</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">NEARLINE_LOCAL_BROKER_TO_READY_TO_SERVE_LATENCY</span></div>
+<section class="detail" id="PRODUCER_TO_SOURCE_BROKER_LATENCY">
+<h3>PRODUCER_TO_SOURCE_BROKER_LATENCY</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PRODUCER_TO_SOURCE_BROKER_LATENCY</span></div>
+<div class="block">Leader metric: Measures the latency from when a producer created a message (producer timestamp) to when the
+ source broker (remote region Kafka) received it.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">
-<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.IngestionStats.NEARLINE_LOCAL_BROKER_TO_READY_TO_SERVE_LATENCY">Constant Field Values</a></li>
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.IngestionStats.PRODUCER_TO_SOURCE_BROKER_LATENCY">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="SOURCE_BROKER_TO_LEADER_CONSUMER_LATENCY">
+<h3>SOURCE_BROKER_TO_LEADER_CONSUMER_LATENCY</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">SOURCE_BROKER_TO_LEADER_CONSUMER_LATENCY</span></div>
+<div class="block">Leader metric: Measures the latency from when the source broker (remote region Kafka) received a message to when
+ the leader consumer fetched it.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.IngestionStats.SOURCE_BROKER_TO_LEADER_CONSUMER_LATENCY">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="PRODUCER_TO_LOCAL_BROKER_LATENCY">
+<h3>PRODUCER_TO_LOCAL_BROKER_LATENCY</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PRODUCER_TO_LOCAL_BROKER_LATENCY</span></div>
+<div class="block">Follower metric: Measures the latency from when the leader produced a message to when the local broker
+ (local region Kafka) received it.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.IngestionStats.PRODUCER_TO_LOCAL_BROKER_LATENCY">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="LOCAL_BROKER_TO_FOLLOWER_CONSUMER_LATENCY">
+<h3>LOCAL_BROKER_TO_FOLLOWER_CONSUMER_LATENCY</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">LOCAL_BROKER_TO_FOLLOWER_CONSUMER_LATENCY</span></div>
+<div class="block">Follower metric: Measures the latency from when the local broker (local region Kafka) received a message to when
+ the follower consumer fetched it.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.IngestionStats.LOCAL_BROKER_TO_FOLLOWER_CONSUMER_LATENCY">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="LEADER_PRODUCER_COMPLETION_LATENCY">
+<h3>LEADER_PRODUCER_COMPLETION_LATENCY</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">LEADER_PRODUCER_COMPLETION_LATENCY</span></div>
+<div class="block">Leader metric: Measures the time from when a produce call is made to when the producer callback is invoked,
+ indicating how long Kafka took to write the message to the broker and invoke the callback.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../constant-values.html#com.linkedin.davinci.stats.IngestionStats.LEADER_PRODUCER_COMPLETION_LATENCY">Constant Field Values</a></li>
 </ul>
 </dd>
 </dl>
@@ -802,6 +903,9 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="PRODUCER_CALLBACK_LATENCY">
 <h3>PRODUCER_CALLBACK_LATENCY</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PRODUCER_CALLBACK_LATENCY</span></div>
+<div class="block">Leader metric: Measures the time spent within the leader's producer callback processing after a message is
+ successfully produced to the local broker. This includes chunking processing, producing to drainer buffer service,
+ producing deprecated chunk deletions, and recording stats.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -816,6 +920,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="LEADER_PREPROCESSING_LATENCY">
 <h3>LEADER_PREPROCESSING_LATENCY</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">LEADER_PREPROCESSING_LATENCY</span></div>
+<div class="block">Leader metric: Measures the time from when keys are locked for a batch of records to just before producing to Kafka.
+ When batch processing is enabled: includes batch processing (with partial update operations), record validation,
+ and for real-time topics, recording hybrid consumption stats.
+ When batch processing is disabled: includes only record validation and stats recording; partial update happens later.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -830,6 +938,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="INTERNAL_PREPROCESSING_LATENCY">
 <h3>INTERNAL_PREPROCESSING_LATENCY</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">INTERNAL_PREPROCESSING_LATENCY</span></div>
+<div class="block">Drainer metric: Measures the time spent on lightweight preprocessing tasks before heavy message processing begins.
+ This includes recording write path latency stats (producer-to-broker, broker-to-consumer), drainer message
+ validation, and reporting batch end of incremental push status. Recorded at the start of internalProcessConsumerRecord,
+ before control message or data message processing.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -1280,28 +1392,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getNearlineLocalBrokerToReadyToServeLatencyAvg()">
-<h3>getNearlineLocalBrokerToReadyToServeLatencyAvg</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getNearlineLocalBrokerToReadyToServeLatencyAvg</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="getNearlineLocalBrokerToReadyToServeLatencyMax()">
-<h3>getNearlineLocalBrokerToReadyToServeLatencyMax</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getNearlineLocalBrokerToReadyToServeLatencyMax</span>()</div>
-</section>
-</li>
-<li>
 <section class="detail" id="recordNearlineProducerToLocalBrokerLatency(double,long)">
 <h3>recordNearlineProducerToLocalBrokerLatency</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordNearlineProducerToLocalBrokerLatency</span><wbr><span class="parameters">(double&nbsp;value,
- long&nbsp;currentTimeMs)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="recordNearlineLocalBrokerToReadyToServeLatency(double,long)">
-<h3>recordNearlineLocalBrokerToReadyToServeLatency</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordNearlineLocalBrokerToReadyToServeLatency</span><wbr><span class="parameters">(double&nbsp;value,
  long&nbsp;currentTimeMs)</span></div>
 </section>
 </li>

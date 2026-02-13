@@ -199,7 +199,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>protected </code></div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.linkedin.davinci.kafka.consumer.ConsumerPoolType,java.util.Properties,long,int,com.linkedin.davinci.kafka.consumer.IngestionThrottler,com.linkedin.davinci.kafka.consumer.KafkaClusterBasedRecordThrottler,io.tehuti.metrics.MetricsRepository,java.lang.String,long,com.linkedin.davinci.kafka.consumer.StaleTopicChecker,boolean,com.linkedin.venice.utils.Time,com.linkedin.davinci.stats.AggKafkaConsumerServiceStats,boolean,com.linkedin.venice.meta.ReadOnlyStoreRepository,boolean,com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.pubsub.PubSubContext)" class="member-name-link">KafkaConsumerService</a><wbr>(<a href="ConsumerPoolType.html" title="enum class in com.linkedin.davinci.kafka.consumer">ConsumerPoolType</a>&nbsp;poolType,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.linkedin.davinci.kafka.consumer.ConsumerPoolType,java.util.Properties,long,int,com.linkedin.davinci.kafka.consumer.IngestionThrottler,com.linkedin.davinci.kafka.consumer.KafkaClusterBasedRecordThrottler,io.tehuti.metrics.MetricsRepository,java.lang.String,long,com.linkedin.davinci.kafka.consumer.StaleTopicChecker,boolean,com.linkedin.venice.utils.Time,com.linkedin.davinci.stats.AggKafkaConsumerServiceStats,boolean,com.linkedin.venice.meta.ReadOnlyStoreRepository,boolean,com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.pubsub.PubSubContext,java.util.concurrent.ExecutorService)" class="member-name-link">KafkaConsumerService</a><wbr>(<a href="ConsumerPoolType.html" title="enum class in com.linkedin.davinci.kafka.consumer">ConsumerPoolType</a>&nbsp;poolType,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;consumerProperties,
  long&nbsp;readCycleDelayMs,
  int&nbsp;numOfConsumersPerKafkaCluster,
@@ -216,7 +216,8 @@ loadScripts(document, 'script');</script>
  <a href="../../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;metadataRepository,
  boolean&nbsp;isUnregisterMetricForDeletedStoreEnabled,
  <a href="../../config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
- <a href="../../../venice/pubsub/PubSubContext.html" title="class in com.linkedin.venice.pubsub">PubSubContext</a>&nbsp;pubSubContext)</code></div>
+ <a href="../../../venice/pubsub/PubSubContext.html" title="class in com.linkedin.venice.pubsub">PubSubContext</a>&nbsp;pubSubContext,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ExecutorService.html" title="class or interface in java.util.concurrent" class="external-link">ExecutorService</a>&nbsp;crossTpProcessingPool)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -398,7 +399,7 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.linkedin.davinci.kafka.consumer.ConsumerPoolType,java.util.Properties,long,int,com.linkedin.davinci.kafka.consumer.IngestionThrottler,com.linkedin.davinci.kafka.consumer.KafkaClusterBasedRecordThrottler,io.tehuti.metrics.MetricsRepository,java.lang.String,long,com.linkedin.davinci.kafka.consumer.StaleTopicChecker,boolean,com.linkedin.venice.utils.Time,com.linkedin.davinci.stats.AggKafkaConsumerServiceStats,boolean,com.linkedin.venice.meta.ReadOnlyStoreRepository,boolean,com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.pubsub.PubSubContext)">
+<section class="detail" id="&lt;init&gt;(com.linkedin.davinci.kafka.consumer.ConsumerPoolType,java.util.Properties,long,int,com.linkedin.davinci.kafka.consumer.IngestionThrottler,com.linkedin.davinci.kafka.consumer.KafkaClusterBasedRecordThrottler,io.tehuti.metrics.MetricsRepository,java.lang.String,long,com.linkedin.davinci.kafka.consumer.StaleTopicChecker,boolean,com.linkedin.venice.utils.Time,com.linkedin.davinci.stats.AggKafkaConsumerServiceStats,boolean,com.linkedin.venice.meta.ReadOnlyStoreRepository,boolean,com.linkedin.davinci.config.VeniceServerConfig,com.linkedin.venice.pubsub.PubSubContext,java.util.concurrent.ExecutorService)">
 <h3>KafkaConsumerService</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="element-name">KafkaConsumerService</span><wbr><span class="parameters">(<a href="ConsumerPoolType.html" title="enum class in com.linkedin.davinci.kafka.consumer">ConsumerPoolType</a>&nbsp;poolType,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;consumerProperties,
@@ -417,7 +418,8 @@ loadScripts(document, 'script');</script>
  <a href="../../../venice/meta/ReadOnlyStoreRepository.html" title="interface in com.linkedin.venice.meta">ReadOnlyStoreRepository</a>&nbsp;metadataRepository,
  boolean&nbsp;isUnregisterMetricForDeletedStoreEnabled,
  <a href="../../config/VeniceServerConfig.html" title="class in com.linkedin.davinci.config">VeniceServerConfig</a>&nbsp;serverConfig,
- <a href="../../../venice/pubsub/PubSubContext.html" title="class in com.linkedin.venice.pubsub">PubSubContext</a>&nbsp;pubSubContext)</span></div>
+ <a href="../../../venice/pubsub/PubSubContext.html" title="class in com.linkedin.venice.pubsub">PubSubContext</a>&nbsp;pubSubContext,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ExecutorService.html" title="class or interface in java.util.concurrent" class="external-link">ExecutorService</a>&nbsp;crossTpProcessingPool)</span></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>statsOverride</code> - injection of stats, for test purposes</dd>

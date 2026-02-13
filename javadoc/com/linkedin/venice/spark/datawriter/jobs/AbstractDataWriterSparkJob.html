@@ -148,63 +148,68 @@ loadScripts(document, 'script');</script>
 <div class="block">Apply compaction to the Kafka input dataframe.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyTTLFilter(org.apache.spark.sql.Dataset)" class="member-name-link">applyTTLFilter</a><wbr>(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyCompressionReEncoding(org.apache.spark.sql.Dataset)" class="member-name-link">applyCompressionReEncoding</a><wbr>(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Apply compression re-encoding if the source and destination compression strategies are different.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyTTLFilter(org.apache.spark.sql.Dataset)" class="member-name-link">applyTTLFilter</a><wbr>(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Apply TTL filtering to the Kafka input dataframe.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configure(com.linkedin.venice.utils.VeniceProperties,com.linkedin.venice.hadoop.PushJobSetting)" class="member-name-link">configure</a><wbr>(<a href="../../../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;props,
- <a href="../../../hadoop/PushJobSetting.html" title="class in com.linkedin.venice.hadoop">PushJobSetting</a>&nbsp;pushJobSetting)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.api.java.function.MapPartitionsFunction&lt;org.apache.spark.sql.Row,<wbr>org.apache.spark.sql.Row&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createPartitionWriterFactory(org.apache.spark.broadcast.Broadcast,com.linkedin.venice.spark.datawriter.task.DataWriterAccumulators)" class="member-name-link">createPartitionWriterFactory</a><wbr>(org.apache.spark.broadcast.Broadcast&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&gt;&nbsp;broadcastProperties,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configure(com.linkedin.venice.utils.VeniceProperties,com.linkedin.venice.hadoop.PushJobSetting)" class="member-name-link">configure</a><wbr>(<a href="../../../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;props,
+ <a href="../../../hadoop/PushJobSetting.html" title="class in com.linkedin.venice.hadoop">PushJobSetting</a>&nbsp;pushJobSetting)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.api.java.function.MapPartitionsFunction&lt;org.apache.spark.sql.Row,<wbr>org.apache.spark.sql.Row&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createPartitionWriterFactory(org.apache.spark.broadcast.Broadcast,com.linkedin.venice.spark.datawriter.task.DataWriterAccumulators)" class="member-name-link">createPartitionWriterFactory</a><wbr>(org.apache.spark.broadcast.Broadcast&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&gt;&nbsp;broadcastProperties,
  <a href="../task/DataWriterAccumulators.html" title="class in com.linkedin.venice.spark.datawriter.task">DataWriterAccumulators</a>&nbsp;accumulators)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Creates the partition writer factory.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../task/DataWriterAccumulators.html" title="class in com.linkedin.venice.spark.datawriter.task">DataWriterAccumulators</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAccumulatorsForDataWriterJob()" class="member-name-link">getAccumulatorsForDataWriterJob</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getJobProperties()" class="member-name-link">getJobProperties</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../task/DataWriterAccumulators.html" title="class in com.linkedin.venice.spark.datawriter.task">DataWriterAccumulators</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAccumulatorsForDataWriterJob()" class="member-name-link">getAccumulatorsForDataWriterJob</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getKafkaInputDataFrame()" class="member-name-link">getKafkaInputDataFrame</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getJobProperties()" class="member-name-link">getJobProperties</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getKafkaInputDataFrame()" class="member-name-link">getKafkaInputDataFrame</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the input DataFrame from Kafka/PubSub source for repush workloads.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../hadoop/PushJobSetting.html" title="class in com.linkedin.venice.hadoop">PushJobSetting</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPushJobSetting()" class="member-name-link">getPushJobSetting</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.sql.SparkSession</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSparkSession()" class="member-name-link">getSparkSession</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../hadoop/PushJobSetting.html" title="class in com.linkedin.venice.hadoop">PushJobSetting</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPushJobSetting()" class="member-name-link">getPushJobSetting</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../hadoop/task/datawriter/DataWriterTaskTracker.html" title="interface in com.linkedin.venice.hadoop.task.datawriter">DataWriterTaskTracker</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTaskTracker()" class="member-name-link">getTaskTracker</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected org.apache.spark.sql.SparkSession</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSparkSession()" class="member-name-link">getSparkSession</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getUserInputDataFrame()" class="member-name-link">getUserInputDataFrame</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../hadoop/task/datawriter/DataWriterTaskTracker.html" title="interface in com.linkedin.venice.hadoop.task.datawriter">DataWriterTaskTracker</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTaskTracker()" class="member-name-link">getTaskTracker</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getUserInputDataFrame()" class="member-name-link">getUserInputDataFrame</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the data frame based on the user's input data.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#kill()" class="member-name-link">kill</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runComputeJob()" class="member-name-link">runComputeJob</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#kill()" class="member-name-link">kill</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInputConf(org.apache.spark.sql.SparkSession,org.apache.spark.sql.DataFrameReader,java.lang.String,java.lang.String)" class="member-name-link">setInputConf</a><wbr>(org.apache.spark.sql.SparkSession&nbsp;session,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runComputeJob()" class="member-name-link">runComputeJob</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInputConf(org.apache.spark.sql.SparkSession,org.apache.spark.sql.DataFrameReader,java.lang.String,java.lang.String)" class="member-name-link">setInputConf</a><wbr>(org.apache.spark.sql.SparkSession&nbsp;session,
  org.apache.spark.sql.DataFrameReader&nbsp;dataFrameReader,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#validateRmdSchema(com.linkedin.venice.hadoop.PushJobSetting)" class="member-name-link">validateRmdSchema</a><wbr>(<a href="../../../hadoop/PushJobSetting.html" title="class in com.linkedin.venice.hadoop">PushJobSetting</a>&nbsp;pushJobSetting)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#validateRmdSchema(com.linkedin.venice.hadoop.PushJobSetting)" class="member-name-link">validateRmdSchema</a><wbr>(<a href="../../../hadoop/PushJobSetting.html" title="class in com.linkedin.venice.hadoop">PushJobSetting</a>&nbsp;pushJobSetting)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -334,6 +339,20 @@ loadScripts(document, 'script');</script>
 <dd><code>dataFrame</code> - Input with SCHEMA_FOR_CHUNK_ASSEMBLY (7 columns)</dd>
 <dt>Returns:</dt>
 <dd>DataFrame with DEFAULT_SCHEMA_WITH_SCHEMA_ID (5 columns - assembled records)</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="applyCompressionReEncoding(org.apache.spark.sql.Dataset)">
+<h3>applyCompressionReEncoding</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;</span>&nbsp;<span class="element-name">applyCompressionReEncoding</span><wbr><span class="parameters">(org.apache.spark.sql.Dataset&lt;org.apache.spark.sql.Row&gt;&nbsp;dataFrame)</span></div>
+<div class="block">Apply compression re-encoding if the source and destination compression strategies are different.
+ This is only applicable for repush workloads (isSourceKafka = true).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>dataFrame</code> - Input dataframe</dd>
+<dt>Returns:</dt>
+<dd>Dataframe with values re-compressed if needed</dd>
 </dl>
 </section>
 </li>

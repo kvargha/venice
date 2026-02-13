@@ -195,52 +195,58 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Convert a replica's instance ID to its URL.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isLiveInstance(java.lang.String,java.lang.String,com.linkedin.venice.helix.SafeHelixManager)" class="member-name-link">isLiveInstance</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#instanceIdToUrl(java.lang.String,boolean)" class="member-name-link">instanceIdToUrl</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;instanceId,
+ boolean&nbsp;https)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Convert a replica's instance ID to its URL with a configurable scheme.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isLiveInstance(java.lang.String,java.lang.String,com.linkedin.venice.helix.SafeHelixManager)" class="member-name-link">isLiveInstance</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;instanceId,
  <a href="../helix/SafeHelixManager.html" title="class in com.linkedin.venice.helix">SafeHelixManager</a>&nbsp;manager)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#listPathContents(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String)" class="member-name-link">listPathContents</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#remove(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String)" class="member-name-link">remove</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#listPathContents(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String)" class="member-name-link">listPathContents</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#remove(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String,int)" class="member-name-link">remove</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#remove(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String)" class="member-name-link">remove</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#remove(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String,int)" class="member-name-link">remove</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
  int&nbsp;maxAttempts)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#setupCustomizedStateConfig(org.apache.helix.HelixAdmin,java.lang.String)" class="member-name-link">setupCustomizedStateConfig</a><wbr>(org.apache.helix.HelixAdmin&nbsp;admin,
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#setupCustomizedStateConfig(org.apache.helix.HelixAdmin,java.lang.String)" class="member-name-link">setupCustomizedStateConfig</a><wbr>(org.apache.helix.HelixAdmin&nbsp;admin,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;clusterName)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">This method tells helix what properties to aggregate for customized view.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#update(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String,T)" class="member-name-link">update</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#update(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String,T)" class="member-name-link">update</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
  T&nbsp;data)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#update(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String,T,int)" class="member-name-link">update</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#update(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.lang.String,T,int)" class="member-name-link">update</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
  T&nbsp;data,
  int&nbsp;maxAttempts)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateChildren(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.util.List,java.util.List)" class="member-name-link">updateChildren</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;paths,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;data)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateChildren(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.util.List,java.util.List,int)" class="member-name-link">updateChildren</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateChildren(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.util.List,java.util.List)" class="member-name-link">updateChildren</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;paths,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;data)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateChildren(org.apache.helix.manager.zk.ZkBaseDataAccessor,java.util.List,java.util.List,int)" class="member-name-link">updateChildren</a><wbr>(org.apache.helix.manager.zk.ZkBaseDataAccessor&lt;T&gt;&nbsp;dataAccessor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;paths,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;data,
  int&nbsp;maxAttempts)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -520,6 +526,21 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>instanceId</code> - </dd>
+<dt>Returns:</dt>
+<dd>replica URL</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="instanceIdToUrl(java.lang.String,boolean)">
+<h3>instanceIdToUrl</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">instanceIdToUrl</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;instanceId,
+ boolean&nbsp;https)</span></div>
+<div class="block">Convert a replica's instance ID to its URL with a configurable scheme.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>instanceId</code> - the instance ID in the format "host_port"</dd>
+<dd><code>https</code> - if true, use "https://"; otherwise, use "http://"</dd>
 <dt>Returns:</dt>
 <dd>replica URL</dd>
 </dl>

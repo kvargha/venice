@@ -45,13 +45,13 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -87,18 +87,40 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">AbstractVeniceProducer&lt;K,<wbr>V&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="VeniceProducer.html" title="interface in com.linkedin.venice.producer">VeniceProducer</a>&lt;K,<wbr>V&gt;</span></div>
-<div class="block">A generic implementation of the <a href="VeniceProducer.html" title="interface in com.linkedin.venice.producer"><code>VeniceProducer</code></a> interface</div>
+<div class="block">Async Venice producer with configurable parallelism.
+
+ <p>Flow: <code>asyncPut(key)</code> → Worker[partition % workers] → serialize → veniceWriter.put() →
+ PubSub callback → Callback executor → complete future</p>
+
+ <p>Both worker pool and callback executor are optional (set count=0 for inline execution).
+ Per-key ordering is preserved since same key always routes to same worker.</p></div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">
 <li><a href="VeniceProducer.html" title="interface in com.linkedin.venice.producer"><code>VeniceProducer</code></a></li>
+<li><a href="PartitionedProducerExecutor.html" title="class in com.linkedin.venice.producer"><code>PartitionedProducerExecutor</code></a></li>
 </ul>
 </dd>
 </dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field-summary">
+<h2>Field Summary</h2>
+<div class="caption"><span>Fields</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Field</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>protected boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#needsPartitionRouting" class="member-name-link">needsPartitionRouting</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+</div>
+</section>
+</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -174,15 +196,22 @@ implements <a href="VeniceProducer.html" title="interface in com.linkedin.venice
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#constructVeniceWriter(java.util.Properties,com.linkedin.venice.writer.VeniceWriterOptions)" class="member-name-link">constructVeniceWriter</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;properties,
  <a href="../writer/VeniceWriterOptions.html" title="class in com.linkedin.venice.writer">VeniceWriterOptions</a>&nbsp;writerOptions)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../serializer/RecordSerializer.html" title="interface in com.linkedin.venice.serializer">RecordSerializer</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSerializer(org.apache.avro.Schema)" class="member-name-link">getSerializer</a><wbr>(org.apache.avro.Schema&nbsp;schema)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isClosed()" class="member-name-link">isClosed</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="PartitionedProducerExecutor.html" title="class in com.linkedin.venice.producer">PartitionedProducerExecutor</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createDispatcher(java.lang.String,com.linkedin.venice.utils.VeniceProperties,io.tehuti.metrics.MetricsRepository)" class="member-name-link">createDispatcher</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ <a href="../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;configs,
+ io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Factory method for creating the dispatcher.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../serializer/RecordSerializer.html" title="interface in com.linkedin.venice.serializer">RecordSerializer</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSerializer(org.apache.avro.Schema)" class="member-name-link">getSerializer</a><wbr>(org.apache.avro.Schema&nbsp;schema)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract <a href="../controllerapi/VersionCreationResponse.html" title="class in com.linkedin.venice.controllerapi">VersionCreationResponse</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#requestTopic()" class="member-name-link">requestTopic</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isClosed()" class="member-name-link">isClosed</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract <a href="../controllerapi/VersionCreationResponse.html" title="class in com.linkedin.venice.controllerapi">VersionCreationResponse</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#requestTopic()" class="member-name-link">requestTopic</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">This function should return a <a href="../controllerapi/VersionCreationResponse.html" title="class in com.linkedin.venice.controllerapi"><code>VersionCreationResponse</code></a> to determine the PubSub topic and the characteristics
  that the producer should follow.</div>
 </div>
@@ -198,6 +227,20 @@ implements <a href="VeniceProducer.html" title="interface in com.linkedin.venice
 </section>
 <section class="details">
 <ul class="details-list">
+<!-- ============ FIELD DETAIL =========== -->
+<li>
+<section class="field-details" id="field-detail">
+<h2>Field Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="needsPartitionRouting">
+<h3>needsPartitionRouting</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">needsPartitionRouting</span></div>
+</section>
+</li>
+</ul>
+</section>
+</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -225,6 +268,35 @@ implements <a href="VeniceProducer.html" title="interface in com.linkedin.venice
  io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository,
  <a href="../schema/SchemaReader.html" title="interface in com.linkedin.venice.schema">SchemaReader</a>&nbsp;schemaReader,
  <a href="../schema/SchemaReader.html" title="interface in com.linkedin.venice.schema">SchemaReader</a>&nbsp;kmeSchemaReader)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="createDispatcher(java.lang.String,com.linkedin.venice.utils.VeniceProperties,io.tehuti.metrics.MetricsRepository)">
+<h3>createDispatcher</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="PartitionedProducerExecutor.html" title="class in com.linkedin.venice.producer">PartitionedProducerExecutor</a></span>&nbsp;<span class="element-name">createDispatcher</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;storeName,
+ <a href="../utils/VeniceProperties.html" title="class in com.linkedin.venice.utils">VeniceProperties</a>&nbsp;configs,
+ io.tehuti.metrics.MetricsRepository&nbsp;metricsRepository)</span></div>
+<div class="block">Factory method for creating the dispatcher. Can be overridden for testing.
+
+ <p>Execution modes based on configuration:</p>
+ <ul>
+   <li><code>workerCount = 0, callbackThreadCount = 0</code>: Fully inline - all tasks execute on caller thread</li>
+   <li><code>workerCount &gt; 0, callbackThreadCount = 0</code>: Parallel workers, callbacks on PubSub thread</li>
+   <li><code>workerCount = 0, callbackThreadCount &gt; 0</code>: Inline preprocessing, callbacks on dedicated threads</li>
+   <li><code>workerCount &gt; 0, callbackThreadCount &gt; 0</code>: Full async - parallel workers + callback isolation</li>
+ </ul>
+
+ <p>Set <code>workerCount = 0</code> to disable worker threads and execute all preprocessing
+ inline on the caller thread. This is useful when the caller is already managing
+ concurrency externally or wants minimal overhead.</p></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="PartitionedProducerExecutor.html" title="class in com.linkedin.venice.producer"><code>PartitionedProducerExecutor</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 <li>

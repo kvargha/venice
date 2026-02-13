@@ -101,63 +101,68 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">This version of <a href="AsyncMetricEntityState.html" title="class in com.linkedin.venice.stats.metrics"><code>AsyncMetricEntityState</code></a> is used when the metric entity has no dynamic dimensions.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a></div>
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="AsyncMetricEntityStateOneEnum.html" title="class in com.linkedin.venice.stats.metrics">AsyncMetricEntityStateOneEnum</a>&lt;E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
 <div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="block">This class is used when the async metric (ASYNC_GAUGE) has one dynamic dimension which is an
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link"><code>Enum</code></a> implementing <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions"><code>VeniceDimensionInterface</code></a>.</div>
+</div>
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricAttributesData.html" title="class in com.linkedin.venice.stats.metrics">MetricAttributesData</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">A holder class that contains OpenTelemetry <code>Attributes</code> and optionally a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/atomic/LongAdder.html" title="class or interface in java.util.concurrent.atomic" class="external-link"><code>LongAdder</code></a>
  for each of that attributes for high-throughput metric recording scenarios.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricEntity.html" title="class in com.linkedin.venice.stats.metrics">MetricEntity</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Metric entity class to define a metric with all its properties</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityState</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityState</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Abstract operational state of a non-async metric extended on top of <a href="AsyncMetricEntityState.html" title="class in com.linkedin.venice.stats.metrics"><code>AsyncMetricEntityState</code></a>
  to provide common functionality for non-async metrics like record() which is not supported for
  async metrics.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricEntityStateBase.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateBase</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricEntityStateBase.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateBase</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">This version of <a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics"><code>MetricEntityState</code></a> is used when the metric entity has no dynamic dimensions.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricEntityStateFourEnums.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateFourEnums</a>&lt;E1 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E1&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E2 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E2&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E3 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E3&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E4 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E4&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricEntityStateFourEnums.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateFourEnums</a>&lt;E1 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E1&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E2 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E2&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E3 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E3&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E4 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E4&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Similar to <a href="MetricEntityStateOneEnum.html" title="class in com.linkedin.venice.stats.metrics"><code>MetricEntityStateOneEnum</code></a> but with Four dynamic dimensions and 4 level EnumMap</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricEntityStateGeneric.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateGeneric</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricEntityStateGeneric.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateGeneric</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Provides a flexible, generic, and non-caching implementation of <a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics"><code>MetricEntityState</code></a> for one or more
  dynamic dimensions, where the dimensions can be enums or arbitrary strings and do not need to be cached: This
  implementation should be used only in certain control-path components (such as controllers) where:
  1.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricEntityStateOneEnum.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateOneEnum</a>&lt;E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricEntityStateOneEnum.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateOneEnum</a>&lt;E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">This version of <a href="MetricEntityState.html" title="class in com.linkedin.venice.stats.metrics"><code>MetricEntityState</code></a> is used when the metric entity has one dynamic dimension
  which is an <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link"><code>Enum</code></a> implementing <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions"><code>VeniceDimensionInterface</code></a>.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricEntityStateThreeEnums.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateThreeEnums</a>&lt;E1 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E1&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E2 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E2&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E3 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E3&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricEntityStateThreeEnums.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateThreeEnums</a>&lt;E1 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E1&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E2 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E2&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E3 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E3&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Similar to <a href="MetricEntityStateOneEnum.html" title="class in com.linkedin.venice.stats.metrics"><code>MetricEntityStateOneEnum</code></a> but with three dynamic dimensions and 3 level EnumMap</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MetricEntityStateTwoEnums.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateTwoEnums</a>&lt;E1 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E1&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E2 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E2&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MetricEntityStateTwoEnums.html" title="class in com.linkedin.venice.stats.metrics">MetricEntityStateTwoEnums</a>&lt;E1 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E1&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>,<wbr>E2 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;E2&gt; &amp; <a href="../dimensions/VeniceDimensionInterface.html" title="interface in com.linkedin.venice.stats.dimensions">VeniceDimensionInterface</a>&gt;</div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Similar to <a href="MetricEntityStateOneEnum.html" title="class in com.linkedin.venice.stats.metrics"><code>MetricEntityStateOneEnum</code></a> but with two dynamic dimensions and 2 level EnumMap</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab3"><a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab3">
+<div class="col-first odd-row-color class-summary class-summary-tab3"><a href="MetricType.html" title="enum class in com.linkedin.venice.stats.metrics">MetricType</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab3">
 <div class="block">Metric type enum to define the type of metrics Venice supports via OpenTelemetry</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab3"><a href="MetricUnit.html" title="enum class in com.linkedin.venice.stats.metrics">MetricUnit</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab3">
+<div class="col-first even-row-color class-summary class-summary-tab3"><a href="MetricUnit.html" title="enum class in com.linkedin.venice.stats.metrics">MetricUnit</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab3">
 <div class="block">Metric Unit enum to define list of Units supported for metrics</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab1"><a href="ModuleMetricEntityInterface.html" title="interface in com.linkedin.venice.stats.metrics">ModuleMetricEntityInterface</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab1">
+<div class="col-first odd-row-color class-summary class-summary-tab1"><a href="ModuleMetricEntityInterface.html" title="interface in com.linkedin.venice.stats.metrics">ModuleMetricEntityInterface</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab1">
 <div class="block">Every venice Module that defines its set of <a href="MetricEntity.html" title="class in com.linkedin.venice.stats.metrics"><code>MetricEntity</code></a> should implement this interface.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab1"><a href="TehutiMetricNameEnum.html" title="interface in com.linkedin.venice.stats.metrics">TehutiMetricNameEnum</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab1">
+<div class="col-first even-row-color class-summary class-summary-tab1"><a href="TehutiMetricNameEnum.html" title="interface in com.linkedin.venice.stats.metrics">TehutiMetricNameEnum</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab1">
 <div class="block">Interface for creating metric names enum for tehuti metrics</div>
 </div>
 </div>

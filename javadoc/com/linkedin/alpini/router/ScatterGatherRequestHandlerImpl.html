@@ -110,8 +110,18 @@ loadScripts(document, 'script');</script>
  <a href="../base/concurrency/TimeoutProcessor.html" title="class in com.linkedin.alpini.base.concurrency">TimeoutProcessor</a>&nbsp;timeoutProcessor)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected </code></div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(SCATTER_GATHER_HELPER,com.linkedin.alpini.router.api.RouterTimeoutProcessor)" class="member-name-link">ScatterGatherRequestHandlerImpl</a><wbr>(<a href="ScatterGatherRequestHandlerImpl.html" title="type parameter in ScatterGatherRequestHandlerImpl">SCATTER_GATHER_HELPER</a>&nbsp;scatterGatherHelper,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(SCATTER_GATHER_HELPER,com.linkedin.alpini.base.concurrency.TimeoutProcessor,java.util.concurrent.Executor)" class="member-name-link">ScatterGatherRequestHandlerImpl</a><wbr>(<a href="ScatterGatherRequestHandlerImpl.html" title="type parameter in ScatterGatherRequestHandlerImpl">SCATTER_GATHER_HELPER</a>&nbsp;scatterGatherHelper,
+ <a href="../base/concurrency/TimeoutProcessor.html" title="class in com.linkedin.alpini.base.concurrency">TimeoutProcessor</a>&nbsp;timeoutProcessor,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Executor.html" title="class or interface in java.util.concurrent" class="external-link">Executor</a>&nbsp;responseAggregationExecutor)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected </code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(SCATTER_GATHER_HELPER,com.linkedin.alpini.router.api.RouterTimeoutProcessor)" class="member-name-link">ScatterGatherRequestHandlerImpl</a><wbr>(<a href="ScatterGatherRequestHandlerImpl.html" title="type parameter in ScatterGatherRequestHandlerImpl">SCATTER_GATHER_HELPER</a>&nbsp;scatterGatherHelper,
  <a href="api/RouterTimeoutProcessor.html" title="interface in com.linkedin.alpini.router.api">RouterTimeoutProcessor</a>&nbsp;timeoutProcessor)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected </code></div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(SCATTER_GATHER_HELPER,com.linkedin.alpini.router.api.RouterTimeoutProcessor,java.util.concurrent.Executor)" class="member-name-link">ScatterGatherRequestHandlerImpl</a><wbr>(<a href="ScatterGatherRequestHandlerImpl.html" title="type parameter in ScatterGatherRequestHandlerImpl">SCATTER_GATHER_HELPER</a>&nbsp;scatterGatherHelper,
+ <a href="api/RouterTimeoutProcessor.html" title="interface in com.linkedin.alpini.router.api">RouterTimeoutProcessor</a>&nbsp;timeoutProcessor,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Executor.html" title="class or interface in java.util.concurrent" class="external-link">Executor</a>&nbsp;responseAggregationExecutor)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
@@ -328,6 +338,26 @@ loadScripts(document, 'script');</script>
  <a href="ScatterGatherRequestHandlerImpl.html" title="type parameter in ScatterGatherRequestHandlerImpl">SCATTER_GATHER_HELPER</a>&nbsp;scatterGatherHelper,
  @Nonnull
  <a href="api/RouterTimeoutProcessor.html" title="interface in com.linkedin.alpini.router.api">RouterTimeoutProcessor</a>&nbsp;timeoutProcessor)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(SCATTER_GATHER_HELPER,com.linkedin.alpini.base.concurrency.TimeoutProcessor,java.util.concurrent.Executor)">
+<h3 id="&lt;init&gt;(com.linkedin.alpini.router.api.ScatterGatherHelper,com.linkedin.alpini.base.concurrency.TimeoutProcessor,java.util.concurrent.Executor)">ScatterGatherRequestHandlerImpl</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="element-name">ScatterGatherRequestHandlerImpl</span><wbr><span class="parameters">(@Nonnull
+ <a href="ScatterGatherRequestHandlerImpl.html" title="type parameter in ScatterGatherRequestHandlerImpl">SCATTER_GATHER_HELPER</a>&nbsp;scatterGatherHelper,
+ @Nonnull
+ <a href="../base/concurrency/TimeoutProcessor.html" title="class in com.linkedin.alpini.base.concurrency">TimeoutProcessor</a>&nbsp;timeoutProcessor,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Executor.html" title="class or interface in java.util.concurrent" class="external-link">Executor</a>&nbsp;responseAggregationExecutor)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(SCATTER_GATHER_HELPER,com.linkedin.alpini.router.api.RouterTimeoutProcessor,java.util.concurrent.Executor)">
+<h3 id="&lt;init&gt;(com.linkedin.alpini.router.api.ScatterGatherHelper,com.linkedin.alpini.router.api.RouterTimeoutProcessor,java.util.concurrent.Executor)">ScatterGatherRequestHandlerImpl</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="element-name">ScatterGatherRequestHandlerImpl</span><wbr><span class="parameters">(@Nonnull
+ <a href="ScatterGatherRequestHandlerImpl.html" title="type parameter in ScatterGatherRequestHandlerImpl">SCATTER_GATHER_HELPER</a>&nbsp;scatterGatherHelper,
+ @Nonnull
+ <a href="api/RouterTimeoutProcessor.html" title="interface in com.linkedin.alpini.router.api">RouterTimeoutProcessor</a>&nbsp;timeoutProcessor,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Executor.html" title="class or interface in java.util.concurrent" class="external-link">Executor</a>&nbsp;responseAggregationExecutor)</span></div>
 </section>
 </li>
 </ul>

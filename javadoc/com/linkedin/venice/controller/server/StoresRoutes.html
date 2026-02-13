@@ -95,6 +95,11 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../acl/DynamicAccessController.html" title="interface in com.linkedin.venice.acl">DynamicAccessController</a>&gt;&nbsp;accessController,
  <a href="../../pubsub/PubSubTopicRepository.html" title="class in com.linkedin.venice.pubsub">PubSubTopicRepository</a>&nbsp;pubSubTopicRepository)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(boolean,java.util.Optional,com.linkedin.venice.pubsub.PubSubTopicRepository,com.linkedin.venice.controller.server.StoreRequestHandler)" class="member-name-link">StoresRoutes</a><wbr>(boolean&nbsp;sslEnabled,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../acl/DynamicAccessController.html" title="interface in com.linkedin.venice.acl">DynamicAccessController</a>&gt;&nbsp;accessController,
+ <a href="../../pubsub/PubSubTopicRepository.html" title="class in com.linkedin.venice.pubsub">PubSubTopicRepository</a>&nbsp;pubSubTopicRepository,
+ <a href="StoreRequestHandler.html" title="class in com.linkedin.venice.controller.server">StoreRequestHandler</a>&nbsp;storeRequestHandler)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -234,8 +239,7 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateStore(com.linkedin.venice.controller.Admin)" class="member-name-link">updateStore</a><wbr>(<a href="../Admin.html" title="interface in com.linkedin.venice.controller">Admin</a>&nbsp;admin)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>spark.Route</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#validateStoreDeleted(com.linkedin.venice.controller.Admin,com.linkedin.venice.controller.server.StoreRequestHandler)" class="member-name-link">validateStoreDeleted</a><wbr>(<a href="../Admin.html" title="interface in com.linkedin.venice.controller">Admin</a>&nbsp;admin,
- <a href="StoreRequestHandler.html" title="class in com.linkedin.venice.controller.server">StoreRequestHandler</a>&nbsp;requestHandler)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#validateStoreDeleted(com.linkedin.venice.controller.Admin)" class="member-name-link">validateStoreDeleted</a><wbr>(<a href="../Admin.html" title="interface in com.linkedin.venice.controller">Admin</a>&nbsp;admin)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
@@ -263,6 +267,15 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">StoresRoutes</span><wbr><span class="parameters">(boolean&nbsp;sslEnabled,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../acl/DynamicAccessController.html" title="interface in com.linkedin.venice.acl">DynamicAccessController</a>&gt;&nbsp;accessController,
  <a href="../../pubsub/PubSubTopicRepository.html" title="class in com.linkedin.venice.pubsub">PubSubTopicRepository</a>&nbsp;pubSubTopicRepository)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(boolean,java.util.Optional,com.linkedin.venice.pubsub.PubSubTopicRepository,com.linkedin.venice.controller.server.StoreRequestHandler)">
+<h3>StoresRoutes</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">StoresRoutes</span><wbr><span class="parameters">(boolean&nbsp;sslEnabled,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../acl/DynamicAccessController.html" title="interface in com.linkedin.venice.acl">DynamicAccessController</a>&gt;&nbsp;accessController,
+ <a href="../../pubsub/PubSubTopicRepository.html" title="class in com.linkedin.venice.pubsub">PubSubTopicRepository</a>&nbsp;pubSubTopicRepository,
+ <a href="StoreRequestHandler.html" title="class in com.linkedin.venice.controller.server">StoreRequestHandler</a>&nbsp;storeRequestHandler)</span></div>
 </section>
 </li>
 </ul>
@@ -725,10 +738,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="validateStoreDeleted(com.linkedin.venice.controller.Admin,com.linkedin.venice.controller.server.StoreRequestHandler)">
+<section class="detail" id="validateStoreDeleted(com.linkedin.venice.controller.Admin)">
 <h3>validateStoreDeleted</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">spark.Route</span>&nbsp;<span class="element-name">validateStoreDeleted</span><wbr><span class="parameters">(<a href="../Admin.html" title="interface in com.linkedin.venice.controller">Admin</a>&nbsp;admin,
- <a href="StoreRequestHandler.html" title="class in com.linkedin.venice.controller.server">StoreRequestHandler</a>&nbsp;requestHandler)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">spark.Route</span>&nbsp;<span class="element-name">validateStoreDeleted</span><wbr><span class="parameters">(<a href="../Admin.html" title="interface in com.linkedin.venice.controller">Admin</a>&nbsp;admin)</span></div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>

@@ -120,12 +120,16 @@ implements <a href="../netty4/handlers/AsyncFullHttpRequestHandler.RequestHandle
  <a href="../base/concurrency/TimeoutProcessor.html" title="class in com.linkedin.alpini.base.concurrency">TimeoutProcessor</a>&nbsp;timeoutProcessor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Executor.html" title="class or interface in java.util.concurrent" class="external-link">Executor</a>&nbsp;executor)</code></div>
 <div class="col-last even-row-color">
-<div class="block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">Use constructor with <a href="api/RouterTimeoutProcessor.html" title="interface in com.linkedin.alpini.router.api"><code>RouterTimeoutProcessor</code></a> instead</div>
+</div>
 </div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.linkedin.alpini.router.api.ScatterGatherHelper,com.linkedin.alpini.router.api.RouterTimeoutProcessor,java.util.concurrent.Executor)" class="member-name-link">ScatterGatherRequestHandler4</a><wbr>(<a href="api/ScatterGatherHelper.html" title="class in com.linkedin.alpini.router.api">ScatterGatherHelper</a>&lt;<a href="ScatterGatherRequestHandler4.html" title="type parameter in ScatterGatherRequestHandler4">H</a>,<wbr><a href="ScatterGatherRequestHandler4.html" title="type parameter in ScatterGatherRequestHandler4">P</a>,<wbr><a href="ScatterGatherRequestHandler4.html" title="type parameter in ScatterGatherRequestHandler4">K</a>,<wbr><a href="ScatterGatherRequestHandler4.html" title="type parameter in ScatterGatherRequestHandler4">R</a>,<wbr><a href="../netty4/misc/BasicFullHttpRequest.html" title="class in com.linkedin.alpini.netty4.misc">BasicFullHttpRequest</a>,<wbr>io.netty.handler.codec.http.FullHttpResponse,<wbr>io.netty.handler.codec.http.HttpResponseStatus&gt;&nbsp;scatterGatherHelper,
  <a href="api/RouterTimeoutProcessor.html" title="interface in com.linkedin.alpini.router.api">RouterTimeoutProcessor</a>&nbsp;timeoutProcessor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Executor.html" title="class or interface in java.util.concurrent" class="external-link">Executor</a>&nbsp;executor)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a new ScatterGatherRequestHandler4.</div>
+</div>
 </div>
 </section>
 </li>
@@ -265,6 +269,15 @@ implements <a href="../netty4/handlers/AsyncFullHttpRequestHandler.RequestHandle
  <a href="api/RouterTimeoutProcessor.html" title="interface in com.linkedin.alpini.router.api">RouterTimeoutProcessor</a>&nbsp;timeoutProcessor,
  @Nonnull
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Executor.html" title="class or interface in java.util.concurrent" class="external-link">Executor</a>&nbsp;executor)</span></div>
+<div class="block">Creates a new ScatterGatherRequestHandler4.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>scatterGatherHelper</code> - the scatter-gather helper</dd>
+<dd><code>timeoutProcessor</code> - the timeout processor</dd>
+<dd><code>executor</code> - UNUSED - kept for backward compatibility. Response aggregation executor is obtained from
+                 <a href="api/ScatterGatherHelper.html#getResponseAggregationExecutor()"><code>ScatterGatherHelper.getResponseAggregationExecutor()</code></a> instead. If that returns null,
+                 response aggregation runs on the Netty EventLoop (ctx.executor()).</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -277,7 +290,18 @@ implements <a href="../netty4/handlers/AsyncFullHttpRequestHandler.RequestHandle
  <a href="../base/concurrency/TimeoutProcessor.html" title="class in com.linkedin.alpini.base.concurrency">TimeoutProcessor</a>&nbsp;timeoutProcessor,
  @Nonnull
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Executor.html" title="class or interface in java.util.concurrent" class="external-link">Executor</a>&nbsp;executor)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">Use constructor with <a href="api/RouterTimeoutProcessor.html" title="interface in com.linkedin.alpini.router.api"><code>RouterTimeoutProcessor</code></a> instead</div>
+</div>
+<div class="block">Creates a new ScatterGatherRequestHandler4.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>scatterGatherHelper</code> - the scatter-gather helper</dd>
+<dd><code>timeoutProcessor</code> - the timeout processor</dd>
+<dd><code>executor</code> - UNUSED - kept for backward compatibility. Response aggregation executor is obtained from
+                 <a href="api/ScatterGatherHelper.html#getResponseAggregationExecutor()"><code>ScatterGatherHelper.getResponseAggregationExecutor()</code></a> instead. If that returns null,
+                 response aggregation runs on the Netty EventLoop (ctx.executor()).</dd>
+</dl>
 </section>
 </li>
 </ul>

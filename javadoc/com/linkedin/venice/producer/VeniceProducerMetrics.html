@@ -80,6 +80,30 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">VeniceProducerMetrics</span>
 <span class="extends-implements">extends <a href="../stats/AbstractVeniceStats.html" title="class in com.linkedin.venice.stats">AbstractVeniceStats</a></span></div>
+<div class="block">Metrics for Venice Producer operations.
+
+ <h3>Latency Metrics</h3>
+ <ul>
+   <li><b>queue_wait_latency</b>: Time waiting in worker queue (submit to worker start)</li>
+   <li><b>preprocessing_latency</b>: Worker start to preprocess end (serialization + schema lookup)</li>
+   <li><b>produce_to_durable_buffer_latency</b>: Preprocess end to broker ack</li>
+   <li><b>caller_to_pubsub_producer_buffer_latency</b>: Caller submit to PubSub producer buffer</li>
+   <li><b>end_to_end_latency</b>: Caller submit to future completion (full round-trip)</li>
+ </ul>
+
+ <h3>Operation Counters</h3>
+ <ul>
+   <li><b>write_operation</b>: Total write operations (put + delete + update)</li>
+   <li><b>put_operation</b>, <b>delete_operation</b>, <b>update_operation</b>: Per-type counters</li>
+   <li><b>success_write_operation</b>, <b>failed_write_operation</b>: Outcome counters</li>
+   <li><b>pending_write_operation</b>: Current in-flight operations (gauge)</li>
+ </ul>
+
+ <h3>Queue Size Gauges</h3>
+ <ul>
+   <li><b>total_worker_queue_size</b>: Sum of all worker queue depths</li>
+   <li><b>callback_queue_size</b>: Callback executor queue depth</li>
+ </ul></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -118,23 +142,45 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordDeleteRequest()" class="member-name-link">recordDeleteRequest</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordCallerToPubSubBufferLatency(double)" class="member-name-link">recordCallerToPubSubBufferLatency</a><wbr>(double&nbsp;latencyMs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the caller to PubSub producer buffer latency - the total time from caller
+ submission to when the write is queued to the PubSub producer's buffer.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordDeleteRequest()" class="member-name-link">recordDeleteRequest</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordEndToEndLatency(double)" class="member-name-link">recordEndToEndLatency</a><wbr>(double&nbsp;latencyMs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Record the end-to-end latency (from submission to future completion).</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordFailedRequest()" class="member-name-link">recordFailedRequest</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordPreprocessingLatency(long)" class="member-name-link">recordPreprocessingLatency</a><wbr>(long&nbsp;latencyMs)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordPreprocessingLatency(double)" class="member-name-link">recordPreprocessingLatency</a><wbr>(double&nbsp;latencyMs)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordPutRequest()" class="member-name-link">recordPutRequest</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordSuccessfulRequestWithLatency(long)" class="member-name-link">recordSuccessfulRequestWithLatency</a><wbr>(long&nbsp;latencyMs)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordQueueWaitLatency(double)" class="member-name-link">recordQueueWaitLatency</a><wbr>(double&nbsp;latencyMs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Records the queue wait latency - the time a task spent waiting in the worker queue
+ before being picked up by a worker thread.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordSuccessfulRequestWithLatency(double)" class="member-name-link">recordSuccessfulRequestWithLatency</a><wbr>(double&nbsp;latencyMs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordUpdateRequest()" class="member-name-link">recordUpdateRequest</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recordUpdateRequest()" class="member-name-link">recordUpdateRequest</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registerQueueMetrics(com.linkedin.venice.producer.PartitionedProducerExecutor)" class="member-name-link">registerQueueMetrics</a><wbr>(<a href="PartitionedProducerExecutor.html" title="class in com.linkedin.venice.producer">PartitionedProducerExecutor</a>&nbsp;executor)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Called after executor is created to register queue size gauges.</div>
+</div>
 </div>
 </div>
 </div>
@@ -171,6 +217,17 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="registerQueueMetrics(com.linkedin.venice.producer.PartitionedProducerExecutor)">
+<h3>registerQueueMetrics</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registerQueueMetrics</span><wbr><span class="parameters">(<a href="PartitionedProducerExecutor.html" title="class in com.linkedin.venice.producer">PartitionedProducerExecutor</a>&nbsp;executor)</span></div>
+<div class="block">Called after executor is created to register queue size gauges.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>executor</code> - the partitioned producer executor</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="recordPutRequest()">
 <h3>recordPutRequest</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordPutRequest</span>()</div>
@@ -189,9 +246,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="recordSuccessfulRequestWithLatency(long)">
+<section class="detail" id="recordSuccessfulRequestWithLatency(double)">
 <h3>recordSuccessfulRequestWithLatency</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordSuccessfulRequestWithLatency</span><wbr><span class="parameters">(long&nbsp;latencyMs)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordSuccessfulRequestWithLatency</span><wbr><span class="parameters">(double&nbsp;latencyMs)</span></div>
 </section>
 </li>
 <li>
@@ -201,9 +258,45 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="recordPreprocessingLatency(long)">
+<section class="detail" id="recordPreprocessingLatency(double)">
 <h3>recordPreprocessingLatency</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordPreprocessingLatency</span><wbr><span class="parameters">(long&nbsp;latencyMs)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordPreprocessingLatency</span><wbr><span class="parameters">(double&nbsp;latencyMs)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="recordEndToEndLatency(double)">
+<h3>recordEndToEndLatency</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordEndToEndLatency</span><wbr><span class="parameters">(double&nbsp;latencyMs)</span></div>
+<div class="block">Record the end-to-end latency (from submission to future completion).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>latencyMs</code> - end-to-end latency in milliseconds</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="recordQueueWaitLatency(double)">
+<h3>recordQueueWaitLatency</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordQueueWaitLatency</span><wbr><span class="parameters">(double&nbsp;latencyMs)</span></div>
+<div class="block">Records the queue wait latency - the time a task spent waiting in the worker queue
+ before being picked up by a worker thread.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>latencyMs</code> - latency in milliseconds</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="recordCallerToPubSubBufferLatency(double)">
+<h3>recordCallerToPubSubBufferLatency</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">recordCallerToPubSubBufferLatency</span><wbr><span class="parameters">(double&nbsp;latencyMs)</span></div>
+<div class="block">Records the caller to PubSub producer buffer latency - the total time from caller
+ submission to when the write is queued to the PubSub producer's buffer. This includes
+ queue wait time, preprocessing, and the synchronous time to submit to VeniceWriter.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>latencyMs</code> - latency in milliseconds (supports sub-millisecond precision as a double)</dd>
+</dl>
 </section>
 </li>
 </ul>
