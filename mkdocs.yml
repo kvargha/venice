@@ -145,6 +145,7 @@ nav:
     - Documentation:
       - Writing Docs: contributing/documentation/writing-docs.md
       - Design Docs: contributing/documentation/design-docs.md
+    - Intern Projects: contributing/intern-projects.md
     - Proposals:
       - contributing/proposals/index.md
       - VIP Template: contributing/proposals/vip-template.md
