@@ -27,6 +27,10 @@ Venice is an open source project. We welcome contributions!
 - [Writing Docs](documentation/writing-docs.md)
 - [Design Docs](documentation/design-docs.md)
 
+## Intern Projects
+
+- [Intern Projects](intern-projects.md)
+
 ## Proposals
 
 - [Venice Improvement Proposals (VIPs)](proposals/index.md)
