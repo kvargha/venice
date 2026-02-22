@@ -2019,3 +2019,1340 @@ minutes to seconds."*
 - `SchemaAccessor` REST endpoints in `services/venice-controller` — existing schema query APIs
 - Venice's `ControllerClient` — lists stores and retrieves schemas
 - [Avro Schema Specification](https://avro.apache.org/docs/current/spec.html)
+
+---
+
+## Project 35: Zero-Downtime Schema Migration Dry-Run Mode
+
+### Overview
+
+Schema migrations in Venice (adding a new required field, changing a field type) are irreversible once the
+first record with the new schema is written. Today, an operator who wants to understand the impact of a
+schema change before committing to it has no tooling for this. A failed migration may require a full repush
+of the entire dataset—a costly multi-hour operation.
+
+This project implements a **dry-run mode for schema registration**: before persisting a new schema, the
+Controller simulates the migration end-to-end, verifies backward compatibility, and reports exactly which
+in-flight push jobs would be affected—without touching any production state.
+
+### Impact
+
+- **For Venice clusters**: Eliminates costly repushes caused by accidental incompatible schema changes, which
+  at LinkedIn scale represent multi-hour delays and significant compute cost.
+- **For the intern**: Shipped a safety feature that demonstrably reduced production incidents in a widely used
+  data platform; quantifiable as "reduced schema-related repushes by X% on Y stores."
+
+### Resume Impact
+
+*"Implemented a dry-run schema migration safety feature for a distributed storage service, preventing
+irreversible schema changes that previously caused multi-hour repushes on production datasets."*
+
+### Learning Outcomes
+
+- Avro schema compatibility rules and why they matter for long-running production systems
+- The Venice Controller's schema registration flow and how ZooKeeper stores schema history
+- Risk-free "what-if" tooling patterns in distributed systems
+
+### Scope
+
+**In scope:**
+
+- A `?dryRun=true` query parameter on the Controller's `POST /schema/{store}` endpoint
+- Dry-run mode runs all compatibility checks and returns a detailed JSON response:
+  - Compatibility result per existing schema version
+  - List of in-flight push jobs that would be affected
+  - Whether the schema would be accepted or rejected in production mode
+- No ZooKeeper writes occur during dry-run; results are computed in-memory only
+- Unit tests verifying that dry-run mode never persists state, and that the compatibility report is accurate
+
+**Out of scope:**
+
+- Dry-run for key schema changes
+- Simulating the actual data re-encoding (only schema-level compatibility is checked)
+
+### Key Technical Challenges
+
+- **Idempotency guarantee**: Dry-run must never have side effects even under concurrent real registrations
+  happening on other Controller threads.
+- **Reporting clarity**: The JSON response must be human-readable enough for an operator to act on without
+  reading source code.
+
+### Suggested Starting Points
+
+- `SchemaAdminHandler` in `services/venice-controller` — handles schema registration requests
+- `SchemaEntry` and `SchemaRepository` in `internal/venice-common` — schema persistence
+- Avro `SchemaCompatibilityValidator` utilities already used in Venice
+
+---
+
+## Project 36: Read Path Latency Budget Alerting
+
+### Overview
+
+Venice's SLA for p99 read latency is well-defined per client type (e.g., < 2 ms for the Fast Client). Today,
+when latency degrades, operators find out reactively—after users report the issue or after an on-call alert
+fires on an aggregate metric. There is no proactive, per-store alerting that fires early, before the SLA is
+breached, based on a configurable latency budget.
+
+This project implements **per-store latency budget alerting** in the Router and Server: each store can declare
+its latency budget, and a background evaluator emits a warning metric and log event when recent p99 latency
+exceeds the budget.
+
+### Impact
+
+- **For Venice clusters**: Reduces mean time to detect latency regressions from minutes to seconds, directly
+  shortening the window during which user-facing applications experience degraded performance.
+- **For the intern**: Shipped proactive alerting infrastructure used in production; quantifiable as "reduced
+  mean time to detect latency regressions from N minutes to M seconds."
+
+### Resume Impact
+
+*"Built per-store latency budget alerting for a distributed storage service, reducing mean time to detect
+SLA violations from minutes to under 30 seconds across hundreds of production stores."*
+
+### Learning Outcomes
+
+- SLA definition and latency percentile metrics (p50, p99, p999) in high-throughput systems
+- Rolling time-window statistics and their tradeoffs (accuracy vs. memory)
+- Proactive vs. reactive monitoring in distributed systems
+
+### Scope
+
+**In scope:**
+
+- A per-store config field `latencyBudgetMs` (nullable; no alerting if unset)
+- A background evaluator thread in the Router that checks the rolling p99 latency for each store
+  every 30 seconds against the budget
+- Emit a `latency_budget_exceeded` metric (counter + last-exceeded-at timestamp) and a structured
+  log warning when the budget is breached
+- A `venice-admin-tool` sub-command `set-latency-budget` that updates the per-store config
+- Unit tests for the budget evaluation logic and threshold comparison
+
+**Out of scope:**
+
+- Automatic throttling or traffic shedding when the budget is exceeded
+- Per-key-range granularity (store-level only)
+- Integration with external alerting systems (PagerDuty, Slack, etc.)
+
+### Key Technical Challenges
+
+- **Rolling window accuracy**: A simple ring buffer of the last N latency samples gives approximate
+  percentiles; the window size and sample rate must be tuned so that the p99 estimate converges quickly
+  after a degradation event.
+- **Config propagation**: The latency budget is a per-store config stored in ZooKeeper; the Router must
+  subscribe to config change events and update its evaluator without restarting.
+
+### Suggested Starting Points
+
+- `RouterStats` in `services/venice-router` — where existing router latency metrics are collected
+- `StoreConfig` in `internal/venice-common` — per-store configuration schema
+- Venice's config update notification path in `services/venice-router`
+
+---
+
+## Project 37: Automatic Replication Factor Repair
+
+### Overview
+
+Venice ensures that each partition is replicated to a configured number of replicas (e.g., 3). When servers
+are removed from a cluster or crash permanently, the actual replication factor of some partitions may drop
+below the target—a condition called **under-replication**. Today, under-replication is detected passively
+via metrics, but recovery requires manual operator intervention: adding a new server and waiting for Helix
+to rebalance.
+
+This project implements an **auto-repair background task** in the Controller that detects under-replicated
+partitions and automatically triggers a Helix rebalance to restore the configured replication factor.
+
+### Impact
+
+- **For Venice clusters**: Eliminates manual toil for the most common under-replication scenarios, reducing
+  mean time to recover data availability from hours (waiting for an operator) to minutes (automatic repair).
+- **For the intern**: Contributed to Venice's core reliability story; quantifiable as "automated detection
+  and repair of under-replicated partitions, reducing MTTR from X hours to Y minutes."
+
+### Resume Impact
+
+*"Designed and implemented an automated under-replication detection and self-healing system for a
+distributed storage platform, reducing mean time to recover full replication factor from hours to minutes."*
+
+### Learning Outcomes
+
+- Replication factor and quorum in distributed storage systems
+- Apache Helix resource balancing: how rebalance commands propagate and how replicas are assigned
+- Self-healing systems: idempotent background workers that converge toward a desired replication state
+
+### Scope
+
+**In scope:**
+
+- A `ReplicationFactorRepairTask` background thread in the Controller (runs every configurable interval,
+  default 5 minutes)
+- Queries the Helix external view to count the actual number of healthy replicas per partition per store
+- When actual replicas < configured `replicationFactor` for a partition, trigger a targeted Helix
+  rebalance for that resource
+- Emit a `under_replicated_partitions` gauge metric and a log warning per affected store
+- A dry-run mode that reports without triggering rebalance
+- Unit tests for the under-replication detection logic
+
+**Out of scope:**
+
+- Automatically provisioning new servers to satisfy the replication factor (only rebalancing among
+  existing servers)
+- Cross-region replication repair
+- Repair during active push jobs (defer to after the push completes)
+
+### Key Technical Challenges
+
+- **Helix rebalance triggering**: Incorrectly triggering a rebalance during an active ingestion can cause
+  unnecessary partition movements; the task must check for active push jobs before issuing the rebalance.
+- **Thundering herd**: If many stores become under-replicated simultaneously (e.g., after a multi-server
+  outage), triggering rebalances for all of them at once could overwhelm the cluster. The task must
+  rate-limit rebalance triggers.
+
+### Suggested Starting Points
+
+- `VeniceHelixAdmin` in `services/venice-controller` — the Controller's Helix integration
+- `HelixBaseRoutingRepository` in `services/venice-router` — reads replica state from Helix
+- Apache Helix `HelixAdmin.rebalance()` API
+
+---
+
+## Project 38: Push Job Throughput Estimator
+
+### Overview
+
+When a Venice push job starts, operators and users have no estimate of how long it will take to complete.
+For large datasets, a push can take hours, and users must monitor log output manually to gauge progress.
+A throughput estimator that projects the expected completion time from the first few minutes of actual
+ingestion rates would significantly reduce uncertainty and help operators schedule maintenance windows.
+
+### Impact
+
+- **For Venice users**: Provides actionable completion time estimates for multi-hour push jobs, reducing
+  the need for manual monitoring and enabling better scheduling of downstream pipeline steps.
+- **For the intern**: Built user-facing productivity tooling used daily by data engineers; quantifiable
+  as "reduced push job monitoring overhead by providing completion time estimates within 10% accuracy
+  after the first 5 minutes of ingestion."
+
+### Resume Impact
+
+*"Built a push job completion time estimator for a distributed data ingestion pipeline, providing
+within-10%-accuracy ETA predictions that reduced engineer monitoring overhead across hundreds of
+daily push jobs."*
+
+### Learning Outcomes
+
+- Throughput estimation and extrapolation in distributed systems
+- The Venice push job lifecycle and what metrics are available at each stage
+- Statistical forecasting: exponential smoothing and confidence intervals for rate-based estimates
+
+### Scope
+
+**In scope:**
+
+- A `ThroughputEstimator` component in the Venice Push Job that:
+  - Samples ingestion throughput (records/sec, bytes/sec) every 30 seconds using a sliding window
+  - Applies exponential smoothing to reduce noise
+  - Projects completion time as `remaining_records / smoothed_throughput`
+- Log the estimated completion time at each sample interval, including a confidence range (±20%)
+- Expose the estimate via the push job's progress reporter so it appears in the Controller's job status API
+- Unit tests for the smoothing algorithm and ETA calculation
+
+**Out of scope:**
+
+- Adaptive throttling based on the estimate
+- Multi-region ETA aggregation (estimate per-region only)
+- Machine learning–based estimation (statistical smoothing only)
+
+### Key Technical Challenges
+
+- **Estimation accuracy in early stages**: Ingestion often accelerates as RocksDB warms up caches; early
+  samples are biased low. The estimator must apply a warm-up discount to early readings.
+- **Handling pauses**: If the push job stalls (e.g., waiting for quota), throughput drops to zero; the
+  estimator must detect stalls and suspend ETA reporting rather than projecting an infinite completion time.
+
+### Suggested Starting Points
+
+- `VenicePushJob` in `clients/venice-push-job` — the push job entry point
+- `PushJobDetails` Avro schema in `internal/venice-common` — the push job progress record structure
+- [Push Job documentation](../user-guide/write-apis/batch-push.md)
+
+---
+
+## Project 39: Automatic Dead Letter Queue for Failed Nearline Writes
+
+### Overview
+
+Venice nearline (streaming) writes arrive via Kafka. When a message cannot be applied—because it is
+malformed, violates the current schema, or triggers an unexpected processing error—the Venice server
+currently logs the error and skips the message. The message is silently lost with no way for the producer
+to know their write failed or to recover the data.
+
+This project implements an **automatic dead letter queue (DLQ)**: failed messages are forwarded to a
+dedicated Kafka topic alongside a structured error record describing why they failed. Producers can
+subscribe to the DLQ topic to detect and reprocess failures.
+
+### Impact
+
+- **For Venice users**: Eliminates the current silent data loss scenario for failed nearline writes,
+  giving producers a reliable feedback loop and a recovery path—a critical correctness improvement
+  for high-value streaming pipelines.
+- **For the intern**: Shipped a reliability feature that closes a known data integrity gap; quantifiable
+  as "eliminated silent data loss for X% of error-prone nearline write workloads."
+
+### Resume Impact
+
+*"Implemented an automatic dead letter queue for failed streaming writes in a distributed storage
+service, eliminating silent data loss and providing producers a structured error recovery path."*
+
+### Learning Outcomes
+
+- The dead letter queue pattern: why it is necessary in at-least-once messaging systems
+- Venice's nearline write ingestion path: how messages flow from Kafka to RocksDB
+- Error classification: transient errors that should be retried vs. permanent errors that should be DLQ'd
+
+### Scope
+
+**In scope:**
+
+- A `DeadLetterQueueWriter` component in `StoreIngestionTask` that, on a permanent ingestion failure:
+  - Creates a DLQ topic named `<store>_dlq` if it does not exist
+  - Writes the original failed message bytes alongside a structured error record (timestamp, error
+    type, error message, store name, partition)
+- Configuration to enable/disable DLQ per store (`dead.letter.queue.enabled`, default: false)
+- A `venice-admin-tool` sub-command `inspect-dlq` that reads and displays recent DLQ entries for a store
+- Unit tests for error classification (transient vs. permanent) and DLQ write logic
+
+**Out of scope:**
+
+- Automatic reprocessing of DLQ messages
+- DLQ for batch push job failures
+- Cross-region DLQ replication
+
+### Key Technical Challenges
+
+- **Error classification**: Not all ingestion errors should go to the DLQ; transient errors (e.g., a
+  temporary RocksDB I/O error) should be retried, while permanent errors (schema violation, corrupt
+  message) should be DLQ'd immediately. Defining and testing this boundary is the core challenge.
+- **DLQ topic creation**: Creating a new Kafka topic at ingestion time adds latency to the failure path
+  and may fail if the Kafka cluster is unavailable; topic creation must be pre-provisioned or retried
+  asynchronously.
+
+### Suggested Starting Points
+
+- `StoreIngestionTask` in `services/venice-server` — the ingestion loop where errors occur
+- `TopicManager` in `internal/venice-common` — Kafka topic creation and management
+- `VeniceWriter` in `internal/venice-common` — writes messages to Kafka topics
+
+---
+
+## Project 40: Per-Store Read SLA Dashboard
+
+### Overview
+
+Venice serves hundreds of stores simultaneously, each with different read latency profiles. Today, a
+single aggregate latency dashboard makes it difficult to identify which specific stores are violating their
+SLA at any given moment. An operator investigating a user-reported latency complaint must manually cross-
+reference store names, metrics, and logs across multiple systems.
+
+This project builds a **per-store read SLA dashboard** as a `venice-admin-tool` command that queries the
+Router's metrics endpoint, aggregates per-store p99 latency, and renders a ranked list of stores sorted
+by SLA violation severity.
+
+### Impact
+
+- **For Venice operators**: Reduces the time to identify which store is causing a user-facing latency
+  issue from 10–30 minutes (manual log spelunking) to under 60 seconds (a single CLI command).
+- **For the intern**: Shipped operator tooling with direct, measurable impact on incident response time;
+  quantifiable as "reduced mean time to identify latency-offending store from N minutes to under 1 minute."
+
+### Resume Impact
+
+*"Built a per-store SLA monitoring CLI for a distributed storage service, reducing mean time to identify
+latency-offending stores during incidents from 20 minutes to under 60 seconds."*
+
+### Learning Outcomes
+
+- How Venice exposes per-store metrics via its Router metrics endpoint
+- Latency percentile interpretation: why p50 is fine but p99 is what users feel
+- Incident-response tooling: designing CLIs for speed and clarity under pressure
+
+### Scope
+
+**In scope:**
+
+- A `venice-admin-tool` sub-command `show-store-sla` that:
+  - Queries the Router's `/metrics` (or equivalent) endpoint for all stores
+  - Extracts p50, p99, and p999 single-get latency per store
+  - Renders a table sorted by p99 descending, with a visual indicator (🟢/🟡/🔴) based on a
+    configurable SLA threshold
+  - Supports a `--top N` flag to show only the N worst-performing stores
+- Unit tests for the metric parsing and ranking logic
+
+**Out of scope:**
+
+- Historical latency trending (point-in-time snapshot only)
+- Automatic alerting from the CLI command
+- Per-region breakdown
+
+### Key Technical Challenges
+
+- **Metric scraping reliability**: The Router's metrics endpoint may be temporarily unavailable; the
+  tool must handle partial failures gracefully and report which routers could not be reached.
+- **Metric naming consistency**: Venice's metric naming conventions may vary across Router versions; the
+  parser must handle minor naming variations without failing hard.
+
+### Suggested Starting Points
+
+- `RouterStats` in `services/venice-router` — where per-store latency metrics are emitted
+- `VeniceAdminTool` in `clients/venice-admin-tool` — CLI patterns
+- Venice's metrics endpoint in `services/venice-router`
+
+---
+
+## Project 41: Ingestion Backpressure Metrics
+
+### Overview
+
+Venice servers ingest data from Kafka at a configurable rate. When ingestion is slower than the rate at
+which the producer writes (e.g., due to RocksDB write stalls, compaction, or CPU saturation), Kafka
+consumer lag builds up. Today, consumer lag is visible, but the root cause—which component is the
+bottleneck—is not. Is it RocksDB write speed? Deserialization? Write Compute? Schema validation?
+
+This project adds **per-stage ingestion backpressure metrics**: detailed timing instrumentation for each
+stage of the ingestion pipeline so that the slowest stage can be identified at a glance.
+
+### Impact
+
+- **For Venice clusters**: Enables data-driven optimization of the ingestion pipeline by pinpointing
+  bottlenecks, potentially unlocking significant throughput improvements for the entire Venice fleet.
+- **For the intern**: Produced actionable performance insights for a critical production system; quantifiable
+  as "identified and helped resolve ingestion bottleneck that increased ingestion throughput by X%."
+
+### Resume Impact
+
+*"Instrumented the ingestion pipeline of a distributed storage service with per-stage latency metrics,
+enabling data-driven bottleneck detection and contributing to a measurable throughput improvement."*
+
+### Learning Outcomes
+
+- Pipeline instrumentation and bottleneck analysis in distributed systems
+- The Venice ingestion pipeline stages: Kafka deserialization, schema validation, Write Compute,
+  RocksDB write, and follower replication notification
+- Performance profiling methodology: measuring without perturbing
+
+### Scope
+
+**In scope:**
+
+- Add per-stage timing metrics (nanosecond-resolution stopwatch) to `StoreIngestionTask` for:
+  - Kafka record deserialization
+  - Schema validation
+  - Write Compute (if enabled)
+  - RocksDB put operation
+  - Leader-to-follower notification
+- Expose each stage's p50, p99 latency and throughput (records/sec) as server metrics tagged by store
+- A `venice-admin-tool` sub-command `show-ingestion-breakdown` that queries all servers for a given store
+  and displays a per-stage breakdown sorted by mean latency contribution
+- Unit tests for the timing instrumentation (verify non-zero values after writes)
+
+**Out of scope:**
+
+- Trace-level per-record timing (aggregate histograms only)
+- Cross-region ingestion breakdown
+- Adaptive throttling based on stage latency
+
+### Key Technical Challenges
+
+- **Nanosecond timing overhead**: Recording timestamps at each stage of a high-throughput pipeline adds
+  CPU overhead; the instrumentation must use `System.nanoTime()` efficiently and batch metric updates.
+- **Stage boundary definition**: Some stages (e.g., RocksDB write) are asynchronous; accurately
+  attributing time to the right stage requires careful use of timestamps at enqueue and completion.
+
+### Suggested Starting Points
+
+- `StoreIngestionTask` in `services/venice-server` — the ingestion loop
+- Venice's `ServerStats` class — existing server-side metrics
+- `RocksDBStoragePartition` in `services/venice-server` — the RocksDB write layer
+
+---
+
+## Project 42: Automatic Schema Documentation Generator
+
+### Overview
+
+Every Venice store has an Avro schema that describes the shape of its data. Keeping human-readable
+documentation of these schemas current is tedious: today it is either missing entirely or maintained
+manually in separate wikis that quickly fall out of sync.
+
+This project builds an **automatic schema documentation generator** that reads schemas from the Venice
+schema registry and produces well-formatted Markdown (or HTML) documentation pages—one per store—that
+are always up to date with the actual registered schemas.
+
+### Impact
+
+- **For Venice users**: Eliminates the need for manual schema documentation maintenance; data engineers
+  can navigate store schemas as easily as browsing a API reference, reducing integration time for new
+  consumers.
+- **For the intern**: Shipped developer productivity infrastructure used by the entire organization;
+  quantifiable as "automated schema documentation for X stores, eliminating Y hours/week of manual
+  documentation work."
+
+### Resume Impact
+
+*"Built an automatic schema documentation generator for a distributed storage service's schema registry,
+producing always-current Markdown reference pages for hundreds of stores and eliminating manual
+documentation maintenance."*
+
+### Learning Outcomes
+
+- Avro schema structure: records, fields, unions, arrays, maps, enums, and their documentation features
+- Documentation-as-code: generating structured docs from machine-readable schemas
+- How Venice's schema registry stores and versions schemas
+
+### Scope
+
+**In scope:**
+
+- A `generate-schema-docs` sub-command in `venice-admin-tool` that:
+  - Accepts a cluster and optional store filter
+  - For each matching store, fetches all schema versions from the Controller
+  - Renders a Markdown page per store containing: store description, a table of schema versions
+    (version, registration date), and for the latest version a full field-level reference table
+    (field name, type, default, docstring)
+  - Writes pages to a configurable output directory
+- Support for Avro `doc` field strings as field-level descriptions in the rendered output
+- Unit tests for the Markdown rendering logic (field table generation, nested record expansion)
+
+**Out of scope:**
+
+- Generating docs for key schemas (value schemas only)
+- Hosting or serving the generated docs (file output only)
+- Diff pages between schema versions
+
+### Key Technical Challenges
+
+- **Nested schema expansion**: Avro allows nested records and named type references; the renderer
+  must expand nested records inline (with proper indentation) to produce a readable field table.
+- **Union type rendering**: Avro unions (nullable fields, typed unions) must be rendered clearly;
+  `["null", "string"]` should render as `string (nullable)`, not as raw JSON.
+
+### Suggested Starting Points
+
+- `ControllerClient` in `internal/venice-common` — fetches registered schemas
+- Avro `Schema.Field` and `Schema.Type` — the Java API for inspecting schema structure
+- `VeniceAdminTool` in `clients/venice-admin-tool` — CLI patterns
+
+---
+
+## Project 43: Multi-Store Batch Get Client
+
+### Overview
+
+Some applications need to retrieve related data from multiple Venice stores in a single logical operation—
+for example, fetching a user's profile from store A and their preferences from store B for the same user
+ID. Today, clients must issue separate, sequential requests to each store, paying full latency for each hop.
+
+This project implements a **multi-store batch get client** that issues parallel requests to multiple stores
+for a shared set of keys and aggregates the results, reducing total latency to a single network round-trip.
+
+### Impact
+
+- **For Venice users**: Reduces ML inference latency for applications that join multiple feature stores,
+  potentially cutting feature retrieval time by 50% for two-store joins and proportionally more for
+  larger joins.
+- **For the intern**: Shipped a user-facing API improvement with directly measurable latency impact on
+  ML serving pipelines; quantifiable as "reduced multi-store feature retrieval latency by X ms for Y
+  use cases."
+
+### Resume Impact
+
+*"Designed and implemented a parallel multi-store batch get API for a distributed feature store, reducing
+ML inference feature retrieval latency by up to 50% for applications that join data from multiple stores."*
+
+### Learning Outcomes
+
+- Fan-out parallelism in distributed systems: issuing and joining multiple concurrent requests
+- API design for composable distributed data access patterns
+- Error handling semantics for partial results in a multi-store operation
+
+### Scope
+
+**In scope:**
+
+- A `MultiStoreClient` wrapper that accepts a `Map<StoreName, Set<Key>>` and returns a
+  `Map<StoreName, Map<Key, Value>>` response
+- All per-store requests are issued in parallel using `CompletableFuture.allOf`
+- A configurable per-store client map injected at construction time
+- Partial failure semantics: if one store's request fails, the response for that store contains the
+  error while other stores' results are still returned
+- Unit tests for parallel dispatch, result merging, and partial failure handling
+
+**Out of scope:**
+
+- Automatically discovering which stores to query (caller specifies store names explicitly)
+- Cross-datacenter multi-store requests
+- Write operations
+
+### Key Technical Challenges
+
+- **Error isolation**: One store's failure must not cancel in-flight requests to other stores; the
+  multi-store client must collect results independently and allow partial success.
+- **Key type heterogeneity**: Different stores may have different key types; the API must handle
+  type-safe keys per store without requiring a common supertype.
+- **Timeout semantics**: The caller specifies one timeout for the entire multi-store operation; the
+  implementation must set per-store deadlines accordingly and cancel any outstanding requests on timeout.
+
+### Suggested Starting Points
+
+- `StatTrackingStoreClient` in `clients/venice-client` — client wrapper pattern
+- `DispatchingAvroGenericStoreClient` in `clients/venice-client` — the Fast Client dispatch layer
+- `VeniceClientFactory` in `clients/venice-client` — client construction patterns
+
+---
+
+## Project 44: Controller REST API OpenAPI Specification
+
+### Overview
+
+Venice's Controller exposes a rich REST API used by the `venice-admin-tool`, the push job, and monitoring
+systems. Today, this API is undocumented in any machine-readable format: there is no OpenAPI/Swagger
+specification, no generated client code, and no interactive documentation. New contributors must read
+source code to understand how to call the API.
+
+This project produces an **OpenAPI 3.0 specification** for the Venice Controller's REST API, enabling
+auto-generated client SDKs, interactive documentation (Swagger UI), and API contract testing.
+
+### Impact
+
+- **For the Venice community**: Lowers the barrier to building integrations with Venice's control plane;
+  any language can generate a typed client SDK from the spec, expanding Venice's ecosystem reach.
+- **For the intern**: Published the authoritative API specification for a widely used distributed system's
+  control plane; quantifiable as "documented X endpoints covering Y% of the Controller API surface."
+
+### Resume Impact
+
+*"Authored the complete OpenAPI 3.0 specification for a distributed storage service's control plane API,
+enabling auto-generated client SDKs in multiple languages and interactive documentation used by the open
+source community."*
+
+### Learning Outcomes
+
+- OpenAPI 3.0 specification format: paths, operations, request/response schemas, and authentication
+- REST API design review: documenting an existing API forces a clear-eyed assessment of its consistency
+- Documentation tooling: Swagger UI, code generation with `openapi-generator`
+
+### Scope
+
+**In scope:**
+
+- An `openapi.yaml` file at the repository root documenting the Controller's primary admin endpoints:
+  - Store CRUD operations (`/stores`, `/stores/{store}`)
+  - Schema registration and retrieval (`/schema/{store}`)
+  - Push job status (`/job`)
+  - Cluster health and version info
+- Inline `description` fields for every endpoint, parameter, and response field
+- A CI check (using `spectral` or similar) that validates the spec is syntactically correct
+- A Swagger UI page served by the Controller at `/api-docs` (optional stretch goal)
+
+**Out of scope:**
+
+- Documenting internal or experimental endpoints
+- Generating a Java client from the spec (documenting the existing client is out of scope)
+- Authentication-related endpoints
+
+### Key Technical Challenges
+
+- **Keeping spec in sync**: The spec must not drift from the actual Controller implementation; a CI
+  check that runs a basic smoke-test against a local cluster using the spec-generated client would
+  catch drift early.
+- **Response schema accuracy**: The Controller's responses use Venice-specific Avro-derived types;
+  these must be accurately represented in the OpenAPI JSON Schema format, including nullable fields
+  and enums.
+
+### Suggested Starting Points
+
+- `AdminSparkServer` in `services/venice-controller` — the full list of registered routes
+- Existing `ControllerClient` in `internal/venice-common` — documents expected request/response shapes
+- [OpenAPI 3.0 Specification](https://spec.openapis.org/oas/v3.0.3)
+
+---
+
+## Project 45: Partition Hot-Spot Auto-Rebalancing
+
+### Overview
+
+Venice distributes data across partitions using a hash function. Some key distributions are inherently
+uneven (e.g., a store whose keys are customer IDs where a small number of large customers generate the
+majority of lookups). Even if partition sizes are balanced, request rates per partition can be severely
+skewed. Today, there is no mechanism to detect and respond to per-partition request rate skew.
+
+This project implements **request-rate-aware partition hot-spot detection** and recommends (or automatically
+executes) a partition count increase to dilute the hot partition's load.
+
+### Impact
+
+- **For Venice clusters**: Eliminates per-partition request rate bottlenecks that today cause tail latency
+  degradation for all keys on the hot partition, improving p99 latency for affected stores.
+- **For the intern**: Addressed a well-known distributed systems scaling challenge with a measurable
+  production impact; quantifiable as "reduced p99 latency for hot-partition stores by X% through
+  automated load rebalancing."
+
+### Resume Impact
+
+*"Built hot-spot detection and automated partition rebalancing for a distributed key-value store, reducing
+p99 latency for skewed-access stores by detecting and diluting overloaded partitions."*
+
+### Learning Outcomes
+
+- Data skew and hot-spot problems in distributed hash-partitioned systems
+- The tradeoff between partition granularity and per-partition overhead
+- Automated remediation workflows: detecting a problem, proposing a solution, and applying it safely
+
+### Scope
+
+**In scope:**
+
+- Track per-partition request rate (requests/sec) as a rolling gauge metric on Venice servers
+- A Controller background task that queries servers for per-partition request rates and computes a
+  skew score (max partition rate / mean partition rate)
+- When skew score exceeds a configurable threshold (default: 10×), log a warning and emit a
+  `hot_partition_detected` metric, including the store name and partition ID
+- A `venice-admin-tool` sub-command `show-hot-partitions` that displays current hot partitions
+- Unit tests for the skew score calculation
+
+**Out of scope:**
+
+- Automatically triggering a partition count increase (detection and reporting only)
+- Adjusting the hash function to reduce skew
+- Cross-region hot-spot detection
+
+### Key Technical Challenges
+
+- **Per-partition metric granularity**: Venice may have millions of partitions across all stores; tracking
+  request rate per partition requires careful memory bounding (use a top-K structure rather than a full
+  histogram per partition).
+- **Aggregation across replicas**: Each partition has multiple replicas on different servers; the
+  Controller must aggregate request rates from all replicas to compute a total rate per partition.
+
+### Suggested Starting Points
+
+- `ServerStats` in `services/venice-server` — existing server-side request metrics
+- `VeniceHelixAdmin` in `services/venice-controller` — queries server state for admin tasks
+- Project 18 (Key Sampling) in this document — similar per-partition tracking techniques
+
+---
+
+## Project 46: gRPC Streaming Batch Get
+
+### Overview
+
+Venice's current batch-get protocol sends all keys in a single request and receives all values in a
+single response. For very large batches (thousands of keys), this creates a head-of-line blocking
+problem: the response cannot be processed until all values have been retrieved and serialized. gRPC
+bidirectional streaming provides a natural way to pipeline keys and values, allowing the client to begin
+processing early values while the server is still fetching later ones.
+
+This project implements **gRPC bidirectional streaming batch get** in Venice's gRPC server path,
+enabling clients to stream keys and receive values as they are ready.
+
+### Impact
+
+- **For Venice users**: Reduces time-to-first-value for large batch gets from O(total_batch_latency) to
+  O(single_key_latency), a significant improvement for real-time ML inference pipelines that process
+  values as they arrive.
+- **For the intern**: Shipped a next-generation API used in production; quantifiable as "reduced time-
+  to-first-value for large batch gets by X ms, improving ML inference throughput by Y%."
+
+### Resume Impact
+
+*"Implemented gRPC bidirectional streaming for large batch reads in a distributed storage service,
+reducing time-to-first-value from O(batch size) to O(single key latency) for ML inference workloads."*
+
+### Learning Outcomes
+
+- gRPC bidirectional streaming: the difference between unary, server-streaming, client-streaming, and
+  bidirectional RPCs
+- Pipelining and head-of-line blocking in distributed data retrieval
+- Backpressure in streaming APIs: how the client signals it is ready for more data
+
+### Scope
+
+**In scope:**
+
+- A new gRPC service method `StreamingBatchGet(stream KeyRequest) returns (stream ValueResponse)` in
+  the Venice gRPC proto definition
+- Server implementation: read each incoming key, look it up in RocksDB, and stream the response
+  immediately without waiting for all keys to arrive
+- Fast Client integration: a `streamingBatchGet` API that opens the streaming RPC, sends keys, and
+  returns a `Flow` or `AsyncIterator` of values
+- Unit tests verifying that values are returned before all keys are sent
+
+**Out of scope:**
+
+- Streaming batch get in the Thin Client
+- Read Compute on streaming batch get requests
+- Backpressure flow control (accept keys as fast as the client sends them)
+
+### Key Technical Challenges
+
+- **Ordering semantics**: The streaming API does not guarantee that values are returned in the same
+  order as keys were sent; clients must match values to keys using a key identifier in the response.
+- **Error mid-stream**: If one key's lookup fails, the stream must decide whether to send an error
+  response for that key and continue, or to terminate the entire stream.
+- **gRPC flow control**: The gRPC library has built-in flow control; the server must use it correctly
+  to avoid overwhelming the client with responses faster than it can process them.
+
+### Suggested Starting Points
+
+- Venice's existing gRPC proto definitions in `services/venice-server`
+- `VeniceGrpcServer` in `services/venice-server` — existing gRPC server setup
+- [grpc-java bidirectional streaming tutorial](https://grpc.io/docs/languages/java/basics/#bidirectional-streaming-rpc)
+
+---
+
+## Project 47: Continuous Write Amplification Benchmarking
+
+### Overview
+
+Write amplification (the ratio of bytes written to disk vs. bytes logically written by the application) is
+a critical metric for RocksDB-backed systems. High write amplification accelerates SSD wear, increases
+compaction CPU usage, and reduces ingestion throughput. Venice's current RocksDB configuration was tuned
+empirically; there is no automated benchmark that validates whether configuration changes improve or worsen
+write amplification.
+
+This project builds a **continuous write amplification benchmark** that runs as a nightly CI job, measures
+write amplification under a standardized workload, and posts a regression comment on any PR that degrades
+it.
+
+### Impact
+
+- **For Venice clusters**: Provides a safety net against configuration regressions that would increase
+  SSD wear and reduce ingestion throughput; measurable as "caught X write amplification regressions
+  before they reached production."
+- **For the intern**: Built automated performance regression detection infrastructure integrated into CI;
+  a concrete example of responsible performance engineering.
+
+### Resume Impact
+
+*"Built a continuous write amplification benchmark integrated into CI for a distributed storage service,
+catching configuration regressions before production and reducing SSD wear events by establishing a
+measurable baseline."*
+
+### Learning Outcomes
+
+- Write amplification in LSM trees: why it happens and how RocksDB configuration affects it
+- CI/CD integration of performance benchmarks: preventing regressions without blocking developer velocity
+- RocksDB statistics API and how to measure write amplification programmatically
+
+### Scope
+
+**In scope:**
+
+- A JMH-based write amplification benchmark that:
+  - Writes a fixed number of records to a local RocksDB instance with Venice's production configuration
+  - Reads `rocksdb.compact.write.bytes` and `rocksdb.bytes.written` statistics to compute write amplification
+  - Records and asserts that write amplification is below a configurable threshold (default: 10×)
+- A GitHub Actions workflow step that runs the benchmark on PRs that touch Venice server or RocksDB
+  configuration
+- A README section documenting the expected write amplification baseline and how to interpret results
+- Unit tests for the amplification calculation logic
+
+**Out of scope:**
+
+- Benchmarking on different hardware profiles (single hardware configuration only)
+- Automated RocksDB tuning based on benchmark results
+- Read amplification benchmarking
+
+### Key Technical Challenges
+
+- **Benchmark stability**: Write amplification varies with compaction timing; the benchmark must run
+  long enough (sufficient records) for compaction to stabilize, and must flush and compact to a
+  deterministic state before measuring.
+- **CI resource limits**: The benchmark must complete within a reasonable CI time budget (under 5 minutes);
+  record count and compaction parameters must be tuned accordingly.
+
+### Suggested Starting Points
+
+- `RocksDBStoragePartition` in `services/venice-server` — the RocksDB wrapper with statistics access
+- Venice's existing JMH benchmarks (if any) in `tests/` — for CI integration patterns
+- [RocksDB Tuning Guide](https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide)
+
+---
+
+## Project 48: Incremental Schema Registry Sync Across Regions
+
+### Overview
+
+In Venice's multi-region deployment, schemas are registered in a "source of truth" region and must
+be propagated to all other regions before data encoded with that schema can be served. Today, schema
+propagation happens lazily—schemas are replicated as part of the admin channel flow, which can have
+variable delays. If a schema is not yet present in a region when a server tries to deserialize a record
+encoded with it, the server logs an error and drops the record.
+
+This project implements **proactive, incremental schema sync**: a Controller background task that
+detects schema gaps across regions and immediately initiates propagation to fill them.
+
+### Impact
+
+- **For Venice clusters**: Eliminates deserialization errors and dropped records caused by schema
+  propagation delays in multi-region deployments, directly improving data availability for
+  globally distributed stores.
+- **For the intern**: Solved a reliability problem that manifested as silent data loss in production;
+  quantifiable as "eliminated schema-gap-caused deserialization errors across X multi-region stores."
+
+### Resume Impact
+
+*"Built proactive schema synchronization across regions for a multi-region distributed storage service,
+eliminating deserialization errors caused by schema propagation delays and improving cross-region data
+availability."*
+
+### Learning Outcomes
+
+- Multi-region distributed systems: consistency challenges when state must be replicated across
+  geographically separated datacenters
+- Venice's admin channel: how admin operations (including schema registrations) propagate to child
+  controllers in each region
+- Incremental sync patterns: comparing two states and propagating only the delta
+
+### Scope
+
+**In scope:**
+
+- A `SchemaSyncTask` background thread in the parent Controller (runs every configurable interval,
+  default 2 minutes) that:
+  - For each store, queries each child controller for its known schema versions
+  - Identifies schemas present in the parent but missing in one or more child regions
+  - Proactively pushes missing schemas to lagging regions via the admin channel
+- A metric `schema_sync_lag` (count of missing schemas per region) and a log warning per gap detected
+- Unit tests for schema gap detection logic
+
+**Out of scope:**
+
+- Conflict resolution for schemas registered independently in different regions
+- Schema deletion sync
+- Cross-fabric (inter-organization) schema sync
+
+### Key Technical Challenges
+
+- **Querying child controllers**: The parent must call each child controller's schema endpoint; this
+  must be done with bounded parallelism and timeouts to avoid blocking on unresponsive regions.
+- **Admin channel ordering**: Schema pushes through the admin channel are ordered; the task must not
+  push a schema version out of order (e.g., push v3 before v2 is confirmed applied).
+
+### Suggested Starting Points
+
+- `ParentHelixAdmin` in `services/venice-controller` — the parent Controller's admin operations
+- `ControllerClient` in `internal/venice-common` — client for calling child controllers
+- The admin channel protocol in `internal/venice-common`
+
+---
+
+## Project 49: Configurable Read Request Timeout Policies
+
+### Overview
+
+Venice clients have a single, global read timeout applied to all requests. In practice, different stores
+have very different latency profiles: a small in-memory store should time out in 1 ms, while a large SSD-
+backed store may legitimately take 10 ms for a cache-miss read. A global timeout set conservatively for the
+slowest store causes unnecessary latency overhead for fast stores; set aggressively, it causes false
+timeouts on legitimate slow stores.
+
+This project implements **per-store configurable read timeout policies** in the Venice Fast Client, allowing
+each store to declare its own timeout, fallback timeout, and retry budget.
+
+### Impact
+
+- **For Venice users**: Reduces false timeout errors for latency-sensitive stores while allowing generous
+  timeouts for stores with high cache-miss rates, directly improving application reliability and reducing
+  unnecessary retry traffic.
+- **For the intern**: Shipped a user-facing reliability improvement with measurable impact on timeout error
+  rates; quantifiable as "reduced false timeout errors by X% for Y stores through per-store timeout tuning."
+
+### Resume Impact
+
+*"Implemented per-store configurable read timeout policies for a distributed storage client library,
+reducing false timeout errors by enabling store-appropriate timeout values instead of a one-size-fits-all
+global setting."*
+
+### Learning Outcomes
+
+- Timeout design in distributed systems: the difference between soft timeouts (fail fast), hard timeouts
+  (cancel in-flight), and retry budgets
+- Venice's request lifecycle in the Fast Client and where timeouts are enforced
+- Per-entity configuration management in a distributed system
+
+### Scope
+
+**In scope:**
+
+- A per-store config field `readTimeoutMs` (nullable; falls back to the global client timeout if unset)
+- Fast Client reads the per-store timeout from the store's metadata at request time
+- A fallback timeout (`readTimeoutFallbackMs`) that applies if the store config cannot be fetched
+- A `venice-admin-tool` sub-command `set-read-timeout` that updates the per-store timeout config
+- Unit tests verifying that the per-store timeout is used when set and falls back correctly when unset
+
+**Out of scope:**
+
+- Per-operation timeouts (single-get vs. batch-get)
+- Dynamic timeout adjustment based on observed latency (static config only)
+- Timeout policies for the Thin Client or Da Vinci Client
+
+### Key Technical Challenges
+
+- **Config propagation latency**: Per-store timeout configs are stored in ZooKeeper; the Fast Client
+  must refresh its local cache periodically and use the latest value without blocking in the hot path.
+- **Thread safety of timeout lookup**: The per-store timeout map is read on every request; it must be
+  read without locks (use a `volatile` reference to an immutable map that is swapped atomically on update).
+
+### Suggested Starting Points
+
+- `ClientConfig` in `clients/venice-client` — Fast Client configuration
+- `D2BasedClusterInfoProvider` in `clients/venice-client` — how the Fast Client fetches store metadata
+- `StoreConfig` in `internal/venice-common` — per-store configuration schema
+
+---
+
+## Project 50: Self-Describing Admin Tool Help System
+
+### Overview
+
+The `venice-admin-tool` has dozens of sub-commands with many flags each. Today, the help text for each
+command is hand-written in the source code and must be updated manually when command behavior changes.
+Many commands have outdated or missing documentation, and there is no way for a user to discover commands
+by searching for a keyword.
+
+This project redesigns the `venice-admin-tool` help system to be **self-describing and searchable**:
+help text is generated from annotations on command classes, all flag descriptions include examples, and
+a `search` sub-command lets users find commands by keyword.
+
+### Impact
+
+- **For Venice operators**: Dramatically reduces the learning curve for new operators; a `venice-admin-tool
+  search repush` immediately finds the relevant commands rather than requiring knowledge of the exact
+  command name. Measurable as "reduced new operator onboarding time from X hours to Y hours."
+- **For the intern**: Shipped infrastructure that directly improves the daily experience of every Venice
+  operator; a visible, user-facing contribution to an open source project used at LinkedIn scale.
+
+### Resume Impact
+
+*"Redesigned the CLI help system for a distributed storage service's admin tool, adding annotation-driven
+documentation generation and keyword search across dozens of commands, reducing operator onboarding time
+by an estimated 40%."*
+
+### Learning Outcomes
+
+- CLI framework design: annotation-based configuration, help generation, and command discovery
+- Reflection and annotation processing in Java
+- Developer experience (DX) as a product: how tooling quality directly affects team productivity
+
+### Scope
+
+**In scope:**
+
+- A `@CommandDescription(summary="...", examples={...})` annotation applied to every command class
+- A `@FlagDescription(description="...", example="...")` annotation applied to every flag field
+- A help formatter that generates the help text from annotations (replacing hand-written strings)
+- A `search` sub-command that performs case-insensitive keyword matching across all command and flag
+  descriptions and prints matching commands with their summaries
+- Unit tests verifying that all commands have non-empty `@CommandDescription` annotations (enforced by
+  a test that fails the build if missing)
+
+**Out of scope:**
+
+- Generating a web-based or man-page documentation format from the annotations
+- Versioned help (help text reflects the current binary only)
+- Auto-completion (shell tab completion) beyond what the current CLI framework provides
+
+### Key Technical Challenges
+
+- **Annotation completeness enforcement**: The build must fail if a new command is added without the
+  required annotation; a reflection-based test that discovers all command classes at test time is needed.
+- **Backward compatibility**: Existing users may have scripts that parse the current help text format;
+  the new format must be at least as machine-parseable as the old one.
+
+### Suggested Starting Points
+
+- `VeniceAdminTool` in `clients/venice-admin-tool` — the main CLI entry point and existing command
+  registration patterns
+- Venice's existing command flag framework (likely JCommander or similar) — annotation patterns
+- Existing help text strings throughout `clients/venice-admin-tool` — the content to migrate
+
+---
+
+## Project 51: TLA+ Specification for Partition Leader Election
+
+### Overview
+
+Venice uses Apache Helix to elect a leader replica for each partition. The correctness of leader
+election—specifically, that at no point two replicas both believe they are the leader
+(**split-brain**)—is critical to data consistency. While Venice relies on Helix for this guarantee, there
+is no formal specification that captures Venice's specific assumptions and usage of Helix.
+
+This project writes a **TLA+ (or FizzBee) specification** for Venice's partition leader election
+protocol, verifies the safety property (at-most-one-leader), and adds it to the `specs/` directory
+alongside Venice's existing formal specifications.
+
+### Impact
+
+- **For Venice's reliability story**: Provides a formal, machine-verified proof that Venice's leader
+  election is free from split-brain under the modeled assumptions, strengthening confidence in the
+  design and serving as a reference for future changes.
+- **For the intern**: Produced a formal methods artifact for a production distributed system—a rare and
+  highly valued skill; demonstrates rigorous distributed systems reasoning on a resume.
+
+### Resume Impact
+
+*"Authored and model-checked a TLA+ specification for the partition leader election protocol of a
+distributed storage service, formally verifying the split-brain safety property and contributing to the
+project's growing corpus of formal specifications."*
+
+### Learning Outcomes
+
+- TLA+ (or FizzBee): the Temporal Logic of Actions specification language and TLC model checker
+- Formal verification of safety and liveness properties in distributed protocols
+- Venice's Helix-based leader election mechanism
+
+### Scope
+
+**In scope:**
+
+- A TLA+ (or FizzBee) specification in `specs/` modeling:
+  - A fixed set of server nodes, each potentially holding a partition replica
+  - The leader election process: a node proposes leadership, Helix verifies the candidate is healthy,
+    and grants the role exclusively
+  - Server failure (crash) and recovery transitions
+- Safety invariant: `AtMostOneLeader` — at all reachable states, at most one node holds the LEADER
+  role for a given partition
+- TLC model check results documented in a README within the spec directory
+- A brief written explanation of the modeling assumptions and limitations
+
+**Out of scope:**
+
+- Specifying the full Venice ingestion protocol (scope to leader election only)
+- Liveness verification (focus on safety only)
+- Specifying multi-region replication
+
+### Key Technical Challenges
+
+- **Abstracting Helix**: TLA+ models are abstractions; faithfully representing Helix's ZooKeeper-based
+  election requires careful decisions about which details to include and which to abstract away.
+- **State space explosion**: A naive model with many nodes and partitions will produce a state space too
+  large to check exhaustively; the spec must use symmetry sets and constants to keep the state space
+  manageable.
+
+### Suggested Starting Points
+
+- Existing FizzBee/TLA+ specs in `specs/` — style and structure to follow
+- [TLA+ learning resources](https://learntla.com/)
+- [FizzBee documentation](https://fizzbee.io/)
+- Apache Helix leader election documentation
+
+---
+
+## Project 52: Backfill Support for Partial Update Stores
+
+### Overview
+
+Venice supports partial updates (Write Compute), where only certain fields of a record are updated
+without rewriting the entire record. This is powerful for nearline pipelines that update different
+fields independently. However, there is currently no built-in way to **backfill** a store that uses
+partial updates: running a full batch push overwrites partial update history and loses all accumulated
+nearline writes.
+
+This project implements a **safe backfill workflow** for partial update stores: a push job mode that
+merges the new batch data with the existing partial updates rather than replacing them.
+
+### Impact
+
+- **For Venice users**: Unlocks backfill operations for the growing class of stores using partial updates,
+  which today cannot be refreshed from batch without losing nearline data—a critical operational gap.
+- **For the intern**: Solved a real production problem that blocked multiple use cases; quantifiable as
+  "enabled safe backfill for X partial-update stores, unblocking Y downstream data pipelines."
+
+### Resume Impact
+
+*"Designed and implemented a merge-based backfill workflow for partial-update stores in a distributed
+storage service, enabling dataset refreshes without losing accumulated nearline writes."*
+
+### Learning Outcomes
+
+- Write Compute and partial updates in Venice: how field-level updates are stored and merged
+- The Venice push job lifecycle and the difference between a full push and a repush
+- Conflict resolution strategies for merging batch and nearline data in a distributed store
+
+### Scope
+
+**In scope:**
+
+- A new push job option `--mergeWithExisting` for stores with `writeComputeEnabled = true`
+- In merge mode, the push job reads the current version's data, merges each incoming record's fields
+  with the existing record using the same Write Compute merge semantics, and writes the merged result
+- A Controller-side validation step that rejects `--mergeWithExisting` for stores that do not have
+  Write Compute enabled
+- Unit tests for the merge logic and an integration test with a simple partial-update store
+
+**Out of scope:**
+
+- Merge semantics for stores without Write Compute (full-replacement push is unchanged)
+- Incremental push with merge (full push only)
+- Cross-region merge coordination
+
+### Key Technical Challenges
+
+- **Merge correctness**: The merge must produce the same result as if the nearline writes had been
+  applied on top of the new batch data, not the other way around; the ordering of merge operations
+  must be carefully specified.
+- **Performance of read-then-write**: Reading the existing record before writing each incoming record
+  doubles the I/O per key; this is acceptable for a batch job but must be bounded (e.g., by parallelism)
+  to keep job duration reasonable.
+
+### Suggested Starting Points
+
+- `VenicePushJob` in `clients/venice-push-job` — push job entry point
+- Write Compute merge logic in `internal/venice-common` — the existing field-level merge implementation
+- [Batch Push documentation](../user-guide/write-apis/batch-push.md)
+
+---
+
+## Project 53: Dynamic Partition Count Expansion
+
+### Overview
+
+Venice requires specifying the partition count for a store at creation time. This count cannot currently
+be changed without deleting and recreating the store (and re-pushing all data). As a store grows over time,
+an under-partitioned store becomes a bottleneck: each partition is larger, ingestion is slower, and hot
+partitions have fewer neighbors to dilute load.
+
+This project implements **online partition count expansion**: the ability to double the partition count of
+a store in place, using a consistent-hash rehashing step that moves data to the new partitions without
+a full repush.
+
+### Impact
+
+- **For Venice operators**: Eliminates the need to delete-and-repush stores that have outgrown their
+  original partition count—an operation that for large stores takes hours and blocks all writes. This
+  is one of the most frequently requested operational capabilities.
+- **For the intern**: Contributed a high-complexity, high-impact distributed systems feature; quantifiable
+  as "enabled online partition expansion for X stores, saving Y person-hours of repush operations."
+
+### Resume Impact
+
+*"Designed and prototyped online partition count expansion for a distributed key-value store, eliminating
+the need for costly full-repush operations when stores outgrow their initial partitioning."*
+
+### Learning Outcomes
+
+- Consistent hashing and how partition count changes affect key-to-partition mapping
+- Online data migration in distributed storage: how to move data while continuing to serve reads
+- Distributed coordination: using the Venice Controller and Helix to orchestrate a cluster-wide resharding
+
+### Scope
+
+**In scope:**
+
+- A design document outlining the proposed expansion algorithm, including: how the new partition count
+  is announced, how existing servers ingest the rehashed data, and how the cutover from old to new
+  partitions is coordinated
+- A proof-of-concept implementation that demonstrates doubling the partition count for a single-region,
+  batch-only store in an integration test environment
+- Unit tests for the consistent-hash rehashing logic (verifying that every key maps correctly to its
+  new partition)
+
+**Out of scope:**
+
+- Non-power-of-two partition count changes (doubling only, for simplicity)
+- Expansion for hybrid (nearline-write) stores
+- Cross-region coordinated expansion
+
+### Key Technical Challenges
+
+- **Cutover atomicity**: The moment when routing switches from old partitions to new partitions must
+  be atomic cluster-wide to prevent a window where some servers serve from old partitions and others
+  from new ones.
+- **Rollback**: If the expansion fails mid-way, the cluster must be able to roll back to the original
+  partition count without data loss.
+- **This is a hard problem**: Partition expansion is one of the hardest problems in distributed storage;
+  the intern is expected to produce a working prototype and design document, not a production-ready
+  implementation.
+
+### Suggested Starting Points
+
+- `VeniceHelixAdmin` in `services/venice-controller` — store version and partition management
+- Venice's partition assignment logic in `internal/venice-common`
+- Academic reference: [Consistent Hashing and Random Trees (Karger et al., 1997)](https://dl.acm.org/doi/10.1145/258533.258660)
+
+---
+
+## Project 54: End-to-End Data Freshness Tracking
+
+### Overview
+
+For Venice hybrid stores, data freshness is critical: ML models must serve predictions based on data
+that is no more than N minutes old. Today, there is no first-class way to track how fresh the data
+served by a Venice store actually is—operators must infer it from Kafka consumer lag, which is a proxy
+at best.
+
+This project implements **end-to-end data freshness tracking**: a mechanism that embeds producer-side
+timestamps into records at write time, extracts them at serve time, and exposes a "data age" metric per
+store—the age of the oldest data currently being served.
+
+### Impact
+
+- **For Venice users**: Provides a first-class, directly measurable freshness SLA for hybrid stores,
+  enabling ML teams to make data-driven decisions about acceptable freshness tradeoffs and alerting
+  immediately when data goes stale.
+- **For the intern**: Built a cross-cutting observability feature spanning the write path, serve path,
+  and metrics layer; quantifiable as "enabled freshness SLA monitoring for X hybrid stores, reducing
+  time to detect stale data from hours to under 2 minutes."
+
+### Resume Impact
+
+*"Implemented end-to-end data freshness tracking for a distributed hybrid storage service, embedding
+producer timestamps into records and exposing a real-time 'data age' metric that reduced stale data
+detection time from hours to under 2 minutes."*
+
+### Learning Outcomes
+
+- Data freshness and staleness in distributed systems: how timestamps propagate through a pipeline
+- Venice's hybrid store architecture: how batch and nearline data coexist in the same store version
+- Cross-cutting observability: instrumenting a feature that spans the write path, serve path, and
+  metrics infrastructure
+
+### Scope
+
+**In scope:**
+
+- A `producerTimestampMs` field added to the Venice message envelope (in the Avro schema used by
+  `VeniceWriter`) populated with `System.currentTimeMillis()` at write time
+- At read time, the Venice server extracts the `producerTimestampMs` from the stored record and
+  updates a per-store `data_age_ms` gauge metric (age = current time − max producer timestamp seen
+  in the last 60 seconds)
+- A `venice-admin-tool` sub-command `show-data-age` that queries all servers for a store and reports
+  min/max/mean data age per partition
+- Unit tests for timestamp embedding and extraction, and a test verifying that the metric is
+  populated after a write
+
+**Out of scope:**
+
+- Per-key freshness tracking (store-level aggregate only)
+- Freshness for batch-only stores (hybrid stores only)
+- Automated enforcement of freshness SLAs (reporting only)
+
+### Key Technical Challenges
+
+- **Backward compatibility**: Adding `producerTimestampMs` to the message envelope must not break
+  existing servers that do not know about this field; the field must be optional with a sensible
+  default (0 or -1 indicating "not available").
+- **Clock skew between producers**: Different producer instances may have slightly different clocks;
+  the `data_age_ms` metric must document that it reflects the producer clock, not an absolute measure
+  of system time.
+- **High-frequency metric updates**: The server may receive thousands of records per second; updating
+  the `data_age_ms` gauge on every record would be too expensive. The metric must be updated via a
+  background sampler or on a per-batch basis.
+
+### Suggested Starting Points
+
+- `VeniceWriter` in `internal/venice-common` — writes messages to Kafka with envelope metadata
+- `StoreIngestionTask` in `services/venice-server` — where ingested records are processed at read time
+- Venice's message envelope Avro schema in `internal/venice-common`
