@@ -9,6 +9,33 @@ connect you with a mentor.
 
 ---
 
+## 🏆 Top Picks: Highest Impact & Most Achievable
+
+The table below is a curated shortlist of the projects from this page that best combine **concrete production
+impact**, **clean scope**, and **realistic deliverability** within a 3-month internship. Each project has a
+well-understood problem, a clear path to a working implementation, and produces a result that is immediately
+useful to Venice operators or users. They are ordered from most to least recommended as a starting point.
+
+| Rank | Project | Why It's a Top Pick |
+|------|---------|-------------------|
+| ⭐ 1 | [**Project 39: Automatic Dead Letter Queue for Failed Nearline Writes**](#project-39-automatic-dead-letter-queue-for-failed-nearline-writes) | Closes a real, acknowledged data-loss gap. Scope is tightly bounded (one new Kafka topic + one new config flag). The DLQ pattern is a well-understood distributed systems primitive, so the design is low-risk. Impact is immediately measurable: zero dropped records vs. the silent drops today. |
+| ⭐ 2 | [**Project 37: Automatic Replication Factor Repair**](#project-37-automatic-replication-factor-repair) | A self-healing background task with a crisp invariant (actual replicas ≥ target). The Helix APIs are already present in the codebase. The dry-run mode makes it safe to ship incrementally. Reduces operator toil for one of the most common on-call tasks. |
+| ⭐ 3 | [**Project 54: End-to-End Data Freshness Tracking**](#project-54-end-to-end-data-freshness-tracking) | Adds a producer timestamp to the message envelope (a 3-field Avro change) and exposes a `data_age_ms` gauge. Touches the write path, server, and metrics — giving the intern a full-stack view of Venice. The metric is immediately actionable for ML teams that have freshness SLAs. |
+| ⭐ 4 | [**Project 5: Hedged Requests for Tail Latency Reduction**](#project-5-hedged-requests-for-tail-latency-reduction) | Speculative execution is a classic distributed systems technique. The implementation is self-contained in the Fast Client with no protocol changes. Latency improvement is directly measurable via p99 benchmarks. A hedge budget prevents runaway amplification, keeping the scope safe. |
+| ⭐ 5 | [**Project 9: Graceful Server Draining**](#project-9-graceful-server-draining) | Every production deployment benefits immediately. The Helix state-transition hook and in-flight counter are well-scoped additions. The safety net (drain timeout) keeps the worst case bounded. A Kubernetes-ready Venice (VIP-6) needs this as a prerequisite. |
+| ⭐ 6 | [**Project 35: Zero-Downtime Schema Migration Dry-Run Mode**](#project-35-zero-downtime-schema-migration-dry-run-mode) | A single `?dryRun=true` query parameter that never writes to ZooKeeper. Almost all the logic (compatibility checks) already exists — this project is mostly wiring. The value is enormous: preventing irreversible schema changes that cause multi-hour repushes. |
+| ⭐ 7 | [**Project 11: Cross-Region Replication Lag Monitoring**](#project-11-cross-region-replication-lag-monitoring) | Observability gap with a clear metric definition. Kafka consumer lag APIs are well-documented and already used in the codebase. The admin tool CLI makes the result immediately usable. Directly supports SLA conversations for globally replicated stores. |
+| ⭐ 8 | [**Project 21: Incremental Da Vinci Client Bootstrap Checkpointing**](#project-21-incremental-da-vinci-client-bootstrap-checkpointing) | Write-to-temp-then-rename checkpointing is a textbook distributed systems technique. The DVC bootstrap path is well-understood. The impact (90% reduction in crash-recovery time) is large and easily demonstrated in an integration test. |
+| ⭐ 9 | [**Project 4: Store Partition Skew Detection and Reporting**](#project-4-store-partition-skew-detection-and-reporting) | Pure observability: no behavioral changes to the serving path. The skew score (coefficient of variation) is a single formula. The result feeds directly into capacity planning and push-job optimization workflows. |
+| ⭐ 10 | [**Project 22: gRPC Health Check and Readiness Probes**](#project-22-grpc-health-check-and-readiness-probes) | A protocol-standard addition with a precise, testable contract. The gRPC health proto and Java stub are in the grpc-java library already. This is a prerequisite for Kubernetes-native Venice (VIP-6) and a clear open source contribution story. |
+
+> **How to use this table:** If you are a prospective intern or mentor looking for a starting point, pick a
+> project from the top of this list. The full details — scope, technical challenges, and suggested starting
+> points — are in the numbered sections below. All other projects on this page are also valid and worthwhile;
+> the top picks list simply highlights the ones with the most favorable impact-to-complexity ratio.
+
+---
+
 ## Project 1: Distributed Tracing with OpenTelemetry
 
 ### Overview
