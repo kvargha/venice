@@ -3383,3 +3383,708 @@ detection time from hours to under 2 minutes."*
 - `VeniceWriter` in `internal/venice-common` — writes messages to Kafka with envelope metadata
 - `StoreIngestionTask` in `services/venice-server` — where ingested records are processed at read time
 - Venice's message envelope Avro schema in `internal/venice-common`
+
+---
+
+## Project 55: Adaptive Ingestion Throttling
+
+### Overview
+
+Venice servers consume data from Kafka at a rate that can saturate disk I/O or CPU, competing with the
+read path and degrading latency for live serving traffic. Today, the ingestion rate is controlled by
+static configuration that must be tuned manually per cluster. A single misconfigured value can either
+leave ingestion unnecessarily slow (extending the push window) or starve read requests of CPU and I/O.
+
+This project implements **adaptive ingestion throttling**: a feedback controller that observes read-path
+latency in real time and dynamically adjusts the ingestion rate to keep read latency within its SLA.
+
+### Impact
+
+- **For Venice clusters**: Automatically prevents ingestion from impacting read latency during push jobs,
+  eliminating the need for manual per-cluster tuning and reducing latency incidents during data updates.
+- **For the intern**: Built an autonomous feedback control system for a production distributed storage
+  service; quantifiable as "eliminated X manual tuning tickets per quarter and reduced ingestion-caused
+  latency incidents by Y%."
+
+### Resume Impact
+
+*"Implemented an adaptive ingestion throttling system for a distributed storage service using a
+proportional feedback controller, eliminating manual rate-tuning toil and preventing ingestion from
+impacting read latency SLAs."*
+
+### Learning Outcomes
+
+- Feedback control theory applied to distributed systems: proportional controllers, setpoints, and
+  stability vs. responsiveness tradeoffs
+- How Venice's ingestion pipeline and read path share server resources (CPU, disk I/O, RocksDB)
+- Dynamic configuration: how Venice applies config changes to running components without a restart
+
+### Scope
+
+**In scope:**
+
+- An `IngestionThrottleController` component that runs in a background thread on the server, sampling
+  the rolling p99 read latency every 5 seconds
+- When p99 latency exceeds a configurable high-water mark, reduce the ingestion byte rate by a
+  configurable step (e.g., 10%)
+- When p99 latency falls below a low-water mark, increase the rate by the same step, up to the
+  configured maximum
+- Expose the current throttle level as a server metric (`ingestion.throttle.rate.bytes_per_sec`)
+- A server config to enable/disable adaptive throttling and to set the latency high/low-water marks
+- Unit tests for the controller logic (increase, decrease, boundary conditions)
+
+**Out of scope:**
+
+- Throttling the Kafka producer (only consumer-side throttling)
+- Cross-server coordination of throttle rates
+- Machine learning–based rate prediction (proportional controller only)
+
+### Key Technical Challenges
+
+- **Stability**: A proportional controller can oscillate if the step size is too large or the
+  sampling interval is too short; the controller parameters must be chosen carefully and documented.
+- **Distinguishing causes**: p99 latency can increase for reasons unrelated to ingestion (e.g., a
+  hot key or a GC pause); the controller must not throttle ingestion in response to unrelated spikes.
+- **Interaction with ingestion checkpointing**: Throttling slows ingestion, which may delay offset
+  commits; the implementation must verify that checkpointing remains correct at reduced rates.
+
+### Suggested Starting Points
+
+- `StoreIngestionTask` in `services/venice-server` — the ingestion loop where rate can be controlled
+- `ServerReadQuotaUsageStats` in `services/venice-server` — existing read-path latency metrics
+- Venice's existing ingestion rate limiting utilities in `services/venice-server`
+
+---
+
+## Project 56: Zero-Copy Read Path via Off-Heap Value Buffers
+
+### Overview
+
+Every Venice single-get response today involves at least one heap allocation to hold the deserialized
+value bytes before they are serialized into an HTTP/gRPC response buffer. For high-throughput servers
+handling millions of requests per second, this allocation pressure contributes measurably to GC pauses
+and tail latency. RocksDB's Java API (`get(byte[] key)`) already copies the value into a heap byte
+array; the alternative `get(ByteBuffer dest)` API can write directly into a caller-supplied off-heap
+buffer, enabling a zero-copy path from RocksDB to the network stack.
+
+This project prototypes a **zero-copy value delivery** path for single-get requests that eliminates the
+intermediate heap copy, measuring the impact on allocation rate and p999 latency.
+
+### Impact
+
+- **For Venice clusters**: Reduces per-request heap allocation, lowering GC pause frequency and
+  improving p999 tail latency for the most latency-sensitive Venice workloads.
+- **For the intern**: Contributed a low-level performance optimization to a production distributed
+  storage system; quantifiable as "reduced per-request heap allocation by X bytes, cutting GC pause
+  frequency by Y% on high-throughput servers."
+
+### Resume Impact
+
+*"Prototyped a zero-copy off-heap read path for a distributed key-value store by eliminating
+intermediate heap copies between RocksDB and the network stack, reducing GC pressure and improving
+tail latency on high-throughput servers."*
+
+### Learning Outcomes
+
+- JVM memory model: heap vs. off-heap (`ByteBuffer.allocateDirect`), garbage collection pressure,
+  and why large allocations cause GC pauses
+- RocksDB's Java API: the difference between `get(byte[])` and `get(ByteBuffer)` and when each is
+  appropriate
+- Performance measurement methodology: allocation profiling with async-profiler, p999 benchmarking
+
+### Scope
+
+**In scope:**
+
+- A proof-of-concept implementation of the single-get read path in `VeniceServerRequestHandler`
+  using `RocksDB.get(ColumnFamilyHandle, ReadOptions, ByteBuffer, ByteBuffer)` to write the value
+  directly into a pre-allocated off-heap destination buffer
+- A JMH microbenchmark comparing the heap-copy and zero-copy paths for allocation rate and latency
+- A flame graph (using async-profiler) demonstrating the reduction in `byte[]` allocations
+- A configuration flag `server.zero_copy_read.enabled` to enable the prototype, off by default
+
+**Out of scope:**
+
+- Zero-copy for batch-get or read-compute requests
+- Zero-copy for large chunked values (chunking reconstruction requires additional assembly)
+- Production rollout (benchmark and prototype only)
+
+### Key Technical Challenges
+
+- **Buffer lifecycle management**: Off-heap buffers are not garbage-collected; they must be
+  explicitly returned to a pool after the response is sent. A reference-counted pool is needed.
+- **RocksDB API compatibility**: The `ByteBuffer`-based `get` API may not be available in all
+  versions of RocksJava pinned by Venice; the implementation must verify API availability and
+  fall back to the heap path if not available.
+- **Correctness under chunked values**: Large values stored in multiple RocksDB keys (chunked
+  values) cannot use a simple zero-copy path; the implementation must detect and skip these.
+
+### Suggested Starting Points
+
+- `RocksDBStoragePartition` in `services/venice-server` — the RocksDB wrapper
+- `VeniceServerRequestHandler` in `services/venice-server` — the single-get handler
+- [RocksJava ByteBuffer API documentation](https://javadoc.io/doc/org.rocksdb/rocksdbjni/latest/org/rocksdb/RocksDB.html)
+
+---
+
+## Project 57: Store-Level Quota Dashboard and Auto-Rightsizing
+
+### Overview
+
+Venice enforces per-store read quotas on the router tier. When a store's quota is set too low, users
+experience quota rejections; when it is set too high, it wastes capacity that could serve other stores.
+Today, quotas are set manually and are rarely revisited, leading to a mix of under-provisioned and
+over-provisioned stores in every cluster.
+
+This project builds a **quota rightsizing dashboard**: an admin tool command that compares each store's
+configured quota against its actual peak usage over the past 24 hours and recommends an adjusted value.
+
+### Impact
+
+- **For Venice clusters**: Reclaims router capacity from over-provisioned stores and prevents quota
+  rejections from under-provisioned ones, improving overall cluster efficiency and user experience.
+- **For the intern**: Delivered a self-service capacity management tool used by operators daily;
+  quantifiable as "identified X stores with >2× over-provisioned quotas, reclaiming Y% of router
+  capacity."
+
+### Resume Impact
+
+*"Built a quota rightsizing dashboard for a distributed storage service's router tier that compared
+configured vs. actual peak usage for hundreds of stores, enabling data-driven quota adjustments that
+reclaimed significant router capacity."*
+
+### Learning Outcomes
+
+- Quota and rate limiting in distributed systems: token buckets, capacity planning, and fairness
+- How Venice's router enforces per-store read quotas
+- Data-driven capacity management: using observed usage to derive recommendations
+
+### Scope
+
+**In scope:**
+
+- A `quota-rightsizing` sub-command in `venice-admin-tool` that:
+  - Queries each Router's per-store quota usage metrics (requests/sec, quota rejection rate)
+  - For each store, computes: configured quota, peak usage over the last 24 hours, utilization
+    percentage, and a recommended new quota (e.g., 120% of the 24-hour peak)
+  - Renders a table sorted by over-provisioning ratio (most over-provisioned first)
+  - Supports a `--apply` flag that updates the quota for all listed stores to the recommended value
+- Unit tests for the recommendation formula and sorting logic
+
+**Out of scope:**
+
+- Automatic quota adjustment without operator confirmation (the `--apply` flag requires explicit opt-in)
+- Historical trending beyond the 24-hour window
+- Write quota rightsizing (read quota only)
+
+### Key Technical Challenges
+
+- **Metric availability**: Per-store quota usage metrics must be accessible from the Router's
+  metrics endpoint; if they are not already exposed, a small server-side addition will be needed.
+- **Peak vs. average**: Using average usage as the rightsizing baseline would leave stores
+  under-provisioned during bursts; the tool must use the peak (max) usage within the window.
+- **Safe `--apply` mode**: Applying quota changes to many stores at once via the admin API must be
+  rate-limited and must confirm with the operator before proceeding.
+
+### Suggested Starting Points
+
+- `ReadQuotaEnforcementHandler` in `services/venice-router` — where per-store quota usage is tracked
+- `VeniceAdminTool` in `clients/venice-admin-tool` — CLI patterns
+- `ControllerClient` in `internal/venice-common` — the `updateStore` API for changing quotas
+
+---
+
+## Project 58: Structured Error Classification and Reporting
+
+### Overview
+
+When a Venice request fails, the client receives a generic exception. In practice, Venice errors fall
+into distinct categories with very different remediation paths: quota exceeded (client should back off),
+store not found (client has a bug), server unavailable (transient — retry), deserialization error
+(data quality issue), and so on. Today, all of these surface as undifferentiated exceptions with
+error messages that vary by code path, making automated error handling difficult.
+
+This project introduces a **structured error taxonomy**: a well-defined set of error codes returned by
+Venice servers and routers, surfaced to clients as typed exceptions, enabling applications to handle
+errors programmatically rather than parsing message strings.
+
+### Impact
+
+- **For Venice users**: Enables applications to implement correct retry/backoff logic and differentiate
+  recoverable from non-recoverable errors without parsing exception messages, reducing both false retries
+  and missed retries.
+- **For the intern**: Improved the error handling contract of a widely used distributed storage client
+  library, with direct impact on application reliability across many dependent services.
+
+### Resume Impact
+
+*"Designed and implemented a structured error classification system for a distributed storage client
+library, replacing opaque string-based errors with a typed taxonomy that enabled applications to
+implement correct retry logic and reduced both false retries and missed retries."*
+
+### Learning Outcomes
+
+- Error taxonomy design in distributed systems: the difference between client errors, server errors,
+  and transient vs. permanent failures
+- How errors propagate through Venice's multi-tier stack (server → router → client)
+- Backward-compatible API evolution: adding structured errors without breaking existing client code
+
+### Scope
+
+**In scope:**
+
+- Define a `VeniceErrorCode` enum (e.g., `QUOTA_EXCEEDED`, `STORE_NOT_FOUND`, `SERVER_UNAVAILABLE`,
+  `SCHEMA_MISMATCH`, `KEY_TOO_LARGE`, `BATCH_SIZE_TOO_LARGE`, `INTERNAL_ERROR`)
+- Update the server and router to include the error code in HTTP error responses (as a response
+  header or in the JSON body)
+- Update the Thin Client to extract the error code and throw a `VeniceClientException` subclass
+  for each error type (e.g., `VeniceQuotaExceededException extends VeniceClientException`)
+- Update the Fast Client analogously
+- Unit tests verifying that each error type results in the correct exception subclass
+- A migration guide in the docs for applications that currently catch `VeniceClientException`
+
+**Out of scope:**
+
+- Structured errors for the Da Vinci Client (server and thin/fast client only)
+- Retry policy built into the client based on error codes (error reporting only; retries are a
+  separate concern)
+
+### Key Technical Challenges
+
+- **Backward compatibility**: Existing servers that do not emit error codes must not cause the new
+  client to throw `NullPointerException`; the client must fall back gracefully to `INTERNAL_ERROR`.
+- **Error code completeness**: The initial set of error codes must cover the most common real-world
+  errors without being so granular that it becomes unmaintainable.
+- **HTTP header vs. body**: Including the error code in the response body is simpler but requires
+  deserializing a partially-formed response; a response header is cleaner but requires server-side
+  changes.
+
+### Suggested Starting Points
+
+- `VeniceClientException` in `clients/venice-thin-client` — existing exception hierarchy
+- `RouterRequestHandler` in `services/venice-router` — where HTTP error responses are constructed
+- Venice's existing error handling in `DispatchingAvroGenericStoreClient`
+
+---
+
+## Project 59: Push Job Failure Diagnosis Tool
+
+### Overview
+
+When a Venice push job fails, the error message is often generic ("Push job failed") and the root
+cause is buried in logs spread across multiple systems: the push job client, the Venice Controller,
+and individual server ingestion logs. An operator investigating a failure must manually correlate
+these logs across machines, which can take 30–60 minutes even for experienced engineers.
+
+This project builds a **push job failure diagnosis tool** that, given a failed push job ID, queries
+the Controller's job status records, the push job details system store, and (optionally) server logs,
+and produces a structured failure report identifying the most likely root cause.
+
+### Impact
+
+- **For Venice operators**: Reduces mean time to diagnose push job failures from 30–60 minutes to
+  under 5 minutes, directly cutting on-call toil for one of the most common Venice incidents.
+- **For the intern**: Shipped a diagnostic tool with measurable impact on incident response time;
+  quantifiable as "reduced push job failure diagnosis time from ~45 minutes to under 5 minutes for
+  X% of failure categories."
+
+### Resume Impact
+
+*"Built an automated push job failure diagnosis tool for a distributed data ingestion pipeline that
+queries multi-system logs and produces a structured root-cause report, reducing mean diagnosis time
+from 45 minutes to under 5 minutes."*
+
+### Learning Outcomes
+
+- How Venice's push job lifecycle is tracked across the Controller, system stores, and server logs
+- Failure mode taxonomy for distributed data ingestion systems
+- Building diagnostic tooling that aggregates state from multiple distributed sources
+
+### Scope
+
+**In scope:**
+
+- A `diagnose-push` sub-command in `venice-admin-tool` that accepts a store name and, optionally,
+  a version number and produces a report containing:
+  - Push job status timeline (start, end, per-region completion times, final status)
+  - A classified root cause from a predefined taxonomy:
+    - Schema violation (reports which schema version conflicted)
+    - Data file missing or unreadable (reports which HDFS/S3 path)
+    - Quota exceeded (reports which region)
+    - Server ingestion error (reports which partition and server)
+    - Controller timeout (reports which step timed out)
+  - Recommended remediation step for the identified root cause
+- Queries the Controller REST API for job status and the Push Job Details system store for job metadata
+- Unit tests for root cause classification logic
+
+**Out of scope:**
+
+- Automated remediation (diagnosis and recommendation only)
+- Real-time streaming of diagnosis updates for in-progress jobs
+- Diagnosis for nearline/incremental push failures (full push only)
+
+### Key Technical Challenges
+
+- **Incomplete data**: Some push job failures do not leave a complete audit trail; the tool must
+  handle missing data gracefully and report "unknown root cause" rather than crashing.
+- **Classification accuracy**: The same symptom (e.g., server ingestion error) can have multiple
+  root causes; the tool must apply a decision tree rather than a single keyword match.
+- **System store access**: Reading the push job details system store requires a Da Vinci Client
+  subscription; the tool must manage the DVC lifecycle correctly within a short-lived CLI command.
+
+### Suggested Starting Points
+
+- `ControllerClient` in `internal/venice-common` — `queryJobStatus` and related APIs
+- The Push Job Details [system store](../operations/data-management/system-stores.md)
+- `VeniceAdminTool` in `clients/venice-admin-tool` — CLI patterns
+
+---
+
+## Project 60: Kafka Producer Metrics Exposure
+
+### Overview
+
+The `VeniceWriter` class is Venice's internal Kafka producer wrapper, responsible for all writes to
+Venice topics (batch push, nearline writes, admin channel). The underlying Kafka producer client
+exposes a rich set of metrics (produce rate, batch size, record send latency, retry rate, buffer
+pool wait time), but today almost none of these are surfaced to Venice's metrics system. When
+producer performance degrades—due to a Kafka broker slowdown, network congestion, or misconfigured
+batch settings—there is no visibility into the problem.
+
+This project exposes the **Kafka producer's built-in metrics** through Venice's metrics pipeline,
+giving operators full visibility into producer health.
+
+### Impact
+
+- **For Venice clusters**: Enables early detection of Kafka producer degradation (before it causes
+  push job latency or write pipeline delays), reducing the time to detect and remediate Kafka-related
+  write path incidents.
+- **For the intern**: Added observability to a critical production write path; quantifiable as "enabled
+  detection of X Kafka producer degradation events that previously went unnoticed until push job failure."
+
+### Resume Impact
+
+*"Instrumented the Kafka producer layer of a distributed storage service's write path by exposing
+Kafka's built-in producer metrics to the platform's monitoring system, enabling early detection of
+write pipeline degradation."*
+
+### Learning Outcomes
+
+- Kafka producer internals: batching, linger, compression, and the producer metrics API
+- How Venice's write path uses the Kafka producer for batch push, nearline writes, and admin channel
+- Metrics bridge patterns: adapting a third-party library's metrics to an application's own system
+
+### Scope
+
+**In scope:**
+
+- A `KafkaProducerMetricsReporter` that reads from the Kafka producer's `metrics()` API and
+  publishes the following to Venice's metrics registry on a configurable interval (default: 30s):
+  - `record-send-rate` (records/sec)
+  - `record-send-total` (counter)
+  - `record-error-rate` (errors/sec)
+  - `request-latency-avg` and `request-latency-max` (ms)
+  - `byte-rate` (bytes/sec)
+  - `buffer-available-bytes` and `buffer-pool-wait-ratio`
+- Metrics are tagged by Venice component (push job, nearline writer, admin channel writer)
+- Unit tests verifying that each metric is populated after a write
+
+**Out of scope:**
+
+- Per-topic or per-partition Kafka producer metrics (aggregate only)
+- Consumer-side Kafka metrics (producer only)
+- Changes to Kafka producer configuration
+
+### Key Technical Challenges
+
+- **Metric name translation**: Kafka metric names use dot notation (e.g., `record-send-rate`);
+  Venice's metrics system may use a different naming convention; a consistent translation layer
+  is needed.
+- **Multiple producer instances**: Venice creates multiple `VeniceWriter` instances (one per topic
+  per component); metrics must be tagged to distinguish them without creating unbounded cardinality.
+
+### Suggested Starting Points
+
+- `VeniceWriter` in `internal/venice-common` — the Kafka producer wrapper
+- Venice's metrics registry in `internal/venice-common`
+- [Kafka Producer Metrics documentation](https://kafka.apache.org/documentation/#producer_monitoring)
+
+---
+
+## Project 61: Replica Sync Progress Bar for Admin Tool
+
+### Overview
+
+Venice administrators frequently need to understand how far along a partition is in bootstrapping to
+a new server — for example, after adding capacity or recovering from a server failure. Today, the only
+way to check sync progress is to call the admin API and interpret raw offset numbers, which requires
+knowing the total expected offset for each partition.
+
+This project adds a `watch-replica-sync` sub-command to the `venice-admin-tool` that renders a
+**live progress bar** per partition, showing the percentage of data synced and an ETA to completion.
+
+### Impact
+
+- **For Venice operators**: Replaces raw number interpretation with a human-readable, live-updating
+  display that makes capacity expansion operations self-service for on-call engineers; reduces the
+  number of escalations during routine maintenance.
+- **For the intern**: Shipped daily-use operator tooling for a production distributed system;
+  quantifiable as "reduced escalations during capacity expansion events by Y% by providing
+  self-service sync visibility."
+
+### Resume Impact
+
+*"Built a live replica sync progress dashboard for a distributed storage service's admin CLI,
+replacing manual offset arithmetic with an intuitive progress bar that reduced escalations during
+capacity expansion operations."*
+
+### Learning Outcomes
+
+- How Venice tracks ingestion progress via Kafka offsets and the Helix customized view
+- Progress estimation in distributed systems: how to map offset position to a meaningful percentage
+- Interactive terminal UI: ANSI progress bars and in-place refresh
+
+### Scope
+
+**In scope:**
+
+- A `watch-replica-sync` sub-command in `venice-admin-tool` that accepts a store name and, optionally,
+  a version number and renders, for each partition and each replica:
+  - A progress bar showing `consumed_offset / total_offset`
+  - Estimated time to completion (linear extrapolation from recent consumption rate)
+  - Current replica state (LEADER, FOLLOWER, BOOTSTRAPPING, etc.)
+- The display refreshes every 3 seconds using ANSI in-place rendering
+- A `--partition` filter flag to show only specific partitions
+- Unit tests for the progress percentage and ETA calculations
+
+**Out of scope:**
+
+- Multi-store progress views
+- Integration with external dashboards (CLI only)
+- Sync progress for Da Vinci Clients
+
+### Key Technical Challenges
+
+- **Determining total offset**: The expected total offset for a partition is the high-water mark of
+  the corresponding Kafka topic; this must be fetched from Kafka and may change during ingestion.
+- **Helix customized view staleness**: The Helix customized view (which Venice uses to report
+  ingestion progress) is updated periodically; the progress bar must indicate when the data is stale.
+
+### Suggested Starting Points
+
+- `HelixCustomizedViewOfflinePushRepository` in `services/venice-router` — reads ingestion progress
+  from Helix customized view
+- `VeniceAdminTool` in `clients/venice-admin-tool` — CLI patterns
+- Project 13 (Push Job Progress Dashboard) — similar rendering approach
+
+---
+
+## Project 62: Message Envelope Validation Framework
+
+### Overview
+
+Venice servers process Kafka messages from many producers. Malformed or unexpected messages—wrong
+schema ID, negative payload size, missing required header fields—can cause the server to crash, get
+stuck, or silently skip records. Today, envelope validation is ad hoc and scattered across the
+ingestion code, with no consistent policy for handling validation failures.
+
+This project consolidates all message envelope validation into a **pluggable validation framework**
+with clear pass/fail/skip semantics, structured validation error metrics, and a DLQ (dead letter
+queue) option for rejected messages.
+
+### Impact
+
+- **For Venice clusters**: Prevents a class of ingestion panics and stuck consumers caused by
+  envelope-level message corruption; provides a single place to add new validation rules as the
+  Venice protocol evolves.
+- **For the intern**: Built a defensive programming framework that hardened a production data
+  pipeline; quantifiable as "eliminated X ingestion panics per month caused by malformed messages."
+
+### Resume Impact
+
+*"Designed and implemented a pluggable message validation framework for a distributed storage
+service's ingestion pipeline, centralizing envelope validation logic and eliminating a class of
+ingestion panics caused by malformed messages."*
+
+### Learning Outcomes
+
+- Defensive programming in distributed systems: why explicit validation beats implicit assumptions
+- Plugin/strategy pattern in Java: designing an extensible validation API
+- The Venice message envelope structure: schema IDs, chunk metadata, and protocol version fields
+
+### Scope
+
+**In scope:**
+
+- A `MessageEnvelopeValidator` interface with a single method:
+  `ValidationResult validate(KafkaMessageEnvelope envelope)`
+- Built-in validators:
+  - `SchemaIdValidator`: schema ID must be a positive integer and must be registered
+  - `PayloadSizeValidator`: payload size must not exceed the configured max
+  - `ProtocolVersionValidator`: protocol version must be in the supported range
+- A `ValidatorChain` that runs all registered validators and returns the first failure
+- Integration into `StoreIngestionTask`: on validation failure, either skip (log + metric) or
+  forward to the DLQ topic (if enabled)
+- Metrics: `message.validation.failure.count` tagged by validator name and failure reason
+- Unit tests for each built-in validator and for the chain semantics
+
+**Out of scope:**
+
+- Payload-level Avro schema validation (envelope-level only)
+- Dynamic validator registration at runtime (static chain configured at startup)
+
+### Key Technical Challenges
+
+- **Performance**: The validator chain runs on every message in the hot ingestion path; each
+  validator must be O(1) and allocation-free for the common (valid) case.
+- **Backward compatibility**: New validators must not reject messages that older Venice versions
+  would have accepted; validators must be versioned or made configurable.
+
+### Suggested Starting Points
+
+- `StoreIngestionTask` in `services/venice-server` — the ingestion loop
+- `KafkaMessageEnvelope` Avro schema in `internal/venice-common`
+- Project 39 (Dead Letter Queue) — the DLQ integration point
+
+---
+
+## Project 63: Schema-Aware Data Sampling for Push Jobs
+
+### Overview
+
+During a large batch push job, data quality issues (wrong field types, unexpectedly null values,
+distribution shifts) are hard to catch because the Venice push job does not perform any sampling
+or statistical analysis of the input data before writing it. A data scientist who wants to verify
+that the dataset is correct before a full push must either run a separate Spark job or wait for the
+push to complete and then inspect the resulting store.
+
+This project adds a **schema-aware data sampling** phase to the Venice push job: before writing data,
+the job samples a configurable fraction of records, computes per-field statistics (null rate, value
+distribution for enums, min/max/mean for numerics), and prints a summary report that operators can
+review to catch data quality issues before committing the full push.
+
+### Impact
+
+- **For Venice users**: Enables pre-push data quality validation that catches issues before they
+  reach serving, reducing the frequency of costly rollbacks and repushes caused by data quality
+  incidents.
+- **For the intern**: Built proactive data quality tooling for a distributed data ingestion pipeline;
+  quantifiable as "caught X data quality issues pre-push that would otherwise have required
+  multi-hour repushes."
+
+### Resume Impact
+
+*"Implemented a schema-aware data sampling and statistical profiling phase for a distributed batch
+data ingestion pipeline, enabling pre-push data quality validation that caught issues before they
+reached production serving."*
+
+### Learning Outcomes
+
+- Batch data sampling techniques in distributed systems (reservoir sampling, stratified sampling)
+- Avro schema inspection and field-level statistics computation
+- The Venice Push Job execution model: how data flows from Hadoop/Spark through the Venice writer
+
+### Scope
+
+**In scope:**
+
+- A `--sample-rate` flag for the Venice Push Job (default: 0 = disabled)
+- When sampling is enabled, a `DataSampler` component reads records as they pass through the
+  `DataWriterComputeJob` stage, collecting per-field statistics:
+  - Null rate for nullable fields
+  - Min, max, mean, and standard deviation for numeric fields
+  - Value frequency distribution (top-10) for string and enum fields
+- After sampling, print a human-readable summary table before beginning the actual write phase
+- A `--fail-on-null-rate-above <threshold>` flag that aborts the push if any non-nullable field
+  has a null rate above the threshold
+- Unit tests for the per-field statistics logic
+
+**Out of scope:**
+
+- Schema drift detection between push runs (single-push analysis only)
+- Sampling for incremental or nearline pushes (full push only)
+- Saving the sampling report to the Push Job Details system store
+
+### Key Technical Challenges
+
+- **Sampling without a second pass**: The push job processes records in a single pass; the sampler
+  must use reservoir sampling to collect a representative subset without reading the input data twice.
+- **Memory bounding**: Per-field statistics must be computed in bounded memory; string frequency
+  distributions must use a top-K approximation (e.g., Space-Saving) rather than an exact hash map.
+- **Avro union types**: Nullable fields in Avro are represented as unions (`["null", "T"]`); the
+  sampler must correctly handle union-typed fields when computing null rates.
+
+### Suggested Starting Points
+
+- `VenicePushJob` in `clients/venice-push-job` — the push job entry point
+- The `DataWriterComputeJob` stage in `clients/venice-push-job` — where records are processed
+- Project 18 (Key Sampling for Hot-Key Detection) — Space-Saving algorithm reference
+
+---
+
+## Project 64: Configurable Store Data Retention via TTL Enforcement at Ingestion
+
+### Overview
+
+Venice already supports Time-to-Live (TTL) configuration per store
+(see [TTL documentation](../operations/data-management/ttl.md)), but TTL
+enforcement today happens lazily — expired records are only removed during RocksDB compaction, which
+may be delayed by hours or days. For stores with strict data retention requirements (e.g., privacy
+compliance, regulatory data deletion), this lazy approach may not meet the required deletion SLA.
+
+This project implements **eager TTL enforcement at ingestion time**: when a record arrives at the
+server during ingestion, if its timestamp indicates it has already expired, the server skips the write
+(and optionally tombstones the key). This ensures expired records are never written to durable storage.
+
+### Impact
+
+- **For Venice clusters**: Provides a path to compliance with strict data retention SLAs by preventing
+  expired records from ever reaching persistent storage, rather than relying on eventual compaction-based
+  deletion.
+- **For the intern**: Addressed a real regulatory compliance gap in a production data platform;
+  quantifiable as "reduced the window between record expiry and deletion from up to 72 hours to under
+  1 second for X stores with strict TTL requirements."
+
+### Resume Impact
+
+*"Implemented eager TTL enforcement at ingestion time for a distributed storage service, reducing the
+record expiry-to-deletion window from up to 72 hours (compaction-dependent) to under 1 second for
+compliance-sensitive stores."*
+
+### Learning Outcomes
+
+- TTL and data retention semantics in distributed storage systems
+- The tradeoff between eager and lazy expiration: write amplification vs. storage waste vs. compliance
+- Venice's existing TTL configuration and how it interacts with RocksDB compaction filters
+
+### Scope
+
+**In scope:**
+
+- A new per-store config flag `ttl.enforcement.eager` (boolean, default: false)
+- When enabled, the `StoreIngestionTask` checks the record's embedded timestamp against the store's
+  TTL policy before calling `RocksDB.put()`; expired records are skipped with a metric increment
+- A `ttl.records.skipped.count` metric tagged by store name
+- A unit test verifying that a record with an expired timestamp is not written to RocksDB when
+  eager enforcement is enabled, and a test verifying the record is written when the flag is disabled
+
+**Out of scope:**
+
+- Retroactive deletion of records already stored before the flag was enabled
+- TTL enforcement for the nearline real-time path (batch ingestion only)
+- Interaction with Write Compute partial updates
+
+### Key Technical Challenges
+
+- **Timestamp source**: Venice records may carry the producer timestamp or the Kafka log-append
+  timestamp; the TTL check must use the correct timestamp and must be documented clearly.
+- **Clock skew**: A record produced slightly before the TTL cutoff on a host with a slow clock should
+  not be silently dropped; a small grace period (configurable, default: 5 seconds) is needed.
+- **Interaction with existing lazy TTL**: Enabling eager enforcement does not disable the existing
+  RocksDB compaction filter; both can coexist, with eager enforcement providing an additional safety net.
+
+### Suggested Starting Points
+
+- `StoreIngestionTask` in `services/venice-server` — the ingestion loop
+- Venice's existing TTL compaction filter in `services/venice-server`
+- [TTL documentation](../operations/data-management/ttl.md)
